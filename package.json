@@ -11,8 +11,8 @@
     "url": "git+https://github.com/TestPlant/real-user-data-sdk-js.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Eggplant - RCI team",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/TestPlant/real-user-data-sdk-js/issues"
   },
