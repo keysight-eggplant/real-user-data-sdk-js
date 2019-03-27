@@ -4,7 +4,15 @@ export class Transport {
   }
 
   async execute(event) {
-    // TODO: Send XHR
+
+    await new Promise(resolve => {
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', this.targetUrl, true);
+      xhr.onload = function(e) {
+        resolve(xhr.response);
+      };
+      xhr.send(JSON.stringify(event));
+    });
 
     console.log(event);
   }
