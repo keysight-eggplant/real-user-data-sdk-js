@@ -65,3 +65,4 @@ typings/
 dist
 
 .jiraconfig
+package-lock.json

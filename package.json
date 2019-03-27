@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/TestPlant/real-user-data-sdk-js/issues"
   },
-  "homepage": "https://github.com/TestPlant/real-user-data-sdk-js#readme"
+  "homepage": "https://github.com/TestPlant/real-user-data-sdk-js#readme",
+  "devDependencies": {
+    "chai": "4.2.0",
+    "mocha": "6.0.2",
+    "sinon": "7.3.0",
+    "webpack": "4.29.6"
+  }
 }
