@@ -1,0 +1,20 @@
+{
+  "name": "real-user-data-sdk-js",
+  "version": "1.0.0",
+  "description": "SDK for generating and publishing events that capture user, application and technical data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TestPlant/real-user-data-sdk-js.git"
+  },
+  "keywords": [],
+  "author": "Eggplant - RCI team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TestPlant/real-user-data-sdk-js/issues"
+  },
+  "homepage": "https://github.com/TestPlant/real-user-data-sdk-js#readme"
+}
