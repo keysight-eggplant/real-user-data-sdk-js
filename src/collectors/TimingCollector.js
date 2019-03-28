@@ -3,14 +3,15 @@ export default class TimingCollector {
   constructor() {
     this.eventStart;
     this.eventEnd;
+    this.performanceData = window.performance.timing;
   }
 
    eventStart() {
-    this.eventStart = 123;
+    this.eventStart = this.performanceData.navigationStart;
   }
 
    eventEnd() {
-    this.eventEnd = 456;
+    this.eventEnd = this.performanceData.loadEventEnd || this.performanceData.domContentLoadedEventEnd;
   }
 
   async prepare (event) {
@@ -19,12 +20,6 @@ export default class TimingCollector {
 
     return event;
   }
-
-  // async eventTime(event, timingType) {
-  //   event[timingType] = currenttimestamp;
-  //   return event;
-  // }
-
 
 }
 
