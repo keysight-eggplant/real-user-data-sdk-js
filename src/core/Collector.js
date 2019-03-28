@@ -31,4 +31,4 @@ class Collector {
 	}
 }
 
-export { Collector };
+export default {Collector};
