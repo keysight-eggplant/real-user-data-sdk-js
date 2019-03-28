@@ -28,7 +28,7 @@ describe('TimingCollector', () => {
     timingCollector = new TimingCollector();
   });
 
-  test('Return event with all mandatori fields', async () =>  {
+  test('Return event with all mandatory fields', async () =>  {
     const actualEvent = await timingCollector.prepare(originalEvent);
 
     expect(actualEvent).toEqual(expectedEvent);
