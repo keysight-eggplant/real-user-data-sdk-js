@@ -1,7 +1,4 @@
-import sinon from 'sinon';
 import TimingCollector from './TimingCollector';
-
-jest.useFakeTimers();
 
 describe('TimingCollector', () => {
   const originalEvent = {
