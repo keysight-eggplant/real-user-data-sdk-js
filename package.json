@@ -4,7 +4,7 @@
   "description": "SDK for generating and publishing events that capture user, application and technical data",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -18,9 +18,11 @@
   },
   "homepage": "https://github.com/TestPlant/real-user-data-sdk-js#readme",
   "devDependencies": {
-    "chai": "4.2.0",
-    "mocha": "6.0.2",
-    "sinon": "7.3.0",
-    "webpack": "4.29.6"
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "babel-jest": "^24.5.0",
+    "sinon": "7.3.1",
+    "webpack": "4.29.6",
+    "jest": "^24.5.0"
   }
 }
