@@ -15,17 +15,16 @@ export class Collector {
 	}
 
 	async collect() {
-		let i = 0;
 		let event = {};
 
-		do {
-			let collectorRule = this.collectors[i];
+		this.collectors.map(collectorRule => {
+
 			event = await collectorRule(event);
 
 			if (!event) {
 				throw new Error("Invalid event returned by collector " + collectorRule.name);
 			}
-		} while (i++ < this.collectors.length - 1);
+		})
 
 		await this.transport.execute(event);
 	}
