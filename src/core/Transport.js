@@ -8,12 +8,15 @@ export class Transport {
     await new Promise(resolve => {
       var xhr = new XMLHttpRequest();
       xhr.open('POST', this.targetUrl, true);
-      xhr.onload = function(e) {
+      xhr.onload = function() {
         resolve(xhr.response);
       };
+      xhr.onerror = function() {
+        console.log("Unable to send event!");
+      }
       xhr.send(JSON.stringify(event));
     });
 
-    console.log(event);
+    console.log('Sent event %s', JSON.stringify(event));
   }
 }

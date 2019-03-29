@@ -1,27 +1,19 @@
-'use strict';
+import {Transport} from './Transport';
+import sinon from 'sinon';
 
-const chai = require('chai');
+describe('Transport Unit Tests', () => {
+  let server;
 
-const Transport = require('./Transport');
-
-chai.should();
-
-describe('Transport Unit Tests', function () {
   beforeEach(function() {
-    this.xhr = sinon.useFakeXMLHttpRequest();
-
-    this.requests = [];
-    this.xhr.onCreate = function(xhr) {
-      this.requests.push(xhr);
-    }.bind(this);
+    server = sinon.createFakeServer();
   });
 
   afterEach(function() {
-    this.xhr.restore();
+    server.restore();
   });
 
-  it('should send given event as JSON body', async function() {
-    var event = {
+  it('should send given event as JSON body', function() {
+    let event = {
       id: 'abc-abc-123',
       clientId: 'def-def-123',
       eventType: 'event',
@@ -33,16 +25,25 @@ describe('Transport Unit Tests', function () {
       deviceType: 'test device'
     };
 
-    var dataJson = JSON.stringify(event);
+    let dataJson = JSON.stringify(event);
+
+    server.respondWith(
+        "POST",
+        "https://event.real-user-data.eggplant.io/test-tenancy-id-123/stream",
+        [200, { "Content-Type": "application/json" },'']
+    );
 
     let transport = new Transport('test-tenancy-id-123');
 
-    await transport.execute(event);
+    transport.execute(event);
 
-    this.requests[0].url.should.equal(
-        'https://event.real-user-data.eggplant.io/test-tenancy-id-123/stream'
+    server.respond();
+
+    expect(server.requests[0].url).toEqual(
+        "https://event.real-user-data.eggplant.io/test-tenancy-id-123/stream"
     );
 
-    this.requests[0].requestBody.should.equal(dataJson);
+    expect(server.requests[0].requestBody).toEqual(dataJson);
+
   });
 });
