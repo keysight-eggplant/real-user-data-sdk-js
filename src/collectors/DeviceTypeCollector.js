@@ -1,5 +1,5 @@
-import UAParserController from './utility/UAParserController';
-export default class DeviceTypeCollector extends UAParserController{
+import UserAgentParser from './utility/UserAgentParser';
+export default class DeviceTypeCollector extends UserAgentParser{
 
   constructor() {
     super();

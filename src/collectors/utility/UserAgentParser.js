@@ -1,5 +1,5 @@
 import UAParser from 'ua-parser-js';
-export default class UAParserController {
+export default class UserAgentParser {
 
   constructor() {
     this.parser = new UAParser();
