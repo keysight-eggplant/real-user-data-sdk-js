@@ -37,7 +37,7 @@ describe('DeviceTypeCollector', () => {
   });
 
 
-  test('Return correct event timing', async () =>  {
+  test('Return correct device type', async () =>  {
     const actualEvent = await deviceTypeCollector.prepare(originalEvent);
 
     expect(actualEvent.deviceType).toEqual(expectedEvent.deviceType);
