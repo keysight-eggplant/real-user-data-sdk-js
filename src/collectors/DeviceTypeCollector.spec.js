@@ -1,4 +1,3 @@
-import UAParser from 'ua-parser-js';
 import DeviceTypeCollector from './DeviceTypeCollector';
 
 describe('DeviceTypeCollector', () => {

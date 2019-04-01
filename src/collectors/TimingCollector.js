@@ -1,8 +1,6 @@
 export default class TimingCollector {
 
   constructor() {
-    this.eventStart;
-    this.eventEnd;
     this.performanceData = window.performance.timing;
   }
 

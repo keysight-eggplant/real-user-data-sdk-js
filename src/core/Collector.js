@@ -17,9 +17,9 @@ export class Collector {
 	async collect() {
 		let event = {};
 
-		this.collectors.map(collectorRule => {
+		this.collectors.map(async collectorRule => {
 
-			event = await collectorRule(event);
+			event = await collectorRule.prepare(event);
 
 			if (!event) {
 				throw new Error("Invalid event returned by collector " + collectorRule.name);
