@@ -5,12 +5,16 @@ import {clientIdFromLocalStorageCollector} from "./collectors/clientIdFromLocalS
 import {errorCollector} from "./collectors/errorCollector";
 import {eventActionCollector} from "./collectors/eventActionCollector";
 import {eventTypeCollector} from "./collectors/eventTypeCollector";
+import {default as UriWithCustomCategoryCollector} from "./collectors/UriWithCustomCategoryCollector"
+import {default as UriWithPathCategoryCollector} from "./collectors/UriWithPageTitleCategoryCollector"
 
 const collectors = {
   clientIdFromLocalStorageCollector: clientIdFromLocalStorageCollector,
   errorCollector: errorCollector,
   eventActionCollector: eventActionCollector,
-  eventTypeCollector: eventTypeCollector
+  eventTypeCollector: eventTypeCollector,
+  UriWithCustomCategoryCollector: UriWithCustomCategoryCollector,
+  UriWithPathCategoryCollector: UriWithPathCategoryCollector
 };
 
 export {
