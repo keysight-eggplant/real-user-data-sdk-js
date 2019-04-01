@@ -13,10 +13,8 @@ export class Transport {
       };
       xhr.onerror = function() {
         console.log("Unable to send event!");
-      }
+      };
       xhr.send(JSON.stringify(event));
     });
-
-    console.log('Sent event %s', JSON.stringify(event));
   }
 }
