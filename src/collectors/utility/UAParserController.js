@@ -2,12 +2,6 @@ import UAParser from 'ua-parser-js';
 export default class UAParserController {
 
   constructor() {
-    this.uaParser;
+    this.parser = new UAParser();
   }
-
-  getParser () {
-    this.uaParser = new UAParser();
-    return this.uaParser;
-  }
-
 }

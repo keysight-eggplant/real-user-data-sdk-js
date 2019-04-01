@@ -1,11 +1,8 @@
-// import UAParser from 'ua-parser-js';
 import UAParserController from './utility/UAParserController';
-class DeviceTypeCollector extends UAParserController{
+export default class DeviceTypeCollector extends UAParserController{
 
   constructor() {
     super();
-    this.deviceType;
-    this.parser = this.getParser();
   }
 
   async prepare (event) {
@@ -15,5 +12,3 @@ class DeviceTypeCollector extends UAParserController{
   }
 
 }
-
-export default DeviceTypeCollector;
