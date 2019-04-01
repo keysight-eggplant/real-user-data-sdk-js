@@ -31,14 +31,14 @@ describe('DeviceTypeCollector', () => {
   });
 
   test('Return event with all mandatory fields', async () =>  {
-    const actualEvent = await deviceTypeCollector.prepare(originalEvent, 'mobile');
+    const actualEvent = await deviceTypeCollector.prepare(originalEvent);
 
     expect(actualEvent).toEqual(expectedEvent);
   });
 
 
   test('Return correct event timing', async () =>  {
-    const actualEvent = await deviceTypeCollector.prepare(originalEvent, 'mobile');
+    const actualEvent = await deviceTypeCollector.prepare(originalEvent);
 
     expect(actualEvent.deviceType).toEqual(expectedEvent.deviceType);
   });
