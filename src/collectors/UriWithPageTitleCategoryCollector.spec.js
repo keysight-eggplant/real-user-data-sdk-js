@@ -1,26 +1,27 @@
-import UriWithPathCategoryCollector from './UriWithPathCategoryCollector';
+import UriWithPageTitleCategoryCollector from './UriWithPageTitleCategoryCollector';
 
-describe('UriWithPathCategoryCollector', () => {
+describe('UriWithPageTitleCategoryCollector', () => {
   const originalEvent = {
     id: '11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000',
     clientId: '11bf5b37-e0b8-42e0-8dcf-dc8c4aefc001',
     eventType: 'state',
     eventAction: 'load',
-    eventSource: 'products/shoes/1',
-    eventCategory: 'products/shoes',
+    eventStart: 123456,
+    eventEnd: 987654,
     deviceType: 'mobile'
   };
 
   const expectedEvent = {
     ...originalEvent,
     eventSource: 'http://localhost/',
-    eventCategory: '/'
+    eventCategory: 'Page Title | mysite.com'
   };
   let uriWithCustomCategoryCollector;
 
 
   beforeEach(() => {
-    uriWithCustomCategoryCollector = new UriWithPathCategoryCollector();
+    uriWithCustomCategoryCollector = new UriWithPageTitleCategoryCollector();
+    document.title = 'Page Title | mysite.com';
   });
 
   test('Return event with all mandatory fields', async () =>  {
