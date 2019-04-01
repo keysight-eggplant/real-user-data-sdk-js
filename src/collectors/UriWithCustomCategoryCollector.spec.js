@@ -30,7 +30,7 @@ describe('UriWithCustomCategoryCollector', () => {
   });
 
 
-  test('Return correct event timing', async () =>  {
+  test('Return correct uri and category', async () =>  {
     const actualEvent = await uriWithCustomCategoryCollector.prepare(originalEvent);
 
     expect(actualEvent.eventSource).toEqual(expectedEvent.eventSource);
