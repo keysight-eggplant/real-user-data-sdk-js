@@ -19,18 +19,18 @@ describe('EventActionCollector', () => {
 
 
   beforeEach(() => {
-    eventActionCollector = new EventActionCollector();
+    eventActionCollector = new EventActionCollector('double-click');
   });
 
   test('Return event with all mandatory fields', async () =>  {
-    const actualEvent = await eventActionCollector.prepare(originalEvent, 'double-click');
+    const actualEvent = await eventActionCollector.prepare(originalEvent);
 
     expect(actualEvent).toEqual(expectedEvent);
   });
 
 
   test('Return correct event action', async () =>  {
-    const actualEvent = await eventActionCollector.prepare(originalEvent, 'double-click');
+    const actualEvent = await eventActionCollector.prepare(originalEvent);
 
     expect(actualEvent.eventAction).toEqual(expectedEvent.eventAction);
   });

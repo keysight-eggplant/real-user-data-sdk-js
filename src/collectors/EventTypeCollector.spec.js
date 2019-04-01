@@ -19,18 +19,18 @@ describe('EventTypeCollector', () => {
 
 
   beforeEach(() => {
-    eventTypeCollector = new EventTypeCollector();
+    eventTypeCollector = new EventTypeCollector('state');
   });
 
   test('Return event with all mandatory fields', async () =>  {
-    const actualEvent = await eventTypeCollector.prepare(originalEvent, 'state');
+    const actualEvent = await eventTypeCollector.prepare(originalEvent);
 
     expect(actualEvent).toEqual(expectedEvent);
   });
 
 
   test('Return correct event type', async () =>  {
-    const actualEvent = await eventTypeCollector.prepare(originalEvent, 'state');
+    const actualEvent = await eventTypeCollector.prepare(originalEvent);
 
     expect(actualEvent.eventType).toEqual(expectedEvent.eventType);
   });

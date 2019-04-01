@@ -1,7 +1,11 @@
 export default class eventTypeCollector{
 
-  async prepare (event, eventType) {
-    event.eventType = eventType;
+  constructor(eventType) {
+    this.eventType = eventType;
+  }
+
+  async prepare (event) {
+    event.eventType = this.eventType;
     return event;
   }
 

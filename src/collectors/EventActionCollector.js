@@ -1,7 +1,11 @@
 export default class EventActionCollector{
 
-  async prepare (event, eventAction) {
-    event.eventAction = eventAction;
+  constructor(eventAction) {
+    this.eventAction = eventAction;
+  }
+
+  async prepare (event) {
+    event.eventAction = this.eventAction;
     return event;
   }
 
