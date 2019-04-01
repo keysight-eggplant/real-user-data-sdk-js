@@ -1,4 +1,4 @@
-export default class eventTypeCollector{
+export default class EventTypeCollector{
 
   constructor(eventType) {
     this.eventType = eventType;
