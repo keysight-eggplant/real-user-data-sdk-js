@@ -17,7 +17,7 @@ export class Collector {
 	async collect() {
 		let event = {};
 
-		this.collectors.map(collectorRule => {
+		this.collectors.map(async collectorRule => {
 
 			event = await collectorRule(event);
 
