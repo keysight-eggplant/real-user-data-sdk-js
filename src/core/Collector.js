@@ -4,16 +4,6 @@ export class Collector {
 		this.collectors = Array.isArray(collectors) ? [].concat(collectors) : [];
 	}
 
-	add(collectorRule) {
-		this.collectors.push(collectorRule);
-
-		return this;
-	}
-
-	clone() {
-		return new Collector(this.transport, this.collectors);
-	}
-
 	async collect() {
 		let event = {};
 
