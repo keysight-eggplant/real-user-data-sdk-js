@@ -1,0 +1,10 @@
+import StopJourneyActionCollector from './StopJourneyActionCollector';
+
+describe("StopJourneyActionCollector", () => {
+  test("test collector sets journeyAction stop on event", async () => {
+    let collector = new StopJourneyActionCollector();
+
+    let event = await collector.prepare({});
+    expect(event.journeyAction).toBe("stop");
+  });
+});
