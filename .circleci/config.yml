@@ -11,8 +11,3 @@ jobs:
       - run:
           name: Run Tests
           command: npm test
-      - store_artifacts:
-          path: test-results.xml
-          prefix: tests
-      - store_test_results:
-          path: test-results.xml
