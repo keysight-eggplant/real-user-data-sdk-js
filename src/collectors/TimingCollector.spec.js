@@ -38,7 +38,7 @@ describe('TimingCollector', () => {
   test('Return correct event timing', async () =>  {
     const actualEvent = await timingCollector.prepare(originalEvent);
 
-    expect(actualEvent.eventStart).not.toEqual(expectedEvent.eventStart);
+    expect(actualEvent.eventStart).toEqual(expectedEvent.eventStart);
     expect(actualEvent.eventEnd).toEqual(expectedEvent.eventEnd);
   });
 
