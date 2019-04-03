@@ -7,7 +7,7 @@ export default class DeviceTypeCollector extends UserAgentParser {
     if (device.type) {
       event.deviceType = device.type;
     } else {
-      event.deviceType = 'Unknown'
+      event.deviceType = 'Unknown';
     }
     return event;
   }
