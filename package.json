@@ -4,7 +4,7 @@
   "description": "SDK for generating and publishing events that capture user, application and technical data",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest src && webpack && karma start",
     "eslint": "eslint ./src --fix"
   },
   "repository": {
