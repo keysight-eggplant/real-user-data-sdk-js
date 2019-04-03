@@ -1,5 +1,5 @@
-import {Collector} from './core/Collector';
-import {Transport} from './core/Transport';
+import Collector from './core/Collector';
+import Transport from './core/Transport';
 import {
   EVENT_TYPE,
   EVENT_ACTION,
