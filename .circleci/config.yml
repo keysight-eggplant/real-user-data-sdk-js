@@ -9,8 +9,8 @@ jobs:
           name: Install Deps
           command: npm install
       - run:
-        name: Run ESLint
-        command: npm run eslint
+          name: Run ESLint
+          command: npm run eslint
       - run:
           name: Run Tests
           command: npm test
