@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8" />
+    <title>Checkout Example</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="theme-color" content="#fafafa" />
+  </head>
+
+  <body>
+    <p>Please check the network tab to inspect the event.  Submit the form below to send a converting/non-converting event:</p>
+
+    <form id="checkout-form" style="border: 1px solid #333; padding: 5px; margin: 5px; display: inline-block;">
+      <label>Conversion Type:
+        <input id="checkout-form-type" type="text" name="type" value="checkout"/>
+      </label>
+      <br />
+      <label>Conversion Currency:
+        <input id="checkout-form-currency" type="text" name="currency" value="USD"/>
+      </label>
+      <br />
+      <label>Conversion Value:
+        <input id="checkout-form-value" type="number" name="value" value="4900"/>
+      </label>
+      <br />
+      <label>Conversion Success?
+        <input id="checkout-form-success" type="checkbox" name="success" checked/>
+      </label>
+      <br />
+      <br />
+      <button type="submit" autofocus>
+        Submit
+      </button>
+    </form>
+
+    <script src="../../../dist/rci.dist.js"></script>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
