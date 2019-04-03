@@ -1,6 +1,7 @@
-import {Collector} from './core/Collector.js';
-import {Transport} from './core/Transport.js';
-import {EVENT_TYPE} from './core/constants.js';
+import Collector from './core/Collector.js';
+import Transport from './core/Transport.js';
+import EVENT_TYPE from './core/constants.js';
+
 import ClientIdCollector from "./collectors/ClientIdCollector";
 import DeviceTypeCollector from "./collectors/DeviceTypeCollector";
 import ErrorCollector from "./collectors/ErrorCollector";
