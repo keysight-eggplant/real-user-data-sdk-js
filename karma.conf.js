@@ -15,6 +15,7 @@ module.exports = function(config) {
             'karma-mocha',
             'karma-chai',
             'karma-chrome-launcher'
-        ]
+        ],
+        singleRun: true
     });
 };
