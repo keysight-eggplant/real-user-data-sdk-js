@@ -14,8 +14,6 @@ before(async () => {
         }
     }
 
-    // console.log(rciSdk.collectors);
-
     const collector = new rciSdk.Collector(new LocalTransport(), null)
         .add(new rciSdk.collectors.ClientIdCollector(localStorage))
         .add(new rciSdk.collectors.DeviceTypeCollector())
@@ -32,10 +30,6 @@ before(async () => {
 
 describe('rciJsSdk', function() {
     it('should return event with correct values set', () => {
-        console.log(localStorage);
-        console.log(window.assertOnMe);
-        console.log(navigator.userAgent);
-
         expect(window.assertOnMe.clientId).equal(localStorage.getItem(localStorageClientIdKey));
         expect(window.assertOnMe.deviceType).to.not.equal(null);
         expect(window.assertOnMe.deviceType).to.be.a('string');
