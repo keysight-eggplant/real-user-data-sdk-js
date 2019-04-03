@@ -8,13 +8,22 @@ module.exports = function(config) {
         ],
 
         browsers: [
-            'Chrome'
+            'Chrome',
+            'ChromeHeadless',
+            'Firefox',
+            'FirefoxHeadless'
         ],
-
+        customLaunchers: {
+            FirefoxHeadless: {
+                base: 'Firefox',
+                flags: [ '-headless' ],
+            },
+        },
         plugins: [
             'karma-mocha',
             'karma-chai',
-            'karma-chrome-launcher'
+            'karma-chrome-launcher',
+            'karma-firefox-launcher'
         ],
         singleRun: true
     });
