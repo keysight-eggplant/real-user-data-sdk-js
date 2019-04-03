@@ -8,14 +8,14 @@ describe('UriWithCustomCategoryCollector', () => {
     eventAction: 'load',
     eventStart: 123456,
     eventEnd: 987654,
-    deviceType: 'mobile'
+    deviceType: 'mobile',
   };
 
   const expectedEvent = {
     ...originalEvent,
     eventSource: 'http://localhost/',
-    eventCategory: 'custom category'
-  }
+    eventCategory: 'custom category',
+  };
   let uriWithCustomCategoryCollector;
 
 
@@ -23,14 +23,14 @@ describe('UriWithCustomCategoryCollector', () => {
     uriWithCustomCategoryCollector = new UriWithCustomCategoryCollector('custom category');
   });
 
-  test('Return event with all mandatory fields', async () =>  {
+  test('Return event with all mandatory fields', async () => {
     const actualEvent = await uriWithCustomCategoryCollector.prepare(originalEvent);
 
     expect(actualEvent).toEqual(expectedEvent);
   });
 
 
-  test('Return correct uri and category', async () =>  {
+  test('Return correct uri and category', async () => {
     const actualEvent = await uriWithCustomCategoryCollector.prepare(originalEvent);
 
     expect(actualEvent.eventSource).toEqual(expectedEvent.eventSource);
@@ -38,5 +38,3 @@ describe('UriWithCustomCategoryCollector', () => {
   });
 
 });
-
-

@@ -1,6 +1,6 @@
 export const EVENT_TYPE = {
-	STATE: 'state',
-	EVENT: 'event'
+  STATE: 'state',
+  EVENT: 'event'
 };
 
 export const EVENT_ACTION = {

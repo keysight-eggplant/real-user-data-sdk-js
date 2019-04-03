@@ -1,3 +1,6 @@
+/* eslint-disable no-restricted-properties */
+/* eslint-disable no-underscore-dangle */
+
 import DeviceTypeCollector from './DeviceTypeCollector';
 
 describe('DeviceTypeCollector', () => {
@@ -9,39 +12,35 @@ describe('DeviceTypeCollector', () => {
     eventSource: 'products/shoes/1',
     eventCategory: 'products/shoes',
     eventStart: 123,
-    eventEnd: 456
+    eventEnd: 456,
   };
 
   const expectedEvent = {
     ...originalEvent,
-    deviceType: 'mobile'
-  }
+    deviceType: 'mobile',
+  };
   let deviceTypeCollector;
 
 
   beforeEach(() => {
     const userAgentString = 'Mozilla/5.0 (Linux; U; Android 4.4.2; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30';
 
-    navigator.__defineGetter__('userAgent', function(){
-      return userAgentString;
-    });
+    navigator.__defineGetter__('userAgent', () => userAgentString);
 
     deviceTypeCollector = new DeviceTypeCollector();
   });
 
-  test('Return event with all mandatory fields', async () =>  {
+  test('Return event with all mandatory fields', async () => {
     const actualEvent = await deviceTypeCollector.prepare(originalEvent);
 
     expect(actualEvent).toEqual(expectedEvent);
   });
 
 
-  test('Return correct device type', async () =>  {
+  test('Return correct device type', async () => {
     const actualEvent = await deviceTypeCollector.prepare(originalEvent);
 
     expect(actualEvent.deviceType).toEqual(expectedEvent.deviceType);
   });
 
 });
-
-
