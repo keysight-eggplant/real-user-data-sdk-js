@@ -4,7 +4,11 @@ export default class DeviceTypeCollector extends UserAgentParser {
 
   async prepare (event) {
     const device = this.parser.getDevice();
-    event.deviceType = device.type;
+    if (device.type) {
+      event.deviceType = device.type;
+    } else {
+      event.deviceType = 'Unknown';
+    }
     return event;
   }
 

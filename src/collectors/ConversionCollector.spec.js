@@ -23,7 +23,7 @@ describe('ConversionCollector', () => {
     };
     expectedEventWithValue = {
       ...originalEvent,
-      goalType: 'checkout',
+      goalType: 'success',
       goalCurrency: 'USD',
       goalValue: 4900
     };
@@ -37,7 +37,7 @@ describe('ConversionCollector', () => {
   });
 
   test('Return event with conversion type and no value', async () => {
-    conversionCollector.checkout('newsletter', null, null);
+    conversionCollector.success('newsletter', null, null);
     const actualEvent = await conversionCollector.prepare(originalEvent);
 
     expect(actualEvent).toEqual(expectedEventWithoutValue);
@@ -47,7 +47,7 @@ describe('ConversionCollector', () => {
   });
 
   test('Return event with conversion type and value', async () => {
-    conversionCollector.checkout('checkout', 4900, 'USD');
+    conversionCollector.success('success', 4900, 'USD');
     const actualEvent = await conversionCollector.prepare(originalEvent);
 
     expect(actualEvent).toEqual(expectedEventWithValue);
@@ -57,7 +57,7 @@ describe('ConversionCollector', () => {
   });
 
   test('Return event without conversion type and value when cleared', async () => {
-    conversionCollector.checkout('checkout', 4900, 'USD').clear();
+    conversionCollector.success('success', 4900, 'USD').clear();
     const actualEvent = await conversionCollector.prepare(originalEvent);
 
     expect(actualEvent).toEqual(originalEvent);

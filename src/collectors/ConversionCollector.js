@@ -1,6 +1,6 @@
 export default class ConversionCollector {
 
-  checkout(goalType, goalValue, goalCurrency) {
+  success(goalType, goalValue, goalCurrency) {
     this.goalType = goalType;
     this.goalValue = goalValue;
     this.goalCurrency = goalCurrency;

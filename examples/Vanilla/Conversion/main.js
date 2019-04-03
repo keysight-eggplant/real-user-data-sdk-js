@@ -15,16 +15,16 @@
 	const collector = new rciSdk.Collector(transport, defaults.concat(custom));
 
 	// Step 6: Register your hook
-	const checkout = document.getElementById("checkout-form");
+	const checkout = document.getElementById("success-form");
 	checkout.addEventListener('submit', async (e) => {
 		try {
 			e.preventDefault();
 
 			// Step 7: Identify your converting condition
-			const success = document.getElementById("checkout-form-success");
+			const success = document.getElementById("success-form-success");
 			if (success.checked) {
 				// Step 8a: Feed in the ecommerce data
-				conversionCollector.checkout(
+				conversionCollector.success(
 						'transaction',
 						4900,
 						'USD'
