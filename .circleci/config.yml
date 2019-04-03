@@ -4,7 +4,6 @@ jobs:
     docker:
       - image: circleci/node:current-browsers
     steps:
-      - success
       - run:
           name: Install Dependencies
           command: npm install
