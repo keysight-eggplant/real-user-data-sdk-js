@@ -10,8 +10,12 @@ module.exports = function(config) {
         browsers: [
             'Chrome',
             'ChromeHeadless',
+            'ChromeCanary',
+            'Chromium',
+            'Dartium',
             'Firefox',
-            'FirefoxHeadless'
+            'FirefoxHeadless',
+            'PhantomJS'
         ],
         customLaunchers: {
             FirefoxHeadless: {
