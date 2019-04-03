@@ -8,7 +8,7 @@ export default class Collector {
   async collect() {
     let event = {};
 
-    for (let i = 0; i < this.collectors.length; i++) {
+    for (let i = 0; i < this.collectors.length; i += 1) {
       event = await this.collectors[i].prepare(event);
 
       if (!event) {
