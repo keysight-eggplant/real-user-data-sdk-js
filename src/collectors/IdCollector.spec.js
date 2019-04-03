@@ -7,7 +7,7 @@ describe('IdCollector', () => {
     eventAction: 'load',
     eventSource: 'products/shoes/1',
     eventCategory: 'products/shoes',
-    deviceType: 'mobile'
+    deviceType: 'mobile',
   };
   const expectedEvent = {
     ...originalEvent,
@@ -20,18 +20,16 @@ describe('IdCollector', () => {
     idCollector = new IdCollector();
   });
 
-  test('Return event with all mandatory fields', async () =>  {
+  test('Return event with all mandatory fields', async () => {
     const actualEvent = await idCollector.prepare(originalEvent);
     expect(actualEvent).toEqual(expectedEvent);
   });
 
 
-  test('Return correct id', async () =>  {
+  test('Return correct id', async () => {
     const actualEvent = await idCollector.prepare(originalEvent);
 
     expect(actualEvent.id).toEqual(expectedEvent.id);
   });
 
 });
-
-

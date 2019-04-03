@@ -1,19 +1,21 @@
-import {Transport} from './Transport';
 import sinon from 'sinon';
+import Transport from './Transport';
 
 describe('Transport Unit Tests', () => {
   let server;
 
-  beforeEach(function() {
+  beforeEach(() => {
     server = sinon.createFakeServer();
   });
 
-  afterEach(function() {
+  afterEach(() => {
     server.restore();
   });
 
-  it('should send given event as JSON body', function() {
-    let event = {
+  it('should send given event as JSON body', () => {
+
+    const transport = new Transport('test-tenancy-id-123');
+    const event = {
       id: 'abc-abc-123',
       clientId: 'def-def-123',
       eventType: 'event',
@@ -22,25 +24,24 @@ describe('Transport Unit Tests', () => {
       eventEnd: 1000001,
       eventSource: 'http://test.test/test',
       eventCategory: 'product',
-      deviceType: 'test device'
+      deviceType: 'test device',
     };
 
-    let dataJson = JSON.stringify(event);
+    const dataJson = JSON.stringify(event);
 
     server.respondWith(
-        "POST",
-        "https://event.real-user-data.eggplant.io/test-tenancy-id-123/stream",
-        [200, { "Content-Type": "application/json" },'']
+      'POST',
+      'https://event.real-user-data.eggplant.io/test-tenancy-id-123/stream',
+      [200, { 'Content-Type': 'application/json' }, ''],
     );
 
-    let transport = new Transport('test-tenancy-id-123');
 
     transport.execute(event);
 
     server.respond();
 
     expect(server.requests[0].url).toEqual(
-        "https://event.real-user-data.eggplant.io/test-tenancy-id-123/stream"
+      'https://event.real-user-data.eggplant.io/test-tenancy-id-123/stream',
     );
 
     expect(server.requests[0].requestBody).toEqual(dataJson);

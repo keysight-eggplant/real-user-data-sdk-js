@@ -1,4 +1,4 @@
-export default class EventActionCollector{
+export default class EventActionCollector {
 
   constructor(eventAction) {
     this.eventAction = eventAction;
