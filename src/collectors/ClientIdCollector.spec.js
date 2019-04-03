@@ -1,7 +1,3 @@
-// import {
-//   jest, test, expect, describe, beforeEach
-// } from 'jest';
-
 import ClientIdCollector from './ClientIdCollector';
 
 describe('ClientIdCollector', () => {
