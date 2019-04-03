@@ -9,14 +9,14 @@ describe('ErrorCollector', () => {
     eventCategory: 'products/shoes',
     eventStart: 123,
     eventEnd: 456,
-    eventType: 'state'
+    eventType: 'state',
   };
 
   const expectedEvent = {
     ...originalEvent,
     errorCode: '404',
     errorType: 'Not Found',
-    errorFatal: true
+    errorFatal: true,
   };
   let errorCollector;
 
@@ -25,14 +25,14 @@ describe('ErrorCollector', () => {
     errorCollector = new ErrorCollector('404', 'Not Found', true);
   });
 
-  test('Return event with all mandatory fields', async () =>  {
+  test('Return event with all mandatory fields', async () => {
     const actualEvent = await errorCollector.prepare(originalEvent);
 
     expect(actualEvent).toEqual(expectedEvent);
   });
 
 
-  test('Return correct error properties', async () =>  {
+  test('Return correct error properties', async () => {
     const actualEvent = await errorCollector.prepare(originalEvent);
 
     expect(actualEvent.errorCode).toEqual(expectedEvent.errorCode);
@@ -41,5 +41,3 @@ describe('ErrorCollector', () => {
   });
 
 });
-
-
