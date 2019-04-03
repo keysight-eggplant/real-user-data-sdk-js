@@ -8,14 +8,8 @@ module.exports = function(config) {
         ],
 
         browsers: [
-            'Chrome',
             'ChromeHeadless',
-            'ChromeCanary',
-            'Chromium',
-            'Dartium',
-            'Firefox',
-            'FirefoxHeadless',
-            'PhantomJS'
+            'FirefoxHeadless'
         ],
         customLaunchers: {
             FirefoxHeadless: {
