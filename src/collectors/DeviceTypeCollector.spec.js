@@ -43,7 +43,7 @@ describe('DeviceTypeCollector', () => {
 
       expect(actualEvent.deviceType).toEqual(expectedEvent.deviceType);
     });
-  })
+  });
 
   describe('Invalid UA', () => {
     beforeEach(() => {
