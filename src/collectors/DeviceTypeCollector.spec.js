@@ -22,25 +22,42 @@ describe('DeviceTypeCollector', () => {
   let deviceTypeCollector;
 
 
-  beforeEach(() => {
-    const userAgentString = 'Mozilla/5.0 (Linux; U; Android 4.4.2; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30';
+  describe('Valid UA', () => {
+    beforeEach(() => {
+      const userAgentString = 'Mozilla/5.0 (Linux; U; Android 4.4.2; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30';
 
-    navigator.__defineGetter__('userAgent', () => userAgentString);
+      navigator.__defineGetter__('userAgent', () => userAgentString);
 
-    deviceTypeCollector = new DeviceTypeCollector();
+      deviceTypeCollector = new DeviceTypeCollector();
+    });
+
+    test('Return event with all mandatory fields', async () => {
+      const actualEvent = await deviceTypeCollector.prepare(originalEvent);
+
+      expect(actualEvent).toEqual(expectedEvent);
+    });
+
+
+    test('Return correct device type', async () => {
+      const actualEvent = await deviceTypeCollector.prepare(originalEvent);
+
+      expect(actualEvent.deviceType).toEqual(expectedEvent.deviceType);
+    });
+  })
+
+  describe('Invalid UA', () => {
+    beforeEach(() => {
+      const userAgentString = 'AAAaasfafa';
+
+      navigator.__defineGetter__('userAgent', () => userAgentString);
+
+      deviceTypeCollector = new DeviceTypeCollector();
+    });
+
+    test('Return event with all mandatory fields', async () => {
+      const actualEvent = await deviceTypeCollector.prepare(originalEvent);
+
+      expect(actualEvent.deviceType).toEqual('Unknown');
+    });
   });
-
-  test('Return event with all mandatory fields', async () => {
-    const actualEvent = await deviceTypeCollector.prepare(originalEvent);
-
-    expect(actualEvent).toEqual(expectedEvent);
-  });
-
-
-  test('Return correct device type', async () => {
-    const actualEvent = await deviceTypeCollector.prepare(originalEvent);
-
-    expect(actualEvent.deviceType).toEqual(expectedEvent.deviceType);
-  });
-
 });
