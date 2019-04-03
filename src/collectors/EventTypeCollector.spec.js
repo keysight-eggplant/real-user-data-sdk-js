@@ -8,13 +8,13 @@ describe('EventTypeCollector', () => {
     eventSource: 'products/shoes/1',
     eventCategory: 'products/shoes',
     eventStart: 123,
-    eventEnd: 456
+    eventEnd: 456,
   };
 
   const expectedEvent = {
     ...originalEvent,
-    eventType: 'state'
-  }
+    eventType: 'state',
+  };
   let eventTypeCollector;
 
 
@@ -22,19 +22,17 @@ describe('EventTypeCollector', () => {
     eventTypeCollector = new EventTypeCollector('state');
   });
 
-  test('Return event with all mandatory fields', async () =>  {
+  test('Return event with all mandatory fields', async () => {
     const actualEvent = await eventTypeCollector.prepare(originalEvent);
 
     expect(actualEvent).toEqual(expectedEvent);
   });
 
 
-  test('Return correct event type', async () =>  {
+  test('Return correct event type', async () => {
     const actualEvent = await eventTypeCollector.prepare(originalEvent);
 
     expect(actualEvent.eventType).toEqual(expectedEvent.eventType);
   });
 
 });
-
-
