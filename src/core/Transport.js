@@ -1,4 +1,4 @@
-export class Transport {
+export default class Transport {
   constructor(tenancyId) {
     this.targetUrl = `https://event.real-user-data.eggplant.io/${tenancyId}/stream`;
   }
@@ -6,13 +6,13 @@ export class Transport {
   async execute(event) {
 
     await new Promise(resolve => {
-      var xhr = new XMLHttpRequest();
+      const xhr = new XMLHttpRequest();
       xhr.open('POST', this.targetUrl, true);
-      xhr.onload = function() {
+      xhr.onload = () => {
         resolve(xhr.response);
       };
-      xhr.onerror = function() {
-        console.log("Unable to send event!");
+      xhr.onerror = () => {
+        console.log('Unable to send event!');
       };
       xhr.send(JSON.stringify(event));
     });

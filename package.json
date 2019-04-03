@@ -4,7 +4,8 @@
   "description": "SDK for generating and publishing events that capture user, application and technical data",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "eslint": "eslint ./src --fix"
   },
   "repository": {
     "type": "git",
@@ -21,9 +22,12 @@
     "@babel/core": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
     "babel-jest": "^24.5.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "jest": "^24.5.0",
     "sinon": "7.3.1",
-    "webpack": "4.29.6",
-    "jest": "^24.5.0"
+    "webpack": "4.29.6"
   },
   "dependencies": {
     "ua-parser-js": "^0.7.19"

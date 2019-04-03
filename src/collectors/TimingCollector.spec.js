@@ -8,34 +8,34 @@ describe('TimingCollector', () => {
     eventAction: 'load',
     eventSource: 'products/shoes/1',
     eventCategory: 'products/shoes',
-    deviceType: 'mobile'
+    deviceType: 'mobile',
   };
 
   const expectedEvent = {
     ...originalEvent,
     eventStart: 123,
-    eventEnd: 456
-  }
+    eventEnd: 456,
+  };
   let timingCollector;
 
 
   beforeEach(() => {
     global.window.performance.timing = {
       navigationStart: 123,
-      domContentLoadedEventEnd: 456
-    }
+      domContentLoadedEventEnd: 456,
+    };
 
     timingCollector = new TimingCollector();
   });
 
-  test('Return event with all mandatory fields', async () =>  {
+  test('Return event with all mandatory fields', async () => {
     const actualEvent = await timingCollector.prepare(originalEvent);
 
     expect(actualEvent).toEqual(expectedEvent);
   });
 
 
-  test('Return correct event timing', async () =>  {
+  test('Return correct event timing', async () => {
     const actualEvent = await timingCollector.prepare(originalEvent);
 
     expect(actualEvent.eventStart).toEqual(expectedEvent.eventStart);
@@ -43,5 +43,3 @@ describe('TimingCollector', () => {
   });
 
 });
-
-

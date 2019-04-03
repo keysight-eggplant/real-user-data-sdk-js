@@ -1,31 +1,31 @@
-export class Collector {
-	constructor(transport, collectors) {
-		this.transport = transport;
-		this.collectors = Array.isArray(collectors) ? [].concat(collectors) : [];
-	}
+export default class Collector {
+  constructor(transport, collectors) {
+    this.transport = transport;
+    this.collectors = Array.isArray(collectors) ? [].concat(collectors) : [];
+  }
 
-	add(collectorRule) {
-		this.collectors.push(collectorRule);
+  add(collectorRule) {
+    this.collectors.push(collectorRule);
 
-		return this;
-	}
+    return this;
+  }
 
-	clone() {
-		return new Collector(this.transport, this.collectors);
-	}
+  clone() {
+    return new Collector(this.transport, this.collectors);
+  }
 
-	async collect() {
-		let event = {};
+  async collect() {
+    let event = {};
 
-		this.collectors.map(async collectorRule => {
+    this.collectors.map(async collectorRule => {
 
-			event = await collectorRule.prepare(event);
+      event = await collectorRule.prepare(event);
 
-			if (!event) {
-				throw new Error("Invalid event returned by collector " + collectorRule.name);
-			}
-		})
+      if (!event) {
+        throw new Error(`Invalid event returned by collector ${collectorRule.name}`);
+      }
+    });
 
-		await this.transport.execute(event);
-	}
+    await this.transport.execute(event);
+  }
 }
