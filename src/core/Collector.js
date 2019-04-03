@@ -1,3 +1,4 @@
+/* eslint no-await-in-loop: 0 */
 export default class Collector {
   constructor(transport, collectors) {
     this.transport = transport;
@@ -7,14 +8,13 @@ export default class Collector {
   async collect() {
     let event = {};
 
-    this.collectors.map(async collectorRule => {
-
-      event = await collectorRule.prepare(event);
+    for (let i = 0; i < this.collectors.length; i += 1) {
+      event = await this.collectors[i].prepare(event);
 
       if (!event) {
-        throw new Error(`Invalid event returned by collector ${collectorRule.name}`);
+        throw new Error(`Invalid event returned by collector ${this.collectors[i].name}`);
       }
-    });
+    }
 
     await this.transport.execute(event);
   }
