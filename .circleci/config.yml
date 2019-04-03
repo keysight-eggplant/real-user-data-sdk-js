@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install Deps
+          name: Install Dependencies
           command: npm install
       - run:
           name: Run ESLint
