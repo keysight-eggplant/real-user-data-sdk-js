@@ -18,19 +18,19 @@ import UriWithCustomCategoryCollector from './collectors/UriWithCustomCategoryCo
 import UriWithPageTitleCategoryCollector from './collectors/UriWithPageTitleCategoryCollector';
 
 const collectors = {
-  ClientIdCollector: ClientIdCollector,
-  ConversionCollector: ConversionCollector,
-  DeviceTypeCollector: DeviceTypeCollector,
-  ErrorCollector: ErrorCollector,
-  EventActionCollector: EventActionCollector,
-  EventTypeCollector: EventTypeCollector,
-  IdCollector: IdCollector,
-  TimingCollector: TimingCollector,
-  UriWithCustomCategoryCollector: UriWithCustomCategoryCollector,
-  UriWithPageTitleCategoryCollector: UriWithPageTitleCategoryCollector,
+  ClientIdCollector,
+  ConversionCollector,
+  DeviceTypeCollector,
+  ErrorCollector,
+  EventActionCollector,
+  EventTypeCollector,
+  IdCollector,
+  TimingCollector,
+  UriWithCustomCategoryCollector,
+  UriWithPageTitleCategoryCollector,
 };
 const collections = {
-  defaultCollection: defaultCollection
+  defaultCollection
 };
 
 export {
