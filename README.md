@@ -103,8 +103,8 @@ Facebook has adopted a Code of Conduct that we expect project participants to ad
 
 - [Artur Chamier](https://github.com/yghern)
 - [Ash Vincent](https://github.com/ashvince)
-- [MoHo Khaleqi](https://github.com/mohokh67)
 - [Malcolm Smith](https://github.com/MalcolmSmithUK)
+- [MoHo Khaleqi](https://github.com/mohokh67)
 - [Robert Dumitrescu](https://github.com/robertdumitrescu)
 
 
