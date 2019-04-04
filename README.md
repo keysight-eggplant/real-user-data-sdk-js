@@ -3,10 +3,10 @@ SDK for generating and publishing events that capture user, application and tech
 
 ### TODO list
 
-- [ ] update NPM packge in installation and npm badge
+- [ ] update NPM package in installation and npm badge
 - [ ] update uglified file size in badges
 - [ ] update link to CDN in installation section
-- [ ] Update the browser support list
+- [ ] Update the browser support list 
 - [ ] Verify all links
 
 <p align="center"><img src="https://static1.squarespace.com/static/5a123416bce176a964daebe5/t/5aa18123c83025fedf718a51/1554300899717/?format=1500w"></p>
@@ -17,7 +17,7 @@ SDK for generating and publishing events that capture user, application and tech
 [![](https://flat.badgen.net/npm/license/@editorjs/editorjs)](https://www.npmjs.com/package/@editorjs/editorjs)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/TestPlant/real-user-data-sdk-js/pulls)
 
-## Version 1.0 is here!
+## Version 1.0.0 is here!
 
 We are glad to introduce the first version of **RCI - Real User Data SDK**.
 
@@ -38,21 +38,21 @@ Add the `dist/rci.min.js` script to your website via *local javascript file*, *C
 
 You can always checkout this repository and look at the [example directory](example/)
 
-## Ecommerce with coversion
+## E-Commerce with conversion
 
-- [Link to example](examples/Vanilla/Conversion/) Use this example as starting point if you are going to collect data for converting currency *A* to currency *B*
+- Use [this example](examples/Vanilla/Conversion/) as starting point if you are going to collect data for converting currency *A* to currency *B*.
 
 ## Custom collector
 
-- [Link to example](examples/Vanilla/CustomCollector/) Use this example as starting point if you are going to collect custome data.
+- Use [this example](examples/Vanilla/CustomCollector/) as starting point if you are going to collect custom data.
 
 ## Error collector
 
-- [Link to example](examples/Vanilla/Error/) Use this example as starting point if you are going to collect data when an error accure in you website and you are going to collect it.
+- Use [this example](examples/Vanilla/Error/) as starting point if you are going to collect data when an error accure in you website.
 
 ## DOM content collector
 
-- [Link to example](examples/Vanilla/DOMContentLoaded/) Use this example as starting point if you are going to collect data when DOM content loaded.
+- Use [this example](examples/Vanilla/DOMContentLoaded/) as starting point if you are going to collect data when DOM content loaded.
 
 
 # Installation Guide
@@ -62,25 +62,22 @@ You can always checkout this repository and look at the [example directory](exam
 Install the package via NPM or Yarn
 
 ```shell
-npm i rci-real-data-xxx
+npm install rci-real-user-data-sdk-js
 ```
 
 Include module in your application
 
 ```javascript
-const RCI- = require('rci-xxx');
+const RCI = require('rci-real-user-data-sdk-js');
 ```
 
 ### Use from CDN
 
-You can load specific version of package from [AWS CDN](https://link-to-cdn).
-
-`https://link-to-cdn`
-
-Then require this script.
+You can load specific version of package from [AWS CDN](https://aws.amazon.com/cloudfront/).
+Then include this script in your page code.
 
 ```html
-<script src="..."></script>
+<script src="https://aws.link-to-cdn.com/rci.min.js"></script>
 ```
 
 ### Save sources to project
@@ -93,11 +90,11 @@ Copy [dist/rci.min.js](dist/rci.min.js) file to your project and load it.
 
 ## Contributing
 
-The main purpose of this repository is to continue to evolve *rci event collector*, making it faster and easier to use. Development of this SDK happens in the open on GitHub, and we are grateful to the community for contributing bugfixes and improvements. Read below to learn how you can take part in improving React.
+The main purpose of this repository is to continue to evolve *rci event collector*, making it faster and easier to use. Development of this SDK happens in the open on GitHub, and we are grateful to the community for contributing bugfixes and improvements, raising issues and suggesting new features. Read below to learn how you can take part in it.
 
 ### Code of Conduct
 
-Facebook has adopted a Code of Conduct that we expect project participants to adhere to. Please read [the full text](CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
+Facebook has adopted a [Code of Conduct](CODE_OF_CONDUCT.md) that we expect project participants to adhere to. Please read the the full text so that you can understand what actions will and will not be tolerated.
 
 ## Contributors
 
@@ -110,11 +107,11 @@ Facebook has adopted a Code of Conduct that we expect project participants to ad
 
 ## Questions
 
-For questions and support please use [the official contact us page](https://eggplant.io/about/contact-us).
+For questions and support please use the official [contact us](https://eggplant.io/about/contact-us) page.
 
 ## Issues
 
-Please make sure to read the [bug_report.md](bug_report.md) before opening an issue. Issues not conforming to the guidelines may be closed immediately.
+Please make sure to read the [BUG_REPORT_TEMPLATE.md](BUG_REPORT_TEMPLATE.md) before opening an issue. Issues not conforming to the guidelines may be closed immediately.
 
 ## Changelog
 
