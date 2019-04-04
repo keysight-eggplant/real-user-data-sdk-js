@@ -7,6 +7,7 @@ SDK for generating and publishing events that capture user, application and tech
 - [ ] update uglified file size in badges
 - [ ] update link to CDN in installation section
 - [ ] Update the browser support list
+- [ ] Verify all links
 
 <p align="center"><img src="https://static1.squarespace.com/static/5a123416bce176a964daebe5/t/5aa18123c83025fedf718a51/1554300899717/?format=1500w"></p>
 
@@ -98,9 +99,14 @@ The main purpose of this repository is to continue to evolve *rci event collecto
 
 Facebook has adopted a Code of Conduct that we expect project participants to adhere to. Please read [the full text](CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
 
-## About team
+## Contributors
 
-We are RCI team within [Eggplant.io](http://eggplant.io).
+- [Artur Chamier](https://github.com/yghern)
+- [Ash Vincent](https://github.com/ashvince)
+- [MoHo Khaleqi](https://github.com/mohokh67)
+- [Malcolm Smith](https://github.com/MalcolmSmithUK)
+- [Robert Dumitrescu](https://github.com/robertdumitrescu)
+
 
 ## Questions
 
@@ -117,4 +123,3 @@ Detailed changes for each release are documented in the [release notes](https://
 ## License
 
 Real User Data SDK is open source software and [MIT](http://opensource.org/licenses/MIT) licensed.
-
