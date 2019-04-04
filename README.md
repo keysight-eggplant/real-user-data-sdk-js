@@ -30,7 +30,7 @@ We are glad to introduce the first version of **RCI - Real User Data SDK**.
 
 ## Documentation
 
-While we develop the new Documentation Site with all stuff, you can check some available docs here in this page and [Api Documentation](https://docs.real-user-data.eggplant.cloud/open-api/index.html).
+Please see the SDK documentation and examples below.  You can also see the [REST Api Documentation](https://docs.real-user-data.eggplant.cloud/open-api/index.html) for more details about what can be captured.
 
 ---
 
@@ -41,7 +41,7 @@ You can always checkout this repository and look at the [example directory](exam
 
 ## E-Commerce with conversion
 
-- Use [this example](examples/Vanilla/Conversion/) as starting point if you are going to collect data for converting currency *A* to currency *B*.
+- Use [this example](examples/Vanilla/Conversion/) as starting point if you are going to collect data about converting User Journeys.
 
 ## Custom collector
 
@@ -49,11 +49,11 @@ You can always checkout this repository and look at the [example directory](exam
 
 ## Error collector
 
-- Use [this example](examples/Vanilla/Error/) as starting point if you are going to collect data when an error accure in you website.
+- Use [this example](examples/Vanilla/Error/) as starting point if you are going to collect data when an error occurs in your website.
 
 ## DOM content collector
 
-- Use [this example](examples/Vanilla/DOMContentLoaded/) as starting point if you are going to collect data when DOM content loaded.
+- Use [this example](examples/Vanilla/DOMContentLoaded/) as starting point if you are going to collect data when DOM content is loaded.
 
 
 # Installation Guide
@@ -88,6 +88,16 @@ Copy [dist/rci.min.js](dist/rci.min.js) file to your project and load it.
 ```html
 <script src="rci.min.js"></script>
 ```
+
+# JS SDK
+## Collector
+A collector is a `class` which executes all the `Collectors` provided.  It expects a `Transport` and collection of `Collectors`.  When `collect` is called, the event is prepared and then sent using the `Transport`. 
+## Collectors
+A `function`, `object` or `class` with an `async` prepare method.  The prepare method is given an `event` and is expected to return an augmented `event`.  
+## Transport
+A `class` which knows how to send the event to the target destination when the `async` method `execute` is called.  
+## defaultCollection
+The default collection (`array`) of `Collectors` provided by the SDK.  New `Collectors` can be merged with the default `Collectors` to compose unique sequences. 
 
 ## Contributing
 
