@@ -16,7 +16,9 @@
 			e.message,
 			true
 		);
-		await rciSdkCollectorFactory([errorCollector]).collect();
+		const eventTypeCollector = new rciSdk.collectors.EventTypeCollector(rciSdk.EVENT_TYPE.ERROR);
+		const customCollection = [eventTypeCollector, errorCollector];
+		await rciSdkCollectorFactory(customCollection).collect();
 	}
 
 })("123-456", rciSdk);
