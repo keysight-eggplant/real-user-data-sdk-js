@@ -5,9 +5,11 @@ SDK for generating and publishing events that capture user, application and tech
 
 - [ ] update NPM package in installation and npm badge
 - [ ] update uglified file size in badges
+- [ ] update licence badge (MIT vs Apache)
 - [ ] update link to CDN in installation section
-- [ ] Update the browser support list 
-- [ ] Verify all links
+- [ ] update the browser support list
+- [ ] prepare release note for 1.0.0
+- [ ] verify all links
 
 <p align="center"><img src="https://static1.squarespace.com/static/5a123416bce176a964daebe5/t/5aa18123c83025fedf718a51/1554300899717/?format=1500w"></p>
 
@@ -90,7 +92,7 @@ Copy [dist/rci.min.js](dist/rci.min.js) file to your project and load it.
 
 ## Contributing
 
-The main purpose of this repository is to continue to evolve *rci event collector*, making it faster and easier to use. Development of this SDK happens in the open on GitHub, and we are grateful to the community for contributing bugfixes and improvements, raising issues and suggesting new features. Read below to learn how you can take part in it.
+The main purpose of this repository is to continue to evolve *rci event collector*, making it faster and easier to use. Development of this SDK happens in the open on GitHub, and we are grateful to the community for [contributing bugfixes and improvements](TEMPLATE_PULL_REQUEST.md), [raising issues](TEMPLATE_BUG_REPORT.md) and [suggesting new features](TEMPLATE_FEATURE_REQUEST.md). Read below to learn how you can take part in it.
 
 ### Code of Conduct
 
@@ -111,7 +113,7 @@ For questions and support please use the official [contact us](https://eggplant.
 
 ## Issues
 
-Please make sure to read the [BUG_REPORT_TEMPLATE.md](BUG_REPORT_TEMPLATE.md) before opening an issue. Issues not conforming to the guidelines may be closed immediately.
+Please make sure to read the [existing issues](https://github.com/TestPlant/real-user-data-sdk-js/issues) and [issue template](TEMPLATE_BUG_REPORT.md) before opening a new one. Issues not conforming to the guidelines may be closed immediately.
 
 ## Changelog
 
