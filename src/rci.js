@@ -1,8 +1,13 @@
 import Collector from './core/Collector';
 import Transport from './core/Transport';
-import EVENT_TYPE from './core/constants';
-
+import {
+  EVENT_TYPE,
+  EVENT_ACTION,
+  JOURNEY_ACTION
+} from './core/constants';
+import defaultCollection from './collections/defaultCollection';
 import ClientIdCollector from './collectors/ClientIdCollector';
+import ConversionCollector from './collectors/ConversionCollector';
 import DeviceTypeCollector from './collectors/DeviceTypeCollector';
 import ErrorCollector from './collectors/ErrorCollector';
 import EventActionCollector from './collectors/EventActionCollector';
@@ -15,6 +20,7 @@ import UriWithPageTitleCategoryCollector from './collectors/UriWithPageTitleCate
 
 const collectors = {
   ClientIdCollector,
+  ConversionCollector,
   DeviceTypeCollector,
   ErrorCollector,
   EventActionCollector,
@@ -23,12 +29,18 @@ const collectors = {
   StopJourneyActionCollector,
   TimingCollector,
   UriWithCustomCategoryCollector,
-  UriWithPageTitleCategoryCollector
+  UriWithPageTitleCategoryCollector,
+};
+const collections = {
+  defaultCollection
 };
 
 export {
   Collector,
+  Transport,
   EVENT_TYPE,
+  EVENT_ACTION,
+  JOURNEY_ACTION,
   collectors,
-  Transport
+  collections
 };

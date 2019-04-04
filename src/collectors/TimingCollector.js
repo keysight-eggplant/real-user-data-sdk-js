@@ -6,7 +6,7 @@ export default class TimingCollector {
 
   async prepare (event) {
     event.eventStart = this.performanceData.navigationStart;
-    event.eventEnd = this.performanceData.domContentLoadedEventEnd;
+    event.eventEnd = new Date().getTime();
     return event;
   }
 

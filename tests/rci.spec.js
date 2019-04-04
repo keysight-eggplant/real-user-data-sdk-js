@@ -6,6 +6,9 @@ var expectedErrorFatal = false;
 var expectedEventAction = 'backflip';
 var expectedEventType = 'state';
 var expectedEventCategory = 'sandwiches';
+var expectedGoalValue = 4900;
+var expectedGoalType = 'checkout';
+var expectedGoalCurrency = 'USD';
 
 before(async () => {
     class LocalTransport {
@@ -14,16 +17,19 @@ before(async () => {
         }
     }
 
-    const collector = new rciSdk.Collector(new LocalTransport(), null)
-        .add(new rciSdk.collectors.ClientIdCollector(localStorage))
-        .add(new rciSdk.collectors.DeviceTypeCollector())
-        .add(new rciSdk.collectors.ErrorCollector(expectedErrorCode, expectedErrorType, expectedErrorFatal))
-        .add(new rciSdk.collectors.EventActionCollector(expectedEventAction))
-        .add(new rciSdk.collectors.EventTypeCollector(expectedEventType))
-        .add(new rciSdk.collectors.IdCollector())
-        .add(new rciSdk.collectors.StopJourneyActionCollector())
-        .add(new rciSdk.collectors.TimingCollector())
-        .add(new rciSdk.collectors.UriWithCustomCategoryCollector(expectedEventCategory));
+    const collection = [
+        new rciSdk.collectors.ClientIdCollector(localStorage),
+        new rciSdk.collectors.ConversionCollector().success(expectedGoalType, expectedGoalValue, expectedGoalCurrency),
+        new rciSdk.collectors.DeviceTypeCollector(),
+        new rciSdk.collectors.ErrorCollector(expectedErrorCode, expectedErrorType, expectedErrorFatal),
+        new rciSdk.collectors.EventActionCollector(expectedEventAction),
+        new rciSdk.collectors.EventTypeCollector(expectedEventType),
+        new rciSdk.collectors.IdCollector(),
+        new rciSdk.collectors.StopJourneyActionCollector(),
+        new rciSdk.collectors.TimingCollector(),
+        new rciSdk.collectors.UriWithCustomCategoryCollector(expectedEventCategory)
+    ];
+    const collector = new rciSdk.Collector(new LocalTransport(), collection);
 
     await collector.collect();
 });
@@ -47,5 +53,9 @@ describe('rciJsSdk', function() {
         expect(window.assertOnMe.eventSource).to.not.equal(null);
         expect(window.assertOnMe.eventSource).to.be.a('string');
         expect(window.assertOnMe.eventCategory).equal(expectedEventCategory);
+        expect(window.assertOnMe.goalType).equal(expectedGoalType);
+        expect(window.assertOnMe.goalCurrency).equal(expectedGoalCurrency);
+        expect(window.assertOnMe.goalValue).equal(expectedGoalValue);
+
     });
 });

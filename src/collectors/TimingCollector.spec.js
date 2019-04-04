@@ -14,7 +14,7 @@ describe('TimingCollector', () => {
   const expectedEvent = {
     ...originalEvent,
     eventStart: 123,
-    eventEnd: 456,
+    eventEnd: expect.any(Number)
   };
   let timingCollector;
 
@@ -22,7 +22,6 @@ describe('TimingCollector', () => {
   beforeEach(() => {
     global.window.performance.timing = {
       navigationStart: 123,
-      domContentLoadedEventEnd: 456,
     };
 
     timingCollector = new TimingCollector();
@@ -36,10 +35,10 @@ describe('TimingCollector', () => {
 
 
   test('Return correct event timing', async () => {
+    const eventEnd = new Date().getTime();
     const actualEvent = await timingCollector.prepare(originalEvent);
 
     expect(actualEvent.eventStart).toEqual(expectedEvent.eventStart);
-    expect(actualEvent.eventEnd).toEqual(expectedEvent.eventEnd);
+    expect(actualEvent.eventEnd).toBeGreaterThanOrEqual(eventEnd);
   });
-
 });
