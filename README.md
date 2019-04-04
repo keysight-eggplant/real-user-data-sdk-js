@@ -5,7 +5,6 @@ SDK for generating and publishing events that capture user, application and tech
 
 - [ ] update NPM package in installation and npm badge
 - [ ] update uglified file size in badges
-- [ ] update licence badge (MIT vs Apache)
 - [ ] update link to CDN in installation section
 - [ ] update the browser support list
 - [ ] prepare release note for 1.0.0
@@ -16,7 +15,7 @@ SDK for generating and publishing events that capture user, application and tech
 [![](https://flat.badgen.net/npm/v/@editorjs/editorjs?icon=npm)](https://www.npmjs.com/package/@editorjs/editorjs)
 [![](https://flat.badgen.net/bundlephobia/min/@editorjs/editorjs?color=cyan)](https://www.npmjs.com/package/@editorjs/editorjs)
 [![](https://flat.badgen.net/bundlephobia/minzip/@editorjs/editorjs?color=green)](https://www.npmjs.com/package/@editorjs/editorjs)
-[![](https://flat.badgen.net/npm/license/@editorjs/editorjs)](https://www.npmjs.com/package/@editorjs/editorjs)
+[![](https://flat.badgen.net/badge/license/MIT/blue)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/TestPlant/real-user-data-sdk-js/pulls)
 
 ## Version 1.0.0 is here!
