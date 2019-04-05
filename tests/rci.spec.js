@@ -17,16 +17,16 @@ before(async () => {
   }
 
   const collection = [
-    new rciSdk.collectors.ClientIdCollector(localStorage),
-    new rciSdk.collectors.ConversionCollector().success(expectedGoalType, expectedGoalValue, expectedGoalCurrency),
-    new rciSdk.collectors.DeviceTypeCollector(),
-    new rciSdk.collectors.ErrorCollector(expectedErrorCode, expectedErrorType, expectedErrorFatal),
-    new rciSdk.collectors.EventActionCollector(expectedEventAction),
-    new rciSdk.collectors.EventTypeCollector(expectedEventType),
-    new rciSdk.collectors.IdCollector(),
-    new rciSdk.collectors.StopJourneyActionCollector(),
-    new rciSdk.collectors.TimingCollector(),
-    new rciSdk.collectors.UriWithCustomCategoryCollector(expectedEventCategory)
+    new rciSdk.collector.ClientIdCollector(localStorage),
+    new rciSdk.collector.ConversionCollector().success(expectedGoalType, expectedGoalValue, expectedGoalCurrency),
+    new rciSdk.collector.DeviceTypeCollector(),
+    new rciSdk.collector.ErrorCollector(expectedErrorCode, expectedErrorType, expectedErrorFatal),
+    new rciSdk.collector.EventActionCollector(expectedEventAction),
+    new rciSdk.collector.EventTypeCollector(expectedEventType),
+    new rciSdk.collector.IdCollector(),
+    new rciSdk.collector.StopJourneyActionCollector(),
+    new rciSdk.collector.TimingCollector(),
+    new rciSdk.collector.UriWithCustomCategoryCollector(expectedEventCategory)
   ];
   const collector = new rciSdk.Producer(new LocalTransport(), collection);
 
