@@ -2,6 +2,7 @@ import sinon from 'sinon';
 import Transport from './Transport';
 
 describe('Transport Unit Tests', () => {
+  const tenancyId = '123-456';
   let server;
 
   beforeEach(() => {
@@ -13,8 +14,8 @@ describe('Transport Unit Tests', () => {
   });
 
   it('should send given event as JSON body', () => {
-
-    const transport = new Transport('test-tenancy-id-123');
+    const targetUrl = `https://target.cloud/v1/${tenancyId}/stream`;
+    const transport = new Transport(targetUrl);
     const event = {
       id: 'abc-abc-123',
       clientId: 'def-def-123',
@@ -31,7 +32,7 @@ describe('Transport Unit Tests', () => {
 
     server.respondWith(
       'POST',
-      'https://event.real-user-data.eggplant.cloud/v1/test-tenancy-id-123/stream',
+      `https://target.cloud/v1/${tenancyId}/stream`,
       [200, { 'Content-Type': 'application/json' }, ''],
     );
 
@@ -41,7 +42,7 @@ describe('Transport Unit Tests', () => {
     server.respond();
 
     expect(server.requests[0].url).toEqual(
-      'https://event.real-user-data.eggplant.cloud/v1/test-tenancy-id-123/stream',
+        `https://target.cloud/v1/${tenancyId}/stream`,
     );
 
     expect(server.requests[0].requestBody).toEqual(dataJson);
