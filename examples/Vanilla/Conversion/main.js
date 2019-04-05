@@ -6,7 +6,7 @@
   const uriWithCustomCategory = new rciSdk.collector.UriWithCustomCategoryCollector('Checkout Completed');
 
   // Step 2: Configure your Transport with the tenancyId provided
-  const targetUrl = `https://event.real-user-data.eggplant.cloud/v1/${tenancyId}/stream`;
+  const targetUrl = `https://target.domain/v1/${tenancyId}/stream`;
   const transport = new rciSdk.Transport(targetUrl);
 
   // Step 3: Capture your default collectors
