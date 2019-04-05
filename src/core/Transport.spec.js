@@ -31,7 +31,7 @@ describe('Transport Unit Tests', () => {
 
     server.respondWith(
       'POST',
-      'https://event.real-user-data.eggplant.io/test-tenancy-id-123/stream',
+      'https://event.real-user-data.eggplant.cloud/v1/test-tenancy-id-123/stream',
       [200, { 'Content-Type': 'application/json' }, ''],
     );
 
@@ -41,7 +41,7 @@ describe('Transport Unit Tests', () => {
     server.respond();
 
     expect(server.requests[0].url).toEqual(
-      'https://event.real-user-data.eggplant.io/test-tenancy-id-123/stream',
+      'https://event.real-user-data.eggplant.cloud/v1/test-tenancy-id-123/stream',
     );
 
     expect(server.requests[0].requestBody).toEqual(dataJson);

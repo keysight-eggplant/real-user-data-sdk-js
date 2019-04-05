@@ -1,6 +1,6 @@
 export default class Transport {
   constructor(tenancyId) {
-    this.targetUrl = `https://event.real-user-data.eggplant.io/${tenancyId}/stream`;
+    this.targetUrl = `https://event.real-user-data.eggplant.cloud/v1/${tenancyId}/stream`;
   }
 
   async execute(event) {
