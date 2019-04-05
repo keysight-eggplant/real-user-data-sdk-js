@@ -14,7 +14,7 @@ describe('Transport Unit Tests', () => {
   });
 
   it('should send given event as JSON body', () => {
-    const targetUrl = `https://target.cloud/v1/${tenancyId}/stream`;
+    const targetUrl = `https://target.domain/v1/${tenancyId}/stream`;
     const transport = new Transport(targetUrl);
     const event = {
       id: 'abc-abc-123',
@@ -32,7 +32,7 @@ describe('Transport Unit Tests', () => {
 
     server.respondWith(
       'POST',
-      `https://target.cloud/v1/${tenancyId}/stream`,
+      `https://target.domain/v1/${tenancyId}/stream`,
       [200, { 'Content-Type': 'application/json' }, ''],
     );
 
@@ -42,7 +42,7 @@ describe('Transport Unit Tests', () => {
     server.respond();
 
     expect(server.requests[0].url).toEqual(
-        `https://target.cloud/v1/${tenancyId}/stream`,
+        `https://target.domain/v1/${tenancyId}/stream`,
     );
 
     expect(server.requests[0].requestBody).toEqual(dataJson);
