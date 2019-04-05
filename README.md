@@ -92,9 +92,9 @@ Copy [dist/rci.min.js](dist/rci.min.js) file to your project and load it.
 
 # JS SDK
 
-## Collector
+## Producer
 
-A collector is a `class` which executes all the `Collectors` provided. It expects a `Transport` and collection of `Collectors`. When `collect` is called, the event is prepared and then sent using the `Transport`.
+A producer is a `class` which executes all the `Collectors` provided. It expects a `Transport` and collection of `Collectors`. When `collect` is called, the event is prepared and then sent using the `Transport`.
 
 ## Collectors
 
