@@ -1,4 +1,5 @@
 # Real User Data SDK
+
 SDK for generating and publishing events that capture user, application and technical data
 
 ### TODO list
@@ -25,17 +26,18 @@ We are glad to introduce the first version of **RCI - Real User Data SDK**.
 ### Browsers support
 
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>iOS Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Opera |
-| --------- | --------- | --------- | --------- | --------- | --------- |
-| Edge 14+ | Firefox 54+ | Chrome 58+ | Safari 10+ | Safari ?? | Opera 55+
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Edge 14+                                                                                                                                                                                                        | Firefox 54+                                                                                                                                                                                                       | Chrome 58+                                                                                                                                                                                                    | Safari 10+                                                                                                                                                                                                    | Safari ??                                                                                                                                                                                                                     | Opera 55+                                                                                                                                                                                                 |
 
 ## Documentation
 
-Please see the SDK documentation and examples below.  You can also see the [REST Api Documentation](https://docs.real-user-data.eggplant.cloud/open-api/index.html) for more details about what can be captured.
+Please see the SDK documentation and examples below. You can also see the [REST Api Documentation](https://docs.real-user-data.eggplant.cloud/open-api/index.html) for more details about what can be captured.
 
 ---
 
-# So how to use *Real User Data SDK*
-Add the `dist/rci.min.js` script to your website via *local javascript file*, *CDN*, *NPM package* or *GTM* and you are ready to go.
+# So how to use _Real User Data SDK_
+
+Add the `dist/rci.min.js` script to your website via _local javascript file_, _CDN_, _NPM package_ or _GTM_ and you are ready to go.
 
 You can always checkout this repository and look at the [example directory](example/)
 
@@ -55,7 +57,6 @@ You can always checkout this repository and look at the [example directory](exam
 
 - Use [this example](examples/Vanilla/DOMContentLoaded/) as starting point if you are going to collect data when DOM content is loaded.
 
-
 # Installation Guide
 
 ### Node.js
@@ -69,7 +70,7 @@ npm install rci-real-user-data-sdk-js
 Include module in your application
 
 ```javascript
-const RCI = require('rci-real-user-data-sdk-js');
+const RCI = require("rci-real-user-data-sdk-js");
 ```
 
 ### Use from CDN
@@ -90,22 +91,30 @@ Copy [dist/rci.min.js](dist/rci.min.js) file to your project and load it.
 ```
 
 # JS SDK
+
 ## Collector
-A collector is a `class` which executes all the `Collectors` provided.  It expects a `Transport` and collection of `Collectors`.  When `collect` is called, the event is prepared and then sent using the `Transport`. 
+
+A collector is a `class` which executes all the `Collectors` provided. It expects a `Transport` and collection of `Collectors`. When `collect` is called, the event is prepared and then sent using the `Transport`.
+
 ## Collectors
-A `function`, `object` or `class` with an `async` prepare method.  The prepare method is given an `event` and is expected to return an augmented `event`.  
+
+A `function`, `object` or `class` with an `async` prepare method. The prepare method is given an `event` and is expected to return an augmented `event`.
+
 ## Transport
-A `class` which knows how to send the event to the target destination when the `async` method `execute` is called.  
+
+A `class` which knows how to send the event to the target destination when the `async` method `execute` is called.
+
 ## defaultCollection
-The default collection (`array`) of `Collectors` provided by the SDK.  New `Collectors` can be merged with the default `Collectors` to compose unique sequences. 
+
+The default collection (`array`) of `Collectors` provided by the SDK. New `Collectors` can be merged with the default `Collectors` to compose unique sequences.
 
 ## Contributing
 
-The main purpose of this repository is to continue to evolve *rci event collector*, making it faster and easier to use. Development of this SDK happens in the open on GitHub, and we are grateful to the community for [contributing bugfixes and improvements](TEMPLATE_PULL_REQUEST.md), [raising issues](TEMPLATE_BUG_REPORT.md) and [suggesting new features](TEMPLATE_FEATURE_REQUEST.md). Read below to learn how you can take part in it.
+The main purpose of this repository is to continue to evolve _rci event collector_, making it faster and easier to use. Development of this SDK happens in the open on GitHub, and we are grateful to the community for [contributing bugfixes and improvements](TEMPLATE_PULL_REQUEST.md), [raising issues](TEMPLATE_BUG_REPORT.md) and [suggesting new features](TEMPLATE_FEATURE_REQUEST.md). Read below to learn how you can take part in it.
 
 ### Code of Conduct
 
-Facebook has adopted a [Code of Conduct](CODE_OF_CONDUCT.md) that we expect project participants to adhere to. Please read the the full text so that you can understand what actions will and will not be tolerated.
+This SDK has adopted a [Code of Conduct](CODE_OF_CONDUCT.md) that we expect project participants to adhere to. Please read the the full text so that you can understand what actions will and will not be tolerated.
 
 ## Contributors
 
@@ -114,7 +123,6 @@ Facebook has adopted a [Code of Conduct](CODE_OF_CONDUCT.md) that we expect proj
 - [Malcolm Smith](https://github.com/MalcolmSmithUK)
 - [MoHo Khaleqi](https://github.com/mohokh67)
 - [Robert Dumitrescu](https://github.com/robertdumitrescu)
-
 
 ## Questions
 
