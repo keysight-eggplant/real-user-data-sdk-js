@@ -28,7 +28,7 @@ before(async () => {
     new rciSdk.collectors.TimingCollector(),
     new rciSdk.collectors.UriWithCustomCategoryCollector(expectedEventCategory)
   ];
-  const collector = new rciSdk.Collector(new LocalTransport(), collection);
+  const collector = new rciSdk.Producer(new LocalTransport(), collection);
 
   await collector.collect();
 });

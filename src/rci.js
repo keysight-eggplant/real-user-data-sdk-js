@@ -1,4 +1,4 @@
-import Collector from './core/Collector';
+import Producer from './core/Producer';
 import Transport from './core/Transport';
 import {
   EVENT_TYPE,
@@ -36,7 +36,7 @@ const collections = {
 };
 
 export {
-  Collector,
+  Producer,
   Transport,
   EVENT_TYPE,
   EVENT_ACTION,
