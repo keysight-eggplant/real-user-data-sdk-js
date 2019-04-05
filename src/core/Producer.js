@@ -1,5 +1,5 @@
 /* eslint no-await-in-loop: 0 */
-export default class Collector {
+export default class Producer {
   constructor(transport, collectors) {
     this.transport = transport;
     this.collectors = Array.isArray(collectors) ? [].concat(collectors) : [];

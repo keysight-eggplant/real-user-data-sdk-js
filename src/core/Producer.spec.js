@@ -1,10 +1,10 @@
 'use strict';
 
 import Sinon from 'sinon';
-import Collector from './Collector';
+import Producer from './Producer';
 import Transport from './Transport';
 
-describe('Collector', () => {
+describe('Producer', () => {
 
   describe('collect', () => {
     let collectors;
@@ -22,7 +22,7 @@ describe('Collector', () => {
       const TransportMock = Sinon.mock(Transport);
       TransportMock.execute = Sinon.spy();
 
-      const collector = new Collector(TransportMock, collectors);
+      const collector = new Producer(TransportMock, collectors);
 
       await collector.collect();
 
@@ -39,7 +39,7 @@ describe('Collector', () => {
       const TransportMock = Sinon.mock(Transport);
       TransportMock.execute = Sinon.spy();
 
-      const collector = new Collector(TransportMock, collectors);
+      const collector = new Producer(TransportMock, collectors);
 
       expect(collector.collect()).rejects.toThrow(new Error('Invalid event returned by collector undefined'));
     });
