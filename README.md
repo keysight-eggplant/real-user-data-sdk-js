@@ -100,13 +100,15 @@ A producer is a `class` which executes all the `Collectors` provided. It expects
 
 A `function`, `object` or `class` with an `async` prepare method. The prepare method is given an `event` and is expected to return an augmented `event`.
 
+### defaultCollectors
+
+The default collection (`array`) of `Collectors` provided by the SDK. New `Collectors` can be merged with the default `Collectors` to compose unique sequences of collection.
+
 ## Transport
 
 A `class` which knows how to send the event to the target destination when the `async` method `execute` is called.
 
-## defaultCollection
 
-The default collection (`array`) of `Collectors` provided by the SDK. New `Collectors` can be merged with the default `Collectors` to compose unique sequences.
 
 ## Contributing
 

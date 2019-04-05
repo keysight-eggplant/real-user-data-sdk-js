@@ -1,6 +1,6 @@
 export default class Transport {
-  constructor(tenancyId) {
-    this.targetUrl = `https://event.real-user-data.eggplant.io/${tenancyId}/stream`;
+  constructor(targetUrl) {
+    this.targetUrl = targetUrl;
   }
 
   async execute(event) {
@@ -8,6 +8,7 @@ export default class Transport {
     await new Promise(resolve => {
       const xhr = new XMLHttpRequest();
       xhr.open('POST', this.targetUrl, true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.onload = () => {
         resolve(xhr.response);
       };

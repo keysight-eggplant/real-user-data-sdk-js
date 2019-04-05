@@ -1,11 +1,12 @@
 ((tenancyId, rciSdk) => {
   // Step 1: Configure your Transport with the tenancyId provided
-  const transport = new rciSdk.Transport(tenancyId);
+  const targetUrl = `https://target.domain/v1/${tenancyId}/stream`;
+  const transport = new rciSdk.Transport(targetUrl);
 
   // Step 2: Capture your default collectors
-  const defaults = rciSdk.collections.defaultCollection;
+  const defaults = rciSdk.collector.defaultCollectors;
 
-  // Step 3: Build a new Producer with transport and collectors
+  // Step 3: Build a new Producer with transport and collector
   const producer = new rciSdk.Producer(transport, defaults);
 
   // Step 4: Register your hook
