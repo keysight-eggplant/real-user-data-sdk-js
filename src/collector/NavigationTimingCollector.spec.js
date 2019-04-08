@@ -1,6 +1,6 @@
-import TimingCollector from './TimingCollector';
+import NavigationTimingCollector from './NavigationTimingCollector';
 
-describe('TimingCollector', () => {
+describe('NavigationTimingCollector', () => {
   const originalEvent = {
     id: '11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000',
     clientId: '11bf5b37-e0b8-42e0-8dcf-dc8c4aefc001',
@@ -16,7 +16,7 @@ describe('TimingCollector', () => {
     eventStart: 123,
     eventEnd: expect.any(Number)
   };
-  let timingCollector;
+  let navigationTimingCollector;
 
 
   beforeEach(() => {
@@ -24,11 +24,11 @@ describe('TimingCollector', () => {
       navigationStart: 123,
     };
 
-    timingCollector = new TimingCollector();
+    navigationTimingCollector = new NavigationTimingCollector();
   });
 
   test('Return event with all mandatory fields', async () => {
-    const actualEvent = await timingCollector.prepare(originalEvent);
+    const actualEvent = await navigationTimingCollector.prepare(originalEvent);
 
     expect(actualEvent).toEqual(expectedEvent);
   });
@@ -36,7 +36,7 @@ describe('TimingCollector', () => {
 
   test('Return correct event timing', async () => {
     const eventEnd = new Date().getTime();
-    const actualEvent = await timingCollector.prepare(originalEvent);
+    const actualEvent = await navigationTimingCollector.prepare(originalEvent);
 
     expect(actualEvent.eventStart).toEqual(expectedEvent.eventStart);
     expect(actualEvent.eventEnd).toBeGreaterThanOrEqual(eventEnd);

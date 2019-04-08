@@ -14,7 +14,8 @@ import EventActionCollector from './collector/EventActionCollector';
 import EventTypeCollector from './collector/EventTypeCollector';
 import IdCollector from './collector/IdCollector';
 import StopJourneyActionCollector from './collector/StopJourneyActionCollector';
-import TimingCollector from './collector/TimingCollector';
+import NavigationTimingCollector from './collector/NavigationTimingCollector';
+import SpaTimingCollector from './collector/SpaTimingCollector';
 import UriWithCustomCategoryCollector from './collector/UriWithCustomCategoryCollector';
 import UriWithPageTitleCategoryCollector from './collector/UriWithPageTitleCategoryCollector';
 
@@ -28,7 +29,8 @@ const collector = {
   EventTypeCollector,
   IdCollector,
   StopJourneyActionCollector,
-  TimingCollector,
+  NavigationTimingCollector,
+  SpaTimingCollector,
   UriWithCustomCategoryCollector,
   UriWithPageTitleCategoryCollector,
 };
