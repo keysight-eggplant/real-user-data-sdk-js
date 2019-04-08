@@ -6,19 +6,6 @@ const PACKAGE = require('./package.json');
 const banner = `${PACKAGE.name} - ${PACKAGE.version}`;
 
 module.exports = [
-  // {
-  //   entry: './src/rci.js',
-  //   output: {
-  //     path: path.resolve(__dirname, 'dist'),
-  //     filename: 'rci.dist.js',
-  //     library: 'rciSdk'
-  //   },
-  //   plugins: [
-  //     new webpack.optimize.LimitChunkCountPlugin({
-  //       maxChunks: 1, // disable creating additional chunks
-  //     })
-  //   ]
-  // },
   {
     entry: './src/rci.js',
     output: {
@@ -55,7 +42,10 @@ module.exports = [
       ]
     },
     plugins: [
-      new webpack.BannerPlugin(banner)
+      new webpack.BannerPlugin(banner),
+      new webpack.optimize.LimitChunkCountPlugin({
+        maxChunks: 1
+      })
     ]
   }
 ];
