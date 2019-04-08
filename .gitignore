@@ -63,3 +63,6 @@ typings/
 .idea
 
 dist
+
+.jiraconfig
+.vscode

@@ -1,0 +1,16 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:current-browsers
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: npm install
+      - run:
+          name: Run ESLint
+          command: npm run eslint
+      - run:
+          name: Run Tests
+          command: npm test
