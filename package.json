@@ -1,5 +1,5 @@
 {
-  "name": "real-user-data-sdk-js",
+  "name": "@eggplantio/real-user-data-sdk-js",
   "version": "1.0.0",
   "description": "SDK for generating and publishing events that capture user, application and technical data",
   "main": "index.js",
@@ -42,5 +42,9 @@
   },
   "dependencies": {
     "ua-parser-js": "^0.7.19"
+  },
+  "directories": {
+    "example": "examples",
+    "test": "tests"
   }
 }
