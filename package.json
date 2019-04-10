@@ -21,10 +21,12 @@
   "homepage": "https://github.com/TestPlant/real-user-data-sdk-js#readme",
   "devDependencies": {
     "@babel/core": "7.4.0",
+    "@babel/plugin-transform-runtime": "7.4.3",
+    "@babel/runtime": "7.4.3",
     "@babel/preset-env": "7.4.2",
     "babel-jest": "24.5.0",
     "babel-loader": "8.0.5",
-    "chai": "^4.2.0",
+    "chai": "4.2.0",
     "eslint": "5.16.0",
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-plugin-import": "2.16.0",
