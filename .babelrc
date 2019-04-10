@@ -1,8 +1,4 @@
 // https://babeljs.io/docs/en/babel-preset-env
-// {
-//   "presets": ["@babel/preset-env"]
-// }
-
 {
   "presets": [
     [
@@ -18,7 +14,6 @@
     [
       "@babel/plugin-transform-runtime",
       {
-        //"polyfill": false,
         "regenerator": true
       }
     ]
