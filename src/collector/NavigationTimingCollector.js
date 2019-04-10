@@ -1,4 +1,4 @@
-export default class TimingCollector {
+export default class NavigationTimingCollector {
 
   constructor() {
     this.performanceData = window.performance.timing;

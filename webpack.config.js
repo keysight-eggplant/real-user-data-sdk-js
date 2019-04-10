@@ -10,7 +10,8 @@ module.exports = [
     entry: './src/rci.js',
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: 'rci.min.js'
+      filename: 'rci.min.js',
+      library: 'rciSdk'
     },
     module: {
       rules: [
