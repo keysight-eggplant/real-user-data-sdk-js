@@ -1,8 +1,8 @@
 {
   "name": "@eggplantio/real-user-data-sdk-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "SDK for generating and publishing events that capture user, application and technical data",
-  "main": "index.js",
+  "main": "./dist/rci.min.js",
   "scripts": {
     "test": "jest src && webpack && karma start",
     "eslint": "eslint ./src --fix",
