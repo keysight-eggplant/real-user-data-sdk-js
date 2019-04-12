@@ -28,13 +28,13 @@ jobs:
           command: node node_modules/npm-cli-login/bin/npm-cli-login.js -u ${NPM_USERNAME} -p ${NPM_PASSWORD} -e ${NPM_EMAIL}
 
 
-#workflows:
-#  version: 2
-#  deploy:
-#    jobs:
-#      - build:
-#          filters:
-#            tags:
-#              only: /.*/
-#            branches:
-#              ignore: /.*/
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
