@@ -14,3 +14,17 @@ jobs:
       - run:
           name: Run Tests
           command: npm test
+      - run:
+          name: Echo test
+          command: echo test
+
+#workflows:
+#  version: 2
+#  deploy:
+#    jobs:
+#      - build:
+#          filters:
+#            tags:
+#              only: /.*/
+#            branches:
+#              ignore: /.*/
