@@ -18,6 +18,9 @@ jobs:
           name: Echo test
           command: echo test
       - run:
+          name: Ignore non checked in files
+          command: git checkout -- .
+      - run:
           name: Update NPM version
           command: npm version from-git
       - run:
