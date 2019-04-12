@@ -1,5 +1,5 @@
 {
-  "name": "real-user-data-sdk-js",
+  "name": "@eggplantio/real-user-data-sdk-js",
   "version": "1.0.1",
   "description": "SDK for generating and publishing events that capture user, application and technical data",
   "main": "./dist/rci.min.js",
