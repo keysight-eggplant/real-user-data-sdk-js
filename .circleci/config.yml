@@ -20,10 +20,7 @@ jobs:
       - run:
           name: Ignore non checked in files
           command: git checkout -- .
-       - run:
-          name: Show git tags
-          command: git tag -l
-       - run:
+      - run:
           name: Update NPM version
           command: npm version from-git --allow-same-version
       - run:
