@@ -22,7 +22,7 @@ jobs:
           command: ls -all ~/.aws
       - run:
           name: Upload
-          command: aws s3 cp dist/rci.min.js s3://rci-dev-euwest1-sdk --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --recursive --profile ${AWS_ROLE_NAME}
+          command: aws s3 cp dist/rci.min.js s3://rci-dev-euwest1-sdk --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
 #      - run:
 #          name: Install Dependencies
 #          command: npm install
