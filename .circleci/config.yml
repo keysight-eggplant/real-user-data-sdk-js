@@ -22,7 +22,7 @@ jobs:
           command: mkdir ~/.aws
       - run:
           name: check credentials
-          command: printf "[default]\naws_access_key_id = ${AWS_ACCESS_KEY_ID}\naws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}\nregion=${AWS_DEFAULT_REGION}\n\n[${AWS_ROLE_NAME}]\nrole_arn = ${AWS_ROLE_ARN}\nsource_profile = default\nregion=${AWS_DEFAULT_REGION}" > ~/.aws/randomtext2.txt
+          command: printf "[default]\naws_access_key_id = ${AWS_ACCESS_KEY_ID}\naws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}\nregion=${AWS_DEFAULT_REGION}\n\n[${AWS_ROLE_NAME}]\nrole_arn = ${AWS_ROLE_ARN}\nsource_profile = default\nregion=${AWS_DEFAULT_REGION}" > ~/.aws/credentials
       - run:
           name: ls AWS credentials
           command: ls -all ~/.aws
