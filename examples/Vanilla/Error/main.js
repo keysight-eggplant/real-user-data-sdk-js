@@ -1,7 +1,7 @@
 (async (tenancyId, rciSdk) => {
   // Step 1: Define your Factory
   const rciSdkProducerFactory = (customCollectors) => {
-    const targetUrl = `https://target.domain/v1/${tenancyId}/stream`;
+    const targetUrl = `https://event.dev.real-user-data.webperfdev.com/v1/${tenancyId}/stream`;
     const transport = new rciSdk.Transport(targetUrl);
     const defaults = rciSdk.collector.defaultCollectors;
     const collection = defaults.concat(customCollectors);
@@ -31,4 +31,4 @@
     await rciSdkProducerFactory(customCollection).collect();
   }
 
-})('123-456', rciSdk);
+})('39ea5e34-f96e-47e6-9a28-f0bf430c3fa7', rciSdk);

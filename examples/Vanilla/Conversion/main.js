@@ -6,7 +6,7 @@
   const uriWithCustomCategory = new rciSdk.collector.UriWithCustomCategoryCollector('Checkout Completed');
 
   // Step 2: Configure your Transport with the tenancyId provided
-  const targetUrl = `https://target.domain/v1/${tenancyId}/stream`;
+  const targetUrl = `https://event.dev.real-user-data.webperfdev.com/v1/${tenancyId}/stream`;
   const transport = new rciSdk.Transport(targetUrl);
 
   // Step 3: Capture your default collectors
@@ -59,4 +59,4 @@
     }
   });
 
-})('123-456', rciSdk);
+})('39ea5e34-f96e-47e6-9a28-f0bf430c3fa7', rciSdk);
