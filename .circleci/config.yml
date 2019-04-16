@@ -34,7 +34,7 @@ jobs:
           command: node node_modules/npm-cli-login/bin/npm-cli-login.js -u ${NPM_USERNAME} -p ${NPM_PASSWORD} -e ${NPM_EMAIL}
       - run:
           name: Publish package
-          command: npm publish
+          command: npm publish --access public
 
 
 workflows:
