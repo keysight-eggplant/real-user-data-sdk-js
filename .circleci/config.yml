@@ -6,41 +6,41 @@ jobs:
     steps:
       - checkout
       - run:
-          name: VF Pip
-          command: sudo apt-get -y install python3-pip && pip3 --version
+          name: Install Pip 3
+          command: sudo apt-get -y install python3-pip
       - run:
-          name: Install Dependencies
-          command: npm install
-      - run:
-          name: Run ESLint
-          command: npm run eslint
-      - run:
-          name: Run Tests
-          command: npm test
-      - run:
-          name: Echo test
-          command: echo test
-      - run:
-          name: Ignore non checked in files
-          command: git checkout -- .
-      - run:
-          name: Show git tags
-          command: git tag -l
-      - run:
-          name: Set Github identity
-          command: git config --global user.email ${GIT_EMAIL} && git config --global user.name ${GIT_NAME}
-      - run:
-          name: Update NPM version
-          command: npm version from-git --allow-same-version
-      - run:
-          name: Authenticate with registry
-          command: node node_modules/npm-cli-login/bin/npm-cli-login.js -u ${NPM_USERNAME} -p ${NPM_PASSWORD} -e ${NPM_EMAIL}
+          name: Install AWS CLI
+          command: pip3 install awscli --upgrade --user
+#      - run:
+#          name: Install Dependencies
+#          command: npm install
+#      - run:
+#          name: Run ESLint
+#          command: npm run eslint
+#      - run:
+#          name: Run Tests
+#          command: npm test
+#      - run:
+#          name: Echo test
+#          command: echo test
+#      - run:
+#          name: Ignore non checked in files
+#          command: git checkout -- .
+#      - run:
+#          name: Show git tags
+#          command: git tag -l
+#      - run:
+#          name: Set Github identity
+#          command: git config --global user.email ${GIT_EMAIL} && git config --global user.name ${GIT_NAME}
+#      - run:
+#          name: Update NPM version
+#          command: npm version from-git --allow-same-version
+#      - run:
+#          name: Authenticate with registry
+#          command: node node_modules/npm-cli-login/bin/npm-cli-login.js -u ${NPM_USERNAME} -p ${NPM_PASSWORD} -e ${NPM_EMAIL}
 #      - run:
 #          name: Publish package
 #          command: npm publish --access public
-      - run:
-          name: Install AWS CLI
-          command: npm publish --access public
 
 
 #workflows:
