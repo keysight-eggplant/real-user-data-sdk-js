@@ -32,6 +32,9 @@ jobs:
       - run:
           name: Authenticate with registry
           command: node node_modules/npm-cli-login/bin/npm-cli-login.js -u ${NPM_USERNAME} -p ${NPM_PASSWORD} -e ${NPM_EMAIL}
+      - run:
+          name: Publish package
+          command: npm publish
 
 
 workflows:
