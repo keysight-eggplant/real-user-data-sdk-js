@@ -9,6 +9,15 @@ jobs:
           name: Install Dependencies
           command: npm install
       - run:
+          name: VF Pip
+          command: pip3 --version
+      - run:
+          name: VF Pip
+          command: python --version
+      - run:
+          name: VF Pip
+          command: python3 --version
+      - run:
           name: Run ESLint
           command: npm run eslint
       - run:
@@ -32,18 +41,21 @@ jobs:
       - run:
           name: Authenticate with registry
           command: node node_modules/npm-cli-login/bin/npm-cli-login.js -u ${NPM_USERNAME} -p ${NPM_PASSWORD} -e ${NPM_EMAIL}
+#      - run:
+#          name: Publish package
+#          command: npm publish --access public
       - run:
-          name: Publish package
+          name: Install AWS CLI
           command: npm publish --access public
 
 
-workflows:
-  version: 2
-  deploy:
-    jobs:
-      - build:
-          filters:
-            tags:
-              only: /.*/
-            branches:
-              ignore: /.*/
+#workflows:
+#  version: 2
+#  deploy:
+#    jobs:
+#      - build:
+#          filters:
+#            tags:
+#              only: /.*/
+#            branches:
+#              ignore: /.*/
