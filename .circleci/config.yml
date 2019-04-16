@@ -20,9 +20,12 @@ jobs:
       - run:
           name: Ignore non checked in files
           command: git checkout -- .
+       - run:
+       name: Show git tags
+       command: git tag -l
       - run:
           name: Update NPM version
-          command: npm version from-git
+          command: npm version from-git --allow-same-version
       - run:
           name: Authenticate with registry
           command: node node_modules/npm-cli-login/bin/npm-cli-login.js -u ${NPM_USERNAME} -p ${NPM_PASSWORD} -e ${NPM_EMAIL}
