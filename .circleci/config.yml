@@ -22,7 +22,7 @@ jobs:
           command: ls -all ~/.aws
       - run:
           name: Upload
-          command: aws s3 cp dist/rci.min.js s3://rci-dev-euwest1-sdk --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
+          command: aws s3 cp dist/rci.min.js s3://rci-dev-euwest1-sdk/bla/rci.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
 #      - run:
 #          name: Install Dependencies
 #          command: npm install
@@ -53,16 +53,6 @@ jobs:
 #      - run:
 #          name: Publish package
 #          command: npm publish --access public
-  deploy:
-    docker:
-      - image: cibuilds/aws:1.16.1
-    steps:
-      - checkout
-      - attach_workspace:
-          at: /home/circleci
-      - run:
-          name: AWS S3
-          command: aws s3 sync build s3://<URL> --delete
 
 #workflows:
 #  version: 2
@@ -76,14 +66,14 @@ jobs:
 #              ignore: /.*/
 
 
-workflows:
-  version: 2
-  build-and-deploy:
-    jobs:
-      - build
-      - deploy:
-          requires:
-            - build
+#workflows:
+#  version: 2
+#  build-and-deploy:
+#    jobs:
+#      - build
+#      - deploy:
+#          requires:
+#            - build
 #          filters:
 #            branches:
 #              only: master
