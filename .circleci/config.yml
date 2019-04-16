@@ -11,6 +11,12 @@ jobs:
       - run:
           name: Install AWS CLI
           command: pip3 install awscli --upgrade --user
+      - run:
+          name: AWS version
+          command: aws --version
+      - run:
+          name: check credentials
+          command: ls -all ~/.aws
 #      - run:
 #          name: Install Dependencies
 #          command: npm install
