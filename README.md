@@ -78,9 +78,19 @@ const RCI = require("rci-real-user-data-sdk-js");
 You can load specific version of package from [AWS CDN](https://aws.amazon.com/cloudfront/).
 Then include this script in your page code.
 
+You can use our latest tag to be always up to date with our last version of real-user-data-sdk library.
+
 ```html
-<script src="https://aws.link-to-cdn.com/rci.min.js"></script>
+<script src="https://s3-eu-west-1.amazonaws.com/rci-dev-euwest1-sdk/latest/rci.min.js"></script>
 ```
+
+Or if you want to stick with a certain version you can bind to a specific version by using the following code:
+
+```html
+<script src="https://s3-eu-west-1.amazonaws.com/rci-dev-euwest1-sdk/v1.0.6/rci.min.js"></script>
+```
+
+Where ```v1.0.6``` is the version of your choosing.
 
 ### Save sources to project
 
