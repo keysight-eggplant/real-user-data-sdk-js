@@ -14,8 +14,8 @@ SDK for generating and publishing events that capture user, application and tech
 <p align="center"><img src="https://static1.squarespace.com/static/5a123416bce176a964daebe5/t/5aa18123c83025fedf718a51/1554300899717/?format=1500w"></p>
 
 [![](https://flat.badgen.net/npm/v/@eggplantio/real-user-data-sdk-js?icon=npm)](https://www.npmjs.com/package/@eggplantio/real-user-data-sdk-js)
-[![](https://flat.badgen.net/bundlephobia/min/@eggplantio/real-user-data-sdk-js?color=cyan)](https://www.npmjs.com/package/@eggplantio/real-user-data-sdk-js)
-[![](https://flat.badgen.net/bundlephobia/minzip/@eggplantio/real-user-data-sdk-js?color=green)](https://www.npmjs.com/package/@eggplantio/real-user-data-sdk-js)
+[![](https://flat.badgen.net/bundlephobia/min/@eggplantio/real-user-data-sdk-js?color=cyan)](https://bundlephobia.com/result?p=@eggplantio/real-user-data-sdk-js)
+[![](https://flat.badgen.net/bundlephobia/minzip/@eggplantio/real-user-data-sdk-js?color=green)](https://bundlephobia.com/result?p=@eggplantio/real-user-data-sdk-js)
 [![](https://flat.badgen.net/badge/license/MIT/blue)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/TestPlant/real-user-data-sdk-js/pulls)
 
