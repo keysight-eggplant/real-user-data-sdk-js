@@ -13,9 +13,9 @@ SDK for generating and publishing events that capture user, application and tech
 
 <p align="center"><img src="https://static1.squarespace.com/static/5a123416bce176a964daebe5/t/5aa18123c83025fedf718a51/1554300899717/?format=1500w"></p>
 
-[![](https://flat.badgen.net/npm/v/@editorjs/editorjs?icon=npm)](https://www.npmjs.com/package/@editorjs/editorjs)
-[![](https://flat.badgen.net/bundlephobia/min/@editorjs/editorjs?color=cyan)](https://www.npmjs.com/package/@editorjs/editorjs)
-[![](https://flat.badgen.net/bundlephobia/minzip/@editorjs/editorjs?color=green)](https://www.npmjs.com/package/@editorjs/editorjs)
+[![](https://flat.badgen.net/npm/v/@eggplantio/real-user-data-sdk-js?icon=npm)](https://www.npmjs.com/package/@eggplantio/real-user-data-sdk-js)
+[![](https://flat.badgen.net/bundlephobia/min/@eggplantio/real-user-data-sdk-js?color=cyan)](https://bundlephobia.com/result?p=@eggplantio/real-user-data-sdk-js)
+[![](https://flat.badgen.net/bundlephobia/minzip/@eggplantio/real-user-data-sdk-js?color=green)](https://bundlephobia.com/result?p=@eggplantio/real-user-data-sdk-js)
 [![](https://flat.badgen.net/badge/license/MIT/blue)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/TestPlant/real-user-data-sdk-js/pulls)
 
@@ -78,9 +78,19 @@ const RCI = require("rci-real-user-data-sdk-js");
 You can load specific version of package from [AWS CDN](https://aws.amazon.com/cloudfront/).
 Then include this script in your page code.
 
+You can use our latest tag to be always up to date with our last version of real-user-data-sdk library.
+
 ```html
-<script src="https://aws.link-to-cdn.com/rci.min.js"></script>
+<script src="https://s3-eu-west-1.amazonaws.com/rci-dev-euwest1-sdk/latest/rci.min.js"></script>
 ```
+
+Or if you want to stick with a certain version you can bind to a specific version by using the following code:
+
+```html
+<script src="https://s3-eu-west-1.amazonaws.com/rci-dev-euwest1-sdk/v1.0.6/rci.min.js"></script>
+```
+
+Where ```v1.0.6``` is the version of your choosing.
 
 ### Save sources to project
 
