@@ -15,7 +15,7 @@ jobs:
           name: mkdir aws
           command: mkdir ~/.aws
       - run:
-          name: check credentials
+          name: Add credentials file
           command: printf "[default]\naws_access_key_id = ${AWS_ACCESS_KEY_ID}\naws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}\nregion=${AWS_DEFAULT_REGION}\n\n[${AWS_ROLE_NAME}]\nrole_arn = ${AWS_ROLE_ARN}\nsource_profile = default\nregion=${AWS_DEFAULT_REGION}" > ~/.aws/credentials
       - run:
           name: Install Dependencies
@@ -26,9 +26,6 @@ jobs:
       - run:
           name: Run Tests
           command: npm test
-      - run:
-          name: Echo test
-          command: echo test
       - run:
           name: Ignore non checked in files
           command: git checkout -- .
