@@ -64,13 +64,13 @@ You can always checkout this repository and look at the [example directory](exam
 Install the package via NPM or Yarn
 
 ```shell
-npm install rci-real-user-data-sdk-js
+npm i @eggplantio/real-user-data-sdk-js
 ```
 
 Include module in your application
 
 ```javascript
-const RCI = require("rci-real-user-data-sdk-js");
+const RCI = require("@eggplantio/real-user-data-sdk-js");
 ```
 
 ### Use from CDN
@@ -90,7 +90,7 @@ Or if you want to stick with a certain version you can bind to a specific versio
 <script src="https://s3-eu-west-1.amazonaws.com/rci-dev-euwest1-sdk/v1.0.6/rci.min.js"></script>
 ```
 
-Where ```v1.0.6``` is the version of your choosing.
+Where `v1.0.6` is the version of your choosing.
 
 ### Save sources to project
 
@@ -117,8 +117,6 @@ The default collection (`array`) of `Collectors` provided by the SDK. New `Colle
 ## Transport
 
 A `class` which knows how to send the event to the target destination when the `async` method `execute` is called.
-
-
 
 ## Contributing
 
