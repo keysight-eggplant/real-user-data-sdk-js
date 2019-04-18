@@ -4,12 +4,7 @@ SDK for generating and publishing events that capture user, application and tech
 
 ### TODO list
 
-- [ ] update NPM package in installation and npm badge
-- [ ] update uglified file size in badges
-- [ ] update link to CDN in installation section
 - [ ] update the browser support list
-- [ ] prepare release note for 1.0.0
-- [ ] verify all links
 
 <p align="center"><img src="https://static1.squarespace.com/static/5a123416bce176a964daebe5/t/5aa18123c83025fedf718a51/1554300899717/?format=1500w"></p>
 
