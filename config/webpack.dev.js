@@ -3,33 +3,39 @@ const path = require('path');
 // const PACKAGE = require('./package.json');
 
 // const banner = `${PACKAGE.name} - ${PACKAGE.version}`;
+const rules = [
+  {
+    test: /\.(js)$/,
+    exclude: /node_modules/,
+    use: {
+      loader: 'babel-loader',
+      options: {
+        presets: ['@babel/preset-env']
+      }
+    }
+  }
+];
+
 
 module.exports = [
   {
-    // entry: './src/rci.js',
     // mode: 'development',
     entry: {
       rci: './src/rci.js'
     },
     output: {
-      path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(__dirname, '../dist'),
       filename: '[name].min.js',
-      // library: 'rciSdk',
-      publicPath: '/'
+      library: 'rciSdk',
+      publicPath: '/',
+      // library: '',
+      // libraryTarget: 'commonjs'
+      libraryTarget: 'umd',
+      // globalObject: 'this',
+      // libraryExport: 'default'
     },
     module: {
-      rules: [
-        {
-          test: /\.(js)$/,
-          exclude: /node_modules/,
-          use: {
-            loader: 'babel-loader',
-            // options: {
-            //   presets: ['@babel/preset-env']
-            // }
-          }
-        }
-      ]
+      rules
     },
     stats: {
       colors: true

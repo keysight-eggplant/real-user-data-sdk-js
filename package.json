@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest src && webpack && karma start",
     "eslint": "eslint ./src --fix",
-    "build": "webpack --mode production"
+    "build": "webpack --config=config/webpack.dev.js"
   },
   "repository": {
     "type": "git",
@@ -49,10 +49,5 @@
     "example": "examples",
     "test": "tests"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
 }

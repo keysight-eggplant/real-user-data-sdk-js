@@ -35,7 +35,7 @@ const collector = {
   UriWithPageTitleCategoryCollector,
 };
 
-export {
+export default {
   Producer,
   Transport,
   EVENT_TYPE,
