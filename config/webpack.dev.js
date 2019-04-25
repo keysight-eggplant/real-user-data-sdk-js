@@ -1,8 +1,9 @@
 const path = require('path');
-// const webpack = require('webpack');
-// const PACKAGE = require('./package.json');
+const webpack = require('webpack');
+const PACKAGE = require('./../package.json');
 
-// const banner = `${PACKAGE.name} - ${PACKAGE.version}`;
+const banner = `${PACKAGE.name} - ${PACKAGE.version}`;
+
 const rules = [
   {
     test: /\.(js)$/,
@@ -14,6 +15,13 @@ const rules = [
       }
     }
   }
+];
+
+const plugins = [
+  new webpack.BannerPlugin(banner),
+  new webpack.optimize.LimitChunkCountPlugin({
+    maxChunks: 1
+  })
 ];
 
 
@@ -41,12 +49,7 @@ module.exports = [
       colors: true
     },
     devtool: 'source-map',
-    plugins: [
-      // new webpack.BannerPlugin(banner),
-      // new webpack.optimize.LimitChunkCountPlugin({
-      //   maxChunks: 1
-      // })
-    ]
+    plugins
   }
 ];
 
