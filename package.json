@@ -2,7 +2,7 @@
   "name": "@eggplantio/real-user-data-sdk-js",
   "version": "1.0.0",
   "description": "SDK for generating and publishing events that capture user, application and technical data",
-  "main": "./dist/rci.min.js",
+  "main": "dist/rci.min.js",
   "scripts": {
     "test": "jest src && webpack && karma start",
     "eslint": "eslint ./src --fix",
@@ -36,10 +36,9 @@
     "karma-chrome-launcher": "^2.2.0",
     "karma-firefox-launcher": "^1.1.0",
     "karma-mocha": "^1.3.0",
-    "mocha": "^6.0.2",
+    "mocha": "^6.1.4",
     "npm-cli-login": "^0.1.1",
     "sinon": "7.3.1",
-    "uglifyjs-webpack-plugin": "2.1.2",
     "webpack": "4.29.6",
     "webpack-cli": "^3.3.0"
   },
@@ -49,5 +48,11 @@
   "directories": {
     "example": "examples",
     "test": "tests"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

@@ -1,17 +1,21 @@
 const path = require('path');
-const webpack = require('webpack');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const PACKAGE = require('./package.json');
+// const webpack = require('webpack');
+// const PACKAGE = require('./package.json');
 
-const banner = `${PACKAGE.name} - ${PACKAGE.version}`;
+// const banner = `${PACKAGE.name} - ${PACKAGE.version}`;
 
 module.exports = [
   {
-    entry: './src/rci.js',
+    // entry: './src/rci.js',
+    // mode: 'development',
+    entry: {
+      rci: './src/rci.js'
+    },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: 'rci.min.js',
-      library: 'rciSdk'
+      filename: '[name].min.js',
+      // library: 'rciSdk',
+      publicPath: '/'
     },
     module: {
       rules: [
@@ -20,9 +24,9 @@ module.exports = [
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env']
-            }
+            // options: {
+            //   presets: ['@babel/preset-env']
+            // }
           }
         }
       ]
@@ -31,22 +35,29 @@ module.exports = [
       colors: true
     },
     devtool: 'source-map',
-    optimization: {
-      minimizer: [
-        new UglifyJSPlugin({
-          uglifyOptions: {
-            compress: {
-              drop_console: true,
-            }
-          }
-        })
-      ]
-    },
     plugins: [
-      new webpack.BannerPlugin(banner),
-      new webpack.optimize.LimitChunkCountPlugin({
-        maxChunks: 1
-      })
+      // new webpack.BannerPlugin(banner),
+      // new webpack.optimize.LimitChunkCountPlugin({
+      //   maxChunks: 1
+      // })
     ]
   }
 ];
+
+
+// const path = require('path');
+// const webpack = require('webpack');
+
+// module.exports = [{
+//   entry: './src/rci.js',
+//   output: {
+//     path: path.resolve(__dirname, 'dist'),
+//     filename: 'rci.min.js',
+//     library: 'rciSdk'
+//   },
+//   plugins: [
+//     new webpack.optimize.LimitChunkCountPlugin({
+//       maxChunks: 1, // disable creating additional chunks
+//     })
+//   ]
+// }];
