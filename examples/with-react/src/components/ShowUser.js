@@ -32,7 +32,7 @@ export default function ShowUser() {
         }
       })();
 
-    })('b2404178-266b-4cbc-bf42-e389c5650733', rciSdk);
+    })('123-456', rciSdk);
   }
 
   return (
