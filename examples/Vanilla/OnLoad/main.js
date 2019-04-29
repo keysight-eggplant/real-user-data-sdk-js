@@ -1,6 +1,7 @@
 ((tenancyId, rciSdk) => {
   // Step 1: Configure your Transport with the tenancyId provided
   const targetUrl = `https://event.real-user-data.eggplant.cloud/v1/${tenancyId}/stream`;
+  console.log(rciSdk);
   const transport = new rciSdk.Transport(targetUrl);
 
   // Step 2: Capture your default collectors
@@ -20,4 +21,4 @@
     }
   };
 
-})('123-456', rciSdk);
+})('b2404178-266b-4cbc-bf42-e389c5650733', rciSdk);
