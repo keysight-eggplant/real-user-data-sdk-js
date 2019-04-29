@@ -17,7 +17,7 @@ SDK for generating and publishing events that capture user, application and tech
 [![](https://flat.badgen.net/badge/license/MIT/blue)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/TestPlant/real-user-data-sdk-js/pulls)
 
-## Version 1.0.0 is here!
+## Version 1.0.7 is here!
 
 We are glad to introduce the first version of **RCI - Real User Data SDK**.
 
@@ -37,7 +37,7 @@ Please see the SDK documentation and examples below. You can also see the [REST 
 
 Add the `dist/rci.min.js` script to your website via _local javascript file_, _CDN_, _NPM package_ or _GTM_ and you are ready to go.
 
-You can always checkout this repository and look at the [example directory](example/)
+You can always checkout this repository and look at the [example directory](examples/)
 
 ## E-Commerce with conversion
 
@@ -163,4 +163,4 @@ Detailed changes for each release are documented in the [release notes](https://
 
 ## License
 
-Real User Data SDK is open source software and [MIT](http://opensource.org/licenses/MIT) licensed.
+Real User Data SDK is open source software and [MIT](LICENCE) licensed.
