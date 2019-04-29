@@ -27,7 +27,7 @@ const plugins = [
 
 module.exports = [
   {
-    // mode: 'development',
+    mode: 'development',
     entry: {
       rci: './src/rci.js'
     },

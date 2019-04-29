@@ -4,7 +4,7 @@
   "description": "SDK for generating and publishing events that capture user, application and technical data",
   "main": "dist/rci.min.js",
   "scripts": {
-    "test": "jest src && webpack && karma start",
+    "test": "jest src && npm run build && karma start",
     "eslint": "eslint ./src --fix",
     "build": "webpack --config=config/webpack.dev.js"
   },
