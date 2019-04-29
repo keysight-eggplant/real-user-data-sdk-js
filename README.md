@@ -4,8 +4,6 @@ SDK for generating and publishing events that capture user, application and tech
 
 ### TODO list
 
-- [ ] update NPM package in installation and npm badge
-- [ ] update uglified file size in badges
 - [ ] update link to CDN in installation section
 - [ ] update the browser support list
 - [ ] prepare release note for 1.0.0
@@ -57,20 +55,24 @@ You can always checkout this repository and look at the [example directory](exam
 
 - Use [this example](examples/Vanilla/DOMContentLoaded/) as starting point if you are going to collect data when DOM content is loaded.
 
+## Example with React
+
+- Use [this example](examples/with-react/) as starting point if you are going to collect data when you have a react.js project.
+
 # Installation Guide
 
-### Node.js
+### npm package
 
 Install the package via NPM or Yarn
 
 ```shell
-npm install rci-real-user-data-sdk-js
+npm i @eggplantio/real-user-data-sdk-js
 ```
 
-Include module in your application
+Include module in your application as ES6 module
 
 ```javascript
-const RCI = require("rci-real-user-data-sdk-js");
+import * as rciSdk from '@eggplantio/real-user-data-sdk-js';
 ```
 
 ### Use from CDN
@@ -118,7 +120,18 @@ The default collection (`array`) of `Collectors` provided by the SDK. New `Colle
 
 A `class` which knows how to send the event to the target destination when the `async` method `execute` is called.
 
+## Support IE 11 and older phones
+At the moment we don't support IE 11 as the file size will be 3x time bigger. However the solution is a follow:
 
+Add `@babel/polyfill`
+```bash
+npm i @babel/polyfill
+```
+
+and add the following line in the first line of `./src/rci.js` file
+```javascript
+import '@babel/polyfill';
+```
 
 ## Contributing
 

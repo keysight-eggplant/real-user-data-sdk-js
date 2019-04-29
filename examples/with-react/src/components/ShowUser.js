@@ -8,8 +8,6 @@ export default function ShowUser() {
 
   function handleSetName(newName) {
     setName(newName);
-    console.log('clicked');
-    console.log(rciSdk);
 
      ((tenancyId, rciSdk) => {
       // Step 1: Configure your Transport with the tenancyId provided

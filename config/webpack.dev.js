@@ -24,7 +24,6 @@ const plugins = [
   })
 ];
 
-
 module.exports = [
   {
     mode: 'development',
@@ -36,11 +35,7 @@ module.exports = [
       filename: '[name].min.js',
       library: 'rciSdk',
       publicPath: '/',
-      // library: '',
-      // libraryTarget: 'commonjs'
-      libraryTarget: 'umd',
-      // globalObject: 'this',
-      // libraryExport: 'default'
+      libraryTarget: 'umd'
     },
     module: {
       rules
@@ -52,21 +47,3 @@ module.exports = [
     plugins
   }
 ];
-
-
-// const path = require('path');
-// const webpack = require('webpack');
-
-// module.exports = [{
-//   entry: './src/rci.js',
-//   output: {
-//     path: path.resolve(__dirname, 'dist'),
-//     filename: 'rci.min.js',
-//     library: 'rciSdk'
-//   },
-//   plugins: [
-//     new webpack.optimize.LimitChunkCountPlugin({
-//       maxChunks: 1, // disable creating additional chunks
-//     })
-//   ]
-// }];
