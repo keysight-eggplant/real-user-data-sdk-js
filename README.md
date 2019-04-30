@@ -13,7 +13,7 @@ SDK for generating and publishing events that capture user, application and tech
 [![](https://flat.badgen.net/npm/v/@eggplantio/real-user-data-sdk-js?icon=npm)](https://www.npmjs.com/package/@eggplantio/real-user-data-sdk-js)
 [![](https://flat.badgen.net/bundlephobia/min/@eggplantio/real-user-data-sdk-js?color=cyan)](https://bundlephobia.com/result?p=@eggplantio/real-user-data-sdk-js)
 [![](https://flat.badgen.net/bundlephobia/minzip/@eggplantio/real-user-data-sdk-js?color=green)](https://bundlephobia.com/result?p=@eggplantio/real-user-data-sdk-js)
-[![](https://flat.badgen.net/badge/license/MIT/blue)](https://opensource.org/licenses/MIT)
+[![](https://flat.badgen.net/badge/license/MIT/blue)](LICENCE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/TestPlant/real-user-data-sdk-js/pulls)
 
 ## Version 1.0.8 is here!
@@ -36,7 +36,7 @@ Please see the SDK documentation and examples below. You can also see the [REST 
 
 Add the `dist/rci.min.js` script to your website via _local javascript file_, _CDN_, _NPM package_ or _GTM_ and you are ready to go.
 
-You can always checkout this repository and look at the [example directory](examples/)
+You can always checkout this repository and look at the [examples directory](examples/)
 
 ## E-Commerce with conversion
 
@@ -53,6 +53,10 @@ You can always checkout this repository and look at the [example directory](exam
 ## DOM content collector
 
 - Use [this example](examples/Vanilla/DOMContentLoaded/) as starting point if you are going to collect data when DOM content is loaded.
+
+## OnLoad events
+
+- Use [this example](examples/Vanilla/OnLoad/) as starting point if you are going to collect data after page loads.
 
 ## Example with React
 
@@ -111,7 +115,7 @@ A producer is a `class` which executes all the `Collectors` provided. It expects
 
 A `function`, `object` or `class` with an `async` prepare method. The prepare method is given an `event` and is expected to return an augmented `event`.
 
-### defaultCollectors
+#### defaultCollectors
 
 The default collection (`array`) of `Collectors` provided by the SDK. New `Collectors` can be merged with the default `Collectors` to compose unique sequences of collection.
 
@@ -120,7 +124,7 @@ The default collection (`array`) of `Collectors` provided by the SDK. New `Colle
 A `class` which knows how to send the event to the target destination when the `async` method `execute` is called.
 
 ## Support IE 11 and older phones
-At the moment we don't support IE 11 as the file size will be 3x time bigger. However the solution is a follow:
+At the moment we don't support IE 11 as the file size will be 3x time bigger. However the solution is as follows:
 
 Add `@babel/polyfill`
 ```bash
@@ -134,9 +138,9 @@ import '@babel/polyfill';
 
 ## Contributing
 
-The main purpose of this repository is to continue to evolve _rci event collector_, making it faster and easier to use. Development of this SDK happens in the open on GitHub, and we are grateful to the community for [contributing bugfixes and improvements](TEMPLATE_PULL_REQUEST.md), [raising issues](TEMPLATE_BUG_REPORT.md) and [suggesting new features](TEMPLATE_FEATURE_REQUEST.md). Read below to learn how you can take part in it.
+The main purpose of this repository is to continue to evolve _rci event collector_, making it faster and easier to use. Development of this SDK happens in the open on GitHub, and we are grateful to the community for [contributing bugfixes and improvements](TEMPLATE_PULL_REQUEST.md), [raising issues](.github/ISSUE_TEMPLATE/bug_report.md) and [suggesting new features](.github/ISSUE_TEMPLATE/feature_request.md). Read below to learn how you can take part in it.
 
-### Code of Conduct
+#### Code of Conduct
 
 This SDK has adopted a [Code of Conduct](CODE_OF_CONDUCT.md) that we expect project participants to adhere to. Please read the the full text so that you can understand what actions will and will not be tolerated.
 
@@ -154,7 +158,7 @@ For questions and support please use the official [contact us](https://eggplant.
 
 ## Issues
 
-Please make sure to read the [existing issues](https://github.com/TestPlant/real-user-data-sdk-js/issues) and [issue template](TEMPLATE_BUG_REPORT.md) before opening a new one. Issues not conforming to the guidelines may be closed immediately.
+Please make sure to read the [existing issues](https://github.com/TestPlant/real-user-data-sdk-js/issues) and [new issue template](.github/ISSUE_TEMPLATE/bug_report.md) before opening one. Issues not conforming to the guidelines may be closed immediately.
 
 ## Changelog
 
@@ -162,4 +166,4 @@ Detailed changes for each release are documented in the [release notes](https://
 
 ## License
 
-Real User Data SDK is open source software and [MIT](LICENCE) licensed.
+Real User Data SDK is open source software and [MIT](https://en.wikipedia.org/wiki/MIT_License) [licensed](LICENCE).
