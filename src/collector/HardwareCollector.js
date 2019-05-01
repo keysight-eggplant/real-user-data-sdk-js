@@ -8,8 +8,8 @@ export default class HardwareCollector extends UserAgentParser {
     const device = this.parser.getDevice();
     event.manufacturer = device.vendor || '';
     event.model = device.model || '';
-    event.screenResolutionWidth = screen.width || 0;
-    event.screenResolutionHeight = screen.height || 0;
+    event.screenResolutionWidth = screen.width || null;
+    event.screenResolutionHeight = screen.height || null;
     return event;
   }
 }
