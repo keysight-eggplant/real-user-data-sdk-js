@@ -138,7 +138,7 @@ import '@babel/polyfill';
 
 ## Contributing
 
-The main purpose of this repository is to continue to evolve _rci event collector_, making it faster and easier to use. Development of this SDK happens in the open on GitHub, and we are grateful to the community for [contributing bugfixes and improvements](TEMPLATE_PULL_REQUEST.md), [raising issues](.github/ISSUE_TEMPLATE/bug_report.md) and [suggesting new features](.github/ISSUE_TEMPLATE/feature_request.md). Read below to learn how you can take part in it.
+The main purpose of this repository is to continue to evolve _rci event collector_, making it faster and easier to use. Development of this SDK happens in the open on GitHub, and we are grateful to the community for [contributing bugfixes and improvements](.github/pull_request.md), [raising issues](.github/ISSUE_TEMPLATE/bug_report.md) and [suggesting new features](.github/ISSUE_TEMPLATE/feature_request.md). Read below to learn how you can take part in it.
 
 #### Code of Conduct
 
