@@ -18,5 +18,8 @@ export default class SoftwareCollector extends UserAgentParser {
     event.softwareInfo2 = browser.version || '';
     return event;
   }
-
 }
+
+// https://stackoverflow.com/questions/1248081/get-the-browser-viewport-dimensions-with-javascript
+// https://stackoverflow.com/questions/318831/get-encoding-of-page-iframe-via-javascript
+// https://stackoverflow.com/questions/662923/extract-lang-value-using-javascript
