@@ -25,7 +25,7 @@ describe('HardwareCollector', () => {
   let hardwareCollector;
 
 
-  describe('Valid UA', () => {
+  describe('Valid UserAgent', () => {
     beforeEach(() => {
       const userAgentString = 'Mozilla/5.0 (Linux; U; Android 4.4.2; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30';
 
@@ -41,14 +41,14 @@ describe('HardwareCollector', () => {
     });
 
 
-    test('Return correct device type', async () => {
+    test('Return correct hardware info', async () => {
       const actualEvent = await hardwareCollector.prepare(originalEvent);
 
       expect(actualEvent.deviceType).toEqual(expectedEvent.deviceType);
     });
   });
 
-  describe('Invalid UA', () => {
+  describe('Invalid UserAgent', () => {
     beforeEach(() => {
       const userAgentString = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36';
 
