@@ -1,5 +1,6 @@
 /* eslint-disable no-restricted-properties */
 /* eslint-disable no-underscore-dangle */
+/* eslint-disable no-restricted-globals */
 
 import HardwareCollector from './HardwareCollector';
 
