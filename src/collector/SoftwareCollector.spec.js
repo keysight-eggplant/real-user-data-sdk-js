@@ -61,7 +61,7 @@ describe('SoftwareCollector', () => {
     });
   });
 
-  describe('Valid UA with modified custome value', () => {
+  describe('Valid UA with modified custom value', () => {
     beforeEach(() => {
       const userAgentString = 'Mozilla/5.0 (Linux; U; Android 4.4.2; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30';
 
@@ -201,18 +201,29 @@ describe('SoftwareCollector', () => {
       expect(actualEvent.language).toEqual('en-GB');
     });
 
+  });
+
+
+  describe('Valid UA with new modified custom value', () => {
+    beforeEach(() => {
+      const userAgentString = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A';
+
+      navigator.__defineGetter__('userAgent', () => userAgentString);
+
+      softwareCollector = new SoftwareCollector();
+    });
+
+
     test('Return event with new browser name', async () => {
-      navigator.__defineGetter__('userAgent', () => 'Mozilla/5.0 (X11; Linux i686; rv:64.0) Gecko/20100101 Firefox/64.0');
       const actualEvent = await softwareCollector.prepare(originalEvent);
 
-      expect(actualEvent.softwareInfo1).toEqual('Android Browser');
+      expect(actualEvent.softwareInfo1).toEqual('Safari');
     });
 
     test('Return event with new browser version', async () => {
-      navigator.__defineGetter__('userAgent', () => 'Mozilla/5.0 (X11; Linux i686; rv:64.0) Gecko/20100101 Firefox/64.0');
       const actualEvent = await softwareCollector.prepare(originalEvent);
 
-      expect(actualEvent.softwareInfo2).toEqual('4.0');
+      expect(actualEvent.softwareInfo2).toEqual('7.0.3');
     });
 
   });
