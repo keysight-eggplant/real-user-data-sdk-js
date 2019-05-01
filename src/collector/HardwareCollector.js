@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-globals */
+
 import UserAgentParser from './utility/UserAgentParser';
 
 export default class HardwareCollector extends UserAgentParser {
