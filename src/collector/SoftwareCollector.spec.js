@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 /* eslint-disable no-restricted-properties */
 /* eslint-disable no-underscore-dangle */
 
@@ -69,6 +70,19 @@ describe('SoftwareCollector', () => {
       softwareCollector = new SoftwareCollector();
     });
 
+    test('Return correct values for this collector', async () => {
+      const actualEvent = await softwareCollector.prepare(originalEvent);
+
+      expect(actualEvent.encoding).toEqual(expectedEvent.encoding);
+      expect(actualEvent.language).toEqual(expectedEvent.language);
+      expect(actualEvent.osName).toEqual(expectedEvent.osName);
+      expect(actualEvent.screenColors).toEqual(expectedEvent.screenColors);
+      expect(actualEvent.softwareInfo1).toEqual(expectedEvent.softwareInfo1);
+      expect(actualEvent.softwareInfo2).toEqual(expectedEvent.softwareInfo2);
+      expect(actualEvent.viewportHeight).toEqual(expectedEvent.viewportHeight);
+      expect(actualEvent.viewportWidth).toEqual(expectedEvent.viewportWidth);
+    });
+
     test('Return event with new encoding', async () => {
       document.__defineGetter__('inputEncoding', () => 'UTF-32');
 
@@ -115,36 +129,92 @@ describe('SoftwareCollector', () => {
 
       const actualEvent = await softwareCollector.prepare(originalEvent);
 
-      expect(actualEvent.encoding).toEqual(' ');
+      expect(actualEvent.encoding).toEqual('');
     });
 
-    test('Return correct values for this collector', async () => {
+    test('Return event with zero viewportHeight when it can not find viewportHeight', async () => {
+      window.innerHeight = '';
+      document.documentElement.__defineGetter__('clientHeight', () => '');
       const actualEvent = await softwareCollector.prepare(originalEvent);
 
-      // expect(actualEvent.encoding).toEqual(expectedEvent.encoding);
-      expect(actualEvent.language).toEqual(expectedEvent.language);
-      expect(actualEvent.osName).toEqual(expectedEvent.osName);
-      expect(actualEvent.screenColors).toEqual(expectedEvent.screenColors);
-      expect(actualEvent.softwareInfo1).toEqual(expectedEvent.softwareInfo1);
-      expect(actualEvent.softwareInfo2).toEqual(expectedEvent.softwareInfo2);
-      expect(actualEvent.viewportHeight).toEqual(expectedEvent.viewportHeight);
-      expect(actualEvent.viewportWidth).toEqual(expectedEvent.viewportWidth);
+      expect(actualEvent.viewportHeight).toEqual(0);
     });
+
+    test('Return event with a new viewportHeight', async () => {
+      document.documentElement.__defineGetter__('clientHeight', () => 300);
+      const actualEvent = await softwareCollector.prepare(originalEvent);
+
+      expect(actualEvent.viewportHeight).toEqual(300);
+    });
+
+    test('Return event with empty viewportHeight when clientHeight is not found', async () => {
+      window.innerHeight = 200;
+      document.documentElement.__defineGetter__('clientHeight', () => '');
+      const actualEvent = await softwareCollector.prepare(originalEvent);
+
+      expect(actualEvent.viewportHeight).toEqual(200);
+    });
+
+    test('Return event with zero viewportWidth when it can not find viewportWidth', async () => {
+      window.innerWidth = '';
+      document.documentElement.__defineGetter__('clientWidth', () => '');
+      const actualEvent = await softwareCollector.prepare(originalEvent);
+
+      expect(actualEvent.viewportWidth).toEqual(0);
+    });
+
+    test('Return event with a new viewportWidth', async () => {
+      document.documentElement.__defineGetter__('clientWidth', () => 300);
+      const actualEvent = await softwareCollector.prepare(originalEvent);
+
+      expect(actualEvent.viewportWidth).toEqual(300);
+    });
+
+    test('Return event with empty viewportWidth when clientWidth is not found', async () => {
+      window.innerWidth = 200;
+      document.documentElement.__defineGetter__('clientWidth', () => '');
+      const actualEvent = await softwareCollector.prepare(originalEvent);
+
+      expect(actualEvent.viewportWidth).toEqual(200);
+    });
+
+    test('Return event with empty language when lang and language are not set', async () => {
+      navigator.__defineGetter__('language', () => '');
+      document.documentElement.__defineGetter__('lang', () => '');
+      const actualEvent = await softwareCollector.prepare(originalEvent);
+
+      expect(actualEvent.language).toEqual('');
+    });
+
+    test('Return event with new language when lang is empty', async () => {
+      navigator.__defineGetter__('language', () => 'fa');
+      document.documentElement.__defineGetter__('lang', () => '');
+      const actualEvent = await softwareCollector.prepare(originalEvent);
+
+      expect(actualEvent.language).toEqual('fa');
+    });
+
+    test('Return event with new language when lang is empty', async () => {
+      document.documentElement.__defineGetter__('lang', () => 'en-GB');
+      const actualEvent = await softwareCollector.prepare(originalEvent);
+
+      expect(actualEvent.language).toEqual('en-GB');
+    });
+
+    test('Return event with new browser name', async () => {
+      navigator.__defineGetter__('userAgent', () => 'Mozilla/5.0 (X11; Linux i686; rv:64.0) Gecko/20100101 Firefox/64.0');
+      const actualEvent = await softwareCollector.prepare(originalEvent);
+
+      expect(actualEvent.softwareInfo1).toEqual('Android Browser');
+    });
+
+    test('Return event with new browser version', async () => {
+      navigator.__defineGetter__('userAgent', () => 'Mozilla/5.0 (X11; Linux i686; rv:64.0) Gecko/20100101 Firefox/64.0');
+      const actualEvent = await softwareCollector.prepare(originalEvent);
+
+      expect(actualEvent.softwareInfo2).toEqual('4.0');
+    });
+
   });
 
-  // describe('Invalid UA', () => {
-  //   beforeEach(() => {
-  //     const userAgentString = '--Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36';
-
-  //     navigator.__defineGetter__('userAgent', () => userAgentString);
-
-  //     softwareCollector = new SoftwareCollector();
-  //   });
-
-  //   test('Return event with all mandatory fields', async () => {
-  //     const actualEvent = await softwareCollector.prepare(originalEvent);
-
-  //     expect(actualEvent.encoding).toEqual('UTF-8');
-  //   });
-  // });
 });
