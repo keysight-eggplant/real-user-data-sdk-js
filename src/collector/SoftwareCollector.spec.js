@@ -132,12 +132,12 @@ describe('SoftwareCollector', () => {
       expect(actualEvent.encoding).toEqual('');
     });
 
-    test('Return event with zero viewportHeight when it can not find viewportHeight', async () => {
+    test('Return event with viewportHeight null when it can not find viewportHeight', async () => {
       window.innerHeight = '';
       document.documentElement.__defineGetter__('clientHeight', () => '');
       const actualEvent = await softwareCollector.prepare(originalEvent);
 
-      expect(actualEvent.viewportHeight).toEqual(0);
+      expect(actualEvent.viewportHeight).toEqual(null);
     });
 
     test('Return event with a new viewportHeight', async () => {
@@ -155,12 +155,12 @@ describe('SoftwareCollector', () => {
       expect(actualEvent.viewportHeight).toEqual(200);
     });
 
-    test('Return event with zero viewportWidth when it can not find viewportWidth', async () => {
+    test('Return event with viewportWidth null when it can not find viewportWidth', async () => {
       window.innerWidth = '';
       document.documentElement.__defineGetter__('clientWidth', () => '');
       const actualEvent = await softwareCollector.prepare(originalEvent);
 
-      expect(actualEvent.viewportWidth).toEqual(0);
+      expect(actualEvent.viewportWidth).toEqual(null);
     });
 
     test('Return event with a new viewportWidth', async () => {
