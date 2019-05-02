@@ -7,7 +7,7 @@ SDK for generating and publishing events that capture user, application and tech
 [![](https://flat.badgen.net/npm/v/@eggplantio/real-user-data-sdk-js?icon=npm)](https://www.npmjs.com/package/@eggplantio/real-user-data-sdk-js)
 [![](https://flat.badgen.net/bundlephobia/min/@eggplantio/real-user-data-sdk-js?color=cyan)](https://bundlephobia.com/result?p=@eggplantio/real-user-data-sdk-js)
 [![](https://flat.badgen.net/bundlephobia/minzip/@eggplantio/real-user-data-sdk-js?color=green)](https://bundlephobia.com/result?p=@eggplantio/real-user-data-sdk-js)
-[![](https://flat.badgen.net/badge/license/MIT/blue)](LICENCE)
+[![](https://flat.badgen.net/badge/license/MIT/blue)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/TestPlant/real-user-data-sdk-js/pulls)
 
 ## Version 1.0.8 is here!
@@ -30,7 +30,7 @@ Please see the SDK documentation and examples below. You can also see the [REST 
 
 Add the `dist/rci.min.js` script to your website via _local javascript file_, _CDN_, _NPM package_ or _GTM_ and you are ready to go.
 
-You can always checkout this repository and look at the [examples directory](examples/)
+You can always checkout this repository and look at the [examples directory](examples/).
 
 ## E-Commerce with conversion
 
@@ -48,7 +48,7 @@ You can always checkout this repository and look at the [examples directory](exa
 
 - Use [this example](examples/Vanilla/DOMContentLoaded/) as starting point if you are going to collect data when DOM content is loaded.
 
-## OnLoad events
+## OnLoad collector
 
 - Use [this example](examples/Vanilla/OnLoad/) as starting point if you are going to collect data after page loads.
 
