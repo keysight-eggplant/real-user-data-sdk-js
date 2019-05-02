@@ -6,6 +6,18 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install awscli
+          command: sudo apt-get update && sudo apt-get install -y awscli
+      - run:
+          name: AWS version
+          command: aws --version
+      - run:
+          name: mkdir aws
+          command: mkdir ~/.aws
+      - run:
+          name: Add credentials file
+          command: printf "[default]\naws_access_key_id = ${AWS_ACCESS_KEY_ID}\naws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}\nregion=${AWS_DEFAULT_REGION}\n\n[${AWS_ROLE_NAME}]\nrole_arn = ${AWS_ROLE_ARN}\nsource_profile = default\nregion=${AWS_DEFAULT_REGION}" > ~/.aws/credentials
+      - run:
           name: Install Dependencies
           command: npm install
       - run:
@@ -14,3 +26,38 @@ jobs:
       - run:
           name: Run Tests
           command: npm test
+      - run:
+          name: Ignore non checked in files
+          command: git checkout -- .
+      - run:
+          name: Show git tags
+          command: git tag -l
+      - run:
+          name: Set Github identity
+          command: git config --global user.email ${GIT_EMAIL} && git config --global user.name ${GIT_NAME}
+      - run:
+          name: Update NPM version
+          command: npm version from-git --allow-same-version
+      - run:
+          name: Authenticate with registry
+          command: node node_modules/npm-cli-login/bin/npm-cli-login.js -u ${NPM_USERNAME} -p ${NPM_PASSWORD} -e ${NPM_EMAIL}
+      - run:
+          name: Publish package
+          command: npm publish --access public
+      - run:
+          name: Upload to S3
+          command: latestTag=`git describe --abbrev=0 --tags` && aws s3 cp dist/rci.min.js s3://${AWS_S3_BUCKET_NAME}/$latestTag/rci.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
+      - run:
+          name: Upload to S3 latest
+          command: aws s3 cp dist/rci.min.js s3://${AWS_S3_BUCKET_NAME}/latest/rci.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
+
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/

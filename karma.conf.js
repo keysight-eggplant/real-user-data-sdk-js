@@ -1,9 +1,9 @@
-module.exports = (config) => {
+module.exports = config => {
   config.set({
     frameworks: ['mocha', 'chai'],
 
     files: [
-      'dist/rci.dist.js',
+      'dist/rci.min.js',
       'tests/*.spec.js'
     ],
 

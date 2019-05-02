@@ -1,11 +1,13 @@
 {
-  "name": "real-user-data-sdk-js",
-  "version": "1.0.0",
+  "name": "@eggplantio/real-user-data-sdk-js",
+  "version": "1.0.7",
   "description": "SDK for generating and publishing events that capture user, application and technical data",
-  "main": "index.js",
+  "main": "dist/rci.min.js",
   "scripts": {
-    "test": "jest src && webpack && karma start",
-    "eslint": "eslint ./src --fix"
+    "test": "jest src && npm run build && karma start",
+    "eslint": "eslint ./src --fix",
+    "build": "webpack --config=config/webpack.prod.js",
+    "build:dev": "webpack --config=config/webpack.dev.js"
   },
   "repository": {
     "type": "git",
@@ -20,9 +22,12 @@
   "homepage": "https://github.com/TestPlant/real-user-data-sdk-js#readme",
   "devDependencies": {
     "@babel/core": "7.4.0",
+    "@babel/plugin-transform-runtime": "7.4.3",
     "@babel/preset-env": "7.4.2",
+    "@babel/runtime": "7.4.3",
     "babel-jest": "24.5.0",
-    "chai": "^4.2.0",
+    "babel-loader": "8.0.5",
+    "chai": "4.2.0",
     "eslint": "5.16.0",
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-plugin-import": "2.16.0",
@@ -32,12 +37,18 @@
     "karma-chrome-launcher": "^2.2.0",
     "karma-firefox-launcher": "^1.1.0",
     "karma-mocha": "^1.3.0",
-    "mocha": "^6.0.2",
+    "mocha": "^6.1.4",
+    "npm-cli-login": "^0.1.1",
     "sinon": "7.3.1",
     "webpack": "4.29.6",
     "webpack-cli": "^3.3.0"
   },
   "dependencies": {
     "ua-parser-js": "^0.7.19"
-  }
+  },
+  "directories": {
+    "example": "examples",
+    "test": "tests"
+  },
+  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
 }
