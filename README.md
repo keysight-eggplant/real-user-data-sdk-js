@@ -145,6 +145,7 @@ This SDK has adopted a [Code of Conduct](CODE_OF_CONDUCT.md) that we expect proj
 
 - [Artur Chamier](https://github.com/yghern)
 - [Ash Vincent](https://github.com/ashvince)
+- [Ian Highet](https://github.com/Ian-Hi)
 - [Malcolm Smith](https://github.com/MalcolmSmithUK)
 - [MoHo Khaleqi](https://github.com/mohokh67)
 - [Robert Dumitrescu](https://github.com/robertdumitrescu)
