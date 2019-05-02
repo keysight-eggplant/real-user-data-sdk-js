@@ -10,9 +10,9 @@ SDK for generating and publishing events that capture user, application and tech
 [![](https://flat.badgen.net/badge/license/MIT/blue)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/TestPlant/real-user-data-sdk-js/pulls)
 
-## Version 1.0.8 is here!
+## New version is here!
 
-We are glad to introduce the first version of **RCI - Real User Data SDK**.
+We are glad to introduce the newest version of **RCI - Real User Data SDK**.
 
 ### Browsers support
 
