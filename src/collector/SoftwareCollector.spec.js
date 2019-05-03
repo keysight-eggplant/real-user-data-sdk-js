@@ -70,19 +70,6 @@ describe('SoftwareCollector', () => {
       softwareCollector = new SoftwareCollector();
     });
 
-    test('Return correct values for this collector', async () => {
-      const actualEvent = await softwareCollector.prepare(originalEvent);
-
-      expect(actualEvent.encoding).toEqual(expectedEvent.encoding);
-      expect(actualEvent.language).toEqual(expectedEvent.language);
-      expect(actualEvent.osName).toEqual(expectedEvent.osName);
-      expect(actualEvent.screenColors).toEqual(expectedEvent.screenColors);
-      expect(actualEvent.softwareInfo1).toEqual(expectedEvent.softwareInfo1);
-      expect(actualEvent.softwareInfo2).toEqual(expectedEvent.softwareInfo2);
-      expect(actualEvent.viewportHeight).toEqual(expectedEvent.viewportHeight);
-      expect(actualEvent.viewportWidth).toEqual(expectedEvent.viewportWidth);
-    });
-
     test('Return event with new encoding', async () => {
       document.__defineGetter__('inputEncoding', () => 'UTF-32');
 
