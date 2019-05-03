@@ -18,6 +18,8 @@ import NavigationTimingCollector from './collector/NavigationTimingCollector';
 import SpaTimingCollector from './collector/SpaTimingCollector';
 import UriWithCustomCategoryCollector from './collector/UriWithCustomCategoryCollector';
 import UriWithPageTitleCategoryCollector from './collector/UriWithPageTitleCategoryCollector';
+import SoftwareCollector from './collector/SoftwareCollector';
+import HardwareCollector from './collector/HardwareCollector';
 
 const collector = {
   defaultCollectors,
@@ -33,6 +35,8 @@ const collector = {
   SpaTimingCollector,
   UriWithCustomCategoryCollector,
   UriWithPageTitleCategoryCollector,
+  SoftwareCollector,
+  HardwareCollector
 };
 
 export {

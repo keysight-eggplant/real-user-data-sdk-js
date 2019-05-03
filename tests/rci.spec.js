@@ -26,7 +26,9 @@ before(async () => {
     new rciSdk.collector.IdCollector(),
     new rciSdk.collector.StopJourneyActionCollector(),
     new rciSdk.collector.NavigationTimingCollector(),
-    new rciSdk.collector.UriWithCustomCategoryCollector(expectedEventCategory)
+    new rciSdk.collector.UriWithCustomCategoryCollector(expectedEventCategory),
+    new rciSdk.collector.SoftwareCollector(),
+    new rciSdk.collector.HardwareCollector()
   ];
   const collector = new rciSdk.Producer(new LocalTransport(), collection);
 
@@ -55,6 +57,18 @@ describe('rciJsSdk', () => {
     expect(window.assertOnMe.goalType).equal(expectedGoalType);
     expect(window.assertOnMe.goalCurrency).equal(expectedGoalCurrency);
     expect(window.assertOnMe.goalValue).equal(expectedGoalValue);
-
+    expect(window.assertOnMe.viewportHeight).to.be.a('number');
+    expect(window.assertOnMe.viewportWidth).to.be.a('number');
+    expect(window.assertOnMe.screenColors).to.be.a('number');
+    expect(window.assertOnMe.osName).to.be.a('string');
+    expect(window.assertOnMe.osVersion).to.be.a('string');
+    expect(window.assertOnMe.encoding).to.be.a('string');
+    expect(window.assertOnMe.language).to.be.a('string');
+    expect(window.assertOnMe.softwareInfo1).to.be.a('string');
+    expect(window.assertOnMe.softwareInfo2).to.be.a('string');
+    expect(window.assertOnMe.manufacturer).to.be.a('string');
+    expect(window.assertOnMe.model).to.be.a('string');
+    expect(window.assertOnMe.screenResolutionWidth).to.be.a('number');
+    expect(window.assertOnMe.screenResolutionHeight).to.be.a('number');
   });
 });
