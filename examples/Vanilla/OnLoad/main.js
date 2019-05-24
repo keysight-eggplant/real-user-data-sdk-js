@@ -16,8 +16,9 @@
     return new Promise(r => setTimeout(r, ms));
   }
 
+  /** Check for domComplete values to be populated by the browser */
   async function condition () {
-    return true;
+    return !!(window.performance && window.performance.timing && ((window.performance.timing.domComplete - window.performance.timing.navigationStart) > 0));
   }
 
   async function action () {
