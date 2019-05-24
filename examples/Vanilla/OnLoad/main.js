@@ -11,13 +11,56 @@
 
   // Step 4: Register your hook
   // Caution: There may already be an onload registered - in which case use a decorator pattern.
-  window.onload = async () => {
+
+  async function timeout (ms) {
+    return new Promise(r => setTimeout(r, ms));
+  }
+
+  async function condition () {
+    return true;
+  }
+
+  async function action () {
     try {
-      // Step 5: Collect and send the event
       await producer.collect();
     } catch (cause) {
-      console.log('Error processing event', cause);
+      // Failed to process event
     }
-  };
+  }
+
+
+  /**
+   * Waits for something to happen and the triggers
+   * @param {Object} options
+   * @param {Number} options.interval
+   * @param {Number} options.timeout
+   * @param {Function} options.condition
+   * @param {Function} options.action
+   * @returns {Promise<void>}
+   */
+  async function waitAndTrigger (options) {
+    let intervalCollector = 0;
+
+    let maxIterations = options.timeout / options.interval;
+
+    for (let i = 0; i < maxIterations; i++) {
+      intervalCollector += options.interval;
+      if (await options.condition()) {
+        await options.action();
+        break;
+      } else {
+        if (intervalCollector === options.timeout) {
+          await options.action();
+          break;
+        }
+      }
+
+      await timeout(options.interval);
+    }
+  }
+
+  window.addEventListener('load', async () => {
+    await waitAndTrigger({interval: 1, condition: condition, action: action, timeout: 1000});
+  });
 
 })('123-456', rciSdk);
