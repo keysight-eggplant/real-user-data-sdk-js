@@ -82,13 +82,13 @@ Then include this script in your page code.
 You can use our latest tag to be always up to date with our last version of real-user-data-sdk library.
 
 ```html
-<script src="http://rci-prod-euwest1-sdk.s3.eu-west-1.amazonaws.com/latest/rci.min.js"></script>
+<script src="https://sdk.real-user-data.eggplant.cloud/latest/rci.min.js"></script>
 ```
 
 Or if you want to stick with a certain version you can bind to a specific version by using the following code:
 
 ```html
-<script src="http://rci-prod-euwest1-sdk.s3.eu-west-1.amazonaws.com/v1.0.8/rci.min.js"></script>
+<script src="https://sdk.real-user-data.eggplant.cloud/v1.0.8/rci.min.js"></script>
 ```
 
 Where ```v1.0.8``` is the version of your choosing.
