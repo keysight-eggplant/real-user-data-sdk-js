@@ -33,7 +33,7 @@ export default class TriggerHelper {
       if (await options.condition()) {
         await options.action(options.producer);
         break;
-      } else if (intervalCollector === options.timeout) {
+      } else if (intervalCollector >= options.timeout) {
         await options.action(options.producer);
         break;
       }

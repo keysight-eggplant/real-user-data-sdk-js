@@ -9,21 +9,22 @@ describe('TriggerHelper Unit Tests', () => {
     const ProducerMock = Sinon.mock(Producer);
     ProducerMock.collect = Sinon.spy();
 
-    const delayedCondition = async function () {
-      const x = Math.floor(Math.random() * 6) + 1;
-      return x === 6;
-    };
+    const condition = Sinon.stub().onCall(0).returns(false).onCall(1)
+      .returns(false)
+      .onCall(2)
+      .returns(true);
 
     const options = {
       producer: ProducerMock,
       action: TriggerHelper.action,
-      condition: delayedCondition,
+      condition,
       interval: 10,
       timeout: 1000
     };
 
     await TriggerHelper.waitAndTrigger(options);
 
+    Sinon.assert.calledThrice(condition);
     Sinon.assert.calledOnce(ProducerMock.collect);
   });
 
@@ -34,7 +35,7 @@ describe('TriggerHelper Unit Tests', () => {
 
     const action = Sinon.spy();
 
-      const condition = Sinon.stub().returns(false);
+    const condition = Sinon.stub().returns(false);
 
     const options = {
       producer: ProducerMock,
