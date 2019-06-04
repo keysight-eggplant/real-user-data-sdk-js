@@ -119,6 +119,8 @@ The default collection (`array`) of `Collectors` provided by the SDK. New `Colle
 
 A `class` which knows how to send the event to the target destination when the `async` method `execute` is called.
 
+## Triggering mechanism
+
 ## Support IE 11 and older phones
 At the moment we don't support IE 11 as the file size will be 3x time bigger. However the solution is as follows:
 
