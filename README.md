@@ -119,6 +119,27 @@ The default collection (`array`) of `Collectors` provided by the SDK. New `Colle
 
 A `class` which knows how to send the event to the target destination when the `async` method `execute` is called.
 
+## Triggering mechanism
+There are 2 ways in which you can trigger events which should be judged case by case.
+
+### Data based case
+
+The first case is when your event is dependant on some data being populated. For this particular case we prepared a TriggerHelper class which will check your required data till it gets populated and then when it has everything it will trigger an event. It is basically a glorified for loop with timeouts.
+
+The use of this is detailed in ```/examples/Vanilla/OnLoad/main.js```. It basically accepts the following
+
+- interval (How often it should check for changes in data)
+- timeout (When it should timeout. E.g If you have interval set to 10 and timeout set to 1000, the condition will be checked 100 times and then the event will be sent anyway with whatever data has in place)
+- producer - the class instance that has the "collect" meethod ready to be triggered
+- event (Optional) - this is in case you want to collect any data from a particular event (If it is triggered from an event)
+- condition - Reference of the function that checks for the data
+- action - Reference of the function that performs the sending of event action
+
+### Event based case
+
+This needs to be handled internally by the implementor and no further mechanisms are provided. Some of those are detailed in Examples/Vanilla and Examples/React folders.
+
+
 ## Support IE 11 and older phones
 At the moment we don't support IE 11 as the file size will be 3x time bigger. However the solution is as follows:
 
