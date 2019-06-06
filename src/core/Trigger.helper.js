@@ -7,7 +7,6 @@ export default class TriggerHelper {
     try {
       await producer.collect();
     } catch (cause) {
-      console.log(cause);
       // Failed to process event
     }
   }
