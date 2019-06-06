@@ -1,3 +1,5 @@
+/* eslint-disable no-plusplus */
+/* eslint no-await-in-loop: 0 */
 export default class TriggerHelper {
   static async timeout (ms) {
     return new Promise(r => setTimeout(r, ms));
