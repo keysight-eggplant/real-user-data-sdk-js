@@ -4,6 +4,9 @@ jobs:
     docker:
       - image: circleci/node:current-browsers
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - ${GIT_SSH_PRIVATE_KEY}
       - checkout
       - run:
           name: Show branch name
