@@ -6,6 +6,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Show branch name
+          command: git branch
+      - run:
           name: Install awscli
           command: sudo apt-get update && sudo apt-get install -y awscli
       - run:
@@ -39,6 +42,9 @@ jobs:
           name: Update NPM version
           command: npm version from-git --allow-same-version
       - run:
+          name: Build
+          command: npm run build
+      - run:
           name: Authenticate with registry
           command: node node_modules/npm-cli-login/bin/npm-cli-login.js -u ${NPM_USERNAME} -p ${NPM_PASSWORD} -e ${NPM_EMAIL}
       - run:
@@ -50,6 +56,12 @@ jobs:
       - run:
           name: Upload to S3 latest
           command: aws s3 cp dist/rci.min.js s3://${AWS_S3_BUCKET_NAME}/latest/rci.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
+      - run:
+          name: Commit the new artefacts
+          command: git commit -am "$latestTag"
+      - run:
+          name: Push the new artefacts
+          command: git push
 
 workflows:
   version: 2
