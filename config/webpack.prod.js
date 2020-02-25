@@ -35,7 +35,7 @@ module.exports = [
       filename: '[name].min.js',
       library: 'rciSdk',
       publicPath: '/',
-      libraryTarget: 'umd'
+      libraryTarget: 'window'
     },
     module: {
       rules
