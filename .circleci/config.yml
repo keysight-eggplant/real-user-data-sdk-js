@@ -61,7 +61,7 @@ jobs:
           command: latestTag=`git describe --abbrev=0 --tags` && git commit -am "Released:$latestTag"
       - run:
           name: Push the new artefacts
-          command: latestTag=`git describe --abbrev=0 --tags` && initialBranch=`git branch --contains tags/$latestTag` && git push origin HEAD:$initialBranch
+          command: latestTag=`git describe --abbrev=0 --tags` && initialBranch=`git branch --contains tags/$latestTag | sed -n -e 's/^\* \(.*\)/\1/p'` && echo $latestTag && echo $initialBranch && git push origin HEAD:$initialBranch
 
 workflows:
   version: 2
