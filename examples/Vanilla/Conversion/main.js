@@ -34,12 +34,14 @@
 
       // Step 8: Identify your converting condition
       const success = document.getElementById('checkout-form-success');
+      const conversionValue = document.getElementById('checkout-form-value').value;
+      const conversionCurrency = document.getElementById('checkout-form-currency').value;
       if (success.checked) {
         // Step 9a: Feed in the ecommerce data
         conversionCollector.success(
           'transaction',
-          4900,
-          'USD'
+          parseInt(conversionValue, 10),
+          conversionCurrency
         );
 
         // Step 9b: Collect and send the converting event
