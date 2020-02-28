@@ -126,7 +126,7 @@ There are 2 ways in which you can trigger events which should be judged case by 
 
 The first case is when your event is dependant on some data being populated. For this particular case we prepared a TriggerHelper class which will check your required data till it gets populated and then when it has everything it will trigger an event. It is basically a glorified for loop with timeouts.
 
-The use of this is detailed in ```/examples/Vanilla/OnLoad/main.js```. It basically accepts the following
+The use of this is detailed in ```/examples/Vanilla/OnLoad/conversion.js```. It basically accepts the following
 
 - interval (How often it should check for changes in data)
 - timeout (When it should timeout. E.g If you have interval set to 10 and timeout set to 1000, the condition will be checked 100 times and then the event will be sent anyway with whatever data has in place)
