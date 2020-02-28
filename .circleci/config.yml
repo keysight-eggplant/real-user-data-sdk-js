@@ -42,8 +42,11 @@ jobs:
           name: Update NPM version
           command: npm version from-git --allow-same-version
       - run:
-          name: Build
+          name: Build Current
           command: npm run build
+      - run:
+          name: Build Legacy
+          command: npm run build:legacy
       - run:
           name: Authenticate with registry
           command: node node_modules/npm-cli-login/bin/npm-cli-login.js -u ${NPM_USERNAME} -p ${NPM_PASSWORD} -e ${NPM_EMAIL}
@@ -51,11 +54,17 @@ jobs:
           name: Publish package
           command: npm publish --access public
       - run:
-          name: Upload to S3
+          name: Upload Current to S3
           command: latestTag=`git describe --abbrev=0 --tags` && aws s3 cp dist/rci.min.js s3://${AWS_S3_BUCKET_NAME}/$latestTag/rci.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
       - run:
-          name: Upload to S3 latest
+          name: Upload Legacy to S3
+          command: latestTag=`git describe --abbrev=0 --tags` && aws s3 cp dist/rci-legacy.min.js s3://${AWS_S3_BUCKET_NAME}/$latestTag/rci-legacy.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
+      - run:
+          name: Upload Current to S3 latest
           command: aws s3 cp dist/rci.min.js s3://${AWS_S3_BUCKET_NAME}/latest/rci.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
+      - run:
+          name: Upload Legacy to S3 latest
+          command: aws s3 cp dist/rci-legacy.min.js s3://${AWS_S3_BUCKET_NAME}/latest/rci-legacy.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
       - run:
           name: Commit the new artefacts
           command: latestTag=`git describe --abbrev=0 --tags` && git commit -am "Released:$latestTag"
