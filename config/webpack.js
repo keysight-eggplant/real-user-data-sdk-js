@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const cliArguments = require('minimist')(process.argv.slice(2));
-const PACKAGE = require('./../package.json');
 
 console.log(cliArguments);
 
@@ -11,7 +10,7 @@ console.log(cliArguments);
  * This only applies if you want to specify a specific entry point. Useful if you want to update examples
  * */
 if (cliArguments.entryPoint === null || cliArguments.entryPoint === true || cliArguments.entryPoint === '' || typeof cliArguments.entryPoint === 'undefined') {
-  cliArguments.entryPoint = './src/rci.js';
+  cliArguments.entryPoint = '/src/rci.js';
 }
 
 /**
@@ -51,6 +50,16 @@ if (cliArguments.mode === null || cliArguments.mode === true || cliArguments.mod
   cliArguments.mode = 'production';
 }
 
+/**
+ * This can be one of the following: "development" or "production".
+ * Basically minified or not
+ * It can be passed into CLI by writing something like: "--mode production" where "production" is the value
+ * */
+if (cliArguments.rootFolderPath === null || cliArguments.rootFolderPath === true || cliArguments.rootFolderPath === '' || typeof cliArguments.rootFolderPath === 'undefined') {
+  cliArguments.rootFolderPath = '.';
+}
+
+const PACKAGE = require(`./${cliArguments.rootFolderPath}/package.json`);
 console.log(cliArguments);
 
 const banner = `Scope: ${cliArguments.scope} - ${PACKAGE.name} - ${PACKAGE.version} compiled at ${(new Date()).toISOString()}`;
@@ -122,10 +131,10 @@ module.exports = [
     target: 'web',
     mode: `${cliArguments.mode}`,
     entry: {
-      rci: `${cliArguments.entryPoint}`
+      rci: `${cliArguments.rootFolderPath}${cliArguments.entryPoint}`
     },
     output: {
-      path: path.resolve(__dirname, '../dist'),
+      path: path.resolve(__dirname, `./${cliArguments.rootFolderPath}/dist`),
       filename: `${cliArguments.fileName}${suffix}.min.js`,
       library: 'rciSdk',
       publicPath: '/',
