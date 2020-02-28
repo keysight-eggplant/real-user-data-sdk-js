@@ -13,7 +13,18 @@
     <button autofocus onclick="window.location.href='../Conversion/index.html'">
       Next
     </button>
-    <script src="https://sdk.real-user-data.eggplant.cloud/latest/rci.min.js"></script>
-    <script type="module" src="./main.js"></script>
+    <script src="./../../../dist/rci-legacy.min.js"></script>
+<!--    <script src="https://sdk.real-user-data.eggplant.cloud/latest/rci.min.js"></script>-->
+<!--    <script src="./conversion.js"></script>-->
+
+    <!--
+    Make sure that you run one of the following 2 commands:
+    webpack --config=config/webpack.js --entryPoint ./examples/Vanilla/OnLoad/onload.js  --scope implementation --rulesTarget legacy --mode development
+    webpack --config=config/webpack.js --entryPoint ./examples/Vanilla/OnLoad/onload.js  --scope implementation --rulesTarget current --mode development
+
+    and then uncomment the appropriate one
+    -->
+<!--    <script src="./../../../dist/onload.js"></script>-->
+    <script src="./../../../dist/onload-legacy.min.js"></script>
   </body>
 </html>
