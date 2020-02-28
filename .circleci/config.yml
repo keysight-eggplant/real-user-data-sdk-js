@@ -67,7 +67,7 @@ jobs:
           command: aws s3 cp dist/rci-legacy.min.js s3://${AWS_S3_BUCKET_NAME}/latest/rci-legacy.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
       - run:
           name: Commit the new artefacts
-          command: latestTag=`git describe --abbrev=0 --tags` && git commit -am "Released:$latestTag"
+          command: latestTag=`git describe --abbrev=0 --tags` && git commit --allow-empty -am "Released:$latestTag"
       - run:
           name: Push the new artefacts
           command: git push origin HEAD:development
