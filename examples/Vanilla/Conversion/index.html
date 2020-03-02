@@ -10,7 +10,6 @@
   <body>
     <h1>Conversion</h1>
     <p>Please check the network tab to inspect the event. Submit the form below to send a converting/non-converting event:</p>
-
     <form id="checkout-form" style="border: 1px solid #333; padding: 5px; margin: 5px; display: inline-block;">
       <label>Conversion Type:
         <input id="checkout-form-type" type="text" name="type" value="checkout"/>
@@ -32,10 +31,14 @@
       <button type="submit" autofocus>
         Submit
       </button>
-      <button autofocus onclick="window.location.href='../CustomCollector/index.html'">
-        Next
-      </button>
     </form>
+    <br/>
+    <button autofocus onclick="window.location.href='../index.html'">
+      Home
+    </button>
+    <button autofocus onclick="window.location.href='../CustomCollector/index.html'">
+      Back
+    </button>
     <!--  Make sure that you run one of the following 2 commands and then uncomment the appropriate one below
         webpack --config=config/webpack.js --entryPoint ./examples/Vanilla/Conversion/conversion.js  --scope implementation --rulesTarget legacy --mode development
         webpack --config=config/webpack.js --entryPoint ./examples/Vanilla/Conversion/conversion.js  --scope implementation --rulesTarget current --mode development
