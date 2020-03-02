@@ -48,10 +48,6 @@ You can always checkout this repository and look at the [examples directory](exa
 
 - Use [this example](examples/Vanilla/Error/) as starting point if you are going to collect data when an error occurs in your website.
 
-## DOM content collector
-
-- Use [this example](examples/Vanilla/DOMContentLoaded/) as starting point if you are going to collect data when DOM content is loaded.
-
 ## OnLoad collector
 
 - Use [this example](examples/Vanilla/OnLoad/) as starting point if you are going to collect data after page loads.
@@ -143,16 +139,9 @@ This needs to be handled internally by the implementor and no further mechanisms
 
 
 ## Support IE 11 and older phones
-At the moment we don't support IE 11 as the file size will be 3x time bigger. However the solution is as follows:
-
-Add `@babel/polyfill`
-```bash
-npm i @babel/polyfill
+To support IE11 you need to compile source in legacy mode. The difference in result files are 30kB (current) vs 50kB (legacy)
 ```
-
-and add the following line in the first line of `./src/rci.js` file
-```javascript
-import '@babel/polyfill';
+webpack --config=config/webpack.js --scope core --rulesTarget legacy --mode production
 ```
 
 ## Contributing

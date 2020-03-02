@@ -13,18 +13,17 @@
     <button autofocus onclick="window.location.href='../Conversion/index.html'">
       Next
     </button>
-    <script src="./../../../dist/rci-legacy.min.js"></script>
-<!--    <script src="https://sdk.real-user-data.eggplant.cloud/latest/rci.min.js"></script>-->
-<!--    <script src="./conversion.js"></script>-->
-
-    <!--
-    Make sure that you run one of the following 2 commands:
-    webpack --config=config/webpack.js --entryPoint ./examples/Vanilla/OnLoad/onload.js  --scope implementation --rulesTarget legacy --mode development
-    webpack --config=config/webpack.js --entryPoint ./examples/Vanilla/OnLoad/onload.js  --scope implementation --rulesTarget current --mode development
-
-    and then uncomment the appropriate one
+    <!--  Make sure that you run one of the following 2 commands and then uncomment the appropriate one below
+        webpack --config=config/webpack.js --entryPoint ./examples/Vanilla/CustomCollector/customCollector.js  --scope implementation --rulesTarget legacy --mode development
+        webpack --config=config/webpack.js --entryPoint ./examples/Vanilla/CustomCollector/customCollector.js  --scope implementation --rulesTarget current --mode development
     -->
-<!--    <script src="./../../../dist/onload.js"></script>-->
+
+    <!-- IE11 support-->
+    <script src="./../../../dist/rci-legacy.min.js"></script>
     <script src="./../../../dist/onload-legacy.min.js"></script>
+
+    <!-- no IE11 support -->
+    <!--<script src="./../../../dist/rci.min.js"></script>-->
+    <!--<script src="./../../../dist/onload.min.js"></script>-->
   </body>
 </html>
