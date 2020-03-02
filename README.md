@@ -32,6 +32,11 @@ Please see the SDK documentation and examples below. You can also see the [REST 
 
 # So how to use _Real User Data SDK_
 
+Compile the source code using webpack
+```
+webpack --config=config/webpack.js --scope core --rulesTarget current --mode production
+```
+
 Add the `dist/rci.min.js` script to your website via _local javascript file_, _CDN_, _NPM package_ or _GTM_ and you are ready to go.
 
 You can always checkout this repository and look at the [examples directory](examples/).
@@ -137,12 +142,12 @@ The use of this is detailed in ```/examples/Vanilla/OnLoad/conversion.js```. It 
 
 This needs to be handled internally by the implementor and no further mechanisms are provided. Some of those are detailed in Examples/Vanilla and Examples/React folders.
 
-
 ## Support IE 11 and older phones
-To support IE11 you need to compile source in legacy mode. The difference in result files are 30kB (current) vs 50kB (legacy)
+To support IE11 you need to compile source in legacy mode.
 ```
 webpack --config=config/webpack.js --scope core --rulesTarget legacy --mode production
 ```
+`current` build supports last 2 most recent versions of browsers, while `legacy` aim to support all browsers up to IE11 while maintaining same functionality. The difference in result files are 25kB (current) vs 50kB (legacy).
 
 ## Contributing
 
