@@ -9,22 +9,27 @@
 
   <body>
     <h1>Error</h1>
-    <p>Please check the network tab to inspect the event.</p>
+    <p>Please check the network tab to inspect the event. It should have errorType, errorFatal and errorCode fields populated.</p>
+    <button autofocus onclick="window.location.href='../index.html'">
+      Home
+    </button>
     <button autofocus onclick="window.location.href='../OnLoad/index.html'">
+      Back
+    </button>
+    <button autofocus onclick="window.location.href='../CustomCollector/index.html'">
       Next
     </button>
-    <script src="./../../../dist/rci-legacy.min.js"></script>
-    <!--        <script src="../../../dist/rci.min.js"></script>-->
-    <!--    <script src="https://sdk.real-user-data.eggplant.cloud/latest/rci.min.js"></script>-->
-
-    <!--
-    Make sure that you run one of the following 2 commands:
-    webpack --config=config/webpack.js --entryPoint ./examples/Vanilla/Error/error.js  --scope implementation --rulesTarget legacy --mode development
-    webpack --config=config/webpack.js --entryPoint ./examples/Vanilla/Error/error.js  --scope implementation --rulesTarget current --mode development
-
-    and then uncomment the appropriate one
+    <!--  Make sure that you run one of the following 2 commands and then uncomment the appropriate one below
+        webpack --config=config/webpack.js --entryPoint ./examples/Vanilla/Error/error.js  --scope implementation --rulesTarget legacy --mode development
+        webpack --config=config/webpack.js --entryPoint ./examples/Vanilla/Error/error.js  --scope implementation --rulesTarget current --mode development
     -->
-    <!--    <script src="./../../../dist/error.js"></script>-->
-    <script src="./../../../dist/error-legacy.min.js"></script>
+
+    <!-- IE11 support-->
+    <!--<script src="./../../../dist/rci-legacy.min.js"></script>-->
+    <!--<script src="./../../../dist/error-legacy.min.js"></script>-->
+
+    <!-- no IE11 support -->
+    <script src="./../../../dist/rci.min.js"></script>
+    <script src="./../../../dist/error.min.js"></script>
   </body>
 </html>

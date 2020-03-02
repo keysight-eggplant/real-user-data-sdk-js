@@ -34,14 +34,15 @@
 
       // Step 8: Identify your converting condition
       const success = document.getElementById('checkout-form-success');
-      const conversionValue = document.getElementById('checkout-form-value').value;
-      const conversionCurrency = document.getElementById('checkout-form-currency').value;
+      const goalType = document.getElementById('checkout-form-type').value;
+      const goalValue = document.getElementById('checkout-form-value').value;
+      const goalCurrency = document.getElementById('checkout-form-currency').value;
       if (success.checked) {
         // Step 9a: Feed in the ecommerce data
         conversionCollector.success(
-          'transaction',
-          parseInt(conversionValue, 10),
-          conversionCurrency
+          goalType,
+          parseInt(goalValue, 10),
+          goalCurrency
         );
 
         // Step 9b: Collect and send the converting event
