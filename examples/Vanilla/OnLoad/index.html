@@ -27,21 +27,7 @@
     <!--<script src="./../../../dist/onload-legacy.min.js"></script>-->
 
     <!-- no IE11 support -->
-    <!-- load Dojo -->
     <script src="./../../../dist/rci.min.js"></script>
     <script src="./../../../dist/onload.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"></script>
-    <script>
-      require(["dojo/router"], function(router){
-        router.register("/something/:id", function(evt){
-          // Will fire when the hash matches
-          // evt.params.id will contain what is passed in :id
-        });
-
-        // Startup must be called in order to "activate" the router
-        router.startup();
-      });
-
-    </script>
   </body>
 </html>
