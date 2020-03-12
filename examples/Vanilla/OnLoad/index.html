@@ -32,15 +32,16 @@
     <script src="./../../../dist/onload.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"></script>
     <script>
-      require([
-        'demo/myModule'
-      ], function (myModule) {
-        myModule.setText('greeting', 'Hello Dojo!');
+      require(["dojo/router"], function(router){
+        router.register("/something/:id", function(evt){
+          // Will fire when the hash matches
+          // evt.params.id will contain what is passed in :id
+        });
 
-        setTimeout(function () {
-          myModule.restoreText('greeting');
-        }, 3000);
+        // Startup must be called in order to "activate" the router
+        router.startup();
       });
+
     </script>
   </body>
 </html>
