@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <title>OnLoad Example</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+
+  <body>
+    <h1>OnLoad</h1>
+
+    <h1 id="greeting">Hello</h1>
+    <!-- load Dojo -->
+    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"
+            data-dojo-config="async: true"></script>
+
+
+    <p>This is basic example, executing script after the page finished loading.</p>
+    <p>Please check the Dev Console's network tab to inspect the event.</p>
+
+    <button type="button" id="changeHash1">Navigate 1</button>
+
+    <button type="button" id="changeHash2">Navigate 2</button>
+
+
+    <!--  Make sure that you run one of the following 2 commands and then uncomment the appropriate one below
+        webpack --config=config/webpack.js --entryPoint ./examples/Dojo/OnLoad/onload.js  --scope implementation --rulesTarget legacy --mode development
+        webpack --config=config/webpack.js --entryPoint ./examples/Dojo/OnLoad/onload.js  --scope implementation --rulesTarget current --mode development
+    -->
+
+    <!-- IE11 support-->
+    <!--<script src="./../../../dist/rci-legacy.min.js"></script>-->
+    <!--<script src="./../../../dist/onload-legacy.min.js"></script>-->
+
+    <!-- no IE11 support -->
+
+    <script src="./../../../dist/rci.min.js"></script>
+<!--    <script src="./../../../dist/onload.min.js"></script>-->
+
+    <script>
+      const rciSdkProducerFactory = (customCollectors) => {
+        const tenancyId = '123';
+        const targetUrl = `https://target.domain/v1/${tenancyId}/stream`;
+        const transport = new rciSdk.Transport(targetUrl);
+        const defaults = rciSdk.collector.defaultCollectors;
+        const collection = defaults.concat(customCollectors);
+        return new rciSdk.Producer(transport, collection);
+      };
+
+      require(["dojo/router", "dojo/dom", "dojo/on"],
+          function(router, dom, on){
+            router.register("/foo/bar/1", function(evt){
+              evt.preventDefault();
+
+              const customCollector = {
+                prepare: async (event) => {
+                  event.eventStart = new Date().getTime();
+                  event.eventEnd = new Date().getTime();
+                  event.eventAction = 'dojo_router';
+                  event.eventCategory = evt.newPath;
+                  return event;
+                }
+              };
+
+              // Step 4: Call your factory
+              rciSdkProducerFactory([customCollector]).collect();
+            });
+
+            router.register("/foo/bar/2", function(evt){
+              evt.preventDefault();
+
+              const customCollector = {
+                prepare: async (event) => {
+                  event.eventStart = new Date().getTime();
+                  event.eventEnd = new Date().getTime();
+                  event.eventAction = 'dojo_router';
+                  event.eventCategory = evt.newPath;
+                  return event;
+                }
+              };
+
+              // Step 4: Call your factory
+              rciSdkProducerFactory([customCollector]).collect();
+            });
+
+            router.startup();
+
+            on(dom.byId("changeHash1"), "click", function(){
+              router.go("/foo/bar/1");
+            });
+
+            on(dom.byId("changeHash2"), "click", function(){
+              router.go("/foo/bar/2");
+            });
+          });
+    </script>
+  </body>
+</html>
