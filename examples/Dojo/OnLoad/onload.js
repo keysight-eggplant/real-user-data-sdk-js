@@ -1,25 +1,55 @@
-((tenancyId, rciSdk) => {
-    // Step 1: Configure your Transport with the tenancyId provided
+const rciSdkProducerFactory = (customCollectors) => {
+    const tenancyId = '123';
     const targetUrl = `https://target.domain/v1/${tenancyId}/stream`;
     const transport = new rciSdk.Transport(targetUrl);
-
-    // Step 2: Capture your default collectors
     const defaults = rciSdk.collector.defaultCollectors;
+    const collection = defaults.concat(customCollectors);
+    return new rciSdk.Producer(transport, collection);
+};
 
-    // Step 3: Build a new Producer with transport and collector
-    const producer = new rciSdk.Producer(transport, defaults);
+require(["dojo/router", "dojo/dom", "dojo/on"],
+    function(router, dom, on){
+        router.register("/foo/bar/1", function(evt){
+            evt.preventDefault();
 
-    // Step 4: Register your hook
-    // Caution: There may already be an onload registered - in which case use a decorator pattern.
+            const customCollector = {
+                prepare: async (event) => {
+                    event.eventStart = new Date().getTime();
+                    event.eventEnd = new Date().getTime();
+                    event.eventAction = 'dojo_router';
+                    event.eventCategory = evt.newPath;
+                    return event;
+                }
+            };
 
-    /** Check for domComplete values to be populated by the browser */
-    async function condition () {
-        return !!(window.performance && window.performance.timing && ((window.performance.timing.domComplete - window.performance.timing.navigationStart) > 0));
-    }
+            // Step 4: Call your factory
+            rciSdkProducerFactory([customCollector]).collect();
+        });
 
+        router.register("/foo/bar/2", function(evt){
+            evt.preventDefault();
 
-    window.addEventListener('load', async () => {
-        await rciSdk.TriggerHelper.waitAndTrigger({interval: 1, condition: condition, action: rciSdk.TriggerHelper.action, timeout: 1000, producer: producer});
+            const customCollector = {
+                prepare: async (event) => {
+                    event.eventStart = new Date().getTime();
+                    event.eventEnd = new Date().getTime();
+                    event.eventAction = 'dojo_router';
+                    event.eventCategory = evt.newPath;
+                    return event;
+                }
+            };
+
+            // Step 4: Call your factory
+            rciSdkProducerFactory([customCollector]).collect();
+        });
+
+        router.startup();
+
+        on(dom.byId("changeHash1"), "click", function(){
+            router.go("/foo/bar/1");
+        });
+
+        on(dom.byId("changeHash2"), "click", function(){
+            router.go("/foo/bar/2");
+        });
     });
-
-})('123-456', rciSdk);
