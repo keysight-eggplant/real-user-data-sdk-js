@@ -17,27 +17,40 @@
     <p>This is basic example, executing script ater various events.</p>
     <p>Please check the Dev Console's network tab to inspect the events.</p>
 
-    <h2>Dojo Router</h2>
+    <hr/>
+
+    <br /> <br />
+
+    <h2>Dojo On Load Service</h2>
+    <p>A event will fire when the application first loads.</p>
+
+    <hr/>
+
+    <br /> <br />
+
+    <h2>Dojo State Service</h2>
+    <p>A event will fire every time the <strong>dojo/router</strong> module fires.  Click one of the buttons below:</p>
     <button type="button" id="rci-router-trigger-1">Router 1</button>
     <button type="button" id="rci-router-trigger-2">Router 2</button>
     <button type="button" id="rci-router-trigger-checkout">Router Checkout</button>
 
     <hr/>
 
-    <h2>Dojo Hash</h2>
-    <button type="button" id="rci-hash-trigger-1">Hash 1</button>
-    <button type="button" id="rci-hash-trigger-2">Hash 2</button>
-    <button type="button" id="rci-hash-trigger-checkout">Hash Checkout</button>
+    <br /> <br />
+
+    <h2>Dojo Action Service</h2>
+    <p>A event will fire every time an element with attribute <strong>rci-action-trigger</strong> is clicked.  The attribute should include a text label which will be used to identify the action.  Click one of the buttons below:</p>
+    <button type="button" id="rci-dojo-example-1" rci-action-trigger="button-1">Button 1</button>
+    <button type="button" rci-action-trigger="button-2">Button 2</button>
+    <button type="button" id="rci-dojo-example-3" rci-action-trigger="button-checkout">Button Checkout</button>
+    <p>This could also be encapsulated within your widgets.</p>
 
     <hr/>
 
-    <h2>Dojo On</h2>
-    <button type="button" id="rci-on-trigger-1">On 1</button>
-    <button type="button" id="rci-on-trigger-2">On 2</button>
-    <button type="button" id="rci-on-trigger-checkout">On Checkout</button>
+    <br /><br />
 
-    <hr/>
-    <h2>Goal Completion</h2>
+    <h2>Checkout Input Form</h2>
+    <p>Nominated events will collect additional data about the checkout/transaction.</p>
     <form style="border: 1px solid grey; padding: 5px;">
       <div>
         <label> Goal Type
@@ -87,17 +100,36 @@
             name: 'rci/producerFactory',
             location: 'rci/producerFactory.js',
             lib: '.'
+          },
+          {
+            name: 'rci/stateService',
+            location: 'rci/stateService.js',
+            lib: '.'
+          },
+          {
+            name: 'rci/actionService',
+            location: 'rci/actionService.js',
+            lib: '.'
+          },
+          {
+            name: 'rci/onLoadService',
+            location: 'rci/onLoadService.js',
+            lib: '.'
           }
-        ]
+        ],
+        paths: {
+          jquery: "lib/jquery-3.4.1.min.js"
+        }
       }
     </script>
 
     <!-- Dojo app -->
+    <script src="js/lib/jquery-3.4.1.min.js""></script>
     <script src="js/rci/sdk.js"></script>
     <script src="js/rci/producerFactory.js"></script>
-    <script src="js/rci/hashService.js"></script>
-    <script src="js/rci/onService.js"></script>
-    <script src="js/rci/routerService.js"></script>
+    <script src="js/rci/actionService.js"></script>
+    <script src="js/rci/stateService.js"></script>
+    <script src="js/rci/onLoadService.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

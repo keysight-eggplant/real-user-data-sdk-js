@@ -1,7 +1,9 @@
-require(['dojo/router', 'dojo/on', 'dojo/dom', 'rci/producerFactory', 'rci/routerService'],
-    (router, on, dom, producerFactory, routerService) => {
+require(['dojo/router', 'dojo/hash', 'dojo/on', 'dojo/dom', 'rci/stateService', 'rci/actionService', 'rci/onLoadService'],
+    (router, hash, on, dom, stateService, actionService, onLoadService) => {
+      // Fire OnLoad Handler
+      onLoadService.trigger();
 
-      // Attach Router handlers
+      // Attach State handlers
       on(dom.byId("rci-router-trigger-1"), "click", () => {
         router.go("/rci/router/trigger/1");
       });
@@ -11,7 +13,9 @@ require(['dojo/router', 'dojo/on', 'dojo/dom', 'rci/producerFactory', 'rci/route
       on(dom.byId("rci-router-trigger-checkout"), "click", () => {
         router.go("/rci/router/trigger/checkout");
       });
-      routerService.register();
-
+      stateService.register();
       router.startup();
+
+      // Attach Action handlers
+      actionService.register();
     });

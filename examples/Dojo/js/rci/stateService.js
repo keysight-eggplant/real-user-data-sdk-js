@@ -1,4 +1,4 @@
-define('rci/routerService', ['dojo/router', 'dojo/dom', 'rci/producerFactory'],
+define('rci/stateService', ['dojo/router', 'dojo/dom', 'rci/producerFactory'],
     (router, dom, producerFactory) => {
       function register() {
         const route = "/.*";
@@ -14,7 +14,7 @@ define('rci/routerService', ['dojo/router', 'dojo/dom', 'rci/producerFactory'],
           const payload = {
             eventStart: startTime,
             eventEnd: new Date().getTime(),
-            eventAction: 'dojo_router',
+            eventAction: 'dojo/router',
             eventCategory: event.newPath,
             referrer: event.oldPath
           };
