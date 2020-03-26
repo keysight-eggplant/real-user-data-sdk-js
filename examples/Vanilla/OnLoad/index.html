@@ -18,8 +18,8 @@
       Next
     </button>
     <!--  Make sure that you run one of the following 2 commands and then uncomment the appropriate one below
-        webpack --config=config/webpack.js --entryPoint ./examples/Vanilla/OnLoad/onload.js  --scope implementation --rulesTarget legacy --mode development
-        webpack --config=config/webpack.js --entryPoint ./examples/Vanilla/OnLoad/onload.js  --scope implementation --rulesTarget current --mode development
+        webpack --config=config/webpack.js --entryPoint ./examples/Vanilla/OnLoad/app.js  --scope implementation --rulesTarget legacy --mode development
+        webpack --config=config/webpack.js --entryPoint ./examples/Vanilla/OnLoad/app.js  --scope implementation --rulesTarget current --mode development
     -->
 
     <!-- IE11 support-->
@@ -27,20 +27,7 @@
     <!--<script src="./../../../dist/onload-legacy.min.js"></script>-->
 
     <!-- no IE11 support -->
-    <!-- load Dojo -->
     <script src="./../../../dist/rci.min.js"></script>
     <script src="./../../../dist/onload.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"></script>
-    <script>
-      require([
-        'demo/myModule'
-      ], function (myModule) {
-        myModule.setText('greeting', 'Hello Dojo!');
-
-        setTimeout(function () {
-          myModule.restoreText('greeting');
-        }, 3000);
-      });
-    </script>
   </body>
 </html>

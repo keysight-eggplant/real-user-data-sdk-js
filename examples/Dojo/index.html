@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <title>OnLoad Example</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+
+  <body>
+    <h1 id="greeting">Hello</h1>
+    <!-- load Dojo -->
+    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"
+            data-dojo-config="async: true"></script>
+
+
+    <p>This is basic example, executing script ater various events.</p>
+    <p>Please check the Dev Console's network tab to inspect the events.</p>
+
+    <hr/>
+
+    <br /> <br />
+
+    <h2>Dojo On Load Service</h2>
+    <p>A event will fire when the application first loads.</p>
+
+    <hr/>
+
+    <br /> <br />
+
+    <h2>Dojo State Service</h2>
+    <p>A event will fire every time the <strong>dojo/router</strong> module fires.  Click one of the buttons below:</p>
+    <button type="button" id="rci-router-trigger-1">Router 1</button>
+    <button type="button" id="rci-router-trigger-2">Router 2</button>
+    <button type="button" id="rci-router-trigger-checkout">Router Checkout</button>
+
+    <hr/>
+
+    <br /> <br />
+
+    <h2>Dojo Action Service</h2>
+    <p>A event will fire every time an element with attribute <strong>rci-action-trigger</strong> is clicked.  The attribute should include a text label which will be used to identify the action.  Click one of the buttons below:</p>
+    <button type="button" id="rci-dojo-example-1" rci-action-trigger="button-1">Button 1</button>
+    <button type="button" rci-action-trigger="button-2">Button 2</button>
+    <button type="button" id="rci-dojo-example-3" rci-action-trigger="button-checkout">Button Checkout</button>
+    <p>This could also be encapsulated within your widgets.</p>
+
+    <hr/>
+
+    <br /><br />
+
+    <h2>Checkout Input Form</h2>
+    <p>Nominated events will collect additional data about the checkout/transaction.</p>
+    <form style="border: 1px solid grey; padding: 5px;">
+      <div>
+        <label> Goal Type
+          <select id="rci-goal-type">
+            <option value="checkout" selected>Checkout</option>
+            <option value="refund">Refund</option>
+          </select>
+        </label>
+      </div>
+
+      <div>
+        <label> Goal Value (pence/cents)
+          <input type="number" id="rci-goal-value" value="9999">
+        </label>
+      </div>
+
+      <div>
+        <label> Goal Currency
+          <select id="rci-goal-currency">
+            <option value="USD" selected>USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+          </select>
+        </label>
+      </div>
+    </form>
+
+    <!-- IE11 support-->
+    <!--<script src="./../../../dist/rci-legacy.min.js"></script>-->
+
+    <!-- no IE11 support -->
+    <script src="../../dist/rci.min.js"></script>
+
+    <script>
+      dojoConfig = {
+        baseUrl: '.',
+        paths: {
+          js: "js"
+        },
+        packages: [
+          {
+            name: 'rci/sdk',
+            location: 'rci/sdk.js',
+            lib: '.'
+          },
+          {
+            name: 'rci/producerFactory',
+            location: 'rci/producerFactory.js',
+            lib: '.'
+          },
+          {
+            name: 'rci/stateService',
+            location: 'rci/stateService.js',
+            lib: '.'
+          },
+          {
+            name: 'rci/actionService',
+            location: 'rci/actionService.js',
+            lib: '.'
+          },
+          {
+            name: 'rci/onLoadService',
+            location: 'rci/onLoadService.js',
+            lib: '.'
+          }
+        ],
+        paths: {
+          jquery: "lib/jquery-3.4.1.min.js"
+        }
+      }
+    </script>
+
+    <!-- Dojo app -->
+    <script src="js/lib/jquery-3.4.1.min.js""></script>
+    <script src="js/rci/sdk.js"></script>
+    <script src="js/rci/producerFactory.js"></script>
+    <script src="js/rci/actionService.js"></script>
+    <script src="js/rci/stateService.js"></script>
+    <script src="js/rci/onLoadService.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
