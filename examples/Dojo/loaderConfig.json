@@ -1,0 +1,36 @@
+{
+  "baseUrl": ".",
+  "paths": {
+    "js": "js"
+  },
+  "packages": [
+    {
+      "name": "rci/sdk",
+      "location": "rci/sdk.js",
+      "lib": "."
+    },
+    {
+      "name": "rci/producerFactory",
+      "location": "rci/producerFactory.js",
+      "lib": "."
+    },
+    {
+      "name": "rci/stateService",
+      "location": "rci/stateService.js",
+      "lib": "."
+    },
+    {
+      "name": "rci/actionService",
+      "location": "rci/actionService.js",
+      "lib": "."
+    },
+    {
+      "name": "rci/readyService",
+      "location": "rci/readyService.js",
+      "lib": "."
+    }
+  ],
+  "paths": {
+    "jquery": "lib/jquery-3.4.1.min.js"
+  }
+}
