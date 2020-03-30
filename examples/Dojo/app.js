@@ -1,4 +1,4 @@
-require(['dojo/router', 'dijit/form/Button', 'dojo/topic', 'rci/stateService', 'rci/actionService', 'rci/readyService', 'dojo/domReady!'],
+require(['dojo/router', 'dijit/form/Button', 'dojo/topic', 'rci/actionService', 'rci/stateService', 'rci/readyService', 'dojo/domReady!'],
     (router, Button, topic, actionService) => {
 
       // Set up routes
