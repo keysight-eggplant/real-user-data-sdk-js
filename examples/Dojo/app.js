@@ -1,21 +1,44 @@
-require(['dojo/router', 'dojo/hash', 'dojo/on', 'dojo/dom', 'rci/stateService', 'rci/actionService', 'rci/onLoadService'],
-    (router, hash, on, dom, stateService, actionService, onLoadService) => {
-      // Fire OnLoad Handler
-      onLoadService.trigger();
+require(['dojo/router', 'dijit/form/Button', 'dojo/topic', 'rci/actionService', 'rci/stateService', 'rci/readyService', 'dojo/domReady!'],
+    (router, Button, topic, actionService) => {
 
-      // Attach State handlers
-      on(dom.byId("rci-router-trigger-1"), "click", () => {
-        router.go("/rci/router/trigger/1");
+      // Set up routes
+      [
+        ['rci-router-trigger-1', '/rci/router/trigger/1'],
+        ['rci-router-trigger-2', '/rci/router/trigger/2'],
+        ['rci-router-trigger-checkout', '/rci/router/trigger/checkout']
+      ].forEach((config) => {
+        // Registers the button
+        const button = new Button({
+          label: config[1],
+        },  config[0]);
+
+        // Sets the event handling for the button
+        button.on("click", (e) => {
+          router.go(config[1]);
+        });
       });
-      on(dom.byId("rci-router-trigger-2"), "click", () => {
-        router.go("/rci/router/trigger/2");
+
+      // Set up topic publishers
+      [
+        ['rci-action-trigger-1', '/rci/action/trigger/1'],
+        ['rci-action-trigger-2', '/rci/action/trigger/2'],
+        ['rci-action-trigger-checkout', '/rci/action/trigger/checkout']
+      ].forEach((config) => {
+        // Registers the button
+        const button = new Button({
+          label: config[1],
+        },  config[0]);
+
+        // Sets the event handling for the button
+        button.on("click", (e) => {
+          topic.publish(actionService.eventName, {
+            eventSource: config[0],
+            eventCategory: config[1],
+            eventInfo1: "some-custom-information"
+          });
+        });
       });
-      on(dom.byId("rci-router-trigger-checkout"), "click", () => {
-        router.go("/rci/router/trigger/checkout");
-      });
-      stateService.register();
+
+      // Start router
       router.startup();
-
-      // Attach Action handlers
-      actionService.register();
     });

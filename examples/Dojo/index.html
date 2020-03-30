@@ -2,12 +2,15 @@
 <html lang="">
   <head>
     <meta charset="utf-8" />
-    <title>OnLoad Example</title>
+    <title>Dojo Example</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/resources/dojo.css">
+    <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dijit/themes/claro/claro.css">
   </head>
 
-  <body>
+  <body  class="claro">
     <h1 id="greeting">Hello</h1>
     <!-- load Dojo -->
     <script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"
@@ -21,7 +24,7 @@
 
     <br /> <br />
 
-    <h2>Dojo On Load Service</h2>
+    <h2>Dojo Ready Service</h2>
     <p>A event will fire when the application first loads.</p>
 
     <hr/>
@@ -30,20 +33,19 @@
 
     <h2>Dojo State Service</h2>
     <p>A event will fire every time the <strong>dojo/router</strong> module fires.  Click one of the buttons below:</p>
-    <button type="button" id="rci-router-trigger-1">Router 1</button>
-    <button type="button" id="rci-router-trigger-2">Router 2</button>
-    <button type="button" id="rci-router-trigger-checkout">Router Checkout</button>
+    <button type="button" id="rci-router-trigger-1" type="button"></button>
+    <button type="button" id="rci-router-trigger-2" type="button"></button>
+    <button type="button" id="rci-router-trigger-checkout" type="button"></button>
 
     <hr/>
 
     <br /> <br />
 
     <h2>Dojo Action Service</h2>
-    <p>A event will fire every time an element with attribute <strong>rci-action-trigger</strong> is clicked.  The attribute should include a text label which will be used to identify the action.  Click one of the buttons below:</p>
-    <button type="button" id="rci-dojo-example-1" rci-action-trigger="button-1">Button 1</button>
-    <button type="button" rci-action-trigger="button-2">Button 2</button>
-    <button type="button" id="rci-dojo-example-3" rci-action-trigger="button-checkout">Button Checkout</button>
-    <p>This could also be encapsulated within your widgets.</p>
+    <p>A event will fire every time an element triggers <strong>dojo/topic</strong>. Click one of the buttons below:</p>
+    <button type="button" id="rci-action-trigger-1"></button>
+    <button type="button" id="rci-action-trigger-2"></button>
+    <button type="button" id="rci-action-trigger-checkout"></button>
 
     <hr/>
 
@@ -78,18 +80,12 @@
       </div>
     </form>
 
-    <!-- IE11 support-->
-    <!--<script src="./../../../dist/rci-legacy.min.js"></script>-->
-
     <!-- no IE11 support -->
     <script src="../../dist/rci.min.js"></script>
 
     <script>
       dojoConfig = {
-        baseUrl: '.',
-        paths: {
-          js: "js"
-        },
+        baseUrl: './',
         packages: [
           {
             name: 'rci/sdk',
@@ -116,20 +112,16 @@
             location: 'rci/onLoadService.js',
             lib: '.'
           }
-        ],
-        paths: {
-          jquery: "lib/jquery-3.4.1.min.js"
-        }
+        ]
       }
     </script>
 
     <!-- Dojo app -->
-    <script src="js/lib/jquery-3.4.1.min.js""></script>
     <script src="js/rci/sdk.js"></script>
     <script src="js/rci/producerFactory.js"></script>
     <script src="js/rci/actionService.js"></script>
     <script src="js/rci/stateService.js"></script>
-    <script src="js/rci/onLoadService.js"></script>
+    <script src="js/rci/readyService.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
