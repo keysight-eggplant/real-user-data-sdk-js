@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <title>Dojo Example</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/resources/dojo.css">
+    <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dijit/themes/claro/claro.css">
+  </head>
+
+  <body  class="claro">
+    <h1 id="greeting">Hello</h1>
+    <!-- load Dojo -->
+    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"
+            data-dojo-config="async: true"></script>
+
+
+    <p>This is basic example, executing script ater various events.</p>
+    <p>Please check the Dev Console's network tab to inspect the events.</p>
+
+    <hr/>
+
+    <br /> <br />
+
+    <h2>Dojo Ready Service</h2>
+    <p>A event will fire when the application first loads.</p>
+
+    <hr/>
+
+    <br /> <br />
+
+    <h2>Dojo State Service</h2>
+    <p>A event will fire every time the <strong>dojo/router</strong> module fires.  Click one of the buttons below:</p>
+    <button type="button" id="rci-router-trigger-1" type="button"></button>
+    <button type="button" id="rci-router-trigger-2" type="button"></button>
+    <button type="button" id="rci-router-trigger-checkout" type="button"></button>
+
+    <hr/>
+
+    <br /> <br />
+
+    <h2>Dojo Action Service</h2>
+    <p>A event will fire every time an element triggers <strong>dojo/topic</strong>. Click one of the buttons below:</p>
+    <button type="button" id="rci-action-trigger-1"></button>
+    <button type="button" id="rci-action-trigger-2"></button>
+    <button type="button" id="rci-action-trigger-checkout"></button>
+
+    <hr/>
+
+    <br /><br />
+
+    <h2>Checkout Input Form</h2>
+    <p>Nominated events will collect additional data about the checkout/transaction.</p>
+    <form style="border: 1px solid grey; padding: 5px;">
+      <div>
+        <label> Goal Type
+          <select id="rci-goal-type">
+            <option value="checkout" selected>Checkout</option>
+            <option value="refund">Refund</option>
+          </select>
+        </label>
+      </div>
+
+      <div>
+        <label> Goal Value (pence/cents)
+          <input type="number" id="rci-goal-value" value="9999">
+        </label>
+      </div>
+
+      <div>
+        <label> Goal Currency
+          <select id="rci-goal-currency">
+            <option value="USD" selected>USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+          </select>
+        </label>
+      </div>
+    </form>
+
+    <!-- no IE11 support -->
+    <script src="../../dist/rci.min.js"></script>
+
+    <script>
+      dojoConfig = {
+        baseUrl: './',
+        packages: [
+          {
+            name: 'rci/sdk',
+            location: 'rci/sdk.js',
+            lib: '.'
+          },
+          {
+            name: 'rci/producerFactory',
+            location: 'rci/producerFactory.js',
+            lib: '.'
+          },
+          {
+            name: 'rci/stateService',
+            location: 'rci/stateService.js',
+            lib: '.'
+          },
+          {
+            name: 'rci/actionService',
+            location: 'rci/actionService.js',
+            lib: '.'
+          },
+          {
+            name: 'rci/onLoadService',
+            location: 'rci/onLoadService.js',
+            lib: '.'
+          }
+        ]
+      }
+    </script>
+
+    <!-- Dojo app -->
+    <script src="js/rci/sdk.js"></script>
+    <script src="js/rci/producerFactory.js"></script>
+    <script src="js/rci/actionService.js"></script>
+    <script src="js/rci/stateService.js"></script>
+    <script src="js/rci/readyService.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
