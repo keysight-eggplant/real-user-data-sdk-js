@@ -80,16 +80,16 @@
       </div>
     </form>
 
-    <!-- IE11 support-->
-    <!--<script src="./../../../dist/rci-legacy.min.js"></script>-->
-
     <!-- no IE11 support -->
     <script src="../../dist/rci.min.js"></script>
 
     <script>
       dojoConfig = {
         baseUrl: '.',
-        async: true
+        async: true,
+        paths: {
+          js: "js"
+        }
       }
     </script>
 
