@@ -85,11 +85,34 @@
 
     <script>
       dojoConfig = {
-        baseUrl: '.',
-        async: true,
-        paths: {
-          js: "js"
-        }
+        baseUrl: './',
+        packages: [
+          {
+            name: 'rci/sdk',
+            location: 'rci/sdk.js',
+            lib: '.'
+          },
+          {
+            name: 'rci/producerFactory',
+            location: 'rci/producerFactory.js',
+            lib: '.'
+          },
+          {
+            name: 'rci/stateService',
+            location: 'rci/stateService.js',
+            lib: '.'
+          },
+          {
+            name: 'rci/actionService',
+            location: 'rci/actionService.js',
+            lib: '.'
+          },
+          {
+            name: 'rci/onLoadService',
+            location: 'rci/onLoadService.js',
+            lib: '.'
+          }
+        ]
       }
     </script>
 
