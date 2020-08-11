@@ -57,14 +57,26 @@ jobs:
           name: Upload Current to S3
           command: latestTag=`git describe --abbrev=0 --tags` && aws s3 cp dist/rci.min.js s3://${AWS_S3_BUCKET_NAME}/$latestTag/rci.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
       - run:
+          name: Upload Current Map to S3
+          command: latestTag=`git describe --abbrev=0 --tags` && aws s3 cp dist/rci.min.js.map s3://${AWS_S3_BUCKET_NAME}/$latestTag/rci.min.js.map --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
+      - run:
           name: Upload Legacy to S3
           command: latestTag=`git describe --abbrev=0 --tags` && aws s3 cp dist/rci-legacy.min.js s3://${AWS_S3_BUCKET_NAME}/$latestTag/rci-legacy.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
+      - run:
+          name: Upload Legacy Map to S3
+          command: latestTag=`git describe --abbrev=0 --tags` && aws s3 cp dist/rci-legacy.min.js.map s3://${AWS_S3_BUCKET_NAME}/$latestTag/rci-legacy.min.js.map --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
       - run:
           name: Upload Current to S3 latest
           command: aws s3 cp dist/rci.min.js s3://${AWS_S3_BUCKET_NAME}/latest/rci.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
       - run:
+          name: Upload Current Map to S3 latest
+          command: aws s3 cp dist/rci.min.js.map s3://${AWS_S3_BUCKET_NAME}/latest/rci.min.js.map --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
+      - run:
           name: Upload Legacy to S3 latest
           command: aws s3 cp dist/rci-legacy.min.js s3://${AWS_S3_BUCKET_NAME}/latest/rci-legacy.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
+      - run:
+          name: Upload Legacy Map to S3 latest
+          command: aws s3 cp dist/rci-legacy.min.js.map s3://${AWS_S3_BUCKET_NAME}/latest/rci-legacy.min.js.map --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
       - run:
           name: Commit the new artefacts
           command: latestTag=`git describe --abbrev=0 --tags` && git commit --allow-empty -am "Released:$latestTag"
