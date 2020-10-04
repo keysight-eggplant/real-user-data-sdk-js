@@ -9,7 +9,7 @@
 
   <body>
     <h1>Custom Collector</h1>
-    <p>Please check the network tab to inspect the event. It should have eventInfo1 and eventInfo2 fields populated.</p>
+    <p>Please check the network tab to inspect the event. It should have eventDuration 1 to 10 fields populated.</p>
     <button autofocus onclick="window.location.href='../index.html'">
       Home
     </button>
@@ -20,8 +20,8 @@
       Next
     </button>
     <!--  Make sure that you run one of the following 2 commands and then uncomment the appropriate one below
-        webpack --config=config/webpack.js --entryPoint ./examples/Vanilla/CustomCollector/webBasedCollectors.js  --scope implementation --rulesTarget legacy --mode development
-        webpack --config=config/webpack.js --entryPoint ./examples/Vanilla/CustomCollector/webBasedCollectors.js  --scope implementation --rulesTarget current --mode development
+        webpack --config=config/webpack.js --entryPoint ./examples/Vanilla/WebBasedCollectorsCollection/webBasedCollectorsCollection.js  --scope implementation --rulesTarget legacy --mode development
+        webpack --config=config/webpack.js --entryPoint ./examples/Vanilla/WebBasedCollectorsCollection/webBasedCollectorsCollection.js  --scope implementation --rulesTarget current --mode development
     -->
 
     <!-- IE11 support-->
@@ -30,6 +30,6 @@
 
     <!-- no IE11 support -->
     <script src="./../../../dist/rci.min.js"></script>
-    <script src="./../../../dist/customCollector.min.js"></script>
+    <script src="./../../../dist/webBasedCollectorsCollection.min.js"></script>
   </body>
 </html>

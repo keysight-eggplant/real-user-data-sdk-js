@@ -114,9 +114,13 @@ A producer is a `class` which executes all the `Collectors` provided. It expects
 
 A `function`, `object` or `class` with an `async` prepare method. The prepare method is given an `event` and is expected to return an augmented `event`.
 
-#### defaultCollectors
+#### Default Collectors
 
 The default collection (`array`) of `Collectors` provided by the SDK. New `Collectors` can be merged with the default `Collectors` to compose unique sequences of collection.
+
+#### Web Based Collectors
+
+TBC 
 
 ## Transport
 
