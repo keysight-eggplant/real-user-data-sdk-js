@@ -11,14 +11,14 @@
  * @property {String} eventAction
  * @property {Number} eventStart
  * @property {Number} eventEnd
- * @property {Number} eventDuration1
- * @property {Number} eventDuration2
- * @property {Number} eventDuration3
- * @property {Number} eventDuration4
- * @property {Number} eventDuration5
- * @property {Number} eventDuration6
- * @property {Number} eventDuration7
- * @property {Number} eventDuration8
+ * @property {Number} eventDuration1 - Usually used for Response Start in Web Context
+ * @property {Number} eventDuration2 - Usually used for DOM Interactive performance metric in Web Context
+ * @property {Number} eventDuration3 - Usually used for Load Event Start performance metric in Web Context
+ * @property {Number} eventDuration4 - Usually used for DOM Complete performance metric in Web Context
+ * @property {Number} eventDuration5 - Usually used for Load Event End performance metric in Web Context
+ * @property {Number} eventDuration6 - Usually used for First Paint performance metric in Web Context
+ * @property {Number} eventDuration7 - Usually used for First Contentful Paint performance metric in Web Context
+ * @property {Number} eventDuration8 - Usually used for Largest Contentful Paint web vital in Web Context
  * @property {Number} eventDuration9
  * @property {Number} eventDuration10
  * @property {String} eventInfo1
