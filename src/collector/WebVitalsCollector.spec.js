@@ -11,28 +11,15 @@ describe('WebVitalsCollector', () => {
     deviceType: 'mobile'
   };
 
-  const newPerfAPIResponse = [{
-    name: 'first-paint', startTime: 951.8949999999131
-  }, {
-    name: 'first-contentful-paint', startTime: 961.8949999999131
-  }];
-
   /** @type {Event} */
   const expectedEvent = {
     ...originalEvent,
-    eventDuration6: 952,
-    eventDuration7: 962
+    eventDuration8: null
   };
   let webVitalsCollector;
 
-  beforeEach(() => {
-    global.window.performance = undefined;
-  });
-
   describe('with current Web Vitals API', () => {
     beforeEach(() => {
-
-      // global.getCLS = jest.fn().mockReturnValueOnce(444);
 
       webVitalsCollector = new WebVitalsCollector();
     });
@@ -44,24 +31,11 @@ describe('WebVitalsCollector', () => {
       expect(actualEvent).toEqual(expectedEvent);
     });
 
-
-    test('Return correct page load metrics', async () => {
-      /** @type {Event} */
-      const actualEvent = await webVitalsCollector.prepare(originalEvent);
-
-      expect(actualEvent.eventDuration6).toEqual(expectedEvent.eventDuration6);
-      expect(actualEvent.eventDuration7).toEqual(expectedEvent.eventDuration7);
-    });
-
-    afterEach(() => {
-
-      global.window.performance.getEntriesByType = undefined;
-
-    });
   });
 
   describe('with no Web Vitals API', () => {
     beforeEach(() => {
+      global.window.PerformanceObserver = undefined;
       webVitalsCollector = new WebVitalsCollector();
     });
 
@@ -69,21 +43,18 @@ describe('WebVitalsCollector', () => {
       /** @type {Event} */
       const actualEvent = await webVitalsCollector.prepare(originalEvent);
       const choppedActual = JSON.parse(JSON.stringify(actualEvent));
-      delete choppedActual.eventDuration6;
-      delete choppedActual.eventDuration7;
+      delete choppedActual.eventDuration8;
       const choppedExpected = JSON.parse(JSON.stringify(expectedEvent));
-      delete choppedExpected.eventDuration6;
-      delete choppedExpected.eventDuration7;
+      delete choppedExpected.eventDuration8;
       expect(choppedActual).toEqual(choppedExpected);
     });
 
 
-    test('Return correct page load metrics', async () => {
+    test('Return correct web vitals', async () => {
       /** @type {Event} */
       const actualEvent = await webVitalsCollector.prepare(originalEvent);
 
-      expect(actualEvent.eventDuration6).toEqual(null);
-      expect(actualEvent.eventDuration7).toEqual(null);
+      expect(actualEvent.eventDuration8).toEqual(null);
     });
   });
 });

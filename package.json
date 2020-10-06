@@ -48,8 +48,7 @@
     "webpack-cli": "^3.3.0"
   },
   "dependencies": {
-    "ua-parser-js": "^0.7.19",
-    "web-vitals": "^0.2.4"
+    "ua-parser-js": "^0.7.19"
   },
   "directories": {
     "example": "examples",
