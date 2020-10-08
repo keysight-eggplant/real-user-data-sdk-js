@@ -1,32 +1,31 @@
 export default class WebPaintTimesCollector {
 
+  constructor() {
+    this.currentPerformanceAPI = false;
+    if (typeof window.performance.getEntriesByType !== 'undefined') {
+      this.currentPerformanceAPI = window.performance.getEntriesByType('paint');
+    }
+  }
+
   /**
      * @param {Event} event
      * @returns {Promise<*>|Event}
      */
   async prepare (event) {
-    let currentPerformanceAPI = false;
 
-    if (typeof window.performance.getEntriesByType !== 'undefined') {
-      currentPerformanceAPI = window.performance.getEntriesByType('paint');
-    }
-
-    event.eventDuration6 = WebPaintTimesCollector.getFirstPaint(currentPerformanceAPI);
-    event.eventDuration7 = WebPaintTimesCollector.getFirstContentfulPaint(currentPerformanceAPI);
+    event.eventDuration6 = this.getFirstPaint();
+    event.eventDuration7 = this.getFirstContentfulPaint();
     return event;
   }
 
 
   /**
-   *
-   * @param {Object} currentPerformanceAPI
    * @returns {null|Number}
    */
-  static getFirstPaint(currentPerformanceAPI) {
+  getFirstPaint() {
     try {
-      if (currentPerformanceAPI) {
-        const firstPaint = WebPaintTimesCollector.getPaint(currentPerformanceAPI, 'first-paint');
-        console.log(firstPaint);
+      if (this.currentPerformanceAPI) {
+        const firstPaint = WebPaintTimesCollector.getPaint(this.currentPerformanceAPI, 'first-paint');
         return Math.round(firstPaint);
       }
       return null;
@@ -39,14 +38,12 @@ export default class WebPaintTimesCollector {
   }
 
   /**
-   *
-   * @param {Object} currentPerformanceAPI
    * @returns {null|Number}
    */
-  static getFirstContentfulPaint(currentPerformanceAPI) {
+  getFirstContentfulPaint() {
     try {
-      if (currentPerformanceAPI) {
-        return Math.round(WebPaintTimesCollector.getPaint(currentPerformanceAPI, 'first-contentful-paint'));
+      if (this.currentPerformanceAPI) {
+        return Math.round(WebPaintTimesCollector.getPaint(this.currentPerformanceAPI, 'first-contentful-paint'));
       }
       return null;
 

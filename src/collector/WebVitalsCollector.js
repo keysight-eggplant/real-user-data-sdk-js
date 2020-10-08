@@ -5,7 +5,7 @@ export default class WebVitalsCollector {
      */
   async prepare (event) {
 
-    event.eventDuration8 = await WebVitalsCollector.getLargestContentfulPaint();
+    event.eventDuration8 = await this.getLargestContentfulPaint();
     return event;
   }
 
@@ -13,7 +13,7 @@ export default class WebVitalsCollector {
    * @async
    * @returns {null|Number}
    */
-  static getLargestContentfulPaint() {
+  getLargestContentfulPaint() {
 
     /** Reject is injected but never used due to the fact that it should never block the main thread and the method loop */
     return new Promise(((resolve, reject) => {
@@ -31,7 +31,7 @@ export default class WebVitalsCollector {
           `Timing-Allow-Origin` header.)
            * */
           lcp = lastEntry.renderTime || lastEntry.loadTime;
-          resolve(lcp);
+          resolve(Math.round(lcp));
         });
 
         /**
@@ -39,7 +39,6 @@ export default class WebVitalsCollector {
        * entries, i.e. entries that occurred before calling `observe()
        * */
         po.observe({type: 'largest-contentful-paint', buffered: true});
-        console.log('HER2');
       } catch (e) {
         resolve(null);
       }

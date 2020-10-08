@@ -12,23 +12,21 @@ export default class WebBackEndCollector {
      * @returns {Promise<*>|Event}
      */
   async prepare (event) {
-    event.eventDuration1 = WebBackEndCollector.getResponseStart(this.currentPerformanceAPI, this.oldPerformanceAPI);
+    event.eventDuration1 = this.getResponseStart();
     return event;
   }
 
   /**
      *
-     * @param {Object} currentPerformanceAPI
-     * @param {Object} oldPerformanceAPI
      * @returns {null|Number}
      */
-  static getResponseStart(currentPerformanceAPI, oldPerformanceAPI) {
+  getResponseStart() {
     try {
-      if (currentPerformanceAPI) {
-        return Math.round(currentPerformanceAPI.responseStart);
-      } if (oldPerformanceAPI && oldPerformanceAPI.timing) {
+      if (this.currentPerformanceAPI) {
+        return Math.round(this.currentPerformanceAPI.responseStart);
+      } if (this.oldPerformanceAPI && this.oldPerformanceAPI.timing) {
         /** We need to subtract due to the fact that is in EPOCH Time */
-        return oldPerformanceAPI.timing.responseStart - oldPerformanceAPI.timing.navigationStart;
+        return this.oldPerformanceAPI.timing.responseStart - this.oldPerformanceAPI.timing.navigationStart;
       }
       return null;
 

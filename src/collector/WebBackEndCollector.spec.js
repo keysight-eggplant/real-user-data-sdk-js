@@ -13,7 +13,7 @@ describe('WebBackEndCollector', () => {
 
   const newPerfAPIResponse = [
     {
-      responseStart: 555
+      responseStart: 555.21
     }
   ];
 

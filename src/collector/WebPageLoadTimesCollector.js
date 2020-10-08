@@ -12,27 +12,64 @@ export default class WebPageLoadTimesCollector {
      * @returns {Promise<*>|Event}
      */
   async prepare (event) {
-    event.eventDuration2 = WebPageLoadTimesCollector.getDOMInteractive(this.currentPerformanceAPI, this.oldPerformanceAPI);
-    event.eventDuration3 = WebPageLoadTimesCollector.getLoadEventStart(this.currentPerformanceAPI, this.oldPerformanceAPI);
-    event.eventDuration4 = WebPageLoadTimesCollector.getDOMComplete(this.currentPerformanceAPI, this.oldPerformanceAPI);
-    event.eventDuration5 = WebPageLoadTimesCollector.getLoadEventEnd(this.currentPerformanceAPI, this.oldPerformanceAPI);
+    event.eventDuration2 = this.getDOMInteractive();
+    event.eventDuration3 = this.getLoadEventStart();
+    event.eventDuration4 = this.getDOMComplete();
+    event.eventDuration5 = this.getLoadEventEnd();
     return event;
   }
 
 
   /**
-   *
-   * @param {Object} currentPerformanceAPI
-   * @param {Object} oldPerformanceAPI
    * @returns {null|Number}
    */
-  static getDOMInteractive(currentPerformanceAPI, oldPerformanceAPI) {
+  getDOMInteractive() {
     try {
-      if (currentPerformanceAPI) {
-        return Math.round(currentPerformanceAPI.domInteractive);
-      } if (oldPerformanceAPI && oldPerformanceAPI.timing) {
+      if (this.currentPerformanceAPI) {
+        return Math.round(this.currentPerformanceAPI.domInteractive);
+      } if (this.oldPerformanceAPI && this.oldPerformanceAPI.timing) {
         /** We need to subtract due to the fact that is in EPOCH Time */
-        return oldPerformanceAPI.timing.domInteractive - oldPerformanceAPI.timing.navigationStart;
+        return this.oldPerformanceAPI.timing.domInteractive - this.oldPerformanceAPI.timing.navigationStart;
+      }
+      return null;
+
+    }
+    catch (e) {
+      // Failed to identify data layer
+      return null;
+    }
+  }
+
+  /**
+   * @returns {null|Number}
+   */
+  getLoadEventStart() {
+    try {
+      if (this.currentPerformanceAPI) {
+        return Math.round(this.currentPerformanceAPI.loadEventStart);
+      } if (this.oldPerformanceAPI && this.oldPerformanceAPI.timing) {
+        /** We need to subtract due to the fact that is in EPOCH Time */
+        return this.oldPerformanceAPI.timing.loadEventStart - this.oldPerformanceAPI.timing.navigationStart;
+      }
+      return null;
+
+    }
+    catch (e) {
+      // Failed to identify data layer
+      return null;
+    }
+  }
+
+  /**
+   * @returns {null|Number}
+   */
+  getDOMComplete() {
+    try {
+      if (this.currentPerformanceAPI) {
+        return Math.round(this.currentPerformanceAPI.domComplete);
+      } if (this.oldPerformanceAPI && this.oldPerformanceAPI.timing) {
+        /** We need to subtract due to the fact that is in EPOCH Time */
+        return this.oldPerformanceAPI.timing.domComplete - this.oldPerformanceAPI.timing.navigationStart;
       }
       return null;
 
@@ -45,63 +82,15 @@ export default class WebPageLoadTimesCollector {
 
   /**
    *
-   * @param {Object} currentPerformanceAPI
-   * @param {Object} oldPerformanceAPI
    * @returns {null|Number}
    */
-  static getLoadEventStart(currentPerformanceAPI, oldPerformanceAPI) {
+  getLoadEventEnd() {
     try {
-      if (currentPerformanceAPI) {
-        return Math.round(currentPerformanceAPI.loadEventStart);
-      } if (oldPerformanceAPI && oldPerformanceAPI.timing) {
+      if (this.currentPerformanceAPI) {
+        return Math.round(this.currentPerformanceAPI.loadEventEnd);
+      } if (this.oldPerformanceAPI && this.oldPerformanceAPI.timing) {
         /** We need to subtract due to the fact that is in EPOCH Time */
-        return oldPerformanceAPI.timing.loadEventStart - oldPerformanceAPI.timing.navigationStart;
-      }
-      return null;
-
-    }
-    catch (e) {
-      // Failed to identify data layer
-      return null;
-    }
-  }
-
-  /**
-   *
-   * @param {Object} currentPerformanceAPI
-   * @param {Object} oldPerformanceAPI
-   * @returns {null|Number}
-   */
-  static getDOMComplete(currentPerformanceAPI, oldPerformanceAPI) {
-    try {
-      if (currentPerformanceAPI) {
-        return Math.round(currentPerformanceAPI.domComplete);
-      } if (oldPerformanceAPI && oldPerformanceAPI.timing) {
-        /** We need to subtract due to the fact that is in EPOCH Time */
-        return oldPerformanceAPI.timing.domComplete - oldPerformanceAPI.timing.navigationStart;
-      }
-      return null;
-
-    }
-    catch (e) {
-      // Failed to identify data layer
-      return null;
-    }
-  }
-
-  /**
-   *
-   * @param {Object} currentPerformanceAPI
-   * @param {Object} oldPerformanceAPI
-   * @returns {null|Number}
-   */
-  static getLoadEventEnd(currentPerformanceAPI, oldPerformanceAPI) {
-    try {
-      if (currentPerformanceAPI) {
-        return Math.round(currentPerformanceAPI.loadEventEnd);
-      } if (oldPerformanceAPI && oldPerformanceAPI.timing) {
-        /** We need to subtract due to the fact that is in EPOCH Time */
-        return oldPerformanceAPI.timing.loadEventEnd - oldPerformanceAPI.timing.navigationStart;
+        return this.oldPerformanceAPI.timing.loadEventEnd - this.oldPerformanceAPI.timing.navigationStart;
       }
       return null;
 
