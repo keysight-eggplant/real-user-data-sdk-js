@@ -42,11 +42,7 @@ describe('WebVitalsCollector', () => {
     test('Return event with all mandatory fields', async () => {
       /** @type {Event} */
       const actualEvent = await webVitalsCollector.prepare(originalEvent);
-      const choppedActual = JSON.parse(JSON.stringify(actualEvent));
-      delete choppedActual.eventDuration8;
-      const choppedExpected = JSON.parse(JSON.stringify(expectedEvent));
-      delete choppedExpected.eventDuration8;
-      expect(choppedActual).toEqual(choppedExpected);
+      expect(actualEvent).toEqual(expectedEvent);
     });
 
 

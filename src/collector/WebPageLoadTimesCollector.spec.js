@@ -36,6 +36,15 @@ describe('WebPageLoadTimesCollector', () => {
     eventDuration4: 2588,
     eventDuration5: 2603,
   };
+
+  /** @type {Event} */
+  const noAPIExpectedEvent = {
+    ...originalEvent,
+    eventDuration2: null,
+    eventDuration3: null,
+    eventDuration4: null,
+    eventDuration5: null,
+  };
   let webPageLoadTimesCollector;
 
   beforeEach(() => {
@@ -116,17 +125,7 @@ describe('WebPageLoadTimesCollector', () => {
     test('Return event with all mandatory fields', async () => {
       /** @type {Event} */
       const actualEvent = await webPageLoadTimesCollector.prepare(originalEvent);
-      const choppedActual = JSON.parse(JSON.stringify(actualEvent));
-      delete choppedActual.eventDuration2;
-      delete choppedActual.eventDuration3;
-      delete choppedActual.eventDuration4;
-      delete choppedActual.eventDuration5;
-      const choppedExpected = JSON.parse(JSON.stringify(expectedEvent));
-      delete choppedExpected.eventDuration2;
-      delete choppedExpected.eventDuration3;
-      delete choppedExpected.eventDuration4;
-      delete choppedExpected.eventDuration5;
-      expect(choppedActual).toEqual(choppedExpected);
+      expect(actualEvent).toEqual(noAPIExpectedEvent);
     });
 
 

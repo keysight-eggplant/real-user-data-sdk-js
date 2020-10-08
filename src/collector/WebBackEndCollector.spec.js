@@ -22,6 +22,11 @@ describe('WebBackEndCollector', () => {
     ...originalEvent,
     eventDuration1: 555
   };
+  /** @type {Event} */
+  const noAPIExpectedEvent = {
+    ...originalEvent,
+    eventDuration1: null
+  };
   let webBackEndCollector;
 
   beforeEach(() => {
@@ -99,11 +104,7 @@ describe('WebBackEndCollector', () => {
     test('Return event with all mandatory fields', async () => {
       /** @type {Event} */
       const actualEvent = await webBackEndCollector.prepare(originalEvent);
-      const choppedActual = JSON.parse(JSON.stringify(actualEvent));
-      delete choppedActual.eventDuration1;
-      const choppedExpected = JSON.parse(JSON.stringify(expectedEvent));
-      delete choppedExpected.eventDuration1;
-      expect(choppedActual).toEqual(choppedExpected);
+      expect(actualEvent).toEqual(noAPIExpectedEvent);
     });
 
 

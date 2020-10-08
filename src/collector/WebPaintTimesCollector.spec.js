@@ -23,6 +23,12 @@ describe('WebPaintTimesCollector', () => {
     eventDuration6: 952,
     eventDuration7: 962
   };
+  /** @type {Event} */
+  const noAPIExpectedEvent = {
+    ...originalEvent,
+    eventDuration6: null,
+    eventDuration7: null
+  };
   let webPaintTimesCollector;
 
   beforeEach(() => {
@@ -68,13 +74,7 @@ describe('WebPaintTimesCollector', () => {
     test('Return event with all mandatory fields', async () => {
       /** @type {Event} */
       const actualEvent = await webPaintTimesCollector.prepare(originalEvent);
-      const choppedActual = JSON.parse(JSON.stringify(actualEvent));
-      delete choppedActual.eventDuration6;
-      delete choppedActual.eventDuration7;
-      const choppedExpected = JSON.parse(JSON.stringify(expectedEvent));
-      delete choppedExpected.eventDuration6;
-      delete choppedExpected.eventDuration7;
-      expect(choppedActual).toEqual(choppedExpected);
+      expect(actualEvent).toEqual(noAPIExpectedEvent);
     });
 
 
