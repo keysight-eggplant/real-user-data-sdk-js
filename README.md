@@ -57,6 +57,10 @@ You can always checkout this repository and look at the [examples directory](exa
 
 - Use [this example](examples/Vanilla/OnLoad/) as starting point if you are going to collect data after page loads.
 
+## Web-based collector
+
+- Use [this example](examples/Vanilla/WebBasedCollectors/) as starting point if you are going to collect data from webpages
+
 ## Example with React
 
 - Use [this example](examples/with-react/) as starting point if you are going to collect data when you have a react.js project.
