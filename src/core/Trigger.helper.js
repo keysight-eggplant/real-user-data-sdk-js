@@ -13,6 +13,27 @@ export default class TriggerHelper {
     }
   }
 
+  static async defaultCondition () {
+    try {
+      const perf = !!(window.performance && window.performance.timing && ((window.performance.timing.domComplete - window.performance.timing.navigationStart) > 0));
+
+      let paintReady = false;
+      const po = new PerformanceObserver((entryList, po) => {
+        paintReady =  entryList.getEntries().length > 0;
+      });
+
+      // Observe entries of type `largest-contentful-paint`, including buffered entries,
+      // i.e. entries that occurred before calling `observe()` below.
+      po.observe({
+        entryTypes: ['paint']
+      });
+
+      return perf && paintReady;
+    } catch (e) {
+      return true;
+    }
+  }
+
   /**
      * Waits for something to happen and then triggers
      * @param {{producer: {collect: collect}}} options

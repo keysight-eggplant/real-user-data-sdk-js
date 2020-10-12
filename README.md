@@ -57,6 +57,10 @@ You can always checkout this repository and look at the [examples directory](exa
 
 - Use [this example](examples/Vanilla/OnLoad/) as starting point if you are going to collect data after page loads.
 
+## Web-based collector
+
+- Use [this example](examples/Vanilla/WebBasedCollectors/) as starting point if you are going to collect data from webpages
+
 ## Example with React
 
 - Use [this example](examples/with-react/) as starting point if you are going to collect data when you have a react.js project.
@@ -114,9 +118,57 @@ A producer is a `class` which executes all the `Collectors` provided. It expects
 
 A `function`, `object` or `class` with an `async` prepare method. The prepare method is given an `event` and is expected to return an augmented `event`.
 
-#### defaultCollectors
+#### Default Collectors
 
 The default collection (`array`) of `Collectors` provided by the SDK. New `Collectors` can be merged with the default `Collectors` to compose unique sequences of collection.
+
+#### Web Based Collectors
+
+You can use the web focused collectors in 2 manners:
+
+- either one by one 
+- either using the web focused collectors collection
+
+##### Using it one by one
+This is particularly useful if you want to choose only certain collectors that you might need for your custom implementation.
+
+So to achieve the integration with the web collectors you can do something like this before calling the RCI SDK bootstrap method with the collectors array.
+
+```javascript
+  // Step 1: Capture your default collectors
+  const defaults = rciSdk.collector.defaultCollectors;
+
+  // Step 2: Capture WebFocusedCollectors
+  const webFocusedCollectors =
+      [
+        new rciSdk.collector.WebBackEndCollector(),
+        new rciSdk.collector.WebPageLoadTimesCollector(),
+        new rciSdk.collector.WebVitalsCollector()
+      ];
+
+  // Step 3: Create the final collectors collection
+  const finalCollectorCollection = defaults.concat(webFocusedCollectors);
+```
+
+Note that the ```WebPaintTimesCollector``` was left out on purpose to exemplify the flexibility of this method of adding the web focused collectors.
+
+
+##### Using the web collectors collection
+
+If you want to just get the full web focused package you can just the use the pre-existing collectors collection prepared within the framework. Keep in mind that is mainly for convenience but is sacrificing the flexibility factor.
+
+To do so you can have this code before injecting the array of collectors into the bootstrapper.
+
+```javascript
+  // Step 1: Capture your default collectors
+  const defaults = rciSdk.collector.defaultCollectors;
+
+  // Step 2: Capture WebFocusedCollectors
+  const {webFocusedCollectors} = rciSdk.collector;
+
+  // Step 3: Create the final collectors collection
+  const finalCollectorCollection = defaults.concat(webFocusedCollectors);
+```
 
 ## Transport
 

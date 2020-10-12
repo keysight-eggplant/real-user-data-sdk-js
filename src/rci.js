@@ -7,6 +7,7 @@ import {
   JOURNEY_ACTION
 } from './core/constants';
 import defaultCollectors from './collector/defaultCollectors';
+import webFocusedCollectors from './collector/webFocusedCollectors';
 import ClientIdCollector from './collector/ClientIdCollector';
 import ConversionCollector from './collector/ConversionCollector';
 import DeviceTypeCollector from './collector/DeviceTypeCollector';
@@ -21,9 +22,14 @@ import UriWithCustomCategoryCollector from './collector/UriWithCustomCategoryCol
 import UriWithPageTitleCategoryCollector from './collector/UriWithPageTitleCategoryCollector';
 import SoftwareCollector from './collector/SoftwareCollector';
 import HardwareCollector from './collector/HardwareCollector';
+import WebBackEndCollector from './collector/WebBackEndCollector';
+import WebPageLoadTimesCollector from './collector/WebPageLoadTimesCollector';
+import WebPaintTimesCollector from './collector/WebPaintTimesCollector';
+import WebVitalsCollector from './collector/WebVitalsCollector';
 
 const collector = {
   defaultCollectors,
+  webFocusedCollectors,
   ClientIdCollector,
   ConversionCollector,
   DeviceTypeCollector,
@@ -37,7 +43,11 @@ const collector = {
   UriWithCustomCategoryCollector,
   UriWithPageTitleCategoryCollector,
   SoftwareCollector,
-  HardwareCollector
+  HardwareCollector,
+  WebBackEndCollector,
+  WebPageLoadTimesCollector,
+  WebPaintTimesCollector,
+  WebVitalsCollector,
 };
 
 export {

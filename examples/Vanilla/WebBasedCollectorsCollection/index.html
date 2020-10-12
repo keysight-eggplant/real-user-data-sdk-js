@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <title>Web-based Collectors Collection Example</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+
+  <body>
+    <h1>Web Based Collectors Collection</h1>
+    <p>Please check the network tab to inspect the event. It should have eventDuration 1 to 8 fields populated.</p>
+    <button autofocus onclick="window.location.href='../index.html'">
+      Home
+    </button>
+    <button autofocus onclick="window.location.href='../CustomCollector/index.html'">
+      Back
+    </button>
+    <button autofocus onclick="window.location.href='../WebBasedCollectors/index.html'">
+      Next
+    </button>
+    <!--  Make sure that you run one of the following 2 commands and then uncomment the appropriate one below
+        webpack --config=config/webpack.js --entryPoint ./examples/Vanilla/WebBasedCollectorsCollection/webBasedCollectorsCollection.js  --scope implementation --rulesTarget legacy --mode development
+        webpack --config=config/webpack.js --entryPoint ./examples/Vanilla/WebBasedCollectorsCollection/webBasedCollectorsCollection.js  --scope implementation --rulesTarget current --mode development
+    -->
+
+    <!-- IE11 support-->
+    <!--<script src="./../../../dist/rci-legacy.min.js"></script>-->
+    <!--<script src="./../../../dist/customCollector-legacy.min.js"></script>-->
+
+    <!-- no IE11 support -->
+    <script src="./../../../dist/rci.min.js"></script>
+    <script src="./../../../dist/webBasedCollectorsCollection.min.js"></script>
+  </body>
+</html>
