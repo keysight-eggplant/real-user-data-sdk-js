@@ -14,7 +14,7 @@ describe('SoftwareCollector', () => {
     eventCategory: 'products/shoes',
     eventStart: 123,
     eventEnd: 456,
-    deviceType: 'mobile',
+    deviceType: 'mobile'
   };
 
   const expectedEvent = {
@@ -27,7 +27,7 @@ describe('SoftwareCollector', () => {
     softwareInfo1: 'Android Browser',
     softwareInfo2: '4.0',
     viewportHeight: 768,
-    viewportWidth: 1024,
+    viewportWidth: 1024
   };
   let softwareCollector;
 

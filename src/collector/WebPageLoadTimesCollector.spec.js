@@ -1,4 +1,4 @@
-import WebPageLoadTimesCollector from './WebPageLoadTimesCollector.js';
+import WebPageLoadTimesCollector from './WebPageLoadTimesCollector';
 
 describe('WebPageLoadTimesCollector', () => {
   const originalEvent = {
@@ -34,7 +34,7 @@ describe('WebPageLoadTimesCollector', () => {
     eventDuration2: 1186,
     eventDuration3: 2531,
     eventDuration4: 2588,
-    eventDuration5: 2603,
+    eventDuration5: 2603
   };
 
   /** @type {Event} */
@@ -43,7 +43,7 @@ describe('WebPageLoadTimesCollector', () => {
     eventDuration2: null,
     eventDuration3: null,
     eventDuration4: null,
-    eventDuration5: null,
+    eventDuration5: null
   };
   let webPageLoadTimesCollector;
 

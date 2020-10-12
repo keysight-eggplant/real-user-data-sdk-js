@@ -2,7 +2,7 @@ export default class WebPageLoadTimesCollector {
 
   constructor() {
     if (typeof window.performance.getEntriesByType !== 'undefined') {
-      this.currentPerformanceAPI = window.performance.getEntriesByType('navigation')[0];
+      [this.currentPerformanceAPI] = window.performance.getEntriesByType('navigation');
     }
     this.oldPerformanceAPI = window.performance;
   }

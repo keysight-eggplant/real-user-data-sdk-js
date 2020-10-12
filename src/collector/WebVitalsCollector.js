@@ -15,8 +15,9 @@ export default class WebVitalsCollector {
    */
   getLargestContentfulPaint() {
 
-    /** Reject is injected but never used due to the fact that it should never block the main thread and the method loop */
-    return new Promise(((resolve, reject) => {
+    /** Reject is injected but never used due to the fact that
+     * it should never block the main thread and the method loop */
+    return new Promise(((resolve) => {
       try {
 
         let lcp;

@@ -8,13 +8,13 @@ describe('UriWithCustomCategoryCollector', () => {
     eventAction: 'load',
     eventStart: 123456,
     eventEnd: 987654,
-    deviceType: 'mobile',
+    deviceType: 'mobile'
   };
 
   const expectedEvent = {
     ...originalEvent,
     eventSource: 'http://localhost/',
-    eventCategory: 'custom category',
+    eventCategory: 'custom category'
   };
   let uriWithCustomCategoryCollector;
 

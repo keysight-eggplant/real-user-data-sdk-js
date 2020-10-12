@@ -1,4 +1,4 @@
-import WebVitalsCollector from './WebVitalsCollector.js';
+import WebVitalsCollector from './WebVitalsCollector';
 
 describe('WebVitalsCollector', () => {
   const originalEvent = {

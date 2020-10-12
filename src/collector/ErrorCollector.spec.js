@@ -9,14 +9,14 @@ describe('ErrorCollector', () => {
     eventCategory: 'products/shoes',
     eventStart: 123,
     eventEnd: 456,
-    eventType: 'state',
+    eventType: 'state'
   };
 
   const expectedEvent = {
     ...originalEvent,
     errorCode: '404',
     errorType: 'Not Found',
-    errorFatal: true,
+    errorFatal: true
   };
   let errorCollector;
 

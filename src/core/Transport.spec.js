@@ -25,7 +25,7 @@ describe('Transport Unit Tests', () => {
       eventEnd: 1000001,
       eventSource: 'http://test.test/test',
       eventCategory: 'product',
-      deviceType: 'test device',
+      deviceType: 'test device'
     };
 
     const dataJson = JSON.stringify(event);
@@ -42,7 +42,7 @@ describe('Transport Unit Tests', () => {
     server.respond();
 
     expect(server.requests[0].url).toEqual(
-        `https://target.domain/v1/${tenancyId}/stream`,
+      `https://target.domain/v1/${tenancyId}/stream`,
     );
 
     expect(server.requests[0].requestBody).toEqual(dataJson);

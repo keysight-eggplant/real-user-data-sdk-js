@@ -1,4 +1,4 @@
-import WebPaintTimesCollector from './WebPaintTimesCollector.js';
+import WebPaintTimesCollector from './WebPaintTimesCollector';
 
 describe('WebPaintTimesCollector', () => {
   const originalEvent = {

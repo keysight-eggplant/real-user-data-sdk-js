@@ -18,8 +18,8 @@ export default class TriggerHelper {
       const perf = !!(window.performance && window.performance.timing && ((window.performance.timing.domComplete - window.performance.timing.navigationStart) > 0));
 
       let paintReady = false;
-      const po = new PerformanceObserver((entryList, po) => {
-        paintReady =  entryList.getEntries().length > 0;
+      const po = new PerformanceObserver((entryList) => {
+        paintReady = entryList.getEntries().length > 0;
       });
 
       // Observe entries of type `largest-contentful-paint`, including buffered entries,

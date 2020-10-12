@@ -8,7 +8,7 @@ describe('SpaTimingCollector', () => {
     eventAction: 'load',
     eventSource: 'products/shoes/1',
     eventCategory: 'products/shoes',
-    deviceType: 'mobile',
+    deviceType: 'mobile'
   };
 
   const expectedEvent = {

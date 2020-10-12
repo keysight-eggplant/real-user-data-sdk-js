@@ -8,7 +8,7 @@ describe('NavigationTimingCollector', () => {
     eventAction: 'load',
     eventSource: 'products/shoes/1',
     eventCategory: 'products/shoes',
-    deviceType: 'mobile',
+    deviceType: 'mobile'
   };
 
   const expectedEvent = {
@@ -21,7 +21,7 @@ describe('NavigationTimingCollector', () => {
 
   beforeEach(() => {
     global.window.performance.timing = {
-      navigationStart: 123,
+      navigationStart: 123
     };
 
     navigationTimingCollector = new NavigationTimingCollector();

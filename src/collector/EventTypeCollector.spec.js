@@ -8,12 +8,12 @@ describe('EventTypeCollector', () => {
     eventSource: 'products/shoes/1',
     eventCategory: 'products/shoes',
     eventStart: 123,
-    eventEnd: 456,
+    eventEnd: 456
   };
 
   const expectedEvent = {
     ...originalEvent,
-    eventType: 'state',
+    eventType: 'state'
   };
   let eventTypeCollector;
 

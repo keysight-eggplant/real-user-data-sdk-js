@@ -8,13 +8,13 @@ describe('UriWithPageTitleCategoryCollector', () => {
     eventAction: 'load',
     eventStart: 123456,
     eventEnd: 987654,
-    deviceType: 'mobile',
+    deviceType: 'mobile'
   };
 
   const expectedEvent = {
     ...originalEvent,
     eventSource: 'http://localhost/',
-    eventCategory: 'Page Title | mysite.com',
+    eventCategory: 'Page Title | mysite.com'
   };
   let uriWithCustomCategoryCollector;
 

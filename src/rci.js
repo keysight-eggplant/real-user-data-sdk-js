@@ -47,7 +47,7 @@ const collector = {
   WebBackEndCollector,
   WebPageLoadTimesCollector,
   WebPaintTimesCollector,
-  WebVitalsCollector,
+  WebVitalsCollector
 };
 
 export {

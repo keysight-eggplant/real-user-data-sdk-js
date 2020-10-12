@@ -1,4 +1,4 @@
-import WebBackEndCollector from './WebBackEndCollector.js';
+import WebBackEndCollector from './WebBackEndCollector';
 
 describe('WebBackEndCollector', () => {
   const originalEvent = {
