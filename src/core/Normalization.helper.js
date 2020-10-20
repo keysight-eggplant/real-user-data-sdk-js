@@ -24,7 +24,7 @@ export default class NormalizationHelper {
             }
         } else {
             if (fullUnit) {
-                normalized = normalized.toFixed(2);
+                normalized = Number(normalized.toFixed(2));
                 return normalized * 100;
             } else {
                 normalized = Number(normalized.toFixed(0));
