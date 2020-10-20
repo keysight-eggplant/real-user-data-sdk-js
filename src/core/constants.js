@@ -12,3 +12,5 @@ export const JOURNEY_ACTION = {
   START: 'start',
   STOP: 'stop'
 };
+
+export const VERSION = __VERSION__;

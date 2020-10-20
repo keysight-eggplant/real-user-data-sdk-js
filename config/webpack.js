@@ -114,6 +114,9 @@ const plugins = [
   new webpack.BannerPlugin(banner),
   new webpack.optimize.LimitChunkCountPlugin({
     maxChunks: 1
+  }),
+  new webpack.DefinePlugin({
+    __VERSION__: `'${PACKAGE.version}'`
   })
 ];
 
