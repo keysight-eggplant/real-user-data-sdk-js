@@ -170,6 +170,23 @@ To do so you can have this code before injecting the array of collectors into th
   const finalCollectorCollection = defaults.concat(webFocusedCollectors);
 ```
 
+## Normalization Helper
+### Normalizing currency values
+A goal value normalized is offered via our Normalization Helper. Be aware that this will only work if your goal type is of the type "purchase".
+If the value you want to send to the cloud is directly in the main currency unit like EUR, GBP, USD and so on, you can normalize it by calling the method like this:
+
+```javascript
+NormalizationHelper.normalizeGoalValue(948.34);
+// output: 94834
+```
+
+If your value is directly in pence, cents and so on, you can set the fullUnit flag on false and the value will be left as is and the denominations will be cut
+
+```javascript
+NormalizationHelper.normalizeGoalValue(948.34, false);
+// output: 948
+```
+
 ## Transport
 
 A `class` which knows how to send the event to the target destination when the `async` method `execute` is called.
