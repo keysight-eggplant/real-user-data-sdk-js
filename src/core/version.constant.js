@@ -1,1 +1,1 @@
-export default const VERSION = __VERSION__;
+export default __VERSION__;
