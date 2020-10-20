@@ -4,7 +4,8 @@ import TriggerHelper from './core/Trigger.helper';
 import {
   EVENT_TYPE,
   EVENT_ACTION,
-  JOURNEY_ACTION
+  JOURNEY_ACTION,
+  VERSION
 } from './core/constants';
 import defaultCollectors from './collector/defaultCollectors';
 import webFocusedCollectors from './collector/webFocusedCollectors';
@@ -57,5 +58,6 @@ export {
   EVENT_ACTION,
   JOURNEY_ACTION,
   collector,
-  TriggerHelper
+  TriggerHelper,
+  VERSION
 };
