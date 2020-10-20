@@ -7,7 +7,7 @@ describe('NormalizationHelper Unit Tests', () => {
         const initial = '';
 
         const actual = NormalizationHelper.normalizeGoalValue(initial);
-        const expected = 0;
+        const expected = null;
 
         expect(actual).toEqual(expected);
     });
@@ -74,7 +74,7 @@ describe('NormalizationHelper Unit Tests', () => {
         const initial = '';
 
         const actual = NormalizationHelper.normalizeGoalValue(initial, false);
-        const expected = 0;
+        const expected = null;
 
         expect(actual).toEqual(expected);
     });

@@ -15,7 +15,7 @@ export default class NormalizationHelper {
 
         let normalized = parseFloat(value);
         if (isNaN(normalized)) {
-            return 0;
+            return null;
         } else if (normalized % 1 === 0) {
             if (fullUnit) {
                 return normalized * 100;
