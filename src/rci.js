@@ -1,6 +1,7 @@
 import Producer from './core/Producer';
 import Transport from './core/Transport';
 import TriggerHelper from './core/Trigger.helper';
+import NormalizationHelper from './core/Normalization.helper';
 import {
   EVENT_TYPE,
   EVENT_ACTION,
@@ -57,7 +58,8 @@ export {
   EVENT_TYPE,
   EVENT_ACTION,
   JOURNEY_ACTION,
+  VERSION,
   collector,
   TriggerHelper,
-  VERSION
+  NormalizationHelper
 };
