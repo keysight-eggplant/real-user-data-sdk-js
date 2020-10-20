@@ -6,8 +6,8 @@ import {
   EVENT_TYPE,
   EVENT_ACTION,
   JOURNEY_ACTION,
-  VERSION
 } from './core/constants';
+import VERSION from './core/version.constant';
 import defaultCollectors from './collector/defaultCollectors';
 import webFocusedCollectors from './collector/webFocusedCollectors';
 import ClientIdCollector from './collector/ClientIdCollector';
