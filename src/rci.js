@@ -52,6 +52,15 @@ const collector = {
   WebVitalsCollector
 };
 
+/** Trigger an custom event to signal that the CORE was loaded successfully */
+/** Registering the new event constructor */
+const eventName = 'RCICoreReady';
+const RCICoreReadyEvent = new Event(eventName);
+
+/** Dispatch the event and assign the event as a property for non event driven approach*/
+window.dispatchEvent(RCICoreReadyEvent);
+window[eventName] = true;
+
 export {
   Producer,
   Transport,
