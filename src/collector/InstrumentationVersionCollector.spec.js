@@ -1,5 +1,12 @@
 import InstrumentationVersionCollector from './InstrumentationVersionCollector';
 
+const coreVersion = 'v11.2.9';
+
+jest.mock('../core/version.constant', () => ({
+    __esModule: true, // this property makes it work
+    default: 'v11.2.9'
+}));
+
 describe('InstrumentationVersionCollector', () => {
     const originalEvent = {
         id: '11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000',
@@ -11,7 +18,6 @@ describe('InstrumentationVersionCollector', () => {
         deviceType: 'mobile'
     };
 
-    const coreVersion = 'v11.2.9';
     const instrumentationVersionHash = '87a97607d305fab320c8837e4f802bc89b8d52b6';
     const instrumentationVersion = '11.2.9';
 
@@ -36,7 +42,6 @@ describe('InstrumentationVersionCollector', () => {
 
     describe('with RCI SDK corrupt', () => {
         beforeEach(() => {
-            global.window.rciSdk = undefined;
             instrumentationVersionCollector = new InstrumentationVersionCollector();
         });
 
@@ -50,9 +55,6 @@ describe('InstrumentationVersionCollector', () => {
 
     describe('with no instrumentation version passed', () => {
         beforeEach(() => {
-            global.window.rciSdk = {
-                VERSION: coreVersion
-            };
             instrumentationVersionCollector = new InstrumentationVersionCollector();
         });
 
@@ -73,9 +75,6 @@ describe('InstrumentationVersionCollector', () => {
 
     describe('with no instrumentation version passed as hash', () => {
         beforeEach(() => {
-            global.window.rciSdk = {
-                VERSION: coreVersion
-            };
             instrumentationVersionCollector = new InstrumentationVersionCollector(instrumentationVersionHash);
         });
 
@@ -96,9 +95,6 @@ describe('InstrumentationVersionCollector', () => {
 
     describe('with no instrumentation version passed as version', () => {
         beforeEach(() => {
-            global.window.rciSdk = {
-                VERSION: coreVersion
-            };
             instrumentationVersionCollector = new InstrumentationVersionCollector(instrumentationVersion);
         });
 

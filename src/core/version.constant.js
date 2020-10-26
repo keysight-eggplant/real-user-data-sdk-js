@@ -1,1 +1,8 @@
-export default __VERSION__;
+let version;
+try {
+    version = __VERSION__;
+} catch (e) {
+    version = '';
+}
+
+export default version;
