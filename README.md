@@ -209,7 +209,22 @@ The use of this is detailed in ```/examples/Vanilla/OnLoad/conversion.js```. It 
 
 ### Event based case
 
-This needs to be handled internally by the implementor and no further mechanisms are provided. Some of those are detailed in Examples/Vanilla and Examples/React folders.
+When the core is loaded successfully, an event is triggered on the ```window``` object that the implementer or the instrumentation can bind on when the instrumentation is bootstrapped. 
+Also an additional property with the name of the same event is set on the ```window``` object in order for the instrumentation to not wait for the core to emit if the core is already present on the page
+
+This can be used in the following manner:
+
+```javascript
+if (window.hasOwnProperty('RCICoreReady')) {
+    // Trigger the RCI instrumentation bootstrap process straight away
+} else {
+    // Bind on event and wait for dispatch 
+    window.addEventListener("RCICoreReady", function(e) {
+         // Trigger the RCI instrumentation when the event is emitted
+    });
+}
+```
+
 
 ## Support IE 11 and older phones
 To support IE11 you need to compile source in legacy mode.
