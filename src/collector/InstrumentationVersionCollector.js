@@ -1,3 +1,5 @@
+import VERSION from '../core/version.constant';
+
 export default class InstrumentationVersionCollector {
 
     constructor(instrumentationVersion) {
@@ -12,7 +14,7 @@ export default class InstrumentationVersionCollector {
     async prepare (event) {
 
         try {
-            event.softwareInfo5 = rciSdk.VERSION;
+            event.softwareInfo5 = VERSION;
             if (typeof this.instrumentationVersion !== 'undefined') {
                 if (
                     typeof this.instrumentationVersion === 'string' &&
