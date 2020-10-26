@@ -28,6 +28,7 @@ import WebBackEndCollector from './collector/WebBackEndCollector';
 import WebPageLoadTimesCollector from './collector/WebPageLoadTimesCollector';
 import WebPaintTimesCollector from './collector/WebPaintTimesCollector';
 import WebVitalsCollector from './collector/WebVitalsCollector';
+import InstrumentationVersionCollector from './collector/InstrumentationVersionCollector';
 
 const collector = {
   defaultCollectors,
@@ -49,7 +50,8 @@ const collector = {
   WebBackEndCollector,
   WebPageLoadTimesCollector,
   WebPaintTimesCollector,
-  WebVitalsCollector
+  WebVitalsCollector,
+  InstrumentationVersionCollector
 };
 
 export {
