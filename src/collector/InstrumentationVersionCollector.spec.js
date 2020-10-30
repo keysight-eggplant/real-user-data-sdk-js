@@ -40,19 +40,6 @@ describe('InstrumentationVersionCollector', () => {
   };
   let instrumentationVersionCollector;
 
-  describe('with RCI SDK corrupt', () => {
-    beforeEach(() => {
-      instrumentationVersionCollector = new InstrumentationVersionCollector();
-    });
-
-    test('Return event with all mandatory fields', async () => {
-      /** @type {Event} */
-      const actualEvent = await instrumentationVersionCollector.prepare(originalEvent);
-
-      expect(actualEvent).toEqual(originalEvent);
-    });
-  });
-
   describe('with no instrumentation version passed', () => {
     beforeEach(() => {
       instrumentationVersionCollector = new InstrumentationVersionCollector();
