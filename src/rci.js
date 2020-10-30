@@ -5,7 +5,7 @@ import NormalizationHelper from './core/Normalization.helper';
 import {
   EVENT_TYPE,
   EVENT_ACTION,
-  JOURNEY_ACTION,
+  JOURNEY_ACTION
 } from './core/constants';
 import VERSION from './core/version.constant';
 import defaultCollectors from './collector/defaultCollectors';
@@ -71,6 +71,6 @@ export {
 const eventName = 'RCICoreReady';
 const RCICoreReadyEvent = new Event(eventName);
 
-/** Dispatch the event and assign the event as a property for non event driven approach*/
+/** Dispatch the event and assign the event as a property for non event driven approach */
 window.dispatchEvent(RCICoreReadyEvent);
 window[eventName] = true;
