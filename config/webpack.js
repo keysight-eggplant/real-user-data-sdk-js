@@ -62,7 +62,10 @@ const currentRules = [
     use: {
       loader: 'babel-loader',
       options: {
-        presets: ['@babel/preset-env']
+        presets: ['@babel/preset-env'],
+        plugins: [
+          ['@babel/plugin-proposal-class-properties']
+        ]
       }
     }
   }
@@ -88,7 +91,7 @@ const legacyRules = [
         plugins: [
           ['@babel/plugin-transform-runtime', {
             corejs: 2
-          }]
+          }, '@babel/plugin-proposal-class-properties']
         ]
       }
     }
