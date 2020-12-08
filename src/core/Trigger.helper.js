@@ -5,7 +5,7 @@ export default class TriggerHelper {
   static onLoadTriggered = false;
 
   /** @type {number} - To be used within {@link WaitAndTriggerOptions.interval} */
-  static defaultInterval = 5;
+  static defaultInterval = 10;
   /** @type {number} - To be used within {@link WaitAndTriggerOptions.timeout} */
   static defaultTimeout = 1000;
 
@@ -44,7 +44,6 @@ export default class TriggerHelper {
       const documentReady = (document.readyState === 'complete' || document.readyState === 'interactive');
       const onloadTriggered = await TriggerHelper.windowOnload();
 
-      console.log(legacyPerf && newPerf && documentReady);
       return legacyPerf && newPerf && documentReady && onloadTriggered;
     } catch (e) {
       return true;
