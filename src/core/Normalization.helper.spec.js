@@ -170,7 +170,16 @@ describe('NormalizationHelper Unit Tests', () => {
 
       expect(actual).toEqual(expected);
     });
-    it('should normalize when the value is string number over half', async () => {
+    it('should normalize when the value is string float below half', async () => {
+
+      const initial = '11.35';
+
+      const actual = NormalizationHelper.normalizeNonZeroPositiveInteger(initial);
+      const expected = 11;
+
+      expect(actual).toEqual(expected);
+    });
+    it('should normalize when the value is string float over half', async () => {
 
       const initial = '11.65';
 
@@ -191,6 +200,24 @@ describe('NormalizationHelper Unit Tests', () => {
     it('should normalize when the value is string 0', async () => {
 
       const initial = '0';
+
+      const actual = NormalizationHelper.normalizeNonZeroPositiveInteger(initial);
+      const expected = null;
+
+      expect(actual).toEqual(expected);
+    });
+    it('should normalize when the value is string 0.0', async () => {
+
+      const initial = '0.0';
+
+      const actual = NormalizationHelper.normalizeNonZeroPositiveInteger(initial);
+      const expected = null;
+
+      expect(actual).toEqual(expected);
+    });
+    it('should normalize when the value is string 00.0000', async () => {
+
+      const initial = '00.0000';
 
       const actual = NormalizationHelper.normalizeNonZeroPositiveInteger(initial);
       const expected = null;

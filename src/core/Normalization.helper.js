@@ -36,12 +36,18 @@ export default class NormalizationHelper {
    * @returns {Number|null}
    */
   static normalizeNonZeroPositiveInteger (value) {
+    /** @type {Number} */
+    let potentialValue;
     if (typeof value === 'string' || value instanceof String) {
       /** If is string */
       if (/^((\d*\.\d+)|(\d+))$/g.test(value)) {
         /** The regex validates if is a number (multi digits, starting with digit, ending with digit) or if is a string float. */
         if (value !== '0') {
-          return Math.round(value);
+          potentialValue = Math.round(value);
+          if (potentialValue !== 0) {
+            return potentialValue;
+          }
+          return null;
         }
         return null;
       }
