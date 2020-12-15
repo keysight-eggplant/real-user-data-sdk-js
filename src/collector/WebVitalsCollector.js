@@ -1,3 +1,5 @@
+import NormalizationHelper from '../core/Normalization.helper';
+
 export default class WebVitalsCollector {
   /**
      * @param {Event} event
@@ -5,7 +7,7 @@ export default class WebVitalsCollector {
      */
   async prepare (event) {
 
-    event.eventDuration8 = await this.getLargestContentfulPaint();
+    event.eventDuration8 = NormalizationHelper.normalizeNonZeroPositiveInteger(await this.getLargestContentfulPaint());
     return event;
   }
 
@@ -32,7 +34,7 @@ export default class WebVitalsCollector {
           `Timing-Allow-Origin` header.)
            * */
           lcp = lastEntry.renderTime || lastEntry.loadTime;
-          resolve(Math.round(lcp));
+          resolve(lcp);
         });
 
         /**

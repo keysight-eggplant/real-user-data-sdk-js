@@ -4,12 +4,12 @@
   "description": "SDK for generating and publishing events that capture user, application and technical data",
   "main": "dist/rci.min.js",
   "scripts": {
-    "test": "jest src && npm run build && karma start",
-    "eslint": "eslint ./src --fix",
-    "build": "webpack --config=config/webpack.js --scope core --rulesTarget current --mode production",
-    "build:legacy": "webpack --config=config/webpack.js --scope core --rulesTarget legacy --mode production",
-    "build:dev": "webpack --config=config/webpack.js --scope core --rulesTarget current --mode development",
-    "build:legacy:dev": "webpack --config=config/webpack.js --scope core --rulesTarget legacy --mode development"
+    "test": "node node_modules/jest/bin/jest.js src && npm run build && node node_modules/karma/bin/karma start",
+    "eslint": "node node_modules/eslint/bin/eslint.js ./src --fix",
+    "build": "node node_modules/webpack/bin/webpack.js --config=config/webpack.js --scope core --rulesTarget current --mode production",
+    "build:legacy": "node node_modules/webpack/bin/webpack.js --config=config/webpack.js --scope core --rulesTarget legacy --mode production",
+    "build:dev": "node node_modules/webpack/bin/webpack.js --config=config/webpack.js --scope core --rulesTarget current --mode development",
+    "build:legacy:dev": "node node_modules/webpack/bin/webpack.js --config=config/webpack.js --scope core --rulesTarget legacy --mode development"
   },
   "repository": {
     "type": "git",
@@ -50,7 +50,7 @@
     "webpack-cli": "^3.3.0"
   },
   "dependencies": {
-    "ua-parser-js": "0.7.22"
+    "ua-parser-js": "^0.7.22"
   },
   "directories": {
     "example": "examples",

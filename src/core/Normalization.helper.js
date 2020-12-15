@@ -29,7 +29,26 @@ export default class NormalizationHelper {
     }
     normalized = Number(normalized.toFixed(0));
     return normalized;
+  }
 
+  /**
+   * @param {Number|null} value
+   * @returns {Number|null}
+   */
+  static normalizeNonZeroPositiveInteger (value) {
+    if (typeof value === 'string' || value instanceof String) {
+      /** If is string */
+      if (/^((\d*\.\d+)|(\d+))$/g.test(value)) {
+        if (value !== '0') {
+          return Math.round(value);
+        }
+        return null;
+      }
+      return null;
+    } if (typeof value === 'number' && value === Number(value) && value !== Infinity && value !== -Infinity && value > 0 && value !== 0) {
+      return Math.round(value);
+    }
+    return null;
 
   }
 }

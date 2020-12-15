@@ -1,3 +1,5 @@
+import NormalizationHelper from '../core/Normalization.helper';
+
 export default class WebPaintTimesCollector {
 
   constructor() {
@@ -13,8 +15,8 @@ export default class WebPaintTimesCollector {
      */
   async prepare (event) {
 
-    event.eventDuration6 = this.getFirstPaint();
-    event.eventDuration7 = this.getFirstContentfulPaint();
+    event.eventDuration6 = NormalizationHelper.normalizeNonZeroPositiveInteger(this.getFirstPaint());
+    event.eventDuration7 = NormalizationHelper.normalizeNonZeroPositiveInteger(this.getFirstContentfulPaint());
     return event;
   }
 
@@ -26,7 +28,7 @@ export default class WebPaintTimesCollector {
     try {
       if (this.currentPerformanceAPI) {
         const firstPaint = WebPaintTimesCollector.getPaint(this.currentPerformanceAPI, 'first-paint');
-        return Math.round(firstPaint);
+        return firstPaint;
       }
       return null;
 
@@ -43,7 +45,7 @@ export default class WebPaintTimesCollector {
   getFirstContentfulPaint() {
     try {
       if (this.currentPerformanceAPI) {
-        return Math.round(WebPaintTimesCollector.getPaint(this.currentPerformanceAPI, 'first-contentful-paint'));
+        return WebPaintTimesCollector.getPaint(this.currentPerformanceAPI, 'first-contentful-paint');
       }
       return null;
 
@@ -68,8 +70,6 @@ export default class WebPaintTimesCollector {
         return PaintAPI[i].startTime;
       }
     }
-
-
     return null;
   }
 

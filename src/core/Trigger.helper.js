@@ -5,7 +5,8 @@ export default class TriggerHelper {
   static onLoadTriggered = false;
 
   /** @type {number} - To be used within {@link WaitAndTriggerOptions.interval} */
-  static defaultInterval = 5;
+  static defaultInterval = 10;
+
   /** @type {number} - To be used within {@link WaitAndTriggerOptions.timeout} */
   static defaultTimeout = 1000;
 
@@ -22,17 +23,12 @@ export default class TriggerHelper {
     }
   }
 
-  static async windowOnload () {
-    if (TriggerHelper.onLoadTriggered === true) {
-      return true;
-    } else {
-      return new Promise((resolve, reject) => {
-        window.onload = () => {
-          TriggerHelper.onLoadTriggered = true;
-          resolve(TriggerHelper.onLoadTriggered);
-        };
-      });
-    }
+  /** This will be completely async compared to the rest of the code to avoid duplication of event handlers.
+   * When it will eventually trigger, it will just modify a flag on the class itself which will be queried by the rest of the triggering mechanism */
+  static setWindowOnload () {
+    window.onload = () => {
+      TriggerHelper.onLoadTriggered = true;
+    };
   }
 
   static async defaultCondition () {
@@ -42,10 +38,12 @@ export default class TriggerHelper {
       let newPerf = performance.getEntriesByType('navigation')[0];
       newPerf = ((newPerf.domComplete - newPerf.startTime) > 0);
       const documentReady = (document.readyState === 'complete' || document.readyState === 'interactive');
-      const onloadTriggered = await TriggerHelper.windowOnload();
 
-      console.log(legacyPerf && newPerf && documentReady);
-      return legacyPerf && newPerf && documentReady && onloadTriggered;
+      console.log(legacyPerf);
+      console.log(newPerf);
+      console.log(documentReady);
+      console.log(TriggerHelper.onLoadTriggered);
+      return legacyPerf && newPerf && documentReady && TriggerHelper.onLoadTriggered;
     } catch (e) {
       return true;
     }
@@ -77,6 +75,9 @@ export default class TriggerHelper {
      */
   static async waitAndTrigger (options) {
     let intervalCollector = 0;
+
+    /** Set the event handler for onload only once and populate the flag when that is triggered */
+    TriggerHelper.setWindowOnload();
 
     const maxIterations = Math.ceil(options.timeout / options.interval);
 
