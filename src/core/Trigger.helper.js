@@ -39,10 +39,6 @@ export default class TriggerHelper {
       newPerf = ((newPerf.domComplete - newPerf.startTime) > 0);
       const documentReady = (document.readyState === 'complete' || document.readyState === 'interactive');
 
-      console.log(legacyPerf);
-      console.log(newPerf);
-      console.log(documentReady);
-      console.log(TriggerHelper.onLoadTriggered);
       return legacyPerf && newPerf && documentReady && TriggerHelper.onLoadTriggered;
     } catch (e) {
       return true;
