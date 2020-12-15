@@ -1,3 +1,5 @@
+import NormalizationHelper from '../core/Normalization.helper';
+
 export default class WebPageLoadTimesCollector {
 
   constructor() {
@@ -12,10 +14,10 @@ export default class WebPageLoadTimesCollector {
      * @returns {Promise<*>|Event}
      */
   async prepare (event) {
-    event.eventDuration2 = this.getDOMInteractive();
-    event.eventDuration3 = this.getLoadEventStart();
-    event.eventDuration4 = this.getDOMComplete();
-    event.eventDuration5 = this.getLoadEventEnd();
+    event.eventDuration2 = NormalizationHelper.normalizeNonZeroPositiveInteger(this.getDOMInteractive());
+    event.eventDuration3 = NormalizationHelper.normalizeNonZeroPositiveInteger(this.getLoadEventStart());
+    event.eventDuration4 = NormalizationHelper.normalizeNonZeroPositiveInteger(this.getDOMComplete());
+    event.eventDuration5 = NormalizationHelper.normalizeNonZeroPositiveInteger(this.getLoadEventEnd());
     return event;
   }
 

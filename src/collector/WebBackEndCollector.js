@@ -1,3 +1,5 @@
+import NormalizationHelper from '../core/Normalization.helper';
+
 export default class WebBackEndCollector {
 
   constructor() {
@@ -12,7 +14,7 @@ export default class WebBackEndCollector {
      * @returns {Promise<*>|Event}
      */
   async prepare (event) {
-    event.eventDuration1 = this.getResponseStart();
+    event.eventDuration1 = NormalizationHelper.normalizeNonZeroPositiveInteger(this.getResponseStart());
     return event;
   }
 

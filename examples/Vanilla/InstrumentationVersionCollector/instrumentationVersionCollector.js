@@ -23,7 +23,8 @@
 
 
   rciSdk.TriggerHelper.waitAndTrigger({
-    interval: 1, condition: rciSdk.TriggerHelper.defaultCondition, action: rciSdk.TriggerHelper.action, timeout: 1000, producer
+    ...rciSdk.TriggerHelper.defaultWaitAndTriggerOptions,
+    producer
   });
 
 

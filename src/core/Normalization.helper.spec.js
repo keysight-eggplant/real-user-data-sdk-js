@@ -1,135 +1,273 @@
 import NormalizationHelper from './Normalization.helper';
 
 describe('NormalizationHelper Unit Tests', () => {
+  describe('normalizeGoalValue', () => {
+    it('should normalize an empty string', async () => {
 
-  it('should normalize an empty string', async () => {
+      const initial = '';
 
-    const initial = '';
+      const actual = NormalizationHelper.normalizeGoalValue(initial);
+      const expected = null;
 
-    const actual = NormalizationHelper.normalizeGoalValue(initial);
-    const expected = null;
+      expect(actual).toEqual(expected);
+    });
+    it('should normalize when is an integer', async () => {
 
-    expect(actual).toEqual(expected);
+      const initial = 948;
+
+      const actual = NormalizationHelper.normalizeGoalValue(initial);
+      const expected = 94800;
+
+      expect(actual).toEqual(expected);
+    });
+    it('should normalize when is a float', async () => {
+
+      const initial = 948.342;
+
+      const actual = NormalizationHelper.normalizeGoalValue(initial);
+      const expected = 94834;
+
+      expect(actual).toEqual(expected);
+    });
+
+    it('should normalize when is a float (one decimal)', async () => {
+
+      const initial = 948.3;
+
+      const actual = NormalizationHelper.normalizeGoalValue(initial);
+      const expected = 94830;
+
+      expect(actual).toEqual(expected);
+    });
+
+    it('should normalize when is an integer (as string)', async () => {
+
+      const initial = '948';
+
+      const actual = NormalizationHelper.normalizeGoalValue(initial);
+      const expected = 94800;
+
+      expect(actual).toEqual(expected);
+    });
+    it('should normalize when is a float (as string)', async () => {
+
+      const initial = '948.342';
+
+      const actual = NormalizationHelper.normalizeGoalValue(initial);
+      const expected = 94834;
+
+      expect(actual).toEqual(expected);
+    });
+
+    it('should normalize when is a float (one decimal) (as string)', async () => {
+
+      const initial = '948.3';
+
+      const actual = NormalizationHelper.normalizeGoalValue(initial);
+      const expected = 94830;
+
+      expect(actual).toEqual(expected);
+    });
+
+    it('should normalize an empty string with fullUnit on false', async () => {
+
+      const initial = '';
+
+      const actual = NormalizationHelper.normalizeGoalValue(initial, false);
+      const expected = null;
+
+      expect(actual).toEqual(expected);
+    });
+    it('should normalize when is an integer with fullUnit on false (as string)', async () => {
+
+      const initial = '948';
+
+      const actual = NormalizationHelper.normalizeGoalValue(initial, false);
+      const expected = 948;
+
+      expect(actual).toEqual(expected);
+    });
+    it('should normalize when is a float with fullUnit on false (as string)', async () => {
+
+      const initial = '948.342';
+
+      const actual = NormalizationHelper.normalizeGoalValue(initial, false);
+      const expected = 948;
+
+      expect(actual).toEqual(expected);
+    });
+    it('should normalize when is a float (one decimal) with fullUnit on false (as string)', async () => {
+
+      const initial = '948.3';
+
+      const actual = NormalizationHelper.normalizeGoalValue(initial, false);
+      const expected = 948;
+
+      expect(actual).toEqual(expected);
+    });
+    it('should normalize when is an integer with fullUnit on false', async () => {
+
+      const initial = 948;
+
+      const actual = NormalizationHelper.normalizeGoalValue(initial, false);
+      const expected = 948;
+
+      expect(actual).toEqual(expected);
+    });
+    it('should normalize when is a float with fullUnit on false', async () => {
+
+      const initial = 948.342;
+
+      const actual = NormalizationHelper.normalizeGoalValue(initial, false);
+      const expected = 948;
+
+      expect(actual).toEqual(expected);
+    });
+    it('should normalize when is a float (one decimal) with fullUnit on false', async () => {
+
+      const initial = 948.3;
+
+      const actual = NormalizationHelper.normalizeGoalValue(initial, false);
+      const expected = 948;
+
+      expect(actual).toEqual(expected);
+    });
   });
-  it('should normalize when is an integer', async () => {
+  describe('normalizeNonZeroPositiveInteger', () => {
+    it('should normalize when the value is null', async () => {
 
-    const initial = 948;
+      const initial = null;
 
-    const actual = NormalizationHelper.normalizeGoalValue(initial);
-    const expected = 94800;
+      const actual = NormalizationHelper.normalizeNonZeroPositiveInteger(initial);
+      const expected = null;
 
-    expect(actual).toEqual(expected);
-  });
-  it('should normalize when is a float', async () => {
+      expect(actual).toEqual(expected);
+    });
+    it('should normalize when the value is float', async () => {
 
-    const initial = 948.342;
+      const initial = 11.33;
 
-    const actual = NormalizationHelper.normalizeGoalValue(initial);
-    const expected = 94834;
+      const actual = NormalizationHelper.normalizeNonZeroPositiveInteger(initial);
+      const expected = 11;
 
-    expect(actual).toEqual(expected);
-  });
+      expect(actual).toEqual(expected);
+    });
+    it('should normalize when the value is float over half', async () => {
 
-  it('should normalize when is a float (one decimal)', async () => {
+      const initial = 11.63;
 
-    const initial = 948.3;
+      const actual = NormalizationHelper.normalizeNonZeroPositiveInteger(initial);
+      const expected = 12;
 
-    const actual = NormalizationHelper.normalizeGoalValue(initial);
-    const expected = 94830;
+      expect(actual).toEqual(expected);
+    });
+    it('should normalize when the value is string number', async () => {
 
-    expect(actual).toEqual(expected);
-  });
+      const initial = '11';
 
-  it('should normalize when is an integer (as string)', async () => {
+      const actual = NormalizationHelper.normalizeNonZeroPositiveInteger(initial);
+      const expected = 11;
 
-    const initial = '948';
+      expect(actual).toEqual(expected);
+    });
+    it('should normalize when the value is string float below half', async () => {
 
-    const actual = NormalizationHelper.normalizeGoalValue(initial);
-    const expected = 94800;
+      const initial = '11.35';
 
-    expect(actual).toEqual(expected);
-  });
-  it('should normalize when is a float (as string)', async () => {
+      const actual = NormalizationHelper.normalizeNonZeroPositiveInteger(initial);
+      const expected = 11;
 
-    const initial = '948.342';
+      expect(actual).toEqual(expected);
+    });
+    it('should normalize when the value is string float over half', async () => {
 
-    const actual = NormalizationHelper.normalizeGoalValue(initial);
-    const expected = 94834;
+      const initial = '11.65';
 
-    expect(actual).toEqual(expected);
-  });
+      const actual = NormalizationHelper.normalizeNonZeroPositiveInteger(initial);
+      const expected = 12;
 
-  it('should normalize when is a float (one decimal) (as string)', async () => {
+      expect(actual).toEqual(expected);
+    });
+    it('should normalize when the value is 0', async () => {
 
-    const initial = '948.3';
+      const initial = 0;
 
-    const actual = NormalizationHelper.normalizeGoalValue(initial);
-    const expected = 94830;
+      const actual = NormalizationHelper.normalizeNonZeroPositiveInteger(initial);
+      const expected = null;
 
-    expect(actual).toEqual(expected);
-  });
+      expect(actual).toEqual(expected);
+    });
+    it('should normalize when the value is string 0', async () => {
 
-  it('should normalize an empty string with fullUnit on false', async () => {
+      const initial = '0';
 
-    const initial = '';
+      const actual = NormalizationHelper.normalizeNonZeroPositiveInteger(initial);
+      const expected = null;
 
-    const actual = NormalizationHelper.normalizeGoalValue(initial, false);
-    const expected = null;
+      expect(actual).toEqual(expected);
+    });
+    it('should normalize when the value is string 0.0', async () => {
 
-    expect(actual).toEqual(expected);
-  });
-  it('should normalize when is an integer with fullUnit on false (as string)', async () => {
+      const initial = '0.0';
 
-    const initial = '948';
+      const actual = NormalizationHelper.normalizeNonZeroPositiveInteger(initial);
+      const expected = null;
 
-    const actual = NormalizationHelper.normalizeGoalValue(initial, false);
-    const expected = 948;
+      expect(actual).toEqual(expected);
+    });
+    it('should normalize when the value is string 00.0000', async () => {
 
-    expect(actual).toEqual(expected);
-  });
-  it('should normalize when is a float with fullUnit on false (as string)', async () => {
+      const initial = '00.0000';
 
-    const initial = '948.342';
+      const actual = NormalizationHelper.normalizeNonZeroPositiveInteger(initial);
+      const expected = null;
 
-    const actual = NormalizationHelper.normalizeGoalValue(initial, false);
-    const expected = 948;
+      expect(actual).toEqual(expected);
+    });
+    it('should normalize when the value is a negative number', async () => {
 
-    expect(actual).toEqual(expected);
-  });
-  it('should normalize when is a float (one decimal) with fullUnit on false (as string)', async () => {
+      const initial = -6;
 
-    const initial = '948.3';
+      const actual = NormalizationHelper.normalizeNonZeroPositiveInteger(initial);
+      const expected = null;
 
-    const actual = NormalizationHelper.normalizeGoalValue(initial, false);
-    const expected = 948;
+      expect(actual).toEqual(expected);
+    });
+    it('should normalize when the value is a negative float', async () => {
 
-    expect(actual).toEqual(expected);
-  });
-  it('should normalize when is an integer with fullUnit on false', async () => {
+      const initial = -6.54;
 
-    const initial = 948;
+      const actual = NormalizationHelper.normalizeNonZeroPositiveInteger(initial);
+      const expected = null;
 
-    const actual = NormalizationHelper.normalizeGoalValue(initial, false);
-    const expected = 948;
+      expect(actual).toEqual(expected);
+    });
+    it('should normalize when the value is a string', async () => {
 
-    expect(actual).toEqual(expected);
-  });
-  it('should normalize when is a float with fullUnit on false', async () => {
+      const initial = 'lorem';
 
-    const initial = 948.342;
+      const actual = NormalizationHelper.normalizeNonZeroPositiveInteger(initial);
+      const expected = null;
 
-    const actual = NormalizationHelper.normalizeGoalValue(initial, false);
-    const expected = 948;
+      expect(actual).toEqual(expected);
+    });
+    it('should normalize when the value is a boolean', async () => {
 
-    expect(actual).toEqual(expected);
-  });
-  it('should normalize when is a float (one decimal) with fullUnit on false', async () => {
+      const initial = true;
 
-    const initial = 948.3;
+      const actual = NormalizationHelper.normalizeNonZeroPositiveInteger(initial);
+      const expected = null;
 
-    const actual = NormalizationHelper.normalizeGoalValue(initial, false);
-    const expected = 948;
+      expect(actual).toEqual(expected);
+    });
+    it('should normalize when the value is an object', async () => {
 
-    expect(actual).toEqual(expected);
+      const initial = {a: 'b'};
+
+      const actual = NormalizationHelper.normalizeNonZeroPositiveInteger(initial);
+      const expected = null;
+
+      expect(actual).toEqual(expected);
+    });
   });
 });
