@@ -39,7 +39,7 @@ export default class NormalizationHelper {
     if (typeof value === 'string' || value instanceof String) {
       /** If is string */
       if (/^((\d*\.\d+)|(\d+))$/g.test(value)) {
-        /** The regex validates if is a number (multi digits, starting with digit, ending with digit) or if is a float. */
+        /** The regex validates if is a number (multi digits, starting with digit, ending with digit) or if is a string float. */
         if (value !== '0') {
           return Math.round(value);
         }
