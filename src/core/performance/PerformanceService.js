@@ -1,5 +1,3 @@
-import performanceStatus from './performanceStatus';
-
 export default class PerformanceService {
 
   STATUS = {
