@@ -1,4 +1,4 @@
-import uuid from './utility/uuid';
+import uuid from '../core/utility/uuid';
 
 const localStorageClientIdKey = 'eggplantRciClientId';
 

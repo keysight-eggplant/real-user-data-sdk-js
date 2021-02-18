@@ -1,4 +1,4 @@
-import UserAgentParser from './utility/UserAgentParser';
+import UserAgentParser from '../core/utility/UserAgentParser';
 
 export default class DeviceTypeCollector extends UserAgentParser {
 

@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-import UserAgentParser from './utility/UserAgentParser';
+import UserAgentParser from '../core/utility/UserAgentParser';
 
 export default class SoftwareCollector extends UserAgentParser {
 
