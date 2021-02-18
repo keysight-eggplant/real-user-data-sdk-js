@@ -132,7 +132,6 @@ export default class PerformanceNavigationPaintTimingService extends Performance
    */
   getFirstContentfulPaint() {
     try {
-      console.log(NormalizationHelper.normalizeNonZeroPositiveInteger(this.getPaintData('first-paint').startTime));
       return NormalizationHelper.normalizeNonZeroPositiveInteger(
         this.getPaintData('first-contentful-paint').startTime
       );
