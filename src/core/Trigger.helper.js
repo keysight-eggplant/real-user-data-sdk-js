@@ -31,8 +31,11 @@ export default class TriggerHelper {
   static async defaultCondition () {
     const performanceService = performanceServiceFactory.create();
     const performanceStatus = await performanceService.getStatus();
-    return document.readyState === 'complete'
-      && performanceStatus === performanceService.STATUS.COMPLETE;
+    const documentReady = (
+      document.readyState === 'complete'
+      || document.readyState === 'interactive'
+    );
+    return documentReady && performanceStatus === performanceService.STATUS.COMPLETE;
   }
 
   /**
