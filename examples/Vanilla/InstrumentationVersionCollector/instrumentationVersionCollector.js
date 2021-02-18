@@ -1,4 +1,4 @@
-((tenancyId, rciSdk) => {
+function rciMainAction(tenancyId, rciSdk) {
   // Step 1: Configure your Transport with the tenancyId provided
   const targetUrl = `https://target.domain/v1/${tenancyId}/stream`;
   const transport = new rciSdk.Transport(targetUrl);
@@ -20,12 +20,22 @@
 
   // Step 4: Register your hook
   // Caution: There may already be an onload registered - in which case use a decorator pattern.
-
-
   rciSdk.TriggerHelper.waitAndTrigger({
     ...rciSdk.TriggerHelper.defaultWaitAndTriggerOptions,
     producer
   });
 
+}
 
-})('123-456', rciSdk);
+const tenancyId = '123-456';
+
+// Trigger the RCI instrumentation bootstrap process straight away
+if (window.hasOwnProperty('RCICoreReady')) {
+  rciMainAction(tenancyId, window.rciSdk);
+
+// Bind on event and wait for dispatch by the SDK
+} else {
+  window.addEventListener('RCICoreReady', (e) => {
+    rciMainAction(tenancyId, window.rciSdk);
+  });
+}

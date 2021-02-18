@@ -1,4 +1,4 @@
-async function rciMainAction(tenancyId, rciSdk) {
+function rciMainAction(tenancyId, rciSdk) {
   // Step 1: Configure your Transport with the tenancyId provided
   const targetUrl = `https://target.domain/v1/${tenancyId}/stream`;
   const transport = new rciSdk.Transport(targetUrl);
@@ -23,9 +23,7 @@ async function rciMainAction(tenancyId, rciSdk) {
 
   // Step 4: Register your hook
   // Caution: There may already be an onload registered - in which case use a decorator pattern.
-
-
-  await rciSdk.TriggerHelper.waitAndTrigger({
+  rciSdk.TriggerHelper.waitAndTrigger({
     ...rciSdk.TriggerHelper.defaultWaitAndTriggerOptions,
     producer
   });
@@ -44,4 +42,3 @@ if (window.hasOwnProperty('RCICoreReady')) {
     rciMainAction(tenancyId, window.rciSdk);
   });
 }
-
