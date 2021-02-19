@@ -1,7 +1,7 @@
 import PerformanceService from './PerformanceService';
 import NormalizationHelper from '../Normalization.helper';
 
-export default class PerformanceTimingService extends PerformanceService {
+export default class NavigationV1PerformanceService extends PerformanceService {
   /**
    * Return the status of the Performance Service
    * @returns {string}

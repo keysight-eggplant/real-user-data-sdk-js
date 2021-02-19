@@ -1,7 +1,8 @@
 import UserAgentParser from '../utility/UserAgentParser'
-import PerformanceNavigationPaintTimingService from './PerformanceNavigationPaintTimingService';
+import NavigationV2WithPaintPerformanceService from './NavigationV2WithPaintPerformanceService';
 import PerformanceService from './PerformanceService';
-import PerformanceTimingService from './PerformanceTimingService';
+import NavigationV1PerformanceService from './NavigationV1PerformanceService';
+import NavigationV2PerformanceService from './NavigationV2PerformanceService';
 
 export default class PerformanceServiceFactory {
   constructor() {
@@ -19,20 +20,24 @@ export default class PerformanceServiceFactory {
       case 'chrome webview':
       case 'chromium':
       case 'edge':
-      case 'firefox':
-      case 'firefox focus':
-      case 'mozilla':
       case 'opera':
       case 'opera mini':
       case 'opera touch':
       case 'samsung browser':
       case 'webkit':
         // https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming#browser_compatibility
-        return new PerformanceNavigationPaintTimingService();
+        // https://developer.mozilla.org/en-US/docs/Web/API/PerformancePaintTiming
+        return new NavigationV2WithPaintPerformanceService();
+
+      case 'firefox':
+      case 'firefox focus':
+      case 'mozilla':
+        // https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming#browser_compatibility
+        return new NavigationV2PerformanceService();
 
       case 'safari':
       case 'safari mobile':
-        return new PerformanceTimingService();
+        return new NavigationV1PerformanceService();
 
       default:
         return new PerformanceService();
