@@ -36,7 +36,7 @@ export default class PerformanceServiceFactory {
         return new NavigationV2PerformanceService();
 
       case 'safari':
-      case 'safari mobile':
+      case 'mobile safari':
         return new NavigationV1PerformanceService();
 
       default:
