@@ -1,6 +1,6 @@
 function rciMainAction(tenancyId, rciSdk) {
   // Step 1: Configure your Transport with the tenancyId provided
-  const targetUrl = `https://event.dev.real-user-data.webperfdev.com/v1/${tenancyId}/stream`;
+  const targetUrl = `https://target.domain/v1/${tenancyId}/stream`;
   const transport = new rciSdk.Transport(targetUrl);
 
   // Step 2.a: Capture your default collectors
