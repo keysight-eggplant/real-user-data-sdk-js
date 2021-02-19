@@ -15,7 +15,7 @@ export default class NavigationV1PerformanceService extends PerformanceService {
       !!this.getLoadEventEnd()
     ];
 
-    if (!timings.filter((i) => { return i === false; }).length) {
+    if (!timings.filter((i) => i === false).length) {
       return this.STATUS.COMPLETE;
     }
 

@@ -1,7 +1,8 @@
 import NormalizationHelper from '../Normalization.helper';
 import NavigationV2PerformanceService from './NavigationV2PerformanceService';
 
-export default class NavigationV2WithPaintPerformanceService extends NavigationV2PerformanceService {
+export default class NavigationV2WithPaintPerformanceService
+  extends NavigationV2PerformanceService {
   /**
    * Return the status of the Performance Service
    * @returns {string}
@@ -17,7 +18,7 @@ export default class NavigationV2WithPaintPerformanceService extends NavigationV
       !!this.getFirstContentfulPaint()
     ];
 
-    if (!timings.filter((i) => { return i === false; }).length) {
+    if (!timings.filter((i) => i === false).length) {
       return this.STATUS.COMPLETE;
     }
 
@@ -29,9 +30,7 @@ export default class NavigationV2WithPaintPerformanceService extends NavigationV
    * @returns {object}
    */
   getPaintData(type) {
-    return window.performance.getEntriesByType('paint').filter((i) => {
-      return i.name === type;
-    })[0];
+    return window.performance.getEntriesByType('paint').filter((i) => i.name === type)[0];
   }
 
   /**

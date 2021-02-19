@@ -1,4 +1,4 @@
-import UserAgentParser from '../utility/UserAgentParser'
+import UserAgentParser from '../utility/UserAgentParser';
 import NavigationV2WithPaintPerformanceService from './NavigationV2WithPaintPerformanceService';
 import PerformanceService from './PerformanceService';
 import NavigationV1PerformanceService from './NavigationV1PerformanceService';

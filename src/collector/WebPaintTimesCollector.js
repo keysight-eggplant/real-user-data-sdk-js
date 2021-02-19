@@ -2,8 +2,16 @@ import PerformanceServiceFactory from '../core/performance/PerformanceServiceFac
 
 export default class WebPaintTimesCollector {
 
-  constructor() {
-    this.performanceServiceFactory = new PerformanceServiceFactory();
+  /**
+   * @param {PerformanceService} performanceServiceFactory
+   */
+  constructor(performanceServiceFactory) {
+    // Optional
+    if (performanceServiceFactory) {
+      this.performanceServiceFactory = performanceServiceFactory;
+    } else {
+      this.performanceServiceFactory = new PerformanceServiceFactory();
+    }
   }
 
   /**

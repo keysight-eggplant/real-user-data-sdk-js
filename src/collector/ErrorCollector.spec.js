@@ -14,6 +14,7 @@ describe('ErrorCollector', () => {
 
   const expectedEvent = {
     ...originalEvent,
+    eventType: 'error',
     errorCode: '404',
     errorType: 'Not Found',
     errorFatal: true
@@ -35,6 +36,7 @@ describe('ErrorCollector', () => {
   test('Return correct error properties', async () => {
     const actualEvent = await errorCollector.prepare(originalEvent);
 
+    expect(actualEvent.eventType).toEqual(expectedEvent.eventType);
     expect(actualEvent.errorCode).toEqual(expectedEvent.errorCode);
     expect(actualEvent.errorType).toEqual(expectedEvent.errorType);
     expect(actualEvent.errorFatal).toEqual(expectedEvent.errorFatal);

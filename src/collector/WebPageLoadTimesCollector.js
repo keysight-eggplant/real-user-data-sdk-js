@@ -1,10 +1,17 @@
-import NormalizationHelper from '../core/Normalization.helper';
 import PerformanceServiceFactory from '../core/performance/PerformanceServiceFactory';
 
 export default class WebPageLoadTimesCollector {
 
-  constructor() {
-    this.performanceServiceFactory = new PerformanceServiceFactory();
+  /**
+   * @param {PerformanceService} performanceServiceFactory
+   */
+  constructor(performanceServiceFactory) {
+    // Optional
+    if (performanceServiceFactory) {
+      this.performanceServiceFactory = performanceServiceFactory;
+    } else {
+      this.performanceServiceFactory = new PerformanceServiceFactory();
+    }
   }
 
   /**
