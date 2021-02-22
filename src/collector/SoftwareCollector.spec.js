@@ -118,7 +118,7 @@ describe('SoftwareCollector', () => {
 
       const actualEvent = await softwareCollector.prepare(originalEvent);
 
-      expect(actualEvent.encoding).toEqual('');
+      expect(actualEvent.encoding).toEqual(null);
     });
 
     test('Return event with viewportHeight null when it can not find viewportHeight', async () => {
@@ -172,7 +172,7 @@ describe('SoftwareCollector', () => {
       document.documentElement.__defineGetter__('lang', () => '');
       const actualEvent = await softwareCollector.prepare(originalEvent);
 
-      expect(actualEvent.language).toEqual('');
+      expect(actualEvent.language).toEqual(null);
     });
 
     test('Return event with new language when lang is empty', async () => {
@@ -239,6 +239,24 @@ describe('SoftwareCollector', () => {
 
       expect(actualEvent.softwareInfo2).toEqual('123445');
       expect(actualEvent.softwareInfo3).toEqual('123445');
+    });
+
+  });
+
+  describe('Valid UA with new empty browser modified custom value', () => {
+    beforeEach(() => {
+      const userAgentString = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/ Safari/7046A194A';
+
+      navigator.__defineGetter__('userAgent', () => userAgentString);
+
+      softwareCollector = new SoftwareCollector();
+    });
+
+    test('Return event with new browser version', async () => {
+      const actualEvent = await softwareCollector.prepare(originalEvent);
+
+      expect(actualEvent.softwareInfo2).toEqual(null);
+      expect(actualEvent.softwareInfo3).toEqual(null);
     });
 
   });
