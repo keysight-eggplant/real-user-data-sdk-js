@@ -1,4 +1,4 @@
-((tenancyId, rciSdk) => {
+function rciMainAction(tenancyId, rciSdk) {
   // Step 1: Define your Factory
   const rciSdkProducerFactory = (customCollectors) => {
     const targetUrl = `https://target.domain/v1/${tenancyId}/stream`;
@@ -27,4 +27,17 @@
     }
   });
 
-})('123-456', rciSdk);
+}
+
+const tenancyId = '123-456';
+
+// Trigger the RCI instrumentation bootstrap process straight away
+if (window.hasOwnProperty('RCICoreReady')) {
+  rciMainAction(tenancyId, window.rciSdk);
+
+// Bind on event and wait for dispatch by the SDK
+} else {
+  window.addEventListener('RCICoreReady', (e) => {
+    rciMainAction(tenancyId, window.rciSdk);
+  });
+}

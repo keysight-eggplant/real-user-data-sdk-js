@@ -62,7 +62,9 @@ describe('InstrumentationVersionCollector', () => {
 
   describe('with no instrumentation version passed as hash', () => {
     beforeEach(() => {
-      instrumentationVersionCollector = new InstrumentationVersionCollector(instrumentationVersionHash);
+      instrumentationVersionCollector = new InstrumentationVersionCollector(
+        instrumentationVersionHash
+      );
     });
 
     test('Return event with all mandatory fields', async () => {
@@ -72,11 +74,14 @@ describe('InstrumentationVersionCollector', () => {
       expect(actualEvent).toEqual(expectedEventWithCoreAndInstrumentationAsHash);
     });
 
-    test('Return event with the core version if an instrumentation version is passed as hash', async () => {
+    test('Return event with the core version if an'
+      + ' instrumentation version is passed as hash', async () => {
       /** @type {Event} */
       const actualEvent = await instrumentationVersionCollector.prepare(originalEvent);
 
-      expect(actualEvent.softwareInfo5).toEqual(expectedEventWithCoreAndInstrumentationAsHash.softwareInfo5);
+      expect(actualEvent.softwareInfo5).toEqual(
+        expectedEventWithCoreAndInstrumentationAsHash.softwareInfo5
+      );
     });
   });
 
@@ -96,7 +101,9 @@ describe('InstrumentationVersionCollector', () => {
       /** @type {Event} */
       const actualEvent = await instrumentationVersionCollector.prepare(originalEvent);
 
-      expect(actualEvent.softwareInfo5).toEqual(expectedEventWithCoreAndInstrumentationAsVersion.softwareInfo5);
+      expect(actualEvent.softwareInfo5).toEqual(
+        expectedEventWithCoreAndInstrumentationAsVersion.softwareInfo5
+      );
     });
   });
 

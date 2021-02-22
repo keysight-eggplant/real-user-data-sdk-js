@@ -50,7 +50,7 @@
     "webpack-cli": "^3.3.0"
   },
   "dependencies": {
-    "ua-parser-js": "^0.7.22"
+    "ua-parser-js": "^0.7.24"
   },
   "directories": {
     "example": "examples",

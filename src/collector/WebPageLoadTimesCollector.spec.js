@@ -1,3 +1,4 @@
+import Sinon from 'sinon';
 import WebPageLoadTimesCollector from './WebPageLoadTimesCollector';
 
 describe('WebPageLoadTimesCollector', () => {
@@ -11,65 +12,40 @@ describe('WebPageLoadTimesCollector', () => {
     deviceType: 'mobile'
   };
 
-  const newPerfAPIResponse = [
-    {
-      domInteractive: 1186,
-      loadEventStart: 2531,
-      domComplete: 2588,
-      loadEventEnd: 2603
-    }
-  ];
-
-  const navTimingResponse = {
-    navigationStart: 1601621586412,
-    domInteractive: 1601621587598,
-    loadEventStart: 1601621588943,
-    domComplete: 1601621589000,
-    loadEventEnd: 1601621589015
-  };
-
   /** @type {Event} */
   const expectedEvent = {
     ...originalEvent,
-    eventDuration2: 1186,
-    eventDuration3: 2531,
-    eventDuration4: 2588,
-    eventDuration5: 2603
+    eventDuration2: 555,
+    eventDuration3: 556,
+    eventDuration4: 557,
+    eventDuration5: 558
   };
+  let collector;
+  let performanceService;
 
-  /** @type {Event} */
-  const noAPIExpectedEvent = {
-    ...originalEvent,
-    eventDuration2: null,
-    eventDuration3: null,
-    eventDuration4: null,
-    eventDuration5: null
-  };
-  let webPageLoadTimesCollector;
-
-  beforeEach(() => {
-    global.window.performance = undefined;
-  });
-
-  describe('with current Performance API', () => {
+  describe('with Performance Service', () => {
     beforeEach(() => {
-
-      global.window.performance.getEntriesByType = jest.fn().mockReturnValueOnce(newPerfAPIResponse);
-
-      webPageLoadTimesCollector = new WebPageLoadTimesCollector();
+      performanceService = {};
+      performanceService.getDOMInteractive = Sinon.stub().onCall(0).returns(555);
+      performanceService.getLoadEventStart = Sinon.stub().onCall(0).returns(556);
+      performanceService.getDOMComplete = Sinon.stub().onCall(0).returns(557);
+      performanceService.getLoadEventEnd = Sinon.stub().onCall(0).returns(558);
+      const performanceFactory = {};
+      performanceFactory.create = Sinon.stub().onCall(0).returns(performanceService);
+      collector = new WebPageLoadTimesCollector(performanceFactory);
     });
 
     test('Return event with all mandatory fields', async () => {
       /** @type {Event} */
-      const actualEvent = await webPageLoadTimesCollector.prepare(originalEvent);
+      const actualEvent = await collector.prepare(originalEvent);
 
       expect(actualEvent).toEqual(expectedEvent);
     });
 
 
-    test('Return correct page load metrics', async () => {
+    test('Return correct response start', async () => {
       /** @type {Event} */
-      const actualEvent = await webPageLoadTimesCollector.prepare(originalEvent);
+      const actualEvent = await collector.prepare(originalEvent);
 
       expect(actualEvent.eventDuration2).toEqual(expectedEvent.eventDuration2);
       expect(actualEvent.eventDuration3).toEqual(expectedEvent.eventDuration3);
@@ -77,66 +53,14 @@ describe('WebPageLoadTimesCollector', () => {
       expect(actualEvent.eventDuration5).toEqual(expectedEvent.eventDuration5);
     });
 
-    afterEach(() => {
-
-      global.window.performance.getEntriesByType = undefined;
-
-    });
-  });
-
-  describe('with old Performance API', () => {
-    beforeEach(() => {
-
-      global.window.performance.timing = navTimingResponse;
-
-      webPageLoadTimesCollector = new WebPageLoadTimesCollector();
-    });
-
-    test('Return event with all mandatory fields', async () => {
+    test('Calls performance service', async () => {
       /** @type {Event} */
-      const actualEvent = await webPageLoadTimesCollector.prepare(originalEvent);
+      await collector.prepare(originalEvent);
 
-      expect(actualEvent).toEqual(expectedEvent);
-    });
-
-
-    test('Return correct page load metrics', async () => {
-      /** @type {Event} */
-      const actualEvent = await webPageLoadTimesCollector.prepare(originalEvent);
-
-      expect(actualEvent.eventDuration2).toEqual(expectedEvent.eventDuration2);
-      expect(actualEvent.eventDuration3).toEqual(expectedEvent.eventDuration3);
-      expect(actualEvent.eventDuration4).toEqual(expectedEvent.eventDuration4);
-      expect(actualEvent.eventDuration5).toEqual(expectedEvent.eventDuration5);
-    });
-
-    afterEach(() => {
-
-      global.window.performance.timing = undefined;
-
-    });
-  });
-
-  describe('with no Performance API', () => {
-    beforeEach(() => {
-      webPageLoadTimesCollector = new WebPageLoadTimesCollector();
-    });
-
-    test('Return event with all mandatory fields', async () => {
-      /** @type {Event} */
-      const actualEvent = await webPageLoadTimesCollector.prepare(originalEvent);
-      expect(actualEvent).toEqual(noAPIExpectedEvent);
-    });
-
-
-    test('Return correct page load metrics', async () => {
-      /** @type {Event} */
-      const actualEvent = await webPageLoadTimesCollector.prepare(originalEvent);
-
-      expect(actualEvent.eventDuration2).toEqual(null);
-      expect(actualEvent.eventDuration3).toEqual(null);
-      expect(actualEvent.eventDuration4).toEqual(null);
-      expect(actualEvent.eventDuration5).toEqual(null);
+      performanceService.getDOMInteractive.calledOnceWithExactly();
+      performanceService.getLoadEventStart.calledOnceWithExactly();
+      performanceService.getDOMComplete.calledOnceWithExactly();
+      performanceService.getLoadEventEnd.calledOnceWithExactly();
     });
   });
 });

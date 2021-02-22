@@ -1,8 +1,13 @@
 /* eslint-disable no-plusplus */
 /* eslint no-await-in-loop: 0 */
-export default class TriggerHelper {
+import PerformanceServiceFactory from './performance/PerformanceServiceFactory';
+import ErrorCollector from '../collector/ErrorCollector';
 
-  static onLoadTriggered = false;
+const pjson = require('../../package.json');
+
+const performanceServiceFactory = new PerformanceServiceFactory();
+
+export default class TriggerHelper {
 
   /** @type {number} - To be used within {@link WaitAndTriggerOptions.interval} */
   static defaultInterval = 10;
@@ -10,39 +15,27 @@ export default class TriggerHelper {
   /** @type {number} - To be used within {@link WaitAndTriggerOptions.timeout} */
   static defaultTimeout = 1000;
 
-  static async timeout (ms) {
-    return new Promise(r => setTimeout(r, ms));
-  }
-
+  /**
+   * Perform an action once conditions have been met
+   * @param {class} producer
+   */
   static async action (producer) {
-    try {
-      await producer.collect();
-    } catch (error) {
-      console.log(error);
-      // Failed to process event
-    }
+    await producer.collect();
   }
 
-  /** This will be completely async compared to the rest of the code to avoid duplication of event handlers.
-   * When it will eventually trigger, it will just modify a flag on the class itself which will be queried by the rest of the triggering mechanism */
-  static setWindowOnload () {
-    window.onload = () => {
-      TriggerHelper.onLoadTriggered = true;
-    };
-  }
-
+  /**
+   * Perform an action once conditions have been met
+   * @param {class} producer
+   * @returns {boolean}
+   */
   static async defaultCondition () {
-    try {
-      const legacyPerf = !!(window.performance && window.performance.timing
-          && ((window.performance.timing.domComplete - window.performance.timing.navigationStart) > 0));
-      let newPerf = performance.getEntriesByType('navigation')[0];
-      newPerf = ((newPerf.domComplete - newPerf.startTime) > 0);
-      const documentReady = (document.readyState === 'complete' || document.readyState === 'interactive');
-
-      return legacyPerf && newPerf && documentReady && TriggerHelper.onLoadTriggered;
-    } catch (e) {
-      return true;
-    }
+    const performanceService = performanceServiceFactory.create();
+    const performanceStatus = performanceService.getStatus();
+    const documentReady = (
+      document.readyState === 'complete'
+      || document.readyState === 'interactive'
+    );
+    return documentReady && performanceStatus === performanceService.STATUS.COMPLETE;
   }
 
   /**
@@ -65,29 +58,63 @@ export default class TriggerHelper {
   };
 
   /**
+   * Poll for condition to be met
+   * @param {function} callback
+   * @param {number} interval
+   * @param {number} timeout
+   */
+  static async repeatUntil(callback, interval, timeout) {
+    let triesLeft = Math.ceil(timeout / interval);
+    return new Promise((resolve, reject) => {
+      const handler = setInterval(async () => {
+        try {
+          // Condition or timeout
+          if (await callback() === true || triesLeft <= 1) {
+            resolve();
+            clearInterval(handler);
+          }
+        } catch (e) {
+          reject(ErrorCollector.ERROR_CODES.TRIGGER_CONDITION_FAILED);
+        }
+        triesLeft--;
+      }, interval);
+    });
+  }
+
+  /**
      * Waits for something to happen and then triggers
      * @param {WaitAndTriggerOptions} options
      * @returns {Promise<void>}
      */
   static async waitAndTrigger (options) {
-    let intervalCollector = 0;
+    const {interval} = options;
+    const {condition} = options;
+    const {action} = options;
+    const {timeout} = options;
+    const {producer} = options;
 
-    /** Set the event handler for onload only once and populate the flag when that is triggered */
-    TriggerHelper.setWindowOnload();
+    return this.repeatUntil(condition, interval, timeout)
+      .then(async() => {
+        try {
+          await action(producer);
+        } catch (e) {
+          await producer.error(
+            ErrorCollector.ERROR_CODES.TRIGGER_ACTION_FAILED,
+            pjson.name,
+            false
+          );
+        }
+      })
+      .catch(async (errorCode) => {
+        if (!errorCode) {
+          errorCode = ErrorCollector.ERROR_CODES.TRIGGER_HANDLER_FAILED;
+        }
 
-    const maxIterations = Math.ceil(options.timeout / options.interval);
-
-    for (let i = 0; i < maxIterations; i++) {
-      intervalCollector += options.interval;
-      if (await options.condition()) {
-        await options.action(options.producer);
-        break;
-      } else if (intervalCollector >= options.timeout) {
-        await options.action(options.producer);
-        break;
-      }
-
-      await TriggerHelper.timeout(options.interval);
-    }
+        await producer.error(
+          errorCode,
+          pjson.name,
+          false
+        );
+      });
   }
 }

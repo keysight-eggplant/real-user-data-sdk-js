@@ -1,3 +1,4 @@
+import Sinon from 'sinon';
 import WebBackEndCollector from './WebBackEndCollector';
 
 describe('WebBackEndCollector', () => {
@@ -11,39 +12,26 @@ describe('WebBackEndCollector', () => {
     deviceType: 'mobile'
   };
 
-  const newPerfAPIResponse = [
-    {
-      responseStart: 555.21
-    }
-  ];
-
   /** @type {Event} */
   const expectedEvent = {
     ...originalEvent,
     eventDuration1: 555
   };
-  /** @type {Event} */
-  const noAPIExpectedEvent = {
-    ...originalEvent,
-    eventDuration1: null
-  };
-  let webBackEndCollector;
+  let collector;
+  let performanceService;
 
-  beforeEach(() => {
-    global.window.performance = undefined;
-  });
-
-  describe('with current Performance API', () => {
+  describe('with Performance Service', () => {
     beforeEach(() => {
-
-      global.window.performance.getEntriesByType = jest.fn().mockReturnValueOnce(newPerfAPIResponse);
-
-      webBackEndCollector = new WebBackEndCollector();
+      performanceService = {};
+      performanceService.getResponseStart = Sinon.stub().onCall(0).returns(555);
+      const performanceFactory = {};
+      performanceFactory.create = Sinon.stub().onCall(0).returns(performanceService);
+      collector = new WebBackEndCollector(performanceFactory);
     });
 
     test('Return event with all mandatory fields', async () => {
       /** @type {Event} */
-      const actualEvent = await webBackEndCollector.prepare(originalEvent);
+      const actualEvent = await collector.prepare(originalEvent);
 
       expect(actualEvent).toEqual(expectedEvent);
     });
@@ -51,68 +39,16 @@ describe('WebBackEndCollector', () => {
 
     test('Return correct response start', async () => {
       /** @type {Event} */
-      const actualEvent = await webBackEndCollector.prepare(originalEvent);
+      const actualEvent = await collector.prepare(originalEvent);
 
       expect(actualEvent.eventDuration1).toEqual(expectedEvent.eventDuration1);
     });
 
-    afterEach(() => {
-
-      global.window.performance.getEntriesByType = undefined;
-
-    });
-  });
-
-  describe('with old Performance API', () => {
-    beforeEach(() => {
-
-      global.window.performance.timing = {
-        navigationStart: 1601621586412,
-        responseStart: 1601621586967
-      };
-
-      webBackEndCollector = new WebBackEndCollector();
-    });
-
-    test('Return event with all mandatory fields', async () => {
+    test('Calls performance service', async () => {
       /** @type {Event} */
-      const actualEvent = await webBackEndCollector.prepare(originalEvent);
+      await collector.prepare(originalEvent);
 
-      expect(actualEvent).toEqual(expectedEvent);
-    });
-
-
-    test('Return correct response start', async () => {
-      /** @type {Event} */
-      const actualEvent = await webBackEndCollector.prepare(originalEvent);
-
-      expect(actualEvent.eventDuration1).toEqual(expectedEvent.eventDuration1);
-    });
-
-    afterEach(() => {
-
-      global.window.performance.timing = undefined;
-
-    });
-  });
-
-  describe('with no Performance API', () => {
-    beforeEach(() => {
-      webBackEndCollector = new WebBackEndCollector();
-    });
-
-    test('Return event with all mandatory fields', async () => {
-      /** @type {Event} */
-      const actualEvent = await webBackEndCollector.prepare(originalEvent);
-      expect(actualEvent).toEqual(noAPIExpectedEvent);
-    });
-
-
-    test('Return correct response start', async () => {
-      /** @type {Event} */
-      const actualEvent = await webBackEndCollector.prepare(originalEvent);
-
-      expect(actualEvent.eventDuration1).toEqual(null);
+      performanceService.getResponseStart.calledOnceWithExactly();
     });
   });
 });
