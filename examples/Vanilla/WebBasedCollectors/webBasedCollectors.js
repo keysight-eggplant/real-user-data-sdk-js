@@ -22,12 +22,10 @@ function rciMainAction(tenancyId, rciSdk) {
   const producer = new rciSdk.Producer(transport, finalCollectorCollection);
 
   // Step 4: Register your hook
-  // Caution: There may already be an onload registered - in which case use a decorator pattern.
   rciSdk.TriggerHelper.waitAndTrigger({
     ...rciSdk.TriggerHelper.defaultWaitAndTriggerOptions,
     producer
   });
-
 }
 
 const tenancyId = '123-456';

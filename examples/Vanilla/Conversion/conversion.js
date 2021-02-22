@@ -1,4 +1,4 @@
-((tenancyId, rciSdk) => {
+function rciMainAction(tenancyId, rciSdk) {
   // Step 1: Create your Checkout collectors
   const conversionCollector = new rciSdk.collector.ConversionCollector();
   const eventAction = new rciSdk.collector.EventActionCollector(rciSdk.EVENT_ACTION.STATE_LOAD_PARTIAL);
@@ -61,5 +61,17 @@
       console.log('Error processing event', cause);
     }
   });
+}
 
-})('123-456', rciSdk);
+const tenancyId = '123-456';
+
+// Trigger the RCI instrumentation bootstrap process straight away
+if (window.hasOwnProperty('RCICoreReady')) {
+  rciMainAction(tenancyId, window.rciSdk);
+
+// Bind on event and wait for dispatch by the SDK
+} else {
+  window.addEventListener('RCICoreReady', (e) => {
+    rciMainAction(tenancyId, window.rciSdk);
+  });
+}
