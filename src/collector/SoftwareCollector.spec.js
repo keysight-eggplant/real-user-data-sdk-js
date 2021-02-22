@@ -218,4 +218,29 @@ describe('SoftwareCollector', () => {
 
   });
 
+  describe('Valid UA with new non-numeric browser modified custom value', () => {
+    beforeEach(() => {
+      const userAgentString = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/123445 Safari/7046A194A';
+
+      navigator.__defineGetter__('userAgent', () => userAgentString);
+
+      softwareCollector = new SoftwareCollector();
+    });
+
+
+    test('Return event with new browser name', async () => {
+      const actualEvent = await softwareCollector.prepare(originalEvent);
+
+      expect(actualEvent.softwareInfo1).toEqual('Safari');
+    });
+
+    test('Return event with new browser version', async () => {
+      const actualEvent = await softwareCollector.prepare(originalEvent);
+
+      expect(actualEvent.softwareInfo2).toEqual('123445');
+      expect(actualEvent.softwareInfo3).toEqual('123445');
+    });
+
+  });
+
 });
