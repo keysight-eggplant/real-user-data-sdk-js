@@ -25,7 +25,8 @@ describe('SoftwareCollector', () => {
     osVersion: '4.4.2',
     screenColors: 24,
     softwareInfo1: 'Android Browser',
-    softwareInfo2: '4.0',
+    softwareInfo2: '4',
+    softwareInfo3: '4.0',
     viewportHeight: 768,
     viewportWidth: 1024
   };
@@ -56,6 +57,7 @@ describe('SoftwareCollector', () => {
       expect(actualEvent.screenColors).toEqual(expectedEvent.screenColors);
       expect(actualEvent.softwareInfo1).toEqual(expectedEvent.softwareInfo1);
       expect(actualEvent.softwareInfo2).toEqual(expectedEvent.softwareInfo2);
+      expect(actualEvent.softwareInfo3).toEqual(expectedEvent.softwareInfo3);
       expect(actualEvent.viewportHeight).toEqual(expectedEvent.viewportHeight);
       expect(actualEvent.viewportWidth).toEqual(expectedEvent.viewportWidth);
     });
@@ -210,7 +212,8 @@ describe('SoftwareCollector', () => {
     test('Return event with new browser version', async () => {
       const actualEvent = await softwareCollector.prepare(originalEvent);
 
-      expect(actualEvent.softwareInfo2).toEqual('7.0.3');
+      expect(actualEvent.softwareInfo2).toEqual('7');
+      expect(actualEvent.softwareInfo3).toEqual('7.0.3');
     });
 
   });
