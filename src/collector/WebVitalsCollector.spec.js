@@ -1,3 +1,4 @@
+import Sinon from 'sinon';
 import WebVitalsCollector from './WebVitalsCollector';
 
 describe('WebVitalsCollector', () => {
@@ -17,10 +18,21 @@ describe('WebVitalsCollector', () => {
     eventDuration8: null
   };
   let webVitalsCollector;
+  let poEvent;
+  let poHandler;
+  let po;
 
   describe('with current Web Vitals API', () => {
     beforeEach(() => {
-
+      poEvent = Sinon.stub();
+      poEvent.getEntries = Sinon.stub().onCall(0).returns([{renderTime: 100}]);
+      poHandler = Sinon.stub();
+      poHandler.observe = Sinon.stub();
+      po = (callback) => {
+        callback(poEvent);
+        return poHandler;
+      };
+      global.window.PerformanceObserver = po;
       webVitalsCollector = new WebVitalsCollector();
     });
 
@@ -28,7 +40,17 @@ describe('WebVitalsCollector', () => {
       /** @type {Event} */
       const actualEvent = await webVitalsCollector.prepare(originalEvent);
 
-      expect(actualEvent).toEqual(expectedEvent);
+      expect(actualEvent).toEqual({
+        ...originalEvent,
+        eventDuration8: 100
+      });
+    });
+
+    test('Calls for largest-contentful-paint', async () => {
+      /** @type {Event} */
+      await webVitalsCollector.prepare(originalEvent);
+
+      poHandler.calledWith({type: 'largest-contentful-paint', buffered: true});
     });
 
   });
