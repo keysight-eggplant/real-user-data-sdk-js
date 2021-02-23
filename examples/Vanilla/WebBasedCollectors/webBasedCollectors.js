@@ -7,13 +7,12 @@ function rciMainAction(tenancyId, rciSdk) {
   const defaults = rciSdk.collector.defaultCollectors;
 
   // Step 2.b: Capture WebFocusedCollectors
-  const webFocusedCollectors =
-      [
-        new rciSdk.collector.WebBackEndCollector(),
-        new rciSdk.collector.WebPageLoadTimesCollector(),
-        new rciSdk.collector.WebPaintTimesCollector(),
-        new rciSdk.collector.WebVitalsCollector()
-      ];
+  const webFocusedCollectors = [
+    new rciSdk.collector.WebBackEndCollector(),
+    new rciSdk.collector.WebPageLoadTimesCollector(),
+    new rciSdk.collector.WebPaintTimesCollector(),
+    new rciSdk.collector.WebVitalsCollector()
+  ];
 
   // Step 2.c: Create the final collectors collection
   const finalCollectorCollection = defaults.concat(webFocusedCollectors);
@@ -29,14 +28,16 @@ function rciMainAction(tenancyId, rciSdk) {
 }
 
 const tenancyId = '123-456';
+const {RCICoreReady} = window;
 
-// Trigger the RCI instrumentation bootstrap process straight away
-if (window.hasOwnProperty('RCICoreReady')) {
+// Path 1: Trigger the RCI instrumentation bootstrap process straight away
+if (RCICoreReady) {
   rciMainAction(tenancyId, window.rciSdk);
+
 
 // Bind on event and wait for dispatch by the SDK
 } else {
-  window.addEventListener('RCICoreReady', (e) => {
+  window.addEventListener('RCICoreReady', () => {
     rciMainAction(tenancyId, window.rciSdk);
   });
 }
