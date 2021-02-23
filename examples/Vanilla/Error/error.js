@@ -25,13 +25,15 @@ function rciMainAction(tenancyId, rciSdk) {
 
 const tenancyId = '123-456';
 
-// Trigger the RCI instrumentation bootstrap process straight away
-if (window.hasOwnProperty('RCICoreReady')) {
+const {RCICoreReady} = window;
+
+// Path 1: Trigger the RCI instrumentation bootstrap process straight away
+if (RCICoreReady) {
   rciMainAction(tenancyId, window.rciSdk);
 
 // Bind on event and wait for dispatch by the SDK
 } else {
-  window.addEventListener('RCICoreReady', (e) => {
+  window.addEventListener('RCICoreReady', () => {
     rciMainAction(tenancyId, window.rciSdk);
   });
 }
