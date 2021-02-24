@@ -5,7 +5,7 @@
   "main": "dist/rci.min.js",
   "scripts": {
     "test": "node node_modules/jest/bin/jest.js src && npm run build && node node_modules/karma/bin/karma start",
-    "eslint": "node node_modules/eslint/bin/eslint.js ./src --fix",
+    "eslint": "node node_modules/eslint/bin/eslint.js ./src ./examples/Vanilla --fix",
     "build": "node node_modules/webpack/bin/webpack.js --config=config/webpack.js --scope core --rulesTarget current --mode production",
     "build:legacy": "node node_modules/webpack/bin/webpack.js --config=config/webpack.js --scope core --rulesTarget legacy --mode production",
     "build:dev": "node node_modules/webpack/bin/webpack.js --config=config/webpack.js --scope core --rulesTarget current --mode development",
@@ -50,7 +50,7 @@
     "webpack-cli": "^3.3.0"
   },
   "dependencies": {
-    "ua-parser-js": "^0.7.22"
+    "ua-parser-js": "^0.7.24"
   },
   "directories": {
     "example": "examples",

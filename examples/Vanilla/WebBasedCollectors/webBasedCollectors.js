@@ -1,4 +1,4 @@
-(async (tenancyId, rciSdk) => {
+function rciMainAction(tenancyId, rciSdk) {
   // Step 1: Configure your Transport with the tenancyId provided
   const targetUrl = `https://target.domain/v1/${tenancyId}/stream`;
   const transport = new rciSdk.Transport(targetUrl);
@@ -7,13 +7,12 @@
   const defaults = rciSdk.collector.defaultCollectors;
 
   // Step 2.b: Capture WebFocusedCollectors
-  const webFocusedCollectors =
-      [
-        new rciSdk.collector.WebBackEndCollector(),
-        new rciSdk.collector.WebPageLoadTimesCollector(),
-        new rciSdk.collector.WebPaintTimesCollector(),
-        new rciSdk.collector.WebVitalsCollector()
-      ];
+  const webFocusedCollectors = [
+    new rciSdk.collector.WebBackEndCollector(),
+    new rciSdk.collector.WebPageLoadTimesCollector(),
+    new rciSdk.collector.WebPaintTimesCollector(),
+    new rciSdk.collector.WebVitalsCollector()
+  ];
 
   // Step 2.c: Create the final collectors collection
   const finalCollectorCollection = defaults.concat(webFocusedCollectors);
@@ -22,13 +21,23 @@
   const producer = new rciSdk.Producer(transport, finalCollectorCollection);
 
   // Step 4: Register your hook
-  // Caution: There may already be an onload registered - in which case use a decorator pattern.
-
-
-  await rciSdk.TriggerHelper.waitAndTrigger({
+  rciSdk.TriggerHelper.waitAndTrigger({
     ...rciSdk.TriggerHelper.defaultWaitAndTriggerOptions,
     producer
   });
+}
+
+const tenancyId = '123-456';
+const {RCICoreReady} = window;
+
+// Path 1: Trigger the RCI instrumentation bootstrap process straight away
+if (RCICoreReady) {
+  rciMainAction(tenancyId, window.rciSdk);
 
 
-})('123-456', rciSdk);
+// Bind on event and wait for dispatch by the SDK
+} else {
+  window.addEventListener('RCICoreReady', () => {
+    rciMainAction(tenancyId, window.rciSdk);
+  });
+}

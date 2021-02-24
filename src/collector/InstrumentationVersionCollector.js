@@ -7,7 +7,8 @@ export default class InstrumentationVersionCollector {
   }
 
   /**
-     * This will collect the version from the RCISDK Core and then append the instrumentation version on top
+     * This will collect the version from the RCISDK Core and then
+     * append the instrumentation version on top
      * @param {Event} event
      * @returns {Promise<*>|Event}
      */
