@@ -36,9 +36,6 @@ jobs:
           name: Show git tags
           command: git tag -l
       - run:
-          name: Show ci tag
-          command: print "Tag Version = ${CIRCLE_TAG}"
-      - run:
           name: Set Github identity
           command: git config --global user.email ${GIT_EMAIL} && git config --global user.name ${GIT_NAME}
       - run:
