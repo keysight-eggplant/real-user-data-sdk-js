@@ -852,12 +852,12 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
-"@eggplantio/real-user-data-sdk-js@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@eggplantio/real-user-data-sdk-js/-/real-user-data-sdk-js-1.0.4.tgz#fb5abd5a0009df29d0a14cfbcaee82e1119ef118"
-  integrity sha512-iwM8Wcauh5fQwYaH1h9rMSowk8bHremZvHXQgcW57tMW7tQ82R3dAZXPAj+KXJWqSKgWTrl1GULxOUzLE9M6/Q==
+"@eggplantio/real-user-data-sdk-js@^1.0.7":
+  version "1.1.13"
+  resolved "https://registry.yarnpkg.com/@eggplantio/real-user-data-sdk-js/-/real-user-data-sdk-js-1.1.13.tgz#8c59ab6b40d21d7dd736b6d2afdd043cd3057745"
+  integrity sha512-BXH1N+4cjQ97HRxX3eRZ6pEbYqdqlP39HBi/TC+suFbzpAcFsret5NzUO8xeQTot0+YZAa71qA80WU/7xAWwww==
   dependencies:
-    ua-parser-js "^0.7.19"
+    ua-parser-js "^0.7.22"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -9362,10 +9362,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-ua-parser-js@^0.7.19:
-  version "0.7.19"
-  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.19.tgz#94151be4c0a7fb1d001af7022fdaca4642659e4b"
-  integrity sha512-T3PVJ6uz8i0HzPxOF9SWzWAlfN/DavlpQqepn22xgve/5QecC+XMCAtmUNnY7C9StehaV6exjUCI801lOI7QlQ==
+ua-parser-js@^0.7.22:
+  version "0.7.26"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.26.tgz#b3731860e241419abd5b542b1a0881070d92e0ce"
+  integrity sha512-VwIvGlFNmpKbjzRt51jpbbFTrKIEgGHxIwA8Y69K1Bqc6bTIV7TaGGABOkghSFQWsLmcRB4drGvpfv9z2szqoQ==
 
 uglify-js@3.4.x, uglify-js@^3.1.4:
   version "3.4.9"
@@ -10041,9 +10041,9 @@ xtend@^4.0.0, xtend@^4.0.1, xtend@~4.0.1:
   integrity sha1-pcbVMr5lbiPbgg77lDofBJmNY68=
 
 y18n@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/y18n/-/y18n-3.2.1.tgz#6d15fba884c08679c0d77e88e7759e811e07fa41"
-  integrity sha1-bRX7qITAhnnA136I53WegR4H+kE=
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/y18n/-/y18n-3.2.2.tgz#85c901bd6470ce71fc4bb723ad209b70f7f28696"
+  integrity sha512-uGZHXkHnhF0XeeAPgnKfPv1bgKAYyVvmNL1xlKsPYZPaIHxGti2hHqvOCQv71XMsLxu1QjergkqogUnms5D3YQ==
 
 "y18n@^3.2.1 || ^4.0.0", y18n@^4.0.0:
   version "4.0.0"
