@@ -7,6 +7,7 @@ import HardwareCollector from './HardwareCollector';
 import IdCollector from './IdCollector';
 import NavigationTimingCollector from './NavigationTimingCollector';
 import UriWithPageTitleCategoryCollector from './UriWithPageTitleCategoryCollector';
+import UserAgentCollector from './UserAgentCollector';
 import {EVENT_TYPE, EVENT_ACTION} from '../core/constants';
 
 export default [
@@ -18,5 +19,6 @@ export default [
   new NavigationTimingCollector(),
   new UriWithPageTitleCategoryCollector(),
   new SoftwareCollector(),
-  new HardwareCollector()
+  new HardwareCollector(),
+  new UserAgentCollector()
 ];
