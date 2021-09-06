@@ -5,9 +5,12 @@ function rciMainAction(tenancyId, rciSdk) {
 
   // Step 2: Capture your default collectors
   const defaults = rciSdk.collector.defaultCollectors;
+  const config = {
+    actions: true
+  };
 
   // Step 3: Build a new Producer with transport and collector
-  const producer = new rciSdk.Producer(transport, defaults);
+  const producer = new rciSdk.Producer(transport, defaults, config);
 
   // Step 4: Trigger Event
   window.addEventListener('load', async () => {

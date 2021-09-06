@@ -1,11 +1,26 @@
 /* eslint no-await-in-loop: 0 */
 import ErrorCollector from '../collector/ErrorCollector';
+import ActionCollectors from '../collector/actionCollectors';
 
 export default class Producer {
 
-  constructor(transport, collectors) {
+  constructor(transport, collectors, config) {
+    this.config = config;
     this.transport = transport;
     this.collectors = Array.isArray(collectors) ? [].concat(collectors) : [];
+
+    console.log(this.config);
+    if (this.config.actions === true) {
+      this.collectors = this.collectors.concat(ActionCollectors);
+
+      document.querySelector('*').addEventListener('mouseover', function() {
+        console.log('mouseover triggered');
+        this.collect();
+      }, false);
+
+
+
+    }
   }
 
   async collect() {
@@ -31,7 +46,7 @@ export default class Producer {
     let event = {};
 
     for (let i = 0; i < collectors.length; i += 1) {
-      event = await collectors[i].prepare(event);
+      event = await collectors[i].prepare(event, this.config);
 
       if (!event) {
         throw new Error(`Invalid event returned by collector ${collectors[i].name}`);
