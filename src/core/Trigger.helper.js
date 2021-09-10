@@ -117,4 +117,15 @@ export default class TriggerHelper {
         );
       });
   }
+
+
+    /**
+     * If actions are set on true, registers action triggers
+     */
+     static async registerActionTriggers (producer, config) {
+
+      if (config.actions === true) {
+        // Register all the relevant event handlers
+      }
+    }
 }

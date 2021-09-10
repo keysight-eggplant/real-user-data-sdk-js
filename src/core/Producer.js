@@ -4,23 +4,9 @@ import ActionCollectors from '../collector/actionCollectors';
 
 export default class Producer {
 
-  constructor(transport, collectors, config) {
-    this.config = config;
+  constructor(transport, collectors) {
     this.transport = transport;
     this.collectors = Array.isArray(collectors) ? [].concat(collectors) : [];
-
-    console.log(this.config);
-    if (this.config.actions === true) {
-      this.collectors = this.collectors.concat(ActionCollectors);
-
-      document.querySelector('*').addEventListener('mouseover', function() {
-        console.log('mouseover triggered');
-        this.collect();
-      }, false);
-
-
-
-    }
   }
 
   async collect() {

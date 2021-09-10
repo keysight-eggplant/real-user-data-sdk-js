@@ -9,8 +9,14 @@ function rciMainAction(tenancyId, rciSdk) {
     actions: true
   };
 
+  // Step 2.1 Prepare the collectors collection
+  defaults = rciSdk.ConfigurationService.prepareCollectors(defaults, config);
+
   // Step 3: Build a new Producer with transport and collector
-  const producer = new rciSdk.Producer(transport, defaults, config);
+  const producer = new rciSdk.Producer(transport, defaults);
+
+    // Step 3.2: Register the action triggers
+    rciSdk.TriggerHelper.registerActionTriggers();
 
   // Step 4: Trigger Event
   window.addEventListener('load', async () => {
