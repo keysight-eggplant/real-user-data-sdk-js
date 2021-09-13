@@ -4,7 +4,7 @@ function rciMainAction(tenancyId, rciSdk) {
   const transport = new rciSdk.Transport(targetUrl);
 
   // Step 2: Capture your default collectors
-  const defaults = rciSdk.collector.defaultCollectors;
+  let defaults = rciSdk.collector.defaultCollectors;
   const config = {
     actions: true
   };
@@ -15,8 +15,8 @@ function rciMainAction(tenancyId, rciSdk) {
   // Step 3: Build a new Producer with transport and collector
   const producer = new rciSdk.Producer(transport, defaults);
 
-    // Step 3.2: Register the action triggers
-    rciSdk.TriggerHelper.registerActionTriggers();
+  // Step 3.2: Register the action triggers
+  rciSdk.TriggerHelper.registerActionTriggers(producer, config);
 
   // Step 4: Trigger Event
   window.addEventListener('load', async () => {

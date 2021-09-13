@@ -14,5 +14,7 @@ export default class ConfigurationService {
     if (config.actions === true) {
       collectors = collectors.concat(actionCollectors);
     }
+
+    return collectors;
   }
 }

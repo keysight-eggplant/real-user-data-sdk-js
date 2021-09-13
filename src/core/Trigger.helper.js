@@ -119,13 +119,37 @@ export default class TriggerHelper {
   }
 
 
-    /**
+  /**
      * If actions are set on true, registers action triggers
      */
-     static async registerActionTriggers (producer, config) {
+  static async registerActionTriggers (producer, config) {
 
-      if (config.actions === true) {
-        // Register all the relevant event handlers
-      }
+    if (config.actions === true) {
+      // Register all the relevant event handlers
+      
+      /**
+       * @type {Context}
+       */
+      let context = {};
+
+      document.querySelector('*').addEventListener('click', async (event) => {
+        try {
+          context.elm = event.target || event.srcElement;
+          console.log('Sending event on click');
+          await producer.collect(context);
+        } catch (e) {
+            console.log(e);
+        }
+      });
+
+      window.addEventListener('scroll', async (event) => {
+        try {
+          console.log('Sending event on scroll');
+          await producer.collect(context);
+        } catch (e) {
+            console.log(e);
+        }
+      });
     }
+  }
 }

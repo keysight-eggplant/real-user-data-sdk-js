@@ -1,6 +1,5 @@
 /* eslint no-await-in-loop: 0 */
 import ErrorCollector from '../collector/ErrorCollector';
-import ActionCollectors from '../collector/actionCollectors';
 
 export default class Producer {
 
@@ -9,8 +8,11 @@ export default class Producer {
     this.collectors = Array.isArray(collectors) ? [].concat(collectors) : [];
   }
 
-  async collect() {
-    const event = await this.prepareData(this.collectors);
+  /**
+   * @param  {Context} context
+   */
+  async collect(context) {
+    const event = await this.prepareData(this.collectors, context);
     await this.transport.execute(event);
   }
 
@@ -28,11 +30,16 @@ export default class Producer {
     await this.transport.execute(event);
   }
 
-  async prepareData(collectors) {
+  
+  /**
+   * @param  {Class[]} collectors
+   * @param  {Context} context
+   */
+  async prepareData(collectors, context) {
     let event = {};
 
     for (let i = 0; i < collectors.length; i += 1) {
-      event = await collectors[i].prepare(event, this.config);
+      event = await collectors[i].prepare(event, context);
 
       if (!event) {
         throw new Error(`Invalid event returned by collector ${collectors[i].name}`);
