@@ -5,8 +5,22 @@ function rciMainAction(tenancyId, rciSdk) {
 
   // Step 2: Capture your default collectors
   let defaults = rciSdk.collector.defaultCollectors;
+
+  /**
+   * @type {Config}
+   */
   const config = {
-    actions: true
+    actions: true,
+    actionsBatching: false,
+    events: [
+      {
+        selector: 'window', eventName: 'load', eventCategory: 'Document', scope: 'state'
+      },
+      {
+        selector: '*', eventName: 'mousedown', eventCategory: 'Mouse', scope: 'action'
+      }
+    ]
+
   };
 
   // Step 2.1 Prepare the collectors collection
@@ -15,8 +29,8 @@ function rciMainAction(tenancyId, rciSdk) {
   // Step 3: Build a new Producer with transport and collector
   const producer = new rciSdk.Producer(transport, defaults);
 
-  // Step 3.2: Register the action triggers
-  rciSdk.TriggerHelper.registerActionTriggers(producer, config);
+  // Step 3.2: Register the triggers
+  rciSdk.TriggerHelper.registerTriggers(producer, config);
 
   // Step 4: Trigger Event
   window.addEventListener('load', async () => {

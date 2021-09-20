@@ -32,7 +32,7 @@
  * @property {String} eventInfo2
  * @property {String} eventInfo3
  * @property {String} eventInfo4
- * @property {String} eventInfo5
+ * @property {String|Action} eventInfo5
  * @property {String} eventSource
  * @property {String} eventCategory
  * @property {String} goalType

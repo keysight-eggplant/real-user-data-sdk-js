@@ -118,38 +118,50 @@ export default class TriggerHelper {
       });
   }
 
+  static async eventHandler (event, context, producer) {
+    try {
+      context.elm = event.target || event.srcElement;
+      console.log(`Sending event on ${context.eventName}`);
+      await producer.prepareData([], context);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
 
   /**
-     * If actions are set on true, registers action triggers
-     */
-  static async registerActionTriggers (producer, config) {
+   *
+   * @param {*} producer
+   * @param {Config} config
+   */
+  static async registerTriggers (producer, config) {
 
-    if (config.actions === true) {
-      // Register all the relevant event handlers
-      
+
+    for (let i = 0; i < config.events.length; i++) {
+      if (config.events[i].scope === 'action' && config.actions === false) {
+        continue;
+      }
       /**
        * @type {Context}
        */
       let context = {};
+      context = {scope: config.events[i].scope, eventName: config.events[i].eventName};
+      let node;
 
-      document.querySelector('*').addEventListener('click', async (event) => {
-        try {
-          context.elm = event.target || event.srcElement;
-          console.log('Sending event on click');
-          await producer.collect(context);
-        } catch (e) {
-            console.log(e);
-        }
-      });
 
-      window.addEventListener('scroll', async (event) => {
-        try {
-          console.log('Sending event on scroll');
-          await producer.collect(context);
-        } catch (e) {
-            console.log(e);
-        }
-      });
+      /** Normalize node */
+      if (!(typeof config.events[i].selector === 'string' || config.events[i].selector instanceof String) || config.events[i].selector.length === 0) {
+        node = document.querySelector('*');
+      } else if (config.events[i].selector === 'window') {
+        node = window;
+      } else if (config.events[i].selector === 'document') {
+        node = document;
+      } else {
+        node = document.querySelector(config.events[i].selector);
+      }
+
+      node.addEventListener(config.events[i].eventName, (event) => TriggerHelper.eventHandler(event, context, producer));
     }
+
   }
 }

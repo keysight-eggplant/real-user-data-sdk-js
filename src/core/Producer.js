@@ -36,6 +36,10 @@ export default class Producer {
    * @param  {Context} context
    */
   async prepareData(collectors, context) {
+    if (!Array.isArray(collectors) || collectors.length === 0) {
+      collectors = this.collectors;
+    }
+
     let event = {};
 
     for (let i = 0; i < collectors.length; i += 1) {
