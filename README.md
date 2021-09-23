@@ -1,6 +1,16 @@
 # Real User Data SDK
+## Overview
+This project is meant to help capture states and actions (in progress) of the user from web applications and websites. On top of the data relating to the user behavious and his user journey, the SDK can capture various application and technical data for in depth monitoring of the real world application. 
 
-SDK for generating and publishing events that capture user, application and technical data
+In order to instrument an application with this SDK you need to be aware of two components:
+- Definition, - this SDK (this repository) which describes and consists of all the capabilities and ways to use/capture/collect/send data from web applications. See the "Installation Guide" below.
+- Implementation - a different piece of code created by you that describes how the SDK should behave, collect and where to send the collected data. 
+
+In order for the SDK to succesfully collect data, it is mandatory to have both components. Once you have both scripts and those are ready to be deployed, you can simply add them to your website, either in the **< head >** tag, at the end of the **< body >** tag or within a tag manager like [Google Tag manager](https://tagmanager.google.com/), [Tealium](https://tealium.com/) etc.
+
+If you are not using a tag manager, someone technical need to manually deploy the tags into your web application. If you don't want to monitor certain pages, simply do not deploy the tags on those pages. Deploying this SDK is similar in nature with deploying any other monitoring SDK on the market such as Google Analytics, Pingdom etc.
+
+Once the tags are deployed, the SDK will start monitoring, collecting and sending data according to your implementation.
 
 <p align="center"><img src="https://static1.squarespace.com/static/5a123416bce176a964daebe5/t/5aa18123c83025fedf718a51/1554300899717/?format=1500w"></p>
 
