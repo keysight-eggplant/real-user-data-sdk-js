@@ -1,6 +1,6 @@
 # Real User Data SDK
 ## Overview
-This project is meant to help capture states and actions (in progress) of the user from web applications and websites. On top of the data relating to the user behavious and his user journey, the SDK can capture various application and technical data for in depth monitoring of the real world application. 
+The Real User Data SDK facilitates the collection of non-PII (Personally Identifiable Information) such as customer behaviour, device specifications, performance timing, software release versions, and business impact (revenue, conversion). This data is processed by our cloud-based platform to generate a modern class of aggregated data insights. In particular, these insights drive decision making and test automation within Eggplant's suite of AI-assisted end-to-end user testing known as Eggplant DAI. We refer to this process as CXO (Customer Experience Optimisation).
 
 In order to instrument an application with this SDK you need to be aware of two components:
 - Definition, - this SDK (this repository) which describes and consists of all the capabilities and ways to use/capture/collect/send data from web applications. See the "Installation Guide" below.
