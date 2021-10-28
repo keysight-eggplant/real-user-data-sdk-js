@@ -14,6 +14,7 @@ export default class Transport {
       };
       xhr.onerror = () => {
         console.log('Unable to send event!');
+        console.log(event);
       };
       xhr.send(JSON.stringify(event));
     });

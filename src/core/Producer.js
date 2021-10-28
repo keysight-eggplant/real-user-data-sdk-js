@@ -11,6 +11,7 @@ export default class Producer {
   async collect() {
     const event = await this.prepareData(this.collectors);
     await this.transport.execute(event);
+    return event;
   }
 
   /**

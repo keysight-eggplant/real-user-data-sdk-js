@@ -61,3 +61,6 @@ typings/
 .vscode
 
 dist
+
+**/*/rci.min.js
+**/*/rci-legacy.min.js

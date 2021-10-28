@@ -12,13 +12,13 @@ import {EVENT_TYPE, EVENT_ACTION} from '../core/constants';
 
 export default [
   new IdCollector(),
-  new ClientIdCollector(localStorage),
+  // new ClientIdCollector(localStorage),
   new DeviceTypeCollector(),
   new EventActionCollector(EVENT_ACTION.STATE_TRANSITION_FULL),
   new EventTypeCollector(EVENT_TYPE.STATE),
-  new NavigationTimingCollector(),
-  new UriWithPageTitleCategoryCollector(),
-  new SoftwareCollector(),
-  new HardwareCollector(),
+  // new NavigationTimingCollector(),
+  // new UriWithPageTitleCategoryCollector(),
+  // new SoftwareCollector(),
+  // new HardwareCollector(),
   new UserAgentCollector()
 ];
