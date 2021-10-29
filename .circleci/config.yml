@@ -33,9 +33,6 @@ jobs:
           name: Ignore non checked in files
           command: git checkout -- .
       - run:
-          name: Show git tags
-          command: git tag -l
-      - run:
           name: Set Github identity
           command: git config --global user.email ${GIT_EMAIL} && git config --global user.name ${GIT_NAME}
       - run:
@@ -78,10 +75,10 @@ jobs:
           name: Upload Legacy Map to S3 latest
           command: aws s3 cp dist/rci-legacy.min.js.map s3://${AWS_S3_BUCKET_NAME}/latest/rci-legacy.min.js.map --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
       - run:
-          name: Commit the new artefacts
+          name: Commit the new artifacts
           command: git commit --allow-empty -am "Released:${CIRCLE_TAG}"
       - run:
-          name: Push the new artefacts
+          name: Push the new artifacts
           command: git push origin HEAD:development
 
 workflows:
