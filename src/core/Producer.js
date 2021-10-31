@@ -8,8 +8,11 @@ export default class Producer {
     this.collectors = Array.isArray(collectors) ? [].concat(collectors) : [];
   }
 
-  async collect() {
-    const event = await this.prepareData(this.collectors);
+  /**
+   * @param  {Context} context
+   */
+  async collect(context) {
+    const event = await this.prepareData(this.collectors, context);
     await this.transport.execute(event);
   }
 
@@ -27,11 +30,20 @@ export default class Producer {
     await this.transport.execute(event);
   }
 
-  async prepareData(collectors) {
+  
+  /**
+   * @param  {Class[]} collectors
+   * @param  {Context} context
+   */
+  async prepareData(collectors, context) {
+    if (!Array.isArray(collectors) || collectors.length === 0) {
+      collectors = this.collectors;
+    }
+
     let event = {};
 
     for (let i = 0; i < collectors.length; i += 1) {
-      event = await collectors[i].prepare(event);
+      event = await collectors[i].prepare(event, context);
 
       if (!event) {
         throw new Error(`Invalid event returned by collector ${collectors[i].name}`);

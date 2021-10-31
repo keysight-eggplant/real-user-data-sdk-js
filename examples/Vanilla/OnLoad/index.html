@@ -10,6 +10,217 @@
   <body>
     <h1>OnLoad</h1>
     <p>Please check the network tab to inspect the event. This is basic example, executing script after the page finished loading.</p>
+    
+
+    <div id="elements" class="">
+			<div>
+				<input autofocus="">
+				<div><input autofocus="" disabled=""></div>
+				<pre><code>&lt;input autofocus&gt;</code></pre>
+			</div>
+			<div>
+				<input>
+				<div><input disabled=""></div>
+				<pre><code>&lt;input&gt;</code></pre>
+			</div>
+			<div>
+				<form><input required=""><input type="submit"></form>
+				<div><form><input required="" disabled=""><input type="submit" disabled=""></form></div>
+				<pre><code>&lt;input required&gt;</code></pre>
+			</div>
+			<div>
+				<input type="text">
+				<div><input type="text" disabled=""></div>
+				<pre><code>&lt;input type=text&gt;</code></pre>
+			</div>
+			<div>
+				<textarea></textarea>
+				<div><textarea disabled=""></textarea></div>
+				<pre><code>&lt;textarea&gt;&lt;/textarea&gt;</code></pre>
+			</div>
+			<div>
+				<input type="password" placeholder="password">
+				<div><input type="password" placeholder="password" disabled=""></div>
+				<pre><code>&lt;input type=password placeholder=password&gt;</code></pre>
+			</div>
+			<div>
+				<input type="radio">
+				<div><input type="radio" disabled=""></div>
+				<pre><code>&lt;input type=radio&gt;</code></pre>
+			</div>
+			<div>
+				<input type="radio" checked="">
+				<div><input type="radio" checked="" disabled=""></div>
+				<pre><code>&lt;input type=radio checked&gt;</code></pre>
+			</div>
+			<div>
+				<input type="checkbox">
+				<div><input type="checkbox" disabled=""></div>
+				<pre><code>&lt;input type=checkbox&gt;</code></pre>
+			</div>
+			<div>
+				<input type="checkbox" checked="">
+				<div><input type="checkbox" checked="" disabled=""></div>
+				<pre><code>&lt;input type=checkbox checked&gt;</code></pre>
+			</div>
+			<div>
+				<select><option></option><option>Option 1</option></select>
+				<div><select disabled=""><option></option><option>Option 1</option></select></div>
+<pre><code>
+&lt;select&gt;
+	&lt;option&gt;&lt;/option&gt;
+	&lt;option&gt;Option 1&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+
+			</div>
+			<div>
+				<select><optgroup label="Option group 1"><option>Option 1</option><option>Option 2</option></optgroup><optgroup><option>Option 3</option></optgroup></select>
+				<div><select disabled=""><optgroup label="Option group 1"><option>Option 1</option><option>Option 2</option></optgroup><optgroup><option>Option 3</option></optgroup></select></div>
+<pre><code>
+&lt;select&gt;
+	&lt;optgroup label="Option group 1"&gt;
+	&lt;option&gt;Option 1&lt;/option&gt;
+	&lt;option&gt;Option 2&lt;/option&gt;
+	&lt;/optgroup&gt;
+	&lt;optgroup&gt;
+	&lt;option&gt;Option 3&lt;/option&gt;
+	&lt;/optgroup&gt;
+&lt;/select&gt;</code></pre>
+
+			</div>
+			<div>
+				<input type="text" placeholder="placeholder">
+				<div><input type="text" placeholder="placeholder" disabled=""></div>
+				<pre><code>&lt;input type=text placeholder=placeholder&gt;</code></pre>
+			</div>
+			<div>
+				<input type="search">
+				<div><input type="search" disabled=""></div>
+				<pre><code>&lt;input type=search&gt;</code></pre>
+			</div>
+			<div>
+				<input type="file">
+				<div><input type="file" disabled=""></div>
+				<pre><code>&lt;input type=file&gt;</code></pre>
+			</div>
+			<div>
+				<fieldset><legend>Legend</legend><label for="field">Label</label><input id="field"></fieldset>
+				<div><fieldset><legend>Legend</legend><label for="field">Label</label><input id="field" disabled=""></fieldset></div>
+<pre><code>
+&lt;fieldset&gt;
+	&lt;legend&gt;Legend&lt;/legend&gt;
+	&lt;label for=field&gt;Label&lt;/label&gt;
+	&lt;input id=field&gt;
+&lt;/fieldset&gt;</code></pre>
+
+			</div>
+			<div>
+				<input type="submit">
+				<div><input type="submit" disabled=""></div>
+				<pre><code>&lt;input type=submit&gt;</code></pre>
+			</div>
+			<div>
+				<button>Button</button>
+				<div><button disabled="">Button</button></div>
+				<pre><code>&lt;button&gt;Button&lt;/button&gt;</code></pre>
+			</div>
+			<div>
+				<input type="reset">
+				<div><input type="reset" disabled=""></div>
+				<pre><code>&lt;input type=reset&gt;</code></pre>
+			</div>
+			<div>
+				<input type="email">
+				<div><input type="email" disabled=""></div>
+				<pre><code>&lt;input type=email&gt;</code></pre>
+			</div>
+			<div>
+				<input type="tel">
+				<div><input type="tel" disabled=""></div>
+				<pre><code>&lt;input type=tel&gt;</code></pre>
+			</div>
+			<div>
+				<input type="url">
+				<div><input type="url" disabled=""></div>
+				<pre><code>&lt;input type=url&gt;</code></pre>
+			</div>
+			<div>
+				<input type="number">
+				<div><input type="number" disabled=""></div>
+				<pre><code>&lt;input type=number&gt;</code></pre>
+			</div>
+			<div>
+				<input type="number" min="0" max="15" step="3">
+				<div><input type="number" min="0" max="15" step="3" disabled=""></div>
+				<pre><code>&lt;input type=number min=0 max=15 step=3&gt;</code></pre>
+			</div>
+			<div>
+				<input type="range">
+				<div><input type="range" disabled=""></div>
+				<pre><code>&lt;input type=range&gt;</code></pre>
+			</div>
+			<div>
+				<input type="range" min="0" max="15" step="3">
+				<div><input type="range" min="0" max="15" step="3" disabled=""></div>
+				<pre><code>&lt;input type=range min=0 max=15 step=3&gt;</code></pre>
+			</div>
+			<div>
+				<input type="date">
+				<div><input type="date" disabled=""></div>
+				<pre><code>&lt;input type=date&gt;</code></pre>
+			</div>
+			<div>
+				<input type="month">
+				<div><input type="month" disabled=""></div>
+				<pre><code>&lt;input type=month&gt;</code></pre>
+			</div>
+			<div>
+				<input type="week">
+				<div><input type="week" disabled=""></div>
+				<pre><code>&lt;input type=week&gt;</code></pre>
+			</div>
+			<div>
+				<input type="time">
+				<div><input type="time" disabled=""></div>
+				<pre><code>&lt;input type=time&gt;</code></pre>
+			</div>
+			<div>
+				<input type="datetime">
+				<div><input type="datetime" disabled=""></div>
+				<pre><code>&lt;input type=datetime&gt;</code></pre>
+			</div>
+			<div>
+				<input type="datetime-local">
+				<div><input type="datetime-local" disabled=""></div>
+				<pre><code>&lt;input type=datetime-local&gt;</code></pre>
+			</div>
+			<div>
+				<input type="color">
+				<div><input type="color" disabled=""></div>
+				<pre><code>&lt;input type=color&gt;</code></pre>
+			</div>
+			<div>
+				<input type="color" value="#ff3d3d">
+				<div><input type="color" value="#ff3d3d" disabled=""></div>
+				<pre><code>&lt;input type=color value="#ff3d3d"&gt;</code></pre>
+			</div>
+			<div>
+				<progress max="100" value="74" id="progress-meter"></progress>
+				&nbsp;
+				<pre><code>&lt;progress max="100" value="<span id="progress-meter-value">74</span>"&gt;&lt;/progress&gt;</code></pre>
+			</div>
+			<div>
+				<progress></progress>
+				&nbsp;
+				<pre><code>&lt;progress&gt;&lt;/progress&gt;</code></pre>
+			</div>
+			<div>
+				<meter value="48" min="0" max="100" low="25" high="75" optimum="15" id="meter-meter"></meter>
+				&nbsp;
+				<pre><code>&lt;meter value="<span id="meter-meter-value">48</span>" min="0" max="100"<br> low="25" high="75" optimum="15"&gt;&lt;/meter&gt;</code></pre>
+			</div>
+		</div>
+
     <button autofocus onclick="window.location.href='../index.html'">
       Home
     </button>

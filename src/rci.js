@@ -1,4 +1,5 @@
 import Producer from './core/Producer';
+import ConfigurationService from './core/ConfigurationService';
 import Transport from './core/Transport';
 import TriggerHelper from './core/Trigger.helper';
 import NormalizationHelper from './core/Normalization.helper';
@@ -58,6 +59,7 @@ const collector = {
 
 export {
   Producer,
+  ConfigurationService,
   Transport,
   EVENT_TYPE,
   EVENT_ACTION,

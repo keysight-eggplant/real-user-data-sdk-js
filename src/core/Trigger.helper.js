@@ -117,4 +117,51 @@ export default class TriggerHelper {
         );
       });
   }
+
+  static async eventHandler (event, context, producer) {
+    try {
+      context.elm = event.target || event.srcElement;
+      console.log(`Sending event on ${context.eventName}`);
+      await producer.prepareData([], context);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+  /**
+   *
+   * @param {*} producer
+   * @param {Config} config
+   */
+  static async registerTriggers (producer, config) {
+
+
+    for (let i = 0; i < config.events.length; i++) {
+      if (config.events[i].scope === 'action' && config.actions === false) {
+        continue;
+      }
+      /**
+       * @type {Context}
+       */
+      let context = {};
+      context = {scope: config.events[i].scope, eventName: config.events[i].eventName};
+      let node;
+
+
+      /** Normalize node */
+      if (!(typeof config.events[i].selector === 'string' || config.events[i].selector instanceof String) || config.events[i].selector.length === 0) {
+        node = document.querySelector('*');
+      } else if (config.events[i].selector === 'window') {
+        node = window;
+      } else if (config.events[i].selector === 'document') {
+        node = document;
+      } else {
+        node = document.querySelector(config.events[i].selector);
+      }
+
+      node.addEventListener(config.events[i].eventName, (event) => TriggerHelper.eventHandler(event, context, producer));
+    }
+
+  }
 }
