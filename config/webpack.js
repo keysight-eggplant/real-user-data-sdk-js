@@ -1,9 +1,19 @@
+/* eslint-disable prefer-destructuring */
 const path = require('path');
 const webpack = require('webpack');
 const cliArguments = require('minimist')(process.argv.slice(2));
 const PACKAGE = require('./../package.json');
 
 console.log(cliArguments);
+
+// Explode values to handle the new way webpack is working
+
+let nameVal;
+
+for (let i = 0; i < cliArguments.env.length; i++) {
+  nameVal = cliArguments.env[i].split('=');
+  cliArguments[nameVal[0]] = nameVal[1];
+}
 
 /** Complete with defaults */
 
