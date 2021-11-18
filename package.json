@@ -42,7 +42,7 @@
     "karma-chrome-launcher": "^2.2.0",
     "karma-firefox-launcher": "^1.1.0",
     "karma-mocha": "^1.3.0",
-    "minimist": "1.2.0",
+    "minimist": "1.2.3",
     "mocha": "^6.1.4",
     "npm-cli-login": "^0.1.1",
     "sinon": "12.0.1",
