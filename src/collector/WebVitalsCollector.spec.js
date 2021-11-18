@@ -28,11 +28,15 @@ describe('WebVitalsCollector', () => {
       poEvent.getEntries = Sinon.stub().onCall(0).returns([{renderTime: 100}]);
       poHandler = Sinon.stub();
       poHandler.observe = Sinon.stub();
-      po = (callback) => {
-        callback(poEvent);
-        return poHandler;
-      };
-      global.window.PerformanceObserver = po;
+
+      class po3 {
+        constructor(callback) {
+          callback(poEvent);
+          return poHandler;
+        }
+      }
+
+      global.window.PerformanceObserver = po3;
       webVitalsCollector = new WebVitalsCollector();
     });
 
