@@ -26,7 +26,7 @@ if (cliArguments.entryPoint === null || cliArguments.entryPoint === true || cliA
 
 /**
  * This can be one of the following: "core" or "implementation".
- * It can be passed into CLI by writing something like: "--scope core" where "core" is the value
+ * It can be passed into CLI by writing something like: "--env=scope= core" where "core" is the value
  * */
 if (cliArguments.scope === null || cliArguments.scope === true || cliArguments.scope === '' || typeof cliArguments.scope === 'undefined') {
   cliArguments.scope = 'core';
@@ -55,7 +55,7 @@ if (cliArguments.rulesTarget === null || cliArguments.rulesTarget === true || cl
 /**
  * This can be one of the following: "development" or "production".
  * Basically minified or not
- * It can be passed into CLI by writing something like: "--mode production" where "production" is the value
+ * It can be passed into CLI by writing something like: "--env=mode= production" where "production" is the value
  * */
 if (cliArguments.mode === null || cliArguments.mode === true || cliArguments.mode === '' || typeof cliArguments.mode === 'undefined') {
   cliArguments.mode = 'production';

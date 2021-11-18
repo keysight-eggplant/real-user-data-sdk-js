@@ -6,10 +6,10 @@
   "scripts": {
     "test": "node node_modules/jest/bin/jest.js src && npm run build && node node_modules/karma/bin/karma start",
     "eslint": "node node_modules/eslint/bin/eslint.js ./src ./examples/Vanilla --fix",
-    "build": "node node_modules/webpack/bin/webpack.js --config=config/webpack.js --scope core --rulesTarget current --mode production",
-    "build:legacy": "node node_modules/webpack/bin/webpack.js --config=config/webpack.js --scope core --rulesTarget legacy --mode production",
-    "build:dev": "node node_modules/webpack/bin/webpack.js --config=config/webpack.js --scope core --rulesTarget current --mode development",
-    "build:legacy:dev": "node node_modules/webpack/bin/webpack.js --config=config/webpack.js --scope core --rulesTarget legacy --mode development"
+    "build": "node node_modules/webpack/bin/webpack.js --config=config/webpack.js --env=scope=core --env=rulesTarget=current --env=mode=production",
+    "build:legacy": "node node_modules/webpack/bin/webpack.js --config=config/webpack.js --env=scope=core --env=rulesTarget=legacy --env=mode=production",
+    "build:dev": "node node_modules/webpack/bin/webpack.js --config=config/webpack.js --env=scope=core --env=rulesTarget=current --env=mode=development",
+    "build:legacy:dev": "node node_modules/webpack/bin/webpack.js --config=config/webpack.js --env=scope=core --env=rulesTarget=legacy --env=mode=development"
   },
   "repository": {
     "type": "git",

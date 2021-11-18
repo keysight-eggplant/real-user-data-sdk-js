@@ -44,7 +44,7 @@ Please see the SDK documentation and examples below. You can also see the [REST 
 
 Compile the source code using webpack
 ```
-webpack --config=config/webpack.js --scope core --rulesTarget current --mode production
+webpack --config=config/webpack.js --env=scope=core --env=rulesTarget=current --env=mode=production
 ```
 
 Add the `dist/rci.min.js` script to your website via _local javascript file_, _CDN_, _NPM package_ or _GTM_ and you are ready to go.
@@ -239,7 +239,7 @@ if (window.hasOwnProperty('RCICoreReady')) {
 ## Support IE 11 and older phones
 To support IE11 you need to compile source in legacy mode.
 ```
-webpack --config=config/webpack.js --scope core --rulesTarget legacy --mode production
+webpack --config=config/webpack.js --env=scope=core --env=rulesTarget=legacy --env=mode=production
 ```
 `current` build supports last 2 most recent versions of browsers, while `legacy` aim to support all browsers up to IE11 while maintaining same functionality. The difference in result files are 25kB (current) vs 50kB (legacy).
 
