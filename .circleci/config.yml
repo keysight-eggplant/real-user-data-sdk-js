@@ -57,11 +57,17 @@ jobs:
           name: Upload Current Map to S3
           command: aws s3 cp dist/rci.min.js.map s3://${AWS_S3_BUCKET_NAME}/${CIRCLE_TAG}/rci.min.js.map --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
       - run:
+          name: Upload Current License to S3
+          command: aws s3 cp dist/rci.min.js.LICENSE.txt s3://${AWS_S3_BUCKET_NAME}/${CIRCLE_TAG}/rci.min.js.LICENSE.txt --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
+      - run:
           name: Upload Legacy to S3
           command: aws s3 cp dist/rci-legacy.min.js s3://${AWS_S3_BUCKET_NAME}/${CIRCLE_TAG}/rci-legacy.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
       - run:
           name: Upload Legacy Map to S3
           command: aws s3 cp dist/rci-legacy.min.js.map s3://${AWS_S3_BUCKET_NAME}/${CIRCLE_TAG}/rci-legacy.min.js.map --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
+      - run:
+          name: Upload Legacy License to S3
+          command: aws s3 cp dist/rci-legacy.min.js.LICENSE.txt s3://${AWS_S3_BUCKET_NAME}/${CIRCLE_TAG}/rci-legacy.min.js.LICENSE.txt --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
       - run:
           name: Upload Current to S3 latest
           command: aws s3 cp dist/rci.min.js s3://${AWS_S3_BUCKET_NAME}/latest/rci.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
@@ -69,11 +75,17 @@ jobs:
           name: Upload Current Map to S3 latest
           command: aws s3 cp dist/rci.min.js.map s3://${AWS_S3_BUCKET_NAME}/latest/rci.min.js.map --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
       - run:
+          name: Upload Current License to S3 latest
+          command: aws s3 cp dist/rci.min.js.LICENSE.txt s3://${AWS_S3_BUCKET_NAME}/latest/rci.min.js.LICENSE.txt --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
+      - run:
           name: Upload Legacy to S3 latest
           command: aws s3 cp dist/rci-legacy.min.js s3://${AWS_S3_BUCKET_NAME}/latest/rci-legacy.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
       - run:
           name: Upload Legacy Map to S3 latest
           command: aws s3 cp dist/rci-legacy.min.js.map s3://${AWS_S3_BUCKET_NAME}/latest/rci-legacy.min.js.map --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
+      - run:
+          name: Upload Legacy License to S3 latest
+          command: aws s3 cp dist/rci-legacy.min.js.LICENSE.txt s3://${AWS_S3_BUCKET_NAME}/latest/rci-legacy.min.js.LICENSE.txt --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
       - run:
           name: Commit the new artifacts
           command: git commit --allow-empty -am "Released:${CIRCLE_TAG}"
