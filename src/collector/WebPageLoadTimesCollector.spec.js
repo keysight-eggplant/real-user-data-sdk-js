@@ -42,7 +42,6 @@ describe('WebPageLoadTimesCollector', () => {
       expect(actualEvent).toEqual(expectedEvent);
     });
 
-
     test('Return correct response start', async () => {
       /** @type {Event} */
       const actualEvent = await collector.prepare(originalEvent);

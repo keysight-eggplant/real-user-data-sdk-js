@@ -10,10 +10,14 @@ console.log(cliArguments);
 
 let nameVal;
 
-for (let i = 0; i < cliArguments.env.length; i++) {
-  nameVal = cliArguments.env[i].split('=');
-  cliArguments[nameVal[0]] = nameVal[1];
+if (typeof cliArguments.env !== 'undefined') {
+  for (let i = 0; i < cliArguments.env.length; i++) {
+    nameVal = cliArguments.env[i].split('=');
+    cliArguments[nameVal[0]] = nameVal[1];
+  }
 }
+
+
 
 /** Complete with defaults */
 
@@ -124,7 +128,9 @@ if (cliArguments.rulesTarget === 'current') {
 
 
 const plugins = [
-  new webpack.BannerPlugin(banner),
+  new webpack.BannerPlugin({
+    banner,
+  }),
   new webpack.optimize.LimitChunkCountPlugin({
     maxChunks: 1
   }),
@@ -143,9 +149,11 @@ module.exports = [
     output: {
       path: path.resolve(__dirname, '../dist'),
       filename: `${cliArguments.fileName}${suffix}.min.js`,
-      library: 'rciSdk',
       publicPath: '/',
-      libraryTarget: 'window'
+      library: {
+        name: 'rciSdk',
+        type: 'window'
+      }
     },
     module: {
       rules

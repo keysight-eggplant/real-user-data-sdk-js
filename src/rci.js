@@ -73,9 +73,6 @@ export {
 const eventName = 'RCICoreReady';
 const RCICoreReadyEvent = new Event(eventName);
 
-// Setting a timeout for the library to be ready and available within window
-setTimeout(() => {
-  /** Dispatch the event and assign the event as a property for non event driven approach */
-  window.dispatchEvent(RCICoreReadyEvent);
-  window[eventName] = true;
-}, 10);
+/** Dispatch the event and assign the event as a property for non event driven approach */
+window.dispatchEvent(RCICoreReadyEvent);
+window[eventName] = true;

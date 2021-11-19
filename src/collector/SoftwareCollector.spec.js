@@ -32,7 +32,6 @@ describe('SoftwareCollector', () => {
   };
   let softwareCollector;
 
-
   describe('Valid UA', () => {
     beforeEach(() => {
       const userAgentString = 'Mozilla/5.0 (Linux; U; Android 4.4.2; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30';
@@ -192,7 +191,6 @@ describe('SoftwareCollector', () => {
 
   });
 
-
   describe('Valid UA with new modified custom value', () => {
     beforeEach(() => {
       const userAgentString = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A';
@@ -201,7 +199,6 @@ describe('SoftwareCollector', () => {
 
       softwareCollector = new SoftwareCollector();
     });
-
 
     test('Return event with new browser name', async () => {
       const actualEvent = await softwareCollector.prepare(originalEvent);
@@ -226,7 +223,6 @@ describe('SoftwareCollector', () => {
 
       softwareCollector = new SoftwareCollector();
     });
-
 
     test('Return event with new browser name', async () => {
       const actualEvent = await softwareCollector.prepare(originalEvent);

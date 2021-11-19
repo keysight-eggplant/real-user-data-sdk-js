@@ -20,7 +20,6 @@ describe('WebVitalsCollector', () => {
   let webVitalsCollector;
   let poEvent;
   let poHandler;
-  let po;
 
   describe('with current Web Vitals API', () => {
     beforeEach(() => {
@@ -29,14 +28,13 @@ describe('WebVitalsCollector', () => {
       poHandler = Sinon.stub();
       poHandler.observe = Sinon.stub();
 
-      class po3 {
+      class po {
         constructor(callback) {
           callback(poEvent);
-          return poHandler;
         }
       }
 
-      global.window.PerformanceObserver = po3;
+      global.window.PerformanceObserver = po;
       webVitalsCollector = new WebVitalsCollector();
     });
 
@@ -70,7 +68,6 @@ describe('WebVitalsCollector', () => {
       const actualEvent = await webVitalsCollector.prepare(originalEvent);
       expect(actualEvent).toEqual(expectedEvent);
     });
-
 
     test('Return correct web vitals', async () => {
       /** @type {Event} */

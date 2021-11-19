@@ -36,7 +36,6 @@ const {RCICoreReady} = window;
 if (RCICoreReady) {
   rciMainAction(tenancyId, window.rciSdk);
 
-
 // Bind on event and wait for dispatch by the SDK
 } else {
   window.addEventListener('RCICoreReady', () => {

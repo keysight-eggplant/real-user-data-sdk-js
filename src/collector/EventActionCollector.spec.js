@@ -17,7 +17,6 @@ describe('EventActionCollector', () => {
   };
   let eventActionCollector;
 
-
   beforeEach(() => {
     eventActionCollector = new EventActionCollector('double-click');
   });
@@ -27,7 +26,6 @@ describe('EventActionCollector', () => {
 
     expect(actualEvent).toEqual(expectedEvent);
   });
-
 
   test('Return correct event action', async () => {
     const actualEvent = await eventActionCollector.prepare(originalEvent);

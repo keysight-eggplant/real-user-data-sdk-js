@@ -18,7 +18,6 @@ describe('UriWithPageTitleCategoryCollector', () => {
   };
   let uriWithCustomCategoryCollector;
 
-
   beforeEach(() => {
     uriWithCustomCategoryCollector = new UriWithPageTitleCategoryCollector();
     document.title = 'Page Title | mysite.com';
@@ -29,7 +28,6 @@ describe('UriWithPageTitleCategoryCollector', () => {
 
     expect(actualEvent).toEqual(expectedEvent);
   });
-
 
   test('Return correct uri and category', async () => {
     const actualEvent = await uriWithCustomCategoryCollector.prepare(originalEvent);

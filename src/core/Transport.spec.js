@@ -33,16 +33,15 @@ describe('Transport Unit Tests', () => {
     server.respondWith(
       'POST',
       `https://target.domain/v1/${tenancyId}/stream`,
-      [200, { 'Content-Type': 'application/json' }, ''],
+      [200, { 'Content-Type': 'application/json' }, '']
     );
-
 
     transport.execute(event);
 
     server.respond();
 
     expect(server.requests[0].url).toEqual(
-      `https://target.domain/v1/${tenancyId}/stream`,
+      `https://target.domain/v1/${tenancyId}/stream`
     );
 
     expect(server.requests[0].requestBody).toEqual(dataJson);

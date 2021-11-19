@@ -25,7 +25,6 @@ describe('IdCollector', () => {
     expect(actualEvent).toEqual(expectedEvent);
   });
 
-
   test('Return correct id', async () => {
     const actualEvent = await idCollector.prepare(originalEvent);
 

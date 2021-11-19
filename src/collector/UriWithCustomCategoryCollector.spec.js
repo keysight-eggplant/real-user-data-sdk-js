@@ -18,7 +18,6 @@ describe('UriWithCustomCategoryCollector', () => {
   };
   let uriWithCustomCategoryCollector;
 
-
   beforeEach(() => {
     uriWithCustomCategoryCollector = new UriWithCustomCategoryCollector('custom category');
   });
@@ -28,7 +27,6 @@ describe('UriWithCustomCategoryCollector', () => {
 
     expect(actualEvent).toEqual(expectedEvent);
   });
-
 
   test('Return correct uri and category', async () => {
     const actualEvent = await uriWithCustomCategoryCollector.prepare(originalEvent);

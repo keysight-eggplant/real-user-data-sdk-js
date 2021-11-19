@@ -18,7 +18,6 @@ describe('NavigationTimingCollector', () => {
   };
   let navigationTimingCollector;
 
-
   beforeEach(() => {
     global.window.performance.timing = {
       navigationStart: 123
@@ -32,7 +31,6 @@ describe('NavigationTimingCollector', () => {
 
     expect(actualEvent).toEqual(expectedEvent);
   });
-
 
   test('Return correct event timing', async () => {
     const eventEnd = new Date().getTime();
