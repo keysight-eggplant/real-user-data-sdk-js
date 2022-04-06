@@ -16,12 +16,7 @@
   "parser": "@babel/eslint-parser",
   "parserOptions": {
     "sourceType": "module",
-<<<<<<< HEAD
-    "babelOptions": {
-    }
-=======
     "requireConfigFile": false
->>>>>>> development
   },
   "rules": {
     "no-unused-vars": 1,
@@ -40,13 +35,9 @@
         ]
       }
     ],
-<<<<<<< HEAD
-    "generator-star-spacing": 0,
-=======
     "arrow-parens": 2,
     "generator-star-spacing": 0,
     "no-debugger": 2,
->>>>>>> development
     "no-undef": 1,
     "space-before-function-paren": 0,
     "prefer-template": 1,
@@ -68,10 +59,7 @@
     "no-param-reassign": 0,
     "no-restricted-properties": 1,
     "no-bitwise": 1,
-<<<<<<< HEAD
-=======
     "import/extensions": 0,
->>>>>>> development
     "node/file-extension-in-import": [
       "warn",
       "always"

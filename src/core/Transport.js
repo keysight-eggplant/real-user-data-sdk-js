@@ -23,7 +23,6 @@ export default class Transport {
 
   async execute(event) {
 
-<<<<<<< HEAD
     if (this.targetUrls.length === 0) {
       console.log('No target URLs provided');
     } else {
@@ -40,19 +39,5 @@ export default class Transport {
         xhr.send(JSON.stringify(event));
       });
     }
-=======
-    await new Promise((resolve) => {
-      const xhr = new XMLHttpRequest();
-      xhr.open('POST', this.targetUrl, true);
-      xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.onload = () => {
-        resolve(xhr.response);
-      };
-      xhr.onerror = () => {
-        console.log('Unable to send event!');
-      };
-      xhr.send(JSON.stringify(event));
-    });
->>>>>>> development
   }
 }
