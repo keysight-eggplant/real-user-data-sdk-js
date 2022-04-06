@@ -1,5 +1,5 @@
 import Sinon from 'sinon';
-import WebBackEndCollector from './WebBackEndCollector';
+import WebBackEndCollector from './WebBackEndCollector.js';
 
 describe('WebBackEndCollector', () => {
   const originalEvent = {

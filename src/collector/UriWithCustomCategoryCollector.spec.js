@@ -1,4 +1,4 @@
-import UriWithCustomCategoryCollector from './UriWithCustomCategoryCollector';
+import UriWithCustomCategoryCollector from './UriWithCustomCategoryCollector.js';
 
 describe('UriWithCustomCategoryCollector', () => {
   const originalEvent = {

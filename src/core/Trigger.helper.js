@@ -1,9 +1,9 @@
 /* eslint-disable no-plusplus */
 /* eslint no-await-in-loop: 0 */
-import PerformanceServiceFactory from './performance/PerformanceServiceFactory';
-import ErrorCollector from '../collector/ErrorCollector';
+import PerformanceServiceFactory from './performance/PerformanceServiceFactory.js';
+import ErrorCollector from '../collector/ErrorCollector.js';
 
-const pjson = require('../../package.json');
+import pjson from '../../package.json';
 
 const performanceServiceFactory = new PerformanceServiceFactory();
 

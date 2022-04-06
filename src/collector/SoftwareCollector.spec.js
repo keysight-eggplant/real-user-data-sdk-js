@@ -2,7 +2,7 @@
 /* eslint-disable no-restricted-properties */
 /* eslint-disable no-underscore-dangle */
 
-import SoftwareCollector from './SoftwareCollector';
+import SoftwareCollector from './SoftwareCollector.js';
 
 describe('SoftwareCollector', () => {
   const originalEvent = {

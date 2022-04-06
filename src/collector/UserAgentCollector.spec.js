@@ -1,5 +1,5 @@
 import {createSandbox} from 'sinon';
-import UserAgentCollector from './UserAgentCollector';
+import UserAgentCollector from './UserAgentCollector.js';
 
 describe('UserAgentCollector', () => {
   const originalEvent = {

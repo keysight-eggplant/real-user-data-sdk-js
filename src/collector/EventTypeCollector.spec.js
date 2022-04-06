@@ -1,4 +1,4 @@
-import EventTypeCollector from './EventTypeCollector';
+import EventTypeCollector from './EventTypeCollector.js';
 
 describe('EventTypeCollector', () => {
   const originalEvent = {

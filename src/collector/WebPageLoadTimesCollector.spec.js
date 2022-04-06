@@ -1,5 +1,5 @@
 import Sinon from 'sinon';
-import WebPageLoadTimesCollector from './WebPageLoadTimesCollector';
+import WebPageLoadTimesCollector from './WebPageLoadTimesCollector.js';
 
 describe('WebPageLoadTimesCollector', () => {
   const originalEvent = {

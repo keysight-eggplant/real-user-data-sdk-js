@@ -1,4 +1,4 @@
-import ConversionCollector from './ConversionCollector';
+import ConversionCollector from './ConversionCollector.js';
 
 describe('ConversionCollector', () => {
   let conversionCollector;

@@ -1,5 +1,5 @@
 import Sinon from 'sinon';
-import WebVitalsCollector from './WebVitalsCollector';
+import WebVitalsCollector from './WebVitalsCollector.js';
 
 describe('WebVitalsCollector', () => {
   const originalEvent = {
