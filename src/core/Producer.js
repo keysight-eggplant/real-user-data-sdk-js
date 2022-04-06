@@ -1,5 +1,5 @@
 /* eslint no-await-in-loop: 0 */
-import ErrorCollector from '../collector/ErrorCollector';
+import ErrorCollector from '../collector/ErrorCollector.js';
 
 export default class Producer {
 

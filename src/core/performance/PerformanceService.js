@@ -4,7 +4,7 @@ export default class PerformanceService {
     PENDING: 1,
     COMPLETE: 2,
     FAILED: 3
-  }
+  };
 
   /**
    * Return the status of the Performance Service

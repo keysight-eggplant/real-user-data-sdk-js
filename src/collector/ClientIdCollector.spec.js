@@ -1,4 +1,4 @@
-import ClientIdCollector from './ClientIdCollector';
+import ClientIdCollector from './ClientIdCollector.js';
 
 describe('ClientIdCollector', () => {
   let localStorageMock;

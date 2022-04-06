@@ -1,4 +1,4 @@
-import ErrorCollector from './ErrorCollector';
+import ErrorCollector from './ErrorCollector.js';
 
 describe('ErrorCollector', () => {
   const originalEvent = {

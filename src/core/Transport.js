@@ -5,7 +5,7 @@ export default class Transport {
 
   async execute(event) {
 
-    await new Promise(resolve => {
+    await new Promise((resolve) => {
       const xhr = new XMLHttpRequest();
       xhr.open('POST', this.targetUrl, true);
       xhr.setRequestHeader('Content-Type', 'application/json');
