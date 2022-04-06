@@ -1,8 +1,14 @@
 /* eslint-disable prefer-destructuring */
-const path = require('path');
-const webpack = require('webpack');
-const cliArguments = require('minimist')(process.argv.slice(2));
-const PACKAGE = require('./../package.json');
+import path from 'path';
+import webpack from 'webpack';
+import PACKAGE from '../package.json' assert { type: 'json' };
+import minimist from 'minimist';
+
+import {fileURLToPath} from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const cliArguments = minimist(process.argv.slice(2));
 
 console.log(cliArguments);
 
@@ -148,7 +154,7 @@ const plugins = [
   })
 ];
 
-module.exports = [
+export default [
   {
     target: 'web',
     mode: `${cliArguments.mode}`,
