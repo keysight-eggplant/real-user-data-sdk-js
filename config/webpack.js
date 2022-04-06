@@ -7,10 +7,7 @@ import minimist from 'minimist';
 import {fileURLToPath} from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
-
-// 👇️ "/home/john/Desktop/javascript"
 const __dirname = path.dirname(__filename);
-
 const cliArguments = minimist(process.argv.slice(2));
 
 console.log(cliArguments);
