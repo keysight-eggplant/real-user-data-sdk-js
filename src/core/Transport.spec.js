@@ -1,5 +1,5 @@
 import sinon from 'sinon';
-import Transport from './Transport';
+import Transport from './Transport.js';
 
 describe('Transport Unit Tests', () => {
   const tenancyId = '123-456';

@@ -1,4 +1,4 @@
-import SpaTimingCollector from './SpaTimingCollector';
+import SpaTimingCollector from './SpaTimingCollector.js';
 
 describe('SpaTimingCollector', () => {
   const originalEvent = {

@@ -11,6 +11,9 @@
     "build:dev": "node node_modules/webpack/bin/webpack.js --config=config/webpack.js --env=scope=core --env=rulesTarget=current --env=mode=development",
     "build:legacy:dev": "node node_modules/webpack/bin/webpack.js --config=config/webpack.js --env=scope=core --env=rulesTarget=legacy --env=mode=development"
   },
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TestPlant/real-user-data-sdk-js.git"

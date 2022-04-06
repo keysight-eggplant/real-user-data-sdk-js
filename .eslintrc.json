@@ -15,7 +15,8 @@
   },
   "parser": "@babel/eslint-parser",
   "parserOptions": {
-    "sourceType": "module"
+    "sourceType": "module",
+    "requireConfigFile": false
   },
   "rules": {
     "no-unused-vars": 1,
@@ -58,6 +59,7 @@
     "no-param-reassign": 0,
     "no-restricted-properties": 1,
     "no-bitwise": 1,
+    "import/extensions": 0,
     "node/file-extension-in-import": [
       "warn",
       "always"

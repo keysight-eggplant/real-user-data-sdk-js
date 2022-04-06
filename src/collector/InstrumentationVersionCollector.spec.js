@@ -1,4 +1,4 @@
-import InstrumentationVersionCollector from './InstrumentationVersionCollector';
+import InstrumentationVersionCollector from './InstrumentationVersionCollector.js';
 
 const coreVersion = 'v11.2.9';
 

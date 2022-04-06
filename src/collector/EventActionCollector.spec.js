@@ -1,4 +1,4 @@
-import EventActionCollector from './EventActionCollector';
+import EventActionCollector from './EventActionCollector.js';
 
 describe('EventActionCollector', () => {
   const originalEvent = {
