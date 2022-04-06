@@ -13,7 +13,7 @@ describe('Transport Unit Tests', () => {
     server.restore();
   });
 
-  it('should send given event as JSON body', () => {
+  it('should send given event as JSON body (given a string)', () => {
     const targetUrl = `https://target.domain/v1/${tenancyId}/stream`;
     const transport = new Transport(targetUrl);
     const event = {
@@ -45,6 +45,14 @@ describe('Transport Unit Tests', () => {
     );
 
     expect(server.requests[0].requestBody).toEqual(dataJson);
+
+  });
+
+  it('should send given events as JSON body to multiple urls (tenancies with given URLs)', () => {
+
+  });
+
+  it('should send given events as JSON body to multiple urls (tenancies with composed URLs)', () => {
 
   });
 });

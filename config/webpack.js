@@ -1,8 +1,17 @@
 /* eslint-disable prefer-destructuring */
-const path = require('path');
-const webpack = require('webpack');
-const cliArguments = require('minimist')(process.argv.slice(2));
-const PACKAGE = require('./../package.json');
+import path from 'path';
+import webpack from 'webpack';
+import PACKAGE from '../package.json' assert { type: 'json' };
+import minimist from 'minimist';
+
+import {fileURLToPath} from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+
+// 👇️ "/home/john/Desktop/javascript"
+const __dirname = path.dirname(__filename);
+
+const cliArguments = minimist(process.argv.slice(2));
 
 console.log(cliArguments);
 
@@ -16,8 +25,6 @@ if (typeof cliArguments.env !== 'undefined') {
     cliArguments[nameVal[0]] = nameVal[1];
   }
 }
-
-
 
 /** Complete with defaults */
 
@@ -135,10 +142,9 @@ if (cliArguments.rulesTarget === 'current') {
   suffix = '-legacy';
 }
 
-
 const plugins = [
   new webpack.BannerPlugin({
-    banner,
+    banner
   }),
   new webpack.optimize.LimitChunkCountPlugin({
     maxChunks: 1
@@ -148,7 +154,7 @@ const plugins = [
   })
 ];
 
-module.exports = [
+export default [
   {
     target: 'web',
     mode: `${cliArguments.mode}`,
