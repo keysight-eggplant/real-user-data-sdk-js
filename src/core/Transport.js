@@ -9,12 +9,10 @@ export default class Transport {
     } else if (Array.isArray(input) && input.length > 0) {
       this.targetUrls = input;
     }
-
-    this.targetUrls = targetUrl;
   }
 
   static composeURL () {
-    
+
   }
 
   static filterTenancies (tenancies) {
@@ -26,9 +24,9 @@ export default class Transport {
     if (this.targetUrls.length === 0) {
       console.log('No target URLs provided');
     } else {
-      await new Promise(resolve => {
+      await new Promise((resolve) => {
         const xhr = new XMLHttpRequest();
-        xhr.open('POST', this.targetUrl, true);
+        xhr.open('POST', this.targetUrls[0], true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
           resolve(xhr.response);

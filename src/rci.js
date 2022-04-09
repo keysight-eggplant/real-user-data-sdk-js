@@ -1,4 +1,5 @@
 import Producer from './core/Producer.js';
+import Bootstrapper from './core/Bootstrapper.js';
 import Transport from './core/Transport.js';
 import TriggerHelper from './core/Trigger.helper.js';
 import NormalizationHelper from './core/Normalization.helper.js';
@@ -58,6 +59,7 @@ const collector = {
 
 export {
   Producer,
+  Bootstrapper,
   Transport,
   EVENT_TYPE,
   EVENT_ACTION,
