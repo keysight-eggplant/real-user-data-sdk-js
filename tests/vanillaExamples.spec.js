@@ -70,6 +70,8 @@ describe('RCI SDK Core', () => {
         await page.close();
 
         expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/123-456/stream');
+
         expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.deviceType).to.be.oneOf(TestSetupHelper.ranges.deviceTypes);
@@ -135,6 +137,8 @@ describe('RCI SDK Core', () => {
         await page.close();
 
         expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/123-456/stream');
+
         expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.deviceType).to.be.oneOf(TestSetupHelper.ranges.deviceTypes);
@@ -205,6 +209,8 @@ describe('RCI SDK Core', () => {
         await page.close();
 
         expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/123-456/stream');
+
         expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.deviceType).to.be.oneOf(TestSetupHelper.ranges.deviceTypes);
@@ -268,6 +274,8 @@ describe('RCI SDK Core', () => {
         await page.close();
 
         expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/123-456/stream');
+
         expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.deviceType).to.be.oneOf(TestSetupHelper.ranges.deviceTypes);
@@ -335,6 +343,8 @@ describe('RCI SDK Core', () => {
         await page.close();
 
         expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/123-456/stream');
+
         expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.deviceType).to.be.oneOf(TestSetupHelper.ranges.deviceTypes);
@@ -401,6 +411,8 @@ describe('RCI SDK Core', () => {
         await page.close();
 
         expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/123-456/stream');
+
         expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.deviceType).to.be.oneOf(TestSetupHelper.ranges.deviceTypes);
@@ -466,6 +478,8 @@ describe('RCI SDK Core', () => {
         await page.close();
 
         expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/123-456/stream');
+
         expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.deviceType).to.be.oneOf(TestSetupHelper.ranges.deviceTypes);
@@ -537,6 +551,8 @@ describe('RCI SDK Core', () => {
         await page.close();
 
         expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/123-456/stream');
+
         expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.deviceType).to.be.oneOf(TestSetupHelper.ranges.deviceTypes);
@@ -613,6 +629,8 @@ describe('RCI SDK Core', () => {
         await page.close();
 
         expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/123-456/stream');
+
         expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.deviceType).to.be.oneOf(TestSetupHelper.ranges.deviceTypes);
@@ -694,6 +712,8 @@ describe('RCI SDK Core', () => {
         await page.close();
 
         expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/123-456/stream');
+
         expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.deviceType).to.be.oneOf(TestSetupHelper.ranges.deviceTypes);
@@ -747,6 +767,454 @@ describe('RCI SDK Core', () => {
         expect(testSetup.capturedRequests[0].payload.eventInfo1).to.deep.equal('FOO');
         expect(testSetup.capturedRequests[0].payload.eventInfo2).to.deep.equal('BAR');
         expect(testSetup.capturedRequests[0].payload.eventInfo3).to.deep.equal('passed value in a custom collector');
+
+      });
+
+      it('should work with the Complex Example On Load Config based example', async () => {
+        const testSetup = {
+          link: 'http://localhost:3000/examples/Vanilla/ComplexExampleOnLoadConfigBased/index.html',
+          instrumentationWebpackConfig: {
+            entryPoint: './examples/Vanilla/ComplexExampleOnLoadConfigBased/complexExampleOnLoadConfigBased.js',
+            scope: 'implementation',
+            rulesTarget: 'current',
+            mode: 'development'
+          },
+          expectedRequests: 1,
+          waitForRequestsTimeout: defaultWaitForRequestsTimeout,
+          waitForRequestsFrequency: defaultWaitForRequestsFrequency,
+          requestsGLOBPattern: '*',
+          capturedRequests: []
+        };
+
+        await GenericTestHelper.webpack(testSetup.instrumentationWebpackConfig);
+
+        const page = await browser.newPage();
+        await TestSetupHelper.startListeningForRequests(testSetup, page);
+        await page.goto(testSetup.link);
+        await TestSetupHelper.stopListeningForRequests(testSetup);
+        await page.close();
+
+        expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/333-444/stream');
+
+        expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
+        expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
+        expect(testSetup.capturedRequests[0].payload.deviceType).to.be.oneOf(TestSetupHelper.ranges.deviceTypes);
+        expect(testSetup.capturedRequests[0].payload.eventAction).to.be.oneOf(TestSetupHelper.ranges.eventActions);
+        expect(testSetup.capturedRequests[0].payload.eventType).to.be.oneOf(TestSetupHelper.ranges.eventTypes);
+        expect(testSetup.capturedRequests[0].payload.eventStart).to.be.above(1649372134762);
+        expect(testSetup.capturedRequests[0].payload.eventEnd).to.be.above(testSetup.capturedRequests[0].payload.eventStart);
+        expect(testSetup.capturedRequests[0].payload.eventSource).to.deep.equal(testSetup.link);
+        expect(testSetup.capturedRequests[0].payload.eventCategory).to.deep.equal('Complex Example On Load Config Based');
+
+        expect(testSetup.capturedRequests[0].payload.viewportHeight).to.be.above(200);
+        expect(testSetup.capturedRequests[0].payload.viewportWidth).to.be.above(200);
+        expect(testSetup.capturedRequests[0].payload.screenColors).to.be.above(8);
+
+        expect(testSetup.capturedRequests[0].payload.osName).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.osName.length).to.be.above(0);
+        expect(testSetup.capturedRequests[0].payload.osVersion).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.osVersion.length).to.be.above(0);
+        expect(testSetup.capturedRequests[0].payload.encoding).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.encoding.length).to.be.above(0);
+        expect(testSetup.capturedRequests[0].payload.language).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.language.length).to.be.above(0);
+        expect(testSetup.capturedRequests[0].payload.softwareInfo1).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.softwareInfo1.length).to.be.above(0);
+        expect(testSetup.capturedRequests[0].payload.softwareInfo2).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.softwareInfo2.length).to.be.above(0);
+        expect(testSetup.capturedRequests[0].payload.softwareInfo3).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.softwareInfo3.length).to.be.above(0);
+
+        expect(testSetup.capturedRequests[0].payload.screenResolutionWidth).to.be.above(200);
+        expect(testSetup.capturedRequests[0].payload.screenResolutionHeight).to.be.above(200);
+
+        expect(testSetup.capturedRequests[0].payload.softwareInfo4).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.softwareInfo4.length).to.be.above(30);
+
+        // eventDurations
+        expect(testSetup.capturedRequests[0].payload.eventDuration1).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration2).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration3).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration4).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration5).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration6).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration7).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration8).to.be.above(1);
+
+        // Version
+        expect(testSetup.capturedRequests[0].payload.softwareInfo5).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.softwareInfo5.length).to.be.above(5);
+
+        // Custom collector Data
+        expect(testSetup.capturedRequests[0].payload.eventInfo1).to.deep.equal('FOO');
+        expect(testSetup.capturedRequests[0].payload.eventInfo2).to.deep.equal('BAR');
+        expect(testSetup.capturedRequests[0].payload.eventInfo3).to.deep.equal('passed value in a custom collector');
+
+      });
+
+      it('should work with the Complex Example On Load Config based Bootstrapped example', async () => {
+        const testSetup = {
+          link: 'http://localhost:3000/examples/Vanilla/ComplexExampleOnLoadConfigBasedBootstrapped/index.html',
+          instrumentationWebpackConfig: {
+            entryPoint: './examples/Vanilla/ComplexExampleOnLoadConfigBasedBootstrapped/complexExampleOnLoadConfigBasedBootstrapped.js',
+            scope: 'implementation',
+            rulesTarget: 'current',
+            mode: 'development'
+          },
+          expectedRequests: 1,
+          waitForRequestsTimeout: defaultWaitForRequestsTimeout,
+          waitForRequestsFrequency: defaultWaitForRequestsFrequency,
+          requestsGLOBPattern: '*',
+          capturedRequests: []
+        };
+
+        await GenericTestHelper.webpack(testSetup.instrumentationWebpackConfig);
+
+        const page = await browser.newPage();
+        await TestSetupHelper.startListeningForRequests(testSetup, page);
+        await page.goto(testSetup.link);
+        await TestSetupHelper.stopListeningForRequests(testSetup);
+        await page.close();
+
+        expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/333-444/stream');
+
+        expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
+        expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
+        expect(testSetup.capturedRequests[0].payload.deviceType).to.be.oneOf(TestSetupHelper.ranges.deviceTypes);
+        expect(testSetup.capturedRequests[0].payload.eventAction).to.be.oneOf(TestSetupHelper.ranges.eventActions);
+        expect(testSetup.capturedRequests[0].payload.eventType).to.be.oneOf(TestSetupHelper.ranges.eventTypes);
+        expect(testSetup.capturedRequests[0].payload.eventStart).to.be.above(1649372134762);
+        expect(testSetup.capturedRequests[0].payload.eventEnd).to.be.above(testSetup.capturedRequests[0].payload.eventStart);
+        expect(testSetup.capturedRequests[0].payload.eventSource).to.deep.equal(testSetup.link);
+        expect(testSetup.capturedRequests[0].payload.eventCategory).to.deep.equal('Complex Example On Load Config Based Bootstrapped');
+
+        expect(testSetup.capturedRequests[0].payload.viewportHeight).to.be.above(200);
+        expect(testSetup.capturedRequests[0].payload.viewportWidth).to.be.above(200);
+        expect(testSetup.capturedRequests[0].payload.screenColors).to.be.above(8);
+
+        expect(testSetup.capturedRequests[0].payload.osName).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.osName.length).to.be.above(0);
+        expect(testSetup.capturedRequests[0].payload.osVersion).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.osVersion.length).to.be.above(0);
+        expect(testSetup.capturedRequests[0].payload.encoding).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.encoding.length).to.be.above(0);
+        expect(testSetup.capturedRequests[0].payload.language).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.language.length).to.be.above(0);
+        expect(testSetup.capturedRequests[0].payload.softwareInfo1).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.softwareInfo1.length).to.be.above(0);
+        expect(testSetup.capturedRequests[0].payload.softwareInfo2).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.softwareInfo2.length).to.be.above(0);
+        expect(testSetup.capturedRequests[0].payload.softwareInfo3).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.softwareInfo3.length).to.be.above(0);
+
+        expect(testSetup.capturedRequests[0].payload.screenResolutionWidth).to.be.above(200);
+        expect(testSetup.capturedRequests[0].payload.screenResolutionHeight).to.be.above(200);
+
+        expect(testSetup.capturedRequests[0].payload.softwareInfo4).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.softwareInfo4.length).to.be.above(30);
+
+        // eventDurations
+        expect(testSetup.capturedRequests[0].payload.eventDuration1).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration2).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration3).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration4).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration5).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration6).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration7).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration8).to.be.above(1);
+
+        // Version
+        expect(testSetup.capturedRequests[0].payload.softwareInfo5).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.softwareInfo5.length).to.be.above(5);
+
+        // Custom collector Data
+        expect(testSetup.capturedRequests[0].payload.eventInfo1).to.deep.equal('FOO');
+        expect(testSetup.capturedRequests[0].payload.eventInfo2).to.deep.equal('BAR');
+        expect(testSetup.capturedRequests[0].payload.eventInfo3).to.deep.equal('passed value in a custom collector');
+
+      });
+
+      it('should work with the Complex Example On Load with multiple valid targets example', async () => {
+        const testSetup = {
+          link: 'http://localhost:3000/examples/Vanilla/ComplexExampleOnLoadMultipleValidTargets/index.html',
+          instrumentationWebpackConfig: {
+            entryPoint: './examples/Vanilla/ComplexExampleOnLoadMultipleValidTargets/complexExampleOnLoadMultipleValidTargets.js',
+            scope: 'implementation',
+            rulesTarget: 'current',
+            mode: 'development'
+          },
+          expectedRequests: 2,
+          waitForRequestsTimeout: defaultWaitForRequestsTimeout,
+          waitForRequestsFrequency: defaultWaitForRequestsFrequency,
+          requestsGLOBPattern: '*',
+          capturedRequests: []
+        };
+
+        await GenericTestHelper.webpack(testSetup.instrumentationWebpackConfig);
+
+        const page = await browser.newPage();
+        await TestSetupHelper.startListeningForRequests(testSetup, page);
+        await page.goto(testSetup.link);
+        await TestSetupHelper.stopListeningForRequests(testSetup);
+        await page.close();
+
+        expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/333-444/stream');
+
+        expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
+        expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
+        expect(testSetup.capturedRequests[0].payload.deviceType).to.be.oneOf(TestSetupHelper.ranges.deviceTypes);
+        expect(testSetup.capturedRequests[0].payload.eventAction).to.be.oneOf(TestSetupHelper.ranges.eventActions);
+        expect(testSetup.capturedRequests[0].payload.eventType).to.be.oneOf(TestSetupHelper.ranges.eventTypes);
+        expect(testSetup.capturedRequests[0].payload.eventStart).to.be.above(1649372134762);
+        expect(testSetup.capturedRequests[0].payload.eventEnd).to.be.above(testSetup.capturedRequests[0].payload.eventStart);
+        expect(testSetup.capturedRequests[0].payload.eventSource).to.deep.equal(testSetup.link);
+        expect(testSetup.capturedRequests[0].payload.eventCategory).to.deep.equal('Complex Example On Load Multiple Valid Targets');
+
+        expect(testSetup.capturedRequests[0].payload.viewportHeight).to.be.above(200);
+        expect(testSetup.capturedRequests[0].payload.viewportWidth).to.be.above(200);
+        expect(testSetup.capturedRequests[0].payload.screenColors).to.be.above(8);
+
+        expect(testSetup.capturedRequests[0].payload.osName).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.osName.length).to.be.above(0);
+        expect(testSetup.capturedRequests[0].payload.osVersion).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.osVersion.length).to.be.above(0);
+        expect(testSetup.capturedRequests[0].payload.encoding).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.encoding.length).to.be.above(0);
+        expect(testSetup.capturedRequests[0].payload.language).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.language.length).to.be.above(0);
+        expect(testSetup.capturedRequests[0].payload.softwareInfo1).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.softwareInfo1.length).to.be.above(0);
+        expect(testSetup.capturedRequests[0].payload.softwareInfo2).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.softwareInfo2.length).to.be.above(0);
+        expect(testSetup.capturedRequests[0].payload.softwareInfo3).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.softwareInfo3.length).to.be.above(0);
+
+        expect(testSetup.capturedRequests[0].payload.screenResolutionWidth).to.be.above(200);
+        expect(testSetup.capturedRequests[0].payload.screenResolutionHeight).to.be.above(200);
+
+        expect(testSetup.capturedRequests[0].payload.softwareInfo4).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.softwareInfo4.length).to.be.above(30);
+
+        // eventDurations
+        expect(testSetup.capturedRequests[0].payload.eventDuration1).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration2).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration3).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration4).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration5).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration6).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration7).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration8).to.be.above(1);
+
+        // Version
+        expect(testSetup.capturedRequests[0].payload.softwareInfo5).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.softwareInfo5.length).to.be.above(5);
+
+        // Custom collector Data
+        expect(testSetup.capturedRequests[0].payload.eventInfo1).to.deep.equal('FOO');
+        expect(testSetup.capturedRequests[0].payload.eventInfo2).to.deep.equal('BAR');
+        expect(testSetup.capturedRequests[0].payload.eventInfo3).to.deep.equal('passed value in a custom collector');
+
+
+        // Second request
+        expect(testSetup.capturedRequests[1].requestUrl).to.deep.equal('http://localhost:3000/v1/777-888/stream');
+
+        expect(testSetup.capturedRequests[1].payload.id).to.to.be.a.uuid('v4');
+        expect(testSetup.capturedRequests[1].payload.clientId).to.to.be.a.uuid('v4');
+        expect(testSetup.capturedRequests[1].payload.deviceType).to.be.oneOf(TestSetupHelper.ranges.deviceTypes);
+        expect(testSetup.capturedRequests[1].payload.eventAction).to.be.oneOf(TestSetupHelper.ranges.eventActions);
+        expect(testSetup.capturedRequests[1].payload.eventType).to.be.oneOf(TestSetupHelper.ranges.eventTypes);
+        expect(testSetup.capturedRequests[1].payload.eventStart).to.be.above(1649372134762);
+        expect(testSetup.capturedRequests[1].payload.eventEnd).to.be.above(testSetup.capturedRequests[0].payload.eventStart);
+        expect(testSetup.capturedRequests[1].payload.eventSource).to.deep.equal(testSetup.link);
+        expect(testSetup.capturedRequests[1].payload.eventCategory).to.deep.equal('Complex Example On Load Multiple Valid Targets');
+
+        expect(testSetup.capturedRequests[1].payload.viewportHeight).to.be.above(200);
+        expect(testSetup.capturedRequests[1].payload.viewportWidth).to.be.above(200);
+        expect(testSetup.capturedRequests[1].payload.screenColors).to.be.above(8);
+
+        expect(testSetup.capturedRequests[1].payload.osName).to.be.a('string');
+        expect(testSetup.capturedRequests[1].payload.osName.length).to.be.above(0);
+        expect(testSetup.capturedRequests[1].payload.osVersion).to.be.a('string');
+        expect(testSetup.capturedRequests[1].payload.osVersion.length).to.be.above(0);
+        expect(testSetup.capturedRequests[1].payload.encoding).to.be.a('string');
+        expect(testSetup.capturedRequests[1].payload.encoding.length).to.be.above(0);
+        expect(testSetup.capturedRequests[1].payload.language).to.be.a('string');
+        expect(testSetup.capturedRequests[1].payload.language.length).to.be.above(0);
+        expect(testSetup.capturedRequests[1].payload.softwareInfo1).to.be.a('string');
+        expect(testSetup.capturedRequests[1].payload.softwareInfo1.length).to.be.above(0);
+        expect(testSetup.capturedRequests[1].payload.softwareInfo2).to.be.a('string');
+        expect(testSetup.capturedRequests[1].payload.softwareInfo2.length).to.be.above(0);
+        expect(testSetup.capturedRequests[1].payload.softwareInfo3).to.be.a('string');
+        expect(testSetup.capturedRequests[1].payload.softwareInfo3.length).to.be.above(0);
+
+        expect(testSetup.capturedRequests[1].payload.screenResolutionWidth).to.be.above(200);
+        expect(testSetup.capturedRequests[1].payload.screenResolutionHeight).to.be.above(200);
+
+        expect(testSetup.capturedRequests[1].payload.softwareInfo4).to.be.a('string');
+        expect(testSetup.capturedRequests[1].payload.softwareInfo4.length).to.be.above(30);
+
+        // eventDurations
+        expect(testSetup.capturedRequests[1].payload.eventDuration1).to.be.above(1);
+        expect(testSetup.capturedRequests[1].payload.eventDuration2).to.be.above(1);
+        expect(testSetup.capturedRequests[1].payload.eventDuration3).to.be.above(1);
+        expect(testSetup.capturedRequests[1].payload.eventDuration4).to.be.above(1);
+        expect(testSetup.capturedRequests[1].payload.eventDuration5).to.be.above(1);
+        expect(testSetup.capturedRequests[1].payload.eventDuration6).to.be.above(1);
+        expect(testSetup.capturedRequests[1].payload.eventDuration7).to.be.above(1);
+        expect(testSetup.capturedRequests[1].payload.eventDuration8).to.be.above(1);
+
+        // Version
+        expect(testSetup.capturedRequests[1].payload.softwareInfo5).to.be.a('string');
+        expect(testSetup.capturedRequests[1].payload.softwareInfo5.length).to.be.above(5);
+
+        // Custom collector Data
+        expect(testSetup.capturedRequests[1].payload.eventInfo1).to.deep.equal('FOO');
+        expect(testSetup.capturedRequests[1].payload.eventInfo2).to.deep.equal('BAR');
+        expect(testSetup.capturedRequests[1].payload.eventInfo3).to.deep.equal('passed value in a custom collector');
+
+      });
+
+      it('should work with the Complex Example On Load with multiple valid targets bootstrapped example', async () => {
+        const testSetup = {
+          link: 'http://localhost:3000/examples/Vanilla/ComplexExampleOnLoadMultipleValidTargetsBootstrapped/index.html',
+          instrumentationWebpackConfig: {
+            entryPoint: './examples/Vanilla/ComplexExampleOnLoadMultipleValidTargetsBootstrapped/complexExampleOnLoadMultipleValidTargetsBootstrapped.js',
+            scope: 'implementation',
+            rulesTarget: 'current',
+            mode: 'development'
+          },
+          expectedRequests: 2,
+          waitForRequestsTimeout: defaultWaitForRequestsTimeout,
+          waitForRequestsFrequency: defaultWaitForRequestsFrequency,
+          requestsGLOBPattern: '*',
+          capturedRequests: []
+        };
+
+        await GenericTestHelper.webpack(testSetup.instrumentationWebpackConfig);
+
+        const page = await browser.newPage();
+        await TestSetupHelper.startListeningForRequests(testSetup, page);
+        await page.goto(testSetup.link);
+        await TestSetupHelper.stopListeningForRequests(testSetup);
+        await page.close();
+
+        expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/333-444/stream');
+
+        expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
+        expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
+        expect(testSetup.capturedRequests[0].payload.deviceType).to.be.oneOf(TestSetupHelper.ranges.deviceTypes);
+        expect(testSetup.capturedRequests[0].payload.eventAction).to.be.oneOf(TestSetupHelper.ranges.eventActions);
+        expect(testSetup.capturedRequests[0].payload.eventType).to.be.oneOf(TestSetupHelper.ranges.eventTypes);
+        expect(testSetup.capturedRequests[0].payload.eventStart).to.be.above(1649372134762);
+        expect(testSetup.capturedRequests[0].payload.eventEnd).to.be.above(testSetup.capturedRequests[0].payload.eventStart);
+        expect(testSetup.capturedRequests[0].payload.eventSource).to.deep.equal(testSetup.link);
+        expect(testSetup.capturedRequests[0].payload.eventCategory).to.deep.equal('Complex Example On Load Multiple Valid Targets Bootstrapped');
+
+        expect(testSetup.capturedRequests[0].payload.viewportHeight).to.be.above(200);
+        expect(testSetup.capturedRequests[0].payload.viewportWidth).to.be.above(200);
+        expect(testSetup.capturedRequests[0].payload.screenColors).to.be.above(8);
+
+        expect(testSetup.capturedRequests[0].payload.osName).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.osName.length).to.be.above(0);
+        expect(testSetup.capturedRequests[0].payload.osVersion).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.osVersion.length).to.be.above(0);
+        expect(testSetup.capturedRequests[0].payload.encoding).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.encoding.length).to.be.above(0);
+        expect(testSetup.capturedRequests[0].payload.language).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.language.length).to.be.above(0);
+        expect(testSetup.capturedRequests[0].payload.softwareInfo1).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.softwareInfo1.length).to.be.above(0);
+        expect(testSetup.capturedRequests[0].payload.softwareInfo2).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.softwareInfo2.length).to.be.above(0);
+        expect(testSetup.capturedRequests[0].payload.softwareInfo3).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.softwareInfo3.length).to.be.above(0);
+
+        expect(testSetup.capturedRequests[0].payload.screenResolutionWidth).to.be.above(200);
+        expect(testSetup.capturedRequests[0].payload.screenResolutionHeight).to.be.above(200);
+
+        expect(testSetup.capturedRequests[0].payload.softwareInfo4).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.softwareInfo4.length).to.be.above(30);
+
+        // eventDurations
+        expect(testSetup.capturedRequests[0].payload.eventDuration1).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration2).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration3).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration4).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration5).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration6).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration7).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration8).to.be.above(1);
+
+        // Version
+        expect(testSetup.capturedRequests[0].payload.softwareInfo5).to.be.a('string');
+        expect(testSetup.capturedRequests[0].payload.softwareInfo5.length).to.be.above(5);
+
+        // Custom collector Data
+        expect(testSetup.capturedRequests[0].payload.eventInfo1).to.deep.equal('FOO');
+        expect(testSetup.capturedRequests[0].payload.eventInfo2).to.deep.equal('BAR');
+        expect(testSetup.capturedRequests[0].payload.eventInfo3).to.deep.equal('passed value in a custom collector');
+
+
+        // Second request
+        expect(testSetup.capturedRequests[1].requestUrl).to.deep.equal('http://localhost:3000/v1/777-888/stream');
+
+        expect(testSetup.capturedRequests[1].payload.id).to.to.be.a.uuid('v4');
+        expect(testSetup.capturedRequests[1].payload.clientId).to.to.be.a.uuid('v4');
+        expect(testSetup.capturedRequests[1].payload.deviceType).to.be.oneOf(TestSetupHelper.ranges.deviceTypes);
+        expect(testSetup.capturedRequests[1].payload.eventAction).to.be.oneOf(TestSetupHelper.ranges.eventActions);
+        expect(testSetup.capturedRequests[1].payload.eventType).to.be.oneOf(TestSetupHelper.ranges.eventTypes);
+        expect(testSetup.capturedRequests[1].payload.eventStart).to.be.above(1649372134762);
+        expect(testSetup.capturedRequests[1].payload.eventEnd).to.be.above(testSetup.capturedRequests[0].payload.eventStart);
+        expect(testSetup.capturedRequests[1].payload.eventSource).to.deep.equal(testSetup.link);
+        expect(testSetup.capturedRequests[1].payload.eventCategory).to.deep.equal('Complex Example On Load Multiple Valid Targets Bootstrapped');
+
+        expect(testSetup.capturedRequests[1].payload.viewportHeight).to.be.above(200);
+        expect(testSetup.capturedRequests[1].payload.viewportWidth).to.be.above(200);
+        expect(testSetup.capturedRequests[1].payload.screenColors).to.be.above(8);
+
+        expect(testSetup.capturedRequests[1].payload.osName).to.be.a('string');
+        expect(testSetup.capturedRequests[1].payload.osName.length).to.be.above(0);
+        expect(testSetup.capturedRequests[1].payload.osVersion).to.be.a('string');
+        expect(testSetup.capturedRequests[1].payload.osVersion.length).to.be.above(0);
+        expect(testSetup.capturedRequests[1].payload.encoding).to.be.a('string');
+        expect(testSetup.capturedRequests[1].payload.encoding.length).to.be.above(0);
+        expect(testSetup.capturedRequests[1].payload.language).to.be.a('string');
+        expect(testSetup.capturedRequests[1].payload.language.length).to.be.above(0);
+        expect(testSetup.capturedRequests[1].payload.softwareInfo1).to.be.a('string');
+        expect(testSetup.capturedRequests[1].payload.softwareInfo1.length).to.be.above(0);
+        expect(testSetup.capturedRequests[1].payload.softwareInfo2).to.be.a('string');
+        expect(testSetup.capturedRequests[1].payload.softwareInfo2.length).to.be.above(0);
+        expect(testSetup.capturedRequests[1].payload.softwareInfo3).to.be.a('string');
+        expect(testSetup.capturedRequests[1].payload.softwareInfo3.length).to.be.above(0);
+
+        expect(testSetup.capturedRequests[1].payload.screenResolutionWidth).to.be.above(200);
+        expect(testSetup.capturedRequests[1].payload.screenResolutionHeight).to.be.above(200);
+
+        expect(testSetup.capturedRequests[1].payload.softwareInfo4).to.be.a('string');
+        expect(testSetup.capturedRequests[1].payload.softwareInfo4.length).to.be.above(30);
+
+        // eventDurations
+        expect(testSetup.capturedRequests[1].payload.eventDuration1).to.be.above(1);
+        expect(testSetup.capturedRequests[1].payload.eventDuration2).to.be.above(1);
+        expect(testSetup.capturedRequests[1].payload.eventDuration3).to.be.above(1);
+        expect(testSetup.capturedRequests[1].payload.eventDuration4).to.be.above(1);
+        expect(testSetup.capturedRequests[1].payload.eventDuration5).to.be.above(1);
+        expect(testSetup.capturedRequests[1].payload.eventDuration6).to.be.above(1);
+        expect(testSetup.capturedRequests[1].payload.eventDuration7).to.be.above(1);
+        expect(testSetup.capturedRequests[1].payload.eventDuration8).to.be.above(1);
+
+        // Version
+        expect(testSetup.capturedRequests[1].payload.softwareInfo5).to.be.a('string');
+        expect(testSetup.capturedRequests[1].payload.softwareInfo5.length).to.be.above(5);
+
+        // Custom collector Data
+        expect(testSetup.capturedRequests[1].payload.eventInfo1).to.deep.equal('FOO');
+        expect(testSetup.capturedRequests[1].payload.eventInfo2).to.deep.equal('BAR');
+        expect(testSetup.capturedRequests[1].payload.eventInfo3).to.deep.equal('passed value in a custom collector');
 
       });
     });
