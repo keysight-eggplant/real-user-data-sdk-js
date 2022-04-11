@@ -60,7 +60,6 @@ class TestSetupHelper {
           testSetup.waitForRequestsFrequency
 
         );
-        console.log(testSetup.capturedRequests);
         resolve(testSetup.capturedRequests);
       } catch (e) {
         console.log('Not enough beacons captured');

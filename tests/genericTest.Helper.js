@@ -39,7 +39,6 @@ class GenericTestHelper {
     app.use(cors());
 
     app.post('/v1/:tenancyId/stream', (req, res) => {
-      console.log(req.params.tenancyId);
       res.send('Hello World!');
     });
 
@@ -54,8 +53,7 @@ class GenericTestHelper {
       const host = server.address().address;
       const { port } = server.address();
 
-      console.log(`Starting! Listening at : http://${host}:${port}`);
-      console.log(`Started at : ${new Date().toUTCString()}`);
+      console.log(`Started at : ${new Date().toUTCString()}! Listening at: http://${host}:${port}`);
 
       app.emit('ready');
     });

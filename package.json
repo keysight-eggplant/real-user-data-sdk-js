@@ -4,7 +4,7 @@
   "description": "SDK for generating and publishing events that capture user, application and technical data",
   "main": "dist/rci.min.js",
   "scripts": {
-    "test": "node node_modules/jest/bin/jest.js src && npm run build && node node_modules/karma/bin/karma start",
+    "test": "npm run test:unit && npm run test:e2e",
     "test:e2e": "node node_modules/mocha/bin/mocha ./tests/**/*.spec.js",
     "test:unit": "node node_modules/jest/bin/jest.js src",
     "eslint": "node node_modules/eslint/bin/eslint.js ./src ./examples/Vanilla ./tests --fix",
