@@ -242,10 +242,10 @@ To test certain features and to see it working in a real world scenario, we depl
 
 In order to manual test, see it in action or just play around with it's capabilities, you need to install the app and make it available. 
 
-To do so, you need to run the following commands(given that right now you are in the "real-user-data-sdk-js" folder): 
+To do so, you need to run the following commands(given that right now you are in the "next-react-spa" folder): 
 
 ```bash
-cd examples/next-realworld-example-app
+cd examples/next-react-spa
 npm install
 npm run dev
 ```
@@ -278,6 +278,38 @@ The main purpose of this repository is to continue to evolve _rci event collecto
 
 This SDK has adopted a [Code of Conduct](CODE_OF_CONDUCT.md) that we expect project participants to adhere to. Please read the the full text so that you can understand what actions will and will not be tolerated.
 
+#### Running the tests
+The project has 2 types of tests to ensure the quality of the code and the stability of the project. 
+
+One suite of end to end tests that are available alongside the code that is being tested. Using the following:
+- [Jest](https://jestjs.io/) as the generic testing framework, using the inbuilt assertion library.
+- [Sinon](https://sinonjs.org/) used for mocking various internal components and providing a stable interface for components that are outside the scope of the project.
+
+The other suite, is the end to end tests that are available in the ```./tests``` folder. This suite is using the following tools:
+- [Puppeteer](https://pptr.dev/) as the browser driver.
+- [Express](https://expressjs.com/) as the web server used to serve the assets
+- [Mocha](https://mochajs.org/) as the testing framework
+- [Chai](https://www.chaijs.com/) as the assertion library
+
+Conveniently, there are commands to run the unit tests as well as the end to end tests within ```./package.json```.
+
+In order to run the unit tests, you can use the following command:
+
+```bash
+npm run test:unit
+```
+
+In order to run the end to end tests, you can use the following command:
+
+```bash
+npm run test:e2e
+```
+
+In order to run the unit tests and the end to end tests together, you can use the following command:
+
+```bash
+npm run test
+```
 ## Contributors
 
 - [Artur Chamier](https://github.com/yghern)
