@@ -4,8 +4,6 @@ import {
 
 export default class Transport {
 
-  static defaultURLHost = '';
-
   static TARGETED_DATA_RANGE = Object.values(TARGETED_DATA);
 
   static TARGETED_DATA_URL_BASED_RANGE = Object.values(TARGETED_DATA_URL_BASED);
@@ -55,7 +53,8 @@ export default class Transport {
       }
     } else if (Transport.TARGETED_DATA_HTML_BASED_RANGE.includes(target.targetedData)) {
       if (target.targetedData === TARGETED_DATA.CANONICAL_LINKS) {
-        // TO Be implemented
+        const canonicalLinks = document.querySelectorAll("link[rel='canonical']");
+        Array.prototype.map.call(canonicalLinks, (link) => input.push(link.href));
       }
     }
 

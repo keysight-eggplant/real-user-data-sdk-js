@@ -286,6 +286,48 @@ describe('Transport Unit Tests', () => {
       isTargetValid.restore();
     });
 
+    it('should return true for an object targeting and matching the canonical links via perfect match', () => {
+      const isTargetValid = sinon.stub(Transport, 'isTargetValid');
+      isTargetValid.returns(true);
+
+      const querySelectorAllStub = sinon.stub(document, 'querySelectorAll');
+      querySelectorAllStub.returns([{href: 'https://en.wikipedia.org/'}, {href: 'http://example.com/'}]);
+
+      const initial = {
+        targetedData: TARGETED_DATA.CANONICAL_LINKS,
+        searchMode: TARGET_SEARCH_MODES.PERFECT_MATCH,
+        searchValue: 'http://example.com/'
+      };
+      const expected = true;
+      const actual = Transport.isTargetMatching(initial);
+
+      expect(actual).toEqual(expected);
+
+      querySelectorAllStub.restore();
+      isTargetValid.restore();
+    });
+
+    it('should return false for an object targeting and not matching the canonical links via perfect match', () => {
+      const isTargetValid = sinon.stub(Transport, 'isTargetValid');
+      isTargetValid.returns(true);
+
+      const querySelectorAllStub = sinon.stub(document, 'querySelectorAll');
+      querySelectorAllStub.returns([{href: 'https://en.wikipedia.org/'}, {href: 'http://anotherExample.com/'}]);
+
+      const initial = {
+        targetedData: TARGETED_DATA.CANONICAL_LINKS,
+        searchMode: TARGET_SEARCH_MODES.PERFECT_MATCH,
+        searchValue: 'http://example.com/'
+      };
+      const expected = false;
+      const actual = Transport.isTargetMatching(initial);
+
+      expect(actual).toEqual(expected);
+
+      querySelectorAllStub.restore();
+      isTargetValid.restore();
+    });
+
     it('should return true for an object targeting and matching some parts of the full URL via partial match', () => {
       const isTargetValid = sinon.stub(Transport, 'isTargetValid');
       isTargetValid.returns(true);
@@ -422,6 +464,48 @@ describe('Transport Unit Tests', () => {
       isTargetValid.restore();
     });
 
+    it('should return true for an object targeting and matching the canonical links via partial match', () => {
+      const isTargetValid = sinon.stub(Transport, 'isTargetValid');
+      isTargetValid.returns(true);
+
+      const querySelectorAllStub = sinon.stub(document, 'querySelectorAll');
+      querySelectorAllStub.returns([{href: 'https://en.wikipedia.org/'}, {href: 'http://example.com/'}]);
+
+      const initial = {
+        targetedData: TARGETED_DATA.CANONICAL_LINKS,
+        searchMode: TARGET_SEARCH_MODES.PARTIAL_MATCH,
+        searchValue: 'ttp://exa'
+      };
+      const expected = true;
+      const actual = Transport.isTargetMatching(initial);
+
+      expect(actual).toEqual(expected);
+
+      querySelectorAllStub.restore();
+      isTargetValid.restore();
+    });
+
+    it('should return false for an object targeting and not matching the canonical links via partial match', () => {
+      const isTargetValid = sinon.stub(Transport, 'isTargetValid');
+      isTargetValid.returns(true);
+
+      const querySelectorAllStub = sinon.stub(document, 'querySelectorAll');
+      querySelectorAllStub.returns([{href: 'https://en.wikipedia.org/'}, {href: 'http://anotherExample.com/'}]);
+
+      const initial = {
+        targetedData: TARGETED_DATA.CANONICAL_LINKS,
+        searchMode: TARGET_SEARCH_MODES.PARTIAL_MATCH,
+        searchValue: 'ttp://exa'
+      };
+      const expected = false;
+      const actual = Transport.isTargetMatching(initial);
+
+      expect(actual).toEqual(expected);
+
+      querySelectorAllStub.restore();
+      isTargetValid.restore();
+    });
+
     it('should return true for an object targeting and matching some parts of the full URL via regex', () => {
       const isTargetValid = sinon.stub(Transport, 'isTargetValid');
       isTargetValid.returns(true);
@@ -555,6 +639,48 @@ describe('Transport Unit Tests', () => {
 
       expect(actual).toEqual(expected);
 
+      isTargetValid.restore();
+    });
+
+    it('should return true for an object targeting and matching the canonical links via regex', () => {
+      const isTargetValid = sinon.stub(Transport, 'isTargetValid');
+      isTargetValid.returns(true);
+
+      const querySelectorAllStub = sinon.stub(document, 'querySelectorAll');
+      querySelectorAllStub.returns([{href: 'https://en.wikipedia.org/'}, {href: 'http://example.com/'}]);
+
+      const initial = {
+        targetedData: TARGETED_DATA.CANONICAL_LINKS,
+        searchMode: TARGET_SEARCH_MODES.REGEX,
+        searchValue: '.+(example.com).+'
+      };
+      const expected = true;
+      const actual = Transport.isTargetMatching(initial);
+
+      expect(actual).toEqual(expected);
+
+      querySelectorAllStub.restore();
+      isTargetValid.restore();
+    });
+
+    it('should return false for an object targeting and not matching the canonical links via regex', () => {
+      const isTargetValid = sinon.stub(Transport, 'isTargetValid');
+      isTargetValid.returns(true);
+
+      const querySelectorAllStub = sinon.stub(document, 'querySelectorAll');
+      querySelectorAllStub.returns([{href: 'https://en.wikipedia.org/'}, {href: 'http://anotherExample.com/'}]);
+
+      const initial = {
+        targetedData: TARGETED_DATA.CANONICAL_LINKS,
+        searchMode: TARGET_SEARCH_MODES.REGEX,
+        searchValue: '.+(example.com).+'
+      };
+      const expected = false;
+      const actual = Transport.isTargetMatching(initial);
+
+      expect(actual).toEqual(expected);
+
+      querySelectorAllStub.restore();
       isTargetValid.restore();
     });
 

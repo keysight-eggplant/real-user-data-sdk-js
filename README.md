@@ -27,8 +27,8 @@ We are glad to introduce the newest version of **RCI - Real User Data SDK**.
 ### Browsers support
 
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>iOS Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/samsung-internet/samsung-internet_48x48.png" alt="Samsung" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Samsung | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Opera |
-| --------- | --------- | --------- | --------- | --------- | --------- | --------- |
-| IE11, Edge| last 2 versions| last 2 versions| last 2 versions| last 2 versions| last 2 versions| last 2 versions
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| IE11, Edge                                                                                                                                                                                                      | last 2 versions                                                                                                                                                                                                   | last 2 versions                                                                                                                                                                                               | last 2 versions                                                                                                                                                                                               | last 2 versions                                                                                                                                                                                                               | last 2 versions                                                                                                                                                                                                                     | last 2 versions                                                                                                                                                                                           |
 
 The browsers stated in the table above are the ones that we tested on but is not an exhaustive representation of our SDK browser compatibility.
 
@@ -201,6 +201,66 @@ NormalizationHelper.normalizeGoalValue(948.34, false);
 
 A `class` which knows how to send the event to the target destination when the `async` method `execute` is called.
 
+The transport can be set up in 2 ways: 
+- the new way that supports multiple tenancies and can send the captured event to multiple locations in one go
+- the legacy way (that has a targetURL passed to it) that only supports one tenancy and can send the captured event to one location in one go
+
+#### New way to setup
+
+In order to setup the transport you need to pass the following parameters to the transport constructor:
+```javascript
+    const transport = new Transport(tenancies);
+```
+
+where tenancies is an array of tenancies looking like this:
+
+```javascript
+  const tenancies = [
+    {
+      name: 'E2E Test',
+      targetUrl: 'https://target.domain/v1/111-222/stream',
+      tenancyId: '111-222',
+      target: {
+        targetedData: "URLPathName",
+        searchMode: "regex",
+        searchValue: '.+(\/test\/).+'
+      }
+    },
+    {
+      name: 'Beacon Generator 1',
+      targetUrl: 'https://target.domain/v1/333-444/stream',
+      tenancyId: '333-444',
+      target: {
+        targetedData: "fullURL",
+        searchMode: "regex",
+        searchValue: '.+(\/somethingElse\/).+'
+      }
+    }
+  ];
+```
+
+The event will be sent to all matching tenancies. 
+
+The naive search engine supports multiple targeted data sources:
+- ```fullURL```: The full URL. Example: "https://www.example.com/test/"
+- ```URLHost```: The host of the URL. Example: "www.example.com" (Note: This includes the port if available)
+- ```URLPathName```: The path name of the URL. Example: "/test/"
+- ```URLSearch```: The search part of the URL. Example: "?lorem=ipsum"
+- ```CanonicalLinks```: The canonical links of the page. Example: "https://www.example.com/test/" (Note, this is assuming that are implemented correctly with rel attribute being available)
+
+Search-wise, it supports the following modes:
+- ```perfectMatch```: The search value must be exactly the same as the targeted data. Example: "https://www.example.com/test/" in "https://www.example.com/test/"
+- ```partialMatch```: The search value is a substring of the targeted data. Example: "test" in "https://www.example.com/test/"
+- ```regex```: The search value is a regular expression. Example: "/.+(\/test\/).+/"
+
+#### Old way to setup
+
+In order to setup the transport in the legacy way you need to pass an targetURL transport constructor:
+```javascript
+    const transport = new Transport("https://www.beaconStore.com/test/");
+```
+
+The data will be sent to "https://www.beaconStore.com/test/"
 ## Triggering mechanism
 There are 2 ways in which you can trigger events which should be judged case by case.
 
