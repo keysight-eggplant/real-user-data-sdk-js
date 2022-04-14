@@ -36,7 +36,7 @@ class TestSetupHelper {
   };
 
   static puppeteerLaunchConfig = {
-    headless: false
+    headless: true
   };
 
   static async startListeningForRequests (testSetup, page) {
