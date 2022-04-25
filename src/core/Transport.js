@@ -110,8 +110,9 @@ export default class Transport {
     }
 
     if (
-      !((typeof target.searchValue === 'string' || target.searchValue instanceof String) && target.searchValue.length > 0) // If is not a populated string
-      && Number.isNaN(target.searchValue)
+      target.searchValue === undefined || target.searchValue === null // If searchValue is missing
+      || (target.searchValue === "") // If is not a populated string
+      || Number.isNaN(target.searchValue)
     ) {
       // If is not a populated string and is also not a number
       return false;

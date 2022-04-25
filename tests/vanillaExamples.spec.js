@@ -1017,7 +1017,6 @@ describe('RCI SDK Core', () => {
         expect(testSetup.capturedRequests[0].payload.eventInfo2).to.deep.equal('BAR');
         expect(testSetup.capturedRequests[0].payload.eventInfo3).to.deep.equal('passed value in a custom collector');
 
-
         // Second request
         expect(testSetup.capturedRequests[1].requestUrl).to.deep.equal('http://localhost:3000/v1/777-888/stream');
 
@@ -1157,7 +1156,6 @@ describe('RCI SDK Core', () => {
         expect(testSetup.capturedRequests[0].payload.eventInfo1).to.deep.equal('FOO');
         expect(testSetup.capturedRequests[0].payload.eventInfo2).to.deep.equal('BAR');
         expect(testSetup.capturedRequests[0].payload.eventInfo3).to.deep.equal('passed value in a custom collector');
-
 
         // Second request
         expect(testSetup.capturedRequests[1].requestUrl).to.deep.equal('http://localhost:3000/v1/777-888/stream');
