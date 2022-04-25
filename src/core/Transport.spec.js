@@ -36,7 +36,7 @@ describe('Transport Unit Tests', () => {
   const invalidTargetEmptySearchValue = {
     targetedData: TARGETED_DATA.FULL_URL,
     searchMode: TARGET_SEARCH_MODES.PARTIAL_MATCH,
-    searchValue: ""
+    searchValue: ''
   };
 
   const incompleteTargetSearchMode = {
@@ -45,7 +45,7 @@ describe('Transport Unit Tests', () => {
   };
   const incompleteTargetSearchValue = {
     targetedData: TARGETED_DATA.FULL_URL,
-    searchMode: TARGET_SEARCH_MODES.PERFECT_MATCH,
+    searchMode: TARGET_SEARCH_MODES.PERFECT_MATCH
   };
   const incompleteTargetTargetedData = {
     searchMode: TARGET_SEARCH_MODES.PARTIAL_MATCH,

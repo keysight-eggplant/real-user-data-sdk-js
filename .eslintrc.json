@@ -68,8 +68,14 @@
       "error",
       {
         "allowModules": [
+          "cors",
+          "chai",
+          "chai-uuid",
+          "express",
+          "puppeteer",
+          "puppeteer-interceptor",
           "sinon",
-          "chai"
+          "webpack"
         ]
       }
     ],
