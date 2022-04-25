@@ -51,10 +51,10 @@ class TestSetupHelper {
   }
 
   static async stopListeningForRequests (testSetup) {
-    return new Promise(async (resolve, reject) => {
+    return new Promise((resolve, reject) => {
 
       try {
-        await GenericTestHelper.waitUntil(
+        GenericTestHelper.waitUntil(
           () => testSetup.capturedRequests.length >= testSetup.expectedRequests,
           testSetup.waitForRequestsTimeout,
           testSetup.waitForRequestsFrequency

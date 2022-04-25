@@ -111,7 +111,7 @@ export default class Transport {
 
     if (
       target.searchValue === undefined || target.searchValue === null // If searchValue is missing
-      || (target.searchValue === "") // If is not a populated string
+      || (target.searchValue === '') // If is not a populated string
       || Number.isNaN(target.searchValue)
     ) {
       // If is not a populated string and is also not a number
