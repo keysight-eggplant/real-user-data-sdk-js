@@ -63,6 +63,24 @@
     "node/file-extension-in-import": [
       "warn",
       "always"
+    ],
+    "node/no-unpublished-import": [
+      "error",
+      {
+        "allowModules": [
+          "sinon",
+          "chai"
+        ]
+      }
+    ],
+    "node/no-unsupported-features/es-syntax": [
+      "error",
+      {
+        "ignores": [
+          "dynamicImport",
+          "modules"
+        ]
+      }
     ]
   }
 }
