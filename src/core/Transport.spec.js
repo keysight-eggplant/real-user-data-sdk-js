@@ -18,15 +18,38 @@ describe('Transport Unit Tests', () => {
     searchValue: '.+(\/test\/).+'
   };
 
-  const invalidTarget = {
+  const invalidTargetInvalidMode = {
     targetedData: TARGETED_DATA.FULL_URL,
     searchMode: 'gibberish',
     searchValue: 'localhost:3000'
   };
+  const invalidTargetInvalidSearchValue = {
+    targetedData: TARGETED_DATA.FULL_URL,
+    searchMode: TARGET_SEARCH_MODES.PARTIAL_MATCH,
+    searchValue: NaN
+  };
+  const invalidTargetInvalidSearchValueNull = {
+    targetedData: TARGETED_DATA.FULL_URL,
+    searchMode: TARGET_SEARCH_MODES.PARTIAL_MATCH,
+    searchValue: null
+  };
+  const invalidTargetEmptySearchValue = {
+    targetedData: TARGETED_DATA.FULL_URL,
+    searchMode: TARGET_SEARCH_MODES.PARTIAL_MATCH,
+    searchValue: ""
+  };
 
-  const incompleteTarget = {
+  const incompleteTargetSearchMode = {
     targetedData: TARGETED_DATA.FULL_URL,
     searchValue: 'localhost:3000'
+  };
+  const incompleteTargetSearchValue = {
+    targetedData: TARGETED_DATA.FULL_URL,
+    searchMode: TARGET_SEARCH_MODES.PERFECT_MATCH,
+  };
+  const incompleteTargetTargetedData = {
+    searchMode: TARGET_SEARCH_MODES.PARTIAL_MATCH,
+    searchValue: 'example.com:8232'
   };
 
   const tenancies = [
@@ -40,22 +63,34 @@ describe('Transport Unit Tests', () => {
       name: 'Beacon Generator 1', // Invalid target
       targetUrl: 'https://target.domain/v1/333-444/stream',
       tenancyId: '333-444',
-      target: invalidTarget
+      target: invalidTargetInvalidMode
     },
     {
-      name: 'Beacon Generator 2', // Valid target, url passed
+      name: 'Beacon Generator 2 valid', // Valid target, url passed
       targetUrl: 'https://target.domain/v1/555-666/stream',
       tenancyId: '555-666',
       target: validTargetWithRegex
     },
     {
-      name: 'E2E Cohort Test', // Target incomplete
-      targetUrl: 'https://target.domain/v1/777-888/stream',
-      tenancyId: '777-888',
-      target: incompleteTarget
+      name: 'E2E Cohort Test missing target data', // Target incomplete - targeted data
+      targetUrl: 'https://target.domain/v1/666-777/stream',
+      tenancyId: '666-777',
+      target: incompleteTargetTargetedData
     },
     {
-      name: 'Beacon Generator 3', // Missing target
+      name: 'E2E Cohort Test missing search value', // Target incomplete - search value
+      targetUrl: 'https://target.domain/v1/777-888/stream',
+      tenancyId: '777-888',
+      target: incompleteTargetSearchValue
+    },
+    {
+      name: 'E2E Cohort Test missing search mode', // Target incomplete - search mode
+      targetUrl: 'https://target.domain/v1/888-999/stream',
+      tenancyId: '888-999',
+      target: incompleteTargetSearchMode
+    },
+    {
+      name: 'Beacon Generator 3', // Missing target completely
       targetUrl: 'https://target.domain/v1/999-000/stream',
       tenancyId: '999-000'
     }
@@ -114,7 +149,6 @@ describe('Transport Unit Tests', () => {
 
   it('should send given events as JSON body to multiple urls (tenancies with given URLs)', () => {
 
-    // const targetUrl = `https://target.domain/v1/${tenancyId}/stream`;
     const transport = new Transport(tenancies);
     const event = {
       id: 'abc-abc-123',
@@ -704,16 +738,51 @@ describe('Transport Unit Tests', () => {
       expect(actual).toEqual(expected);
     });
 
-    it('return false for an invalid target', () => {
-      const initial = invalidTarget;
+    it('return false for an invalid target (mode)', () => {
+      const initial = invalidTargetInvalidMode;
+      const expected = false;
+      const actual = Transport.isTargetValid(initial);
+
+      expect(actual).toEqual(expected);
+    });
+    it('return false for an invalid target (invalid search mode NaN)', () => {
+      const initial = invalidTargetInvalidSearchValue;
+      const expected = false;
+      const actual = Transport.isTargetValid(initial);
+
+      expect(actual).toEqual(expected);
+    });
+    it('return false for an invalid target (invalid search mode null)', () => {
+      const initial = invalidTargetInvalidSearchValueNull;
+      const expected = false;
+      const actual = Transport.isTargetValid(initial);
+
+      expect(actual).toEqual(expected);
+    });
+    it('return false for an invalid target (empty search value)', () => {
+      const initial = invalidTargetEmptySearchValue;
       const expected = false;
       const actual = Transport.isTargetValid(initial);
 
       expect(actual).toEqual(expected);
     });
 
-    it('return true for a incomplete target', () => {
-      const initial = incompleteTarget;
+    it('return false for a incomplete target - targeted data', () => {
+      const initial = incompleteTargetTargetedData;
+      const expected = false;
+      const actual = Transport.isTargetValid(initial);
+
+      expect(actual).toEqual(expected);
+    });
+    it('return false for a incomplete target - search mode', () => {
+      const initial = incompleteTargetSearchMode;
+      const expected = false;
+      const actual = Transport.isTargetValid(initial);
+
+      expect(actual).toEqual(expected);
+    });
+    it('return false for a incomplete target - search value', () => {
+      const initial = incompleteTargetSearchValue;
       const expected = false;
       const actual = Transport.isTargetValid(initial);
 
