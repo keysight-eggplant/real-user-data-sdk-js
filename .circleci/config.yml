@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:current-browsers
+      - image: cimg/node:current
     steps:
       - checkout
       - run:
