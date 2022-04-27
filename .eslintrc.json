@@ -63,6 +63,30 @@
     "node/file-extension-in-import": [
       "warn",
       "always"
+    ],
+    "node/no-unpublished-import": [
+      "error",
+      {
+        "allowModules": [
+          "cors",
+          "chai",
+          "chai-uuid",
+          "express",
+          "puppeteer",
+          "puppeteer-interceptor",
+          "sinon",
+          "webpack"
+        ]
+      }
+    ],
+    "node/no-unsupported-features/es-syntax": [
+      "error",
+      {
+        "ignores": [
+          "dynamicImport",
+          "modules"
+        ]
+      }
     ]
   }
 }
