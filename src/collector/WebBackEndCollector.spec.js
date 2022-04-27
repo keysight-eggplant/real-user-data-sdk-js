@@ -1,5 +1,5 @@
 import Sinon from 'sinon';
-import WebBackEndCollector from './WebBackEndCollector';
+import WebBackEndCollector from './WebBackEndCollector.js';
 
 describe('WebBackEndCollector', () => {
   const originalEvent = {
@@ -35,7 +35,6 @@ describe('WebBackEndCollector', () => {
 
       expect(actualEvent).toEqual(expectedEvent);
     });
-
 
     test('Return correct response start', async () => {
       /** @type {Event} */

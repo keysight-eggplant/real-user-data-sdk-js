@@ -2,7 +2,7 @@
 /* eslint-disable no-restricted-properties */
 /* eslint-disable no-underscore-dangle */
 
-import SoftwareCollector from './SoftwareCollector';
+import SoftwareCollector from './SoftwareCollector.js';
 
 describe('SoftwareCollector', () => {
   const originalEvent = {
@@ -31,7 +31,6 @@ describe('SoftwareCollector', () => {
     viewportWidth: 1024
   };
   let softwareCollector;
-
 
   describe('Valid UA', () => {
     beforeEach(() => {
@@ -192,7 +191,6 @@ describe('SoftwareCollector', () => {
 
   });
 
-
   describe('Valid UA with new modified custom value', () => {
     beforeEach(() => {
       const userAgentString = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A';
@@ -201,7 +199,6 @@ describe('SoftwareCollector', () => {
 
       softwareCollector = new SoftwareCollector();
     });
-
 
     test('Return event with new browser name', async () => {
       const actualEvent = await softwareCollector.prepare(originalEvent);
@@ -226,7 +223,6 @@ describe('SoftwareCollector', () => {
 
       softwareCollector = new SoftwareCollector();
     });
-
 
     test('Return event with new browser name', async () => {
       const actualEvent = await softwareCollector.prepare(originalEvent);

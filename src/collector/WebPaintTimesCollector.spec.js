@@ -1,5 +1,5 @@
 import Sinon from 'sinon';
-import WebPaintTimesCollector from './WebPaintTimesCollector';
+import WebPaintTimesCollector from './WebPaintTimesCollector.js';
 
 describe('WebPaintTimesCollector', () => {
   const originalEvent = {
@@ -37,7 +37,6 @@ describe('WebPaintTimesCollector', () => {
 
       expect(actualEvent).toEqual(expectedEvent);
     });
-
 
     test('Return correct response start', async () => {
       /** @type {Event} */
