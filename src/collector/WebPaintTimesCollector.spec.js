@@ -1,3 +1,4 @@
+import Sinon from 'sinon';
 import WebPaintTimesCollector from './WebPaintTimesCollector.js';
 
 describe('WebPaintTimesCollector', () => {
@@ -11,79 +12,46 @@ describe('WebPaintTimesCollector', () => {
     deviceType: 'mobile'
   };
 
-  const newPerfAPIResponse = [{
-    name: 'first-paint', startTime: 951.8949999999131
-  }, {
-    name: 'first-contentful-paint', startTime: 961.8949999999131
-  }];
-
   /** @type {Event} */
   const expectedEvent = {
     ...originalEvent,
-    eventDuration6: 952,
-    eventDuration7: 962
+    eventDuration6: 555,
+    eventDuration7: 556
   };
-  /** @type {Event} */
-  const noAPIExpectedEvent = {
-    ...originalEvent,
-    eventDuration6: null,
-    eventDuration7: null
-  };
-  let webPaintTimesCollector;
+  let collector;
+  let performanceService;
 
-  beforeEach(() => {
-    global.window.performance = undefined;
-  });
-
-  describe('with current Performance API', () => {
+  describe('with Performance Service', () => {
     beforeEach(() => {
-
-      global.window.performance.getEntriesByType = jest.fn().mockReturnValueOnce(newPerfAPIResponse);
-
-      webPaintTimesCollector = new WebPaintTimesCollector();
+      performanceService = {};
+      performanceService.getFirstPaint = Sinon.stub().onCall(0).returns(555);
+      performanceService.getFirstContentfulPaint = Sinon.stub().onCall(0).returns(556);
+      const performanceFactory = {};
+      performanceFactory.create = Sinon.stub().onCall(0).returns(performanceService);
+      collector = new WebPaintTimesCollector(performanceFactory);
     });
 
     test('Return event with all mandatory fields', async () => {
       /** @type {Event} */
-      const actualEvent = await webPaintTimesCollector.prepare(originalEvent);
+      const actualEvent = await collector.prepare(originalEvent);
 
       expect(actualEvent).toEqual(expectedEvent);
     });
 
-
-    test('Return correct page load metrics', async () => {
+    test('Return correct response start', async () => {
       /** @type {Event} */
-      const actualEvent = await webPaintTimesCollector.prepare(originalEvent);
+      const actualEvent = await collector.prepare(originalEvent);
 
       expect(actualEvent.eventDuration6).toEqual(expectedEvent.eventDuration6);
       expect(actualEvent.eventDuration7).toEqual(expectedEvent.eventDuration7);
     });
 
-    afterEach(() => {
-
-      global.window.performance.getEntriesByType = undefined;
-
-    });
-  });
-
-  describe('with no Performance API', () => {
-    beforeEach(() => {
-      webPaintTimesCollector = new WebPaintTimesCollector();
-    });
-
-    test('Return event with all mandatory fields', async () => {
+    test('Calls performance service', async () => {
       /** @type {Event} */
-      const actualEvent = await webPaintTimesCollector.prepare(originalEvent);
-      expect(actualEvent).toEqual(noAPIExpectedEvent);
-    });
+      await collector.prepare(originalEvent);
 
-
-    test('Return correct page load metrics', async () => {
-      /** @type {Event} */
-      const actualEvent = await webPaintTimesCollector.prepare(originalEvent);
-
-      expect(actualEvent.eventDuration6).toEqual(null);
-      expect(actualEvent.eventDuration7).toEqual(null);
+      performanceService.getFirstPaint.calledOnceWithExactly();
+      performanceService.getFirstContentfulPaint.calledOnceWithExactly();
     });
   });
 });

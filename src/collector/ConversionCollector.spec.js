@@ -1,4 +1,4 @@
-import ConversionCollector from './ConversionCollector';
+import ConversionCollector from './ConversionCollector.js';
 
 describe('ConversionCollector', () => {
   let conversionCollector;
@@ -13,7 +13,7 @@ describe('ConversionCollector', () => {
       eventAction: 'load',
       eventSource: 'products/shoes/1',
       eventCategory: 'products/shoes',
-      deviceType: 'mobile',
+      deviceType: 'mobile'
     };
     expectedEventWithoutValue = {
       ...originalEvent,

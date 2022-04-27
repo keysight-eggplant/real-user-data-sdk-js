@@ -1,68 +1,128 @@
 /* eslint-disable no-plusplus */
 /* eslint no-await-in-loop: 0 */
+import PerformanceServiceFactory from './performance/PerformanceServiceFactory.js';
+import ErrorCollector from '../collector/ErrorCollector.js';
+
+import pjson from '../../package.json';
+
+const performanceServiceFactory = new PerformanceServiceFactory();
+
 export default class TriggerHelper {
-  static async timeout (ms) {
-    return new Promise(r => setTimeout(r, ms));
-  }
 
+  /** @type {number} - To be used within {@link WaitAndTriggerOptions.interval} */
+  static defaultInterval = 10;
+
+  /** @type {number} - To be used within {@link WaitAndTriggerOptions.timeout} */
+  static defaultTimeout = 1000;
+
+  /**
+   * Perform an action once conditions have been met
+   * @param {class} producer
+   */
   static async action (producer) {
-    try {
-      await producer.collect();
-    } catch (cause) {
-      // Failed to process event
-    }
+    await producer.collect();
   }
 
+  /**
+   * Perform an action once conditions have been met
+   * @param {class} producer
+   * @returns {boolean}
+   */
   static async defaultCondition () {
-    try {
-      const perf = !!(window.performance && window.performance.timing && ((window.performance.timing.domComplete - window.performance.timing.navigationStart) > 0));
+    const performanceService = performanceServiceFactory.create();
+    const performanceStatus = performanceService.getStatus();
+    const documentReady = (
+      document.readyState === 'complete'
+      || document.readyState === 'interactive'
+    );
+    return documentReady && performanceStatus === performanceService.STATUS.COMPLETE;
+  }
 
-      let paintReady = false;
-      const po = new PerformanceObserver((entryList, po) => {
-        paintReady =  entryList.getEntries().length > 0;
-      });
+  /**
+   * @typedef {Object} WaitAndTriggerOptions
+   * @property {{producer: {collect: collect}}} options
+   * @property {Number} interval - How often the polling should happen
+   * @property {Number} timeout - Maximum timeout. No polling will occur after this time
+   * @property {Class} producer
+   * @property {Object} event
+   * @property {Function|Promise} condition
+   * @property {Function|Promise} action
+   * @property {RCISDKConfig} config
+   * */
 
-      // Observe entries of type `largest-contentful-paint`, including buffered entries,
-      // i.e. entries that occurred before calling `observe()` below.
-      po.observe({
-        entryTypes: ['paint']
-      });
+  /** @type {WaitAndTriggerOptions} */
+  static defaultWaitAndTriggerOptions = {
+    interval: TriggerHelper.defaultInterval,
+    condition: TriggerHelper.defaultCondition,
+    action: TriggerHelper.action,
+    timeout: TriggerHelper.defaultTimeout
+  };
 
-      return perf && paintReady;
-    } catch (e) {
-      return true;
-    }
+  /**
+   * Poll for condition to be met
+   * @param {function} callback
+   * @param {number} interval
+   * @param {number} timeout
+   */
+  static async repeatUntil(callback, interval, timeout) {
+    let triesLeft = Math.ceil(timeout / interval);
+    return new Promise((resolve, reject) => {
+      const handler = setInterval(async () => {
+        try {
+          // Condition or timeout
+          if (await callback() === true || triesLeft <= 1) {
+            resolve();
+            clearInterval(handler);
+          }
+        } catch (e) {
+          reject(ErrorCollector.ERROR_CODES.TRIGGER_CONDITION_FAILED);
+        }
+        triesLeft--;
+      }, interval);
+    });
+  }
+
+  static objectIsPopulated (object) {
+    return object // 👈 null and undefined check
+    && Object.keys(object).length === 0
+    && Object.getPrototypeOf(object) === Object.prototype;
   }
 
   /**
      * Waits for something to happen and then triggers
-     * @param {{producer: {collect: collect}}} options
-     * @param {Number} options.interval
-     * @param {Number} options.timeout
-     * @param {Class} options.producer
-     * @param {Object} options.event
-     * @param {Function} options.condition
-     * @param {Function} options.action
+     * @param {WaitAndTriggerOptions} options
      * @returns {Promise<void>}
      */
   static async waitAndTrigger (options) {
-    let intervalCollector = 0;
+    const {config} = options;
+    const {interval} = options;
+    const {condition} = options;
+    const {action} = options;
+    const {timeout} = options;
+    const {producer} = options;
 
-    const maxIterations = options.timeout / options.interval;
+    return this.repeatUntil(condition, interval, timeout)
+      .then(async() => {
+        try {
+          await action(producer);
+        } catch (e) {
+          await producer.error(
+            ErrorCollector.ERROR_CODES.TRIGGER_ACTION_FAILED,
+            pjson.name,
+            false
+          );
+        }
+      })
+      .catch(async (errorCode) => {
+        if (!errorCode) {
+          errorCode = ErrorCollector.ERROR_CODES.TRIGGER_HANDLER_FAILED;
+        }
 
-    for (let i = 0; i < maxIterations; i++) {
-      intervalCollector += options.interval;
-      if (await options.condition()) {
-        await options.action(options.producer);
-        break;
-      } else if (intervalCollector >= options.timeout) {
-        await options.action(options.producer);
-        break;
-      }
-
-      await TriggerHelper.timeout(options.interval);
-    }
+        await producer.error(
+          errorCode,
+          pjson.name,
+          false
+        );
+      });
   }
-
-
 }

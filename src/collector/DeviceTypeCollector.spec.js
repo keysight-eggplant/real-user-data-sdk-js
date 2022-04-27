@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-properties */
 /* eslint-disable no-underscore-dangle */
 
-import DeviceTypeCollector from './DeviceTypeCollector';
+import DeviceTypeCollector from './DeviceTypeCollector.js';
 
 describe('DeviceTypeCollector', () => {
   const originalEvent = {
@@ -12,15 +12,14 @@ describe('DeviceTypeCollector', () => {
     eventSource: 'products/shoes/1',
     eventCategory: 'products/shoes',
     eventStart: 123,
-    eventEnd: 456,
+    eventEnd: 456
   };
 
   const expectedEvent = {
     ...originalEvent,
-    deviceType: 'mobile',
+    deviceType: 'mobile'
   };
   let deviceTypeCollector;
-
 
   describe('Valid UA', () => {
     beforeEach(() => {
@@ -36,7 +35,6 @@ describe('DeviceTypeCollector', () => {
 
       expect(actualEvent).toEqual(expectedEvent);
     });
-
 
     test('Return correct device type', async () => {
       const actualEvent = await deviceTypeCollector.prepare(originalEvent);

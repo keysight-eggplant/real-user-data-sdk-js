@@ -1,4 +1,4 @@
-import EventActionCollector from './EventActionCollector';
+import EventActionCollector from './EventActionCollector.js';
 
 describe('EventActionCollector', () => {
   const originalEvent = {
@@ -8,15 +8,14 @@ describe('EventActionCollector', () => {
     eventSource: 'products/shoes/1',
     eventCategory: 'products/shoes',
     eventStart: 123,
-    eventEnd: 456,
+    eventEnd: 456
   };
 
   const expectedEvent = {
     ...originalEvent,
-    eventAction: 'double-click',
+    eventAction: 'double-click'
   };
   let eventActionCollector;
-
 
   beforeEach(() => {
     eventActionCollector = new EventActionCollector('double-click');
@@ -27,7 +26,6 @@ describe('EventActionCollector', () => {
 
     expect(actualEvent).toEqual(expectedEvent);
   });
-
 
   test('Return correct event action', async () => {
     const actualEvent = await eventActionCollector.prepare(originalEvent);

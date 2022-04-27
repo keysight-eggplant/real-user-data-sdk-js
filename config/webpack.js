@@ -1,143 +1,238 @@
-const path = require('path');
-const webpack = require('webpack');
-const cliArguments = require('minimist')(process.argv.slice(2));
-const PACKAGE = require('./../package.json');
+/* eslint-disable prefer-destructuring */
+import path from 'path';
+import webpack from 'webpack';
+import PACKAGE from '../package.json' assert { type: 'json' };
+import minimist from 'minimist';
+import yargs from 'yargs';
+import { fileURLToPath } from 'url';
 
-console.log(cliArguments);
-
-/** Complete with defaults */
-
-/**
- * This only applies if you want to specify a specific entry point. Useful if you want to update examples
- * */
-if (cliArguments.entryPoint === null || cliArguments.entryPoint === true || cliArguments.entryPoint === '' || typeof cliArguments.entryPoint === 'undefined') {
-  cliArguments.entryPoint = './src/rci.js';
-}
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+// const cliArguments = minimist(process.argv.slice(2));
 
 /**
- * This can be one of the following: "core" or "implementation".
- * It can be passed into CLI by writing something like: "--scope core" where "core" is the value
+ * @typedef {Object} RCIWebpackConfig
+ * @property {String} mode - The mode to run the webpack compiler in.
+ * @property {String} rootFolderPath - The path to the root folder.
+ * @property {String} scope - The scope to use.
+ * @property {String} intVersion - The internal version to use.
+ * @property {String} rulesTarget - The rules target to use.
+ * @property {String} includeRulesTargetSuffix - If this is on true, the asset that was compiled for legacy browsers, will include an "-legacy" in the name.
+ * @property {String} outputPath - The path to the output folder.
+ * @property {String} outputFilename - The filename to use for the output.
  * */
-if (cliArguments.scope === null || cliArguments.scope === true || cliArguments.scope === '' || typeof cliArguments.scope === 'undefined') {
-  cliArguments.scope = 'core';
-}
 
-/**
- * This will take the entrypoint filename, it will trim it and then assign it to the new
- * transpile filename only if is not explicitly passed into CLI.
- * It can be passed into CLI by writing something like: "--fileName lorem" where "lorem" is the value, therefore
- * the name of the transpiled file will be "lorem.min.js" if is not targeting "legacy"
- * */
-if (cliArguments.fileName === null || cliArguments.fileName === true || cliArguments.fileName === '' || typeof cliArguments.fileName === 'undefined') {
-  cliArguments.fileName = cliArguments.entryPoint.replace(/^.*[\\\/]/, '').replace(/\.[^/.]+$/, '');
-}
+const PRODUCTION_MODE = 'production';
 
-/**
- * This can be one of the following: "current" or "legacy".
- * This is either targeting the modern browsers that everyone use (with the value "current") or
- * Old deprecated browsers like IE 11 (with the value "legacy")
- * It can be passed into CLI by writing something like: "--target current" where "current" is the value
- * */
-if (cliArguments.rulesTarget === null || cliArguments.rulesTarget === true || cliArguments.rulesTarget === '' || typeof cliArguments.rulesTarget === 'undefined') {
-  cliArguments.rulesTarget = 'current';
-}
 
-/**
- * This can be one of the following: "development" or "production".
- * Basically minified or not
- * It can be passed into CLI by writing something like: "--mode production" where "production" is the value
- * */
-if (cliArguments.mode === null || cliArguments.mode === true || cliArguments.mode === '' || typeof cliArguments.mode === 'undefined') {
-  cliArguments.mode = 'production';
-}
 
-console.log(cliArguments);
+export class WebpackWrapper {
 
-const banner = `Scope: ${cliArguments.scope} - ${PACKAGE.name} - ${PACKAGE.version} compiled at ${(new Date()).toISOString()}`;
-
-const currentRules = [
-  {
-    test: /\.(js)$/,
-    exclude: /node_modules/,
-    use: {
-      loader: 'babel-loader',
-      options: {
-        presets: ['@babel/preset-env']
-      }
-    }
-  }
-];
-
-const legacyRules = [
-  {
-    test: /\.(js)$/,
-    exclude: /node_modules/,
-    use: {
-      loader: 'babel-loader',
-      options: {
-        presets: [
-          [
-            '@babel/preset-env',
-            {
-              targets: {
-                browsers: ['last 2 versions', 'ie >= 11']
+  static currentRules = [
+    {
+      test: /\.(js)$/,
+      exclude: /node_modules/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: [
+            [
+              '@babel/preset-env',
+              {
+                targets: {
+                  browsers: ['last 2 versions']
+                }
               }
-            }
+            ]
+          ],
+          plugins: [
+            ['@babel/plugin-proposal-class-properties']
           ]
-        ],
-        plugins: [
-          ['@babel/plugin-transform-runtime', {
-            corejs: 2
-          }]
-        ]
+        }
       }
     }
+  ];
+
+  static legacyRules = [
+    {
+      test: /\.(js)$/,
+      exclude: /node_modules/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: [
+            [
+              '@babel/preset-env',
+              {
+                targets: {
+                  browsers: ['last 2 versions', 'ie >= 11']
+                }
+              }
+            ]
+          ],
+          plugins: [
+            ['@babel/plugin-transform-runtime', {
+              corejs: 2
+            }, '@babel/plugin-proposal-class-properties']
+          ]
+        }
+      }
+    }
+  ];
+
+  /**
+   * 
+   * @param {RCIWebpackConfig} config 
+   * @returns 
+   */
+  static generateBanner(config) {
+    return `Scope: ${config.scope} - ${PACKAGE.name} - ${PACKAGE.version} targeting ${config.rulesTarget} browsers compiled at ${(new Date()).toISOString()}`;
   }
-];
 
-let rules;
-if (cliArguments.rulesTarget === 'current') {
-  rules = currentRules;
-} else if (cliArguments.rulesTarget === 'legacy') {
-  rules = legacyRules;
+  /**
+   * 
+   * @param {RCIWebpackConfig} config 
+   * @returns 
+   */
+  static provisionWebpack(config) {
+
+    // Normalize filename
+    if (config.fileName === null || config.fileName === true || config.fileName === '' || typeof config.fileName === 'undefined') {
+      config.fileName = config.entryPoint;
+      config.fileName = config.fileName.replace(/^.*[\\\/]/, '')
+      config.fileName = config.fileName.replace(/\.[^/.]+$/, '');
+    }
+
+    console.log(config);
+    let banner = WebpackWrapper.generateBanner(config);
+    console.log(banner);
+
+    // Compose plugins
+    let webpackPlugins = [
+      new webpack.BannerPlugin({
+        banner: banner,
+        entryOnly: true
+      }),
+      new webpack.optimize.LimitChunkCountPlugin({
+        maxChunks: 1
+      }),
+      new webpack.DefinePlugin({
+        __VERSION__: `'${PACKAGE.version}'`
+      })
+    ];
+
+    let rules;
+    let suffix = '';
+    if (config.rulesTarget === 'current') {
+      rules = WebpackWrapper.currentRules;
+    } else if (config.rulesTarget === 'legacy') {
+      rules = WebpackWrapper.legacyRules;
+      if (config.includeRulesTargetSuffix === true) {
+        suffix = '-legacy';
+      }
+    }
+
+    return [
+      {
+        target: 'web',
+        mode: `${config.mode}`,
+        entry: {
+          rci: `${config.entryPoint}`
+        },
+        output: {
+          path: path.resolve(__dirname, '../dist'),
+          filename: `${config.fileName}${suffix}.min.js`,
+          publicPath: '/',
+          library: {
+            name: 'rciSdk',
+            type: 'window'
+          }
+        },
+        module: {
+          rules
+        },
+        stats: {
+          colors: true
+        },
+        devtool: 'source-map',
+        plugins: webpackPlugins
+      }
+    ];
+
+  }
 }
 
-let suffix;
-if (cliArguments.rulesTarget === 'current') {
-  suffix = '';
-} else if (cliArguments.rulesTarget === 'legacy') {
-  suffix = '-legacy';
-}
+if (path.resolve(process.argv[1]) === path.resolve(fileURLToPath(import.meta.url))) {
 
+  // It is being run directly from CLI
 
-const plugins = [
-  new webpack.BannerPlugin(banner),
-  new webpack.optimize.LimitChunkCountPlugin({
-    maxChunks: 1
+yargs(process.argv.slice(2))
+  .usage('Usage: node $0 <command> [options]')
+  .version(false)
+  .example('node ./config/webpack.js help')
+  .example('node ./config/webpack.js --scope=core --rulesTarget=current --mode=development')
+  .example('node ./config/webpack.js --entryPoint=./src/rci.js --scope=core --rulesTarget=current --mode=development')
+  .example('node ./config/webpack.js --entryPoint=./src/rci.js --scope=core --rulesTarget=legacy --mode=production')
+  .example('node ./config/webpack.js --entryPoint=./examples/Vanilla/OnLoad/onload.js  --scope=implementation --rulesTarget=current --mode=production')
+  .option('entryPoint', {
+    alias: 'ep',
+    type: 'string',
+    default: './src/rci.js',
+    description: 'This only applies if you want to specify a specific entry point. Useful if you want to update examples'
   })
-];
+  .option('scope', {
+    alias: 's',
+    choices: ['core', 'implementation'],
+    // demandOption: true,
+    default: 'core',
+    type: 'string',
+    description: 'This can be one of the following: "core" if you are compiling the RCI Core SDK or "implementation" if you compile an instrumentation of the Core'
+  })
+  .option('fileName', {
+    default: '',
+    alias: 'fn',
+    type: 'string',
+    description: 'A custom file name can be provided. Usage not advisable if you want to maintain consistency. If not provided, the file name will be extracted from the folder structure (entry point).'
+  })
+  .option('rulesTarget', {
+    alias: 'rt',
+    choices: ['current', 'legacy'],
+    default: 'current',
+    type: 'string',
+    description: 'This can be one of the following: "current" or "legacy". This is either targeting the modern browsers(with the value "current") that everyone uses or the legacy browsers(with the value "legacy") that are still in use such as IE 11'
+  })
+  .option('includeRulesTargetSuffix', {
+    alias: 'irts',
+    default: true,
+    type: 'boolean',
+    description: 'If this is on true, the asset that was compiled for legacy browsers, will include an "-legacy" in the name.'
+  })
+  .option('mode', {
+    alias: 'm',
+    choices: [PRODUCTION_MODE, 'development'],
+    default: 'development',
+    type: 'string',
+    description: `This can be one of the following: "development" or "${PRODUCTION_MODE}". Basically minified or not`
+  })
+  .option('help', {
+    alias: 'h',
+    description: 'Help for the script'
+  })
+  .command({
+    command: '$0',
+    handler: (cliArguments) => {
+      webpack(WebpackWrapper.provisionWebpack(cliArguments), (err, stats) => {
+        console.log('Running via CLI');
+        if (err || stats.hasErrors()) {
+          console.log(err);
+        } else {
+          console.log(stats.stats.toString());
+        }
+        console.log('Done webpacking');
+      });
+    }
+  })
+  .epilog('All rights reserved, RCI Team')
+  .parse();
 
-module.exports = [
-  {
-    target: 'web',
-    mode: `${cliArguments.mode}`,
-    entry: {
-      rci: `${cliArguments.entryPoint}`
-    },
-    output: {
-      path: path.resolve(__dirname, '../dist'),
-      filename: `${cliArguments.fileName}${suffix}.min.js`,
-      library: 'rciSdk',
-      publicPath: '/',
-      libraryTarget: 'window'
-    },
-    module: {
-      rules
-    },
-    stats: {
-      colors: true
-    },
-    devtool: 'source-map',
-    plugins
-  }
-];
+}

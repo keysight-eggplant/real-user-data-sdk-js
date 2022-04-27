@@ -1,4 +1,4 @@
-import EventTypeCollector from './EventTypeCollector';
+import EventTypeCollector from './EventTypeCollector.js';
 
 describe('EventTypeCollector', () => {
   const originalEvent = {
@@ -8,15 +8,14 @@ describe('EventTypeCollector', () => {
     eventSource: 'products/shoes/1',
     eventCategory: 'products/shoes',
     eventStart: 123,
-    eventEnd: 456,
+    eventEnd: 456
   };
 
   const expectedEvent = {
     ...originalEvent,
-    eventType: 'state',
+    eventType: 'state'
   };
   let eventTypeCollector;
-
 
   beforeEach(() => {
     eventTypeCollector = new EventTypeCollector('state');
@@ -27,7 +26,6 @@ describe('EventTypeCollector', () => {
 
     expect(actualEvent).toEqual(expectedEvent);
   });
-
 
   test('Return correct event type', async () => {
     const actualEvent = await eventTypeCollector.prepare(originalEvent);

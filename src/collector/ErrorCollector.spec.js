@@ -1,4 +1,4 @@
-import ErrorCollector from './ErrorCollector';
+import ErrorCollector from './ErrorCollector.js';
 
 describe('ErrorCollector', () => {
   const originalEvent = {
@@ -9,17 +9,17 @@ describe('ErrorCollector', () => {
     eventCategory: 'products/shoes',
     eventStart: 123,
     eventEnd: 456,
-    eventType: 'state',
+    eventType: 'state'
   };
 
   const expectedEvent = {
     ...originalEvent,
+    eventType: 'error',
     errorCode: '404',
     errorType: 'Not Found',
-    errorFatal: true,
+    errorFatal: true
   };
   let errorCollector;
-
 
   beforeEach(() => {
     errorCollector = new ErrorCollector('404', 'Not Found', true);
@@ -31,10 +31,10 @@ describe('ErrorCollector', () => {
     expect(actualEvent).toEqual(expectedEvent);
   });
 
-
   test('Return correct error properties', async () => {
     const actualEvent = await errorCollector.prepare(originalEvent);
 
+    expect(actualEvent.eventType).toEqual(expectedEvent.eventType);
     expect(actualEvent.errorCode).toEqual(expectedEvent.errorCode);
     expect(actualEvent.errorType).toEqual(expectedEvent.errorType);
     expect(actualEvent.errorFatal).toEqual(expectedEvent.errorFatal);

@@ -1,4 +1,4 @@
-import NavigationTimingCollector from './NavigationTimingCollector';
+import NavigationTimingCollector from './NavigationTimingCollector.js';
 
 describe('NavigationTimingCollector', () => {
   const originalEvent = {
@@ -8,7 +8,7 @@ describe('NavigationTimingCollector', () => {
     eventAction: 'load',
     eventSource: 'products/shoes/1',
     eventCategory: 'products/shoes',
-    deviceType: 'mobile',
+    deviceType: 'mobile'
   };
 
   const expectedEvent = {
@@ -18,10 +18,9 @@ describe('NavigationTimingCollector', () => {
   };
   let navigationTimingCollector;
 
-
   beforeEach(() => {
     global.window.performance.timing = {
-      navigationStart: 123,
+      navigationStart: 123
     };
 
     navigationTimingCollector = new NavigationTimingCollector();
@@ -32,7 +31,6 @@ describe('NavigationTimingCollector', () => {
 
     expect(actualEvent).toEqual(expectedEvent);
   });
-
 
   test('Return correct event timing', async () => {
     const eventEnd = new Date().getTime();

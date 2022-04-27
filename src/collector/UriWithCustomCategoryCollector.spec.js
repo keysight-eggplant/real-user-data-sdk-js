@@ -1,4 +1,4 @@
-import UriWithCustomCategoryCollector from './UriWithCustomCategoryCollector';
+import UriWithCustomCategoryCollector from './UriWithCustomCategoryCollector.js';
 
 describe('UriWithCustomCategoryCollector', () => {
   const originalEvent = {
@@ -8,16 +8,15 @@ describe('UriWithCustomCategoryCollector', () => {
     eventAction: 'load',
     eventStart: 123456,
     eventEnd: 987654,
-    deviceType: 'mobile',
+    deviceType: 'mobile'
   };
 
   const expectedEvent = {
     ...originalEvent,
     eventSource: 'http://localhost/',
-    eventCategory: 'custom category',
+    eventCategory: 'custom category'
   };
   let uriWithCustomCategoryCollector;
-
 
   beforeEach(() => {
     uriWithCustomCategoryCollector = new UriWithCustomCategoryCollector('custom category');
@@ -28,7 +27,6 @@ describe('UriWithCustomCategoryCollector', () => {
 
     expect(actualEvent).toEqual(expectedEvent);
   });
-
 
   test('Return correct uri and category', async () => {
     const actualEvent = await uriWithCustomCategoryCollector.prepare(originalEvent);

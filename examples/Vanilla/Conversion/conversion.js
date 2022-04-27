@@ -1,12 +1,16 @@
-((tenancyId, rciSdk) => {
+function rciMainAction(tenancyId, rciSdk) {
   // Step 1: Create your Checkout collectors
   const conversionCollector = new rciSdk.collector.ConversionCollector();
-  const eventAction = new rciSdk.collector.EventActionCollector(rciSdk.EVENT_ACTION.STATE_LOAD_PARTIAL);
+  const eventAction = new rciSdk.collector.EventActionCollector(
+    rciSdk.EVENT_ACTION.STATE_LOAD_PARTIAL
+  );
   const spaTimingCollector = new rciSdk.collector.SpaTimingCollector();
-  const uriWithCustomCategory = new rciSdk.collector.UriWithCustomCategoryCollector('Checkout Completed');
+  const uriWithCustomCategory = new rciSdk.collector.UriWithCustomCategoryCollector(
+    'Checkout Completed'
+  );
 
   // Step 2: Configure your Transport with the tenancyId provided
-  const targetUrl = `https://target.domain/v1/${tenancyId}/stream`;
+  const targetUrl = `http://localhost:3000/v1/${tenancyId}/stream`;
   const transport = new rciSdk.Transport(targetUrl);
 
   // Step 3: Capture your default collectors
@@ -61,5 +65,18 @@
       console.log('Error processing event', cause);
     }
   });
+}
 
-})('123-456', rciSdk);
+const tenancyId = '123-456';
+const {RCICoreReady} = window;
+
+// Path 1: Trigger the RCI instrumentation bootstrap process straight away
+if (RCICoreReady) {
+  rciMainAction(tenancyId, window.rciSdk);
+
+// Bind on event and wait for dispatch by the SDK
+} else {
+  window.addEventListener('RCICoreReady', () => {
+    rciMainAction(tenancyId, window.rciSdk);
+  });
+}

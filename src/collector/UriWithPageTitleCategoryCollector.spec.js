@@ -1,4 +1,4 @@
-import UriWithPageTitleCategoryCollector from './UriWithPageTitleCategoryCollector';
+import UriWithPageTitleCategoryCollector from './UriWithPageTitleCategoryCollector.js';
 
 describe('UriWithPageTitleCategoryCollector', () => {
   const originalEvent = {
@@ -8,16 +8,15 @@ describe('UriWithPageTitleCategoryCollector', () => {
     eventAction: 'load',
     eventStart: 123456,
     eventEnd: 987654,
-    deviceType: 'mobile',
+    deviceType: 'mobile'
   };
 
   const expectedEvent = {
     ...originalEvent,
     eventSource: 'http://localhost/',
-    eventCategory: 'Page Title | mysite.com',
+    eventCategory: 'Page Title | mysite.com'
   };
   let uriWithCustomCategoryCollector;
-
 
   beforeEach(() => {
     uriWithCustomCategoryCollector = new UriWithPageTitleCategoryCollector();
@@ -29,7 +28,6 @@ describe('UriWithPageTitleCategoryCollector', () => {
 
     expect(actualEvent).toEqual(expectedEvent);
   });
-
 
   test('Return correct uri and category', async () => {
     const actualEvent = await uriWithCustomCategoryCollector.prepare(originalEvent);

@@ -1,8 +1,10 @@
-version: 2
+version: 2.1
+orbs:
+  browser-tools: circleci/browser-tools@1.1.0
 jobs:
   build:
     docker:
-      - image: circleci/node:current-browsers
+      - image: cimg/node:current-browsers
     steps:
       - checkout
       - run:
@@ -33,14 +35,11 @@ jobs:
           name: Ignore non checked in files
           command: git checkout -- .
       - run:
-          name: Show git tags
-          command: git tag -l
-      - run:
           name: Set Github identity
           command: git config --global user.email ${GIT_EMAIL} && git config --global user.name ${GIT_NAME}
       - run:
           name: Update NPM version
-          command: npm version from-git --allow-same-version
+          command: npm version ${CIRCLE_TAG} --allow-same-version
       - run:
           name: Build Current
           command: npm run build
@@ -55,16 +54,22 @@ jobs:
           command: npm publish --access public
       - run:
           name: Upload Current to S3
-          command: latestTag=`git describe --abbrev=0 --tags` && aws s3 cp dist/rci.min.js s3://${AWS_S3_BUCKET_NAME}/$latestTag/rci.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
+          command: aws s3 cp dist/rci.min.js s3://${AWS_S3_BUCKET_NAME}/${CIRCLE_TAG}/rci.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
       - run:
           name: Upload Current Map to S3
-          command: latestTag=`git describe --abbrev=0 --tags` && aws s3 cp dist/rci.min.js.map s3://${AWS_S3_BUCKET_NAME}/$latestTag/rci.min.js.map --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
+          command: aws s3 cp dist/rci.min.js.map s3://${AWS_S3_BUCKET_NAME}/${CIRCLE_TAG}/rci.min.js.map --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
+      - run:
+          name: Upload Current License to S3
+          command: aws s3 cp dist/rci.min.js.LICENSE.txt s3://${AWS_S3_BUCKET_NAME}/${CIRCLE_TAG}/rci.min.js.LICENSE.txt --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
       - run:
           name: Upload Legacy to S3
-          command: latestTag=`git describe --abbrev=0 --tags` && aws s3 cp dist/rci-legacy.min.js s3://${AWS_S3_BUCKET_NAME}/$latestTag/rci-legacy.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
+          command: aws s3 cp dist/rci-legacy.min.js s3://${AWS_S3_BUCKET_NAME}/${CIRCLE_TAG}/rci-legacy.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
       - run:
           name: Upload Legacy Map to S3
-          command: latestTag=`git describe --abbrev=0 --tags` && aws s3 cp dist/rci-legacy.min.js.map s3://${AWS_S3_BUCKET_NAME}/$latestTag/rci-legacy.min.js.map --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
+          command: aws s3 cp dist/rci-legacy.min.js.map s3://${AWS_S3_BUCKET_NAME}/${CIRCLE_TAG}/rci-legacy.min.js.map --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
+      - run:
+          name: Upload Legacy License to S3
+          command: aws s3 cp dist/rci-legacy.min.js.LICENSE.txt s3://${AWS_S3_BUCKET_NAME}/${CIRCLE_TAG}/rci-legacy.min.js.LICENSE.txt --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
       - run:
           name: Upload Current to S3 latest
           command: aws s3 cp dist/rci.min.js s3://${AWS_S3_BUCKET_NAME}/latest/rci.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
@@ -72,16 +77,22 @@ jobs:
           name: Upload Current Map to S3 latest
           command: aws s3 cp dist/rci.min.js.map s3://${AWS_S3_BUCKET_NAME}/latest/rci.min.js.map --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
       - run:
+          name: Upload Current License to S3 latest
+          command: aws s3 cp dist/rci.min.js.LICENSE.txt s3://${AWS_S3_BUCKET_NAME}/latest/rci.min.js.LICENSE.txt --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
+      - run:
           name: Upload Legacy to S3 latest
           command: aws s3 cp dist/rci-legacy.min.js s3://${AWS_S3_BUCKET_NAME}/latest/rci-legacy.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
       - run:
           name: Upload Legacy Map to S3 latest
           command: aws s3 cp dist/rci-legacy.min.js.map s3://${AWS_S3_BUCKET_NAME}/latest/rci-legacy.min.js.map --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
       - run:
-          name: Commit the new artefacts
-          command: latestTag=`git describe --abbrev=0 --tags` && git commit --allow-empty -am "Released:$latestTag"
+          name: Upload Legacy License to S3 latest
+          command: aws s3 cp dist/rci-legacy.min.js.LICENSE.txt s3://${AWS_S3_BUCKET_NAME}/latest/rci-legacy.min.js.LICENSE.txt --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile ${AWS_ROLE_NAME}
       - run:
-          name: Push the new artefacts
+          name: Commit the new artifacts
+          command: git commit --allow-empty -am "Released:${CIRCLE_TAG}"
+      - run:
+          name: Push the new artifacts
           command: git push origin HEAD:development
 
 workflows:

@@ -1,9 +1,16 @@
+import PerformanceServiceFactory from '../core/performance/PerformanceServiceFactory.js';
+
 export default class WebPaintTimesCollector {
 
-  constructor() {
-    this.currentPerformanceAPI = false;
-    if (typeof window.performance.getEntriesByType !== 'undefined') {
-      this.currentPerformanceAPI = window.performance.getEntriesByType('paint');
+  /**
+   * @param {PerformanceService} performanceServiceFactory
+   */
+  constructor(performanceServiceFactory) {
+    // Optional
+    if (performanceServiceFactory) {
+      this.performanceServiceFactory = performanceServiceFactory;
+    } else {
+      this.performanceServiceFactory = new PerformanceServiceFactory();
     }
   }
 
@@ -12,65 +19,9 @@ export default class WebPaintTimesCollector {
      * @returns {Promise<*>|Event}
      */
   async prepare (event) {
-
-    event.eventDuration6 = this.getFirstPaint();
-    event.eventDuration7 = this.getFirstContentfulPaint();
+    const performanceService = this.performanceServiceFactory.create();
+    event.eventDuration6 = performanceService.getFirstPaint();
+    event.eventDuration7 = performanceService.getFirstContentfulPaint();
     return event;
   }
-
-
-  /**
-   * @returns {null|Number}
-   */
-  getFirstPaint() {
-    try {
-      if (this.currentPerformanceAPI) {
-        const firstPaint = WebPaintTimesCollector.getPaint(this.currentPerformanceAPI, 'first-paint');
-        return Math.round(firstPaint);
-      }
-      return null;
-
-    }
-    catch (e) {
-      // Failed to identify data layer
-      return null;
-    }
-  }
-
-  /**
-   * @returns {null|Number}
-   */
-  getFirstContentfulPaint() {
-    try {
-      if (this.currentPerformanceAPI) {
-        return Math.round(WebPaintTimesCollector.getPaint(this.currentPerformanceAPI, 'first-contentful-paint'));
-      }
-      return null;
-
-    }
-    catch (e) {
-      // Failed to identify data layer
-      return null;
-    }
-  }
-
-  /**
-   * Helper function to destructure the paint times collection structure
-   * @param PaintAPI
-   * @param paintTypeName
-   * @returns {*}
-   */
-  static getPaint(PaintAPI, paintTypeName) {
-
-
-    for (let i = 0; i < PaintAPI.length; i++) {
-      if (PaintAPI[i].name === paintTypeName) {
-        return PaintAPI[i].startTime;
-      }
-    }
-
-
-    return null;
-  }
-
 }

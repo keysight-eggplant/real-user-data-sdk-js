@@ -1,10 +1,17 @@
+import PerformanceServiceFactory from '../core/performance/PerformanceServiceFactory.js';
+
 export default class WebBackEndCollector {
 
-  constructor() {
-    if (typeof window.performance.getEntriesByType !== 'undefined') {
-      this.currentPerformanceAPI = window.performance.getEntriesByType('navigation')[0];
+  /**
+   * @param {PerformanceService} performanceServiceFactory
+   */
+  constructor(performanceServiceFactory) {
+    // Optional for backwards-compatibility
+    if (performanceServiceFactory) {
+      this.performanceServiceFactory = performanceServiceFactory;
+    } else {
+      this.performanceServiceFactory = new PerformanceServiceFactory();
     }
-    this.oldPerformanceAPI = window.performance;
   }
 
   /**
@@ -12,30 +19,8 @@ export default class WebBackEndCollector {
      * @returns {Promise<*>|Event}
      */
   async prepare (event) {
-    event.eventDuration1 = this.getResponseStart();
+    const performanceService = this.performanceServiceFactory.create();
+    event.eventDuration1 = performanceService.getResponseStart();
     return event;
   }
-
-  /**
-     *
-     * @returns {null|Number}
-     */
-  getResponseStart() {
-    try {
-      if (this.currentPerformanceAPI) {
-        return Math.round(this.currentPerformanceAPI.responseStart);
-      } if (this.oldPerformanceAPI && this.oldPerformanceAPI.timing) {
-        /** We need to subtract due to the fact that is in EPOCH Time */
-        return this.oldPerformanceAPI.timing.responseStart - this.oldPerformanceAPI.timing.navigationStart;
-      }
-      return null;
-
-    }
-    catch (e) {
-      // Failed to identify data layer
-      return null;
-    }
-  }
-
-
 }

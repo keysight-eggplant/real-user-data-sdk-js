@@ -1,4 +1,4 @@
-import SpaTimingCollector from './SpaTimingCollector';
+import SpaTimingCollector from './SpaTimingCollector.js';
 
 describe('SpaTimingCollector', () => {
   const originalEvent = {
@@ -8,7 +8,7 @@ describe('SpaTimingCollector', () => {
     eventAction: 'load',
     eventSource: 'products/shoes/1',
     eventCategory: 'products/shoes',
-    deviceType: 'mobile',
+    deviceType: 'mobile'
   };
 
   const expectedEvent = {
@@ -17,7 +17,6 @@ describe('SpaTimingCollector', () => {
     eventEnd: expect.any(Number)
   };
   let spaTimingCollector;
-
 
   beforeEach(() => {
     spaTimingCollector = new SpaTimingCollector();
@@ -29,7 +28,6 @@ describe('SpaTimingCollector', () => {
 
     expect(actualEvent).toEqual(expectedEvent);
   });
-
 
   test('Return correct event timing', async () => {
     const eventStart = new Date().getTime();
