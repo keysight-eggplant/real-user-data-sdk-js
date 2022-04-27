@@ -1,6 +1,6 @@
 define('rci/producerFactory', ['rci/sdk'], (rciSdk) => {
   // TODO: Define target URL
-  const targetUrl = `https://target.domain/v1/123/stream`;
+  const targetUrl = `http://localhost:3000/v1/123/stream`;
   const transport = new rciSdk.Transport(targetUrl);
 
   // TODO: Define any geographic collectors
