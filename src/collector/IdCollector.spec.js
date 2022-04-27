@@ -1,4 +1,4 @@
-import IdCollector from './IdCollector';
+import IdCollector from './IdCollector.js';
 
 describe('IdCollector', () => {
   const originalEvent = {

@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-properties */
 /* eslint-disable no-underscore-dangle */
 
-import DeviceTypeCollector from './DeviceTypeCollector';
+import DeviceTypeCollector from './DeviceTypeCollector.js';
 
 describe('DeviceTypeCollector', () => {
   const originalEvent = {

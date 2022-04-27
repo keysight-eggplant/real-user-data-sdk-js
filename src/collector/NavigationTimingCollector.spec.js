@@ -1,4 +1,4 @@
-import NavigationTimingCollector from './NavigationTimingCollector';
+import NavigationTimingCollector from './NavigationTimingCollector.js';
 
 describe('NavigationTimingCollector', () => {
   const originalEvent = {

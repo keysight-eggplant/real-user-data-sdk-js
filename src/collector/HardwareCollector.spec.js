@@ -2,7 +2,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-restricted-globals */
 
-import HardwareCollector from './HardwareCollector';
+import HardwareCollector from './HardwareCollector.js';
 
 describe('HardwareCollector', () => {
   const originalEvent = {

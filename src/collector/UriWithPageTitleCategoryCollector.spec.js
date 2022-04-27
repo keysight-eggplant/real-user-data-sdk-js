@@ -1,4 +1,4 @@
-import UriWithPageTitleCategoryCollector from './UriWithPageTitleCategoryCollector';
+import UriWithPageTitleCategoryCollector from './UriWithPageTitleCategoryCollector.js';
 
 describe('UriWithPageTitleCategoryCollector', () => {
   const originalEvent = {
