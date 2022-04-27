@@ -1,5 +1,5 @@
-import PerformanceService from './PerformanceService';
-import NormalizationHelper from '../Normalization.helper';
+import PerformanceService from './PerformanceService.js';
+import NormalizationHelper from '../Normalization.helper.js';
 
 export default class NavigationV1PerformanceService extends PerformanceService {
   /**

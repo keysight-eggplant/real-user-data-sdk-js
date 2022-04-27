@@ -2,7 +2,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-restricted-globals */
 
-import HardwareCollector from './HardwareCollector';
+import HardwareCollector from './HardwareCollector.js';
 
 describe('HardwareCollector', () => {
   const originalEvent = {
@@ -24,7 +24,6 @@ describe('HardwareCollector', () => {
     screenResolutionHeight: 1080 // this should be modified if we are using Karma
   };
   let hardwareCollector;
-
 
   describe('Valid UserAgent', () => {
     beforeEach(() => {
