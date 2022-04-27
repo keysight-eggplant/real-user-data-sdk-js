@@ -1,34 +1,38 @@
-import Producer from './core/Producer';
-import Transport from './core/Transport';
-import TriggerHelper from './core/Trigger.helper';
-import NormalizationHelper from './core/Normalization.helper';
+import Producer from './core/Producer.js';
+import Bootstrapper from './core/Bootstrapper.js';
+import Transport from './core/Transport.js';
+import TriggerHelper from './core/Trigger.helper.js';
+import NormalizationHelper from './core/Normalization.helper.js';
 import {
   EVENT_TYPE,
   EVENT_ACTION,
-  JOURNEY_ACTION
-} from './core/constants';
-import VERSION from './core/version.constant';
-import defaultCollectors from './collector/defaultCollectors';
-import webFocusedCollectors from './collector/webFocusedCollectors';
-import ClientIdCollector from './collector/ClientIdCollector';
-import ConversionCollector from './collector/ConversionCollector';
-import DeviceTypeCollector from './collector/DeviceTypeCollector';
-import ErrorCollector from './collector/ErrorCollector';
-import EventActionCollector from './collector/EventActionCollector';
-import EventTypeCollector from './collector/EventTypeCollector';
-import IdCollector from './collector/IdCollector';
-import StopJourneyActionCollector from './collector/StopJourneyActionCollector';
-import NavigationTimingCollector from './collector/NavigationTimingCollector';
-import SpaTimingCollector from './collector/SpaTimingCollector';
-import UriWithCustomCategoryCollector from './collector/UriWithCustomCategoryCollector';
-import UriWithPageTitleCategoryCollector from './collector/UriWithPageTitleCategoryCollector';
-import SoftwareCollector from './collector/SoftwareCollector';
-import HardwareCollector from './collector/HardwareCollector';
-import WebBackEndCollector from './collector/WebBackEndCollector';
-import WebPageLoadTimesCollector from './collector/WebPageLoadTimesCollector';
-import WebPaintTimesCollector from './collector/WebPaintTimesCollector';
-import WebVitalsCollector from './collector/WebVitalsCollector';
-import InstrumentationVersionCollector from './collector/InstrumentationVersionCollector';
+  JOURNEY_ACTION,
+  TARGETED_DATA,
+  TARGET_SEARCH_MODES
+} from './core/constants.js';
+import VERSION from './core/version.constant.js';
+import defaultCollectors from './collector/defaultCollectors.js';
+import webFocusedCollectors from './collector/webFocusedCollectors.js';
+import ClientIdCollector from './collector/ClientIdCollector.js';
+import ConversionCollector from './collector/ConversionCollector.js';
+import DeviceTypeCollector from './collector/DeviceTypeCollector.js';
+import ErrorCollector from './collector/ErrorCollector.js';
+import EventActionCollector from './collector/EventActionCollector.js';
+import EventTypeCollector from './collector/EventTypeCollector.js';
+import IdCollector from './collector/IdCollector.js';
+import StopJourneyActionCollector from './collector/StopJourneyActionCollector.js';
+import NavigationTimingCollector from './collector/NavigationTimingCollector.js';
+import SpaTimingCollector from './collector/SpaTimingCollector.js';
+import UriWithCustomCategoryCollector from './collector/UriWithCustomCategoryCollector.js';
+import UriWithPageTitleCategoryCollector from './collector/UriWithPageTitleCategoryCollector.js';
+import SoftwareCollector from './collector/SoftwareCollector.js';
+import HardwareCollector from './collector/HardwareCollector.js';
+import WebBackEndCollector from './collector/WebBackEndCollector.js';
+import WebPageLoadTimesCollector from './collector/WebPageLoadTimesCollector.js';
+import WebPaintTimesCollector from './collector/WebPaintTimesCollector.js';
+import WebVitalsCollector from './collector/WebVitalsCollector.js';
+import InstrumentationVersionCollector from './collector/InstrumentationVersionCollector.js';
+import UserAgentCollector from './collector/UserAgentCollector.js';
 
 const collector = {
   defaultCollectors,
@@ -51,15 +55,19 @@ const collector = {
   WebPageLoadTimesCollector,
   WebPaintTimesCollector,
   WebVitalsCollector,
-  InstrumentationVersionCollector
+  InstrumentationVersionCollector,
+  UserAgentCollector
 };
 
 export {
   Producer,
+  Bootstrapper,
   Transport,
   EVENT_TYPE,
   EVENT_ACTION,
   JOURNEY_ACTION,
+  TARGETED_DATA,
+  TARGET_SEARCH_MODES,
   VERSION,
   collector,
   TriggerHelper,

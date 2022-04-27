@@ -1,13 +1,14 @@
-import ClientIdCollector from './ClientIdCollector';
-import DeviceTypeCollector from './DeviceTypeCollector';
-import EventActionCollector from './EventActionCollector';
-import EventTypeCollector from './EventTypeCollector';
-import SoftwareCollector from './SoftwareCollector';
-import HardwareCollector from './HardwareCollector';
-import IdCollector from './IdCollector';
-import NavigationTimingCollector from './NavigationTimingCollector';
-import UriWithPageTitleCategoryCollector from './UriWithPageTitleCategoryCollector';
-import {EVENT_TYPE, EVENT_ACTION} from '../core/constants';
+import ClientIdCollector from './ClientIdCollector.js';
+import DeviceTypeCollector from './DeviceTypeCollector.js';
+import EventActionCollector from './EventActionCollector.js';
+import EventTypeCollector from './EventTypeCollector.js';
+import SoftwareCollector from './SoftwareCollector.js';
+import HardwareCollector from './HardwareCollector.js';
+import IdCollector from './IdCollector.js';
+import NavigationTimingCollector from './NavigationTimingCollector.js';
+import UriWithPageTitleCategoryCollector from './UriWithPageTitleCategoryCollector.js';
+import UserAgentCollector from './UserAgentCollector.js';
+import {EVENT_TYPE, EVENT_ACTION} from '../core/constants.js';
 
 export default [
   new IdCollector(),
@@ -18,5 +19,6 @@ export default [
   new NavigationTimingCollector(),
   new UriWithPageTitleCategoryCollector(),
   new SoftwareCollector(),
-  new HardwareCollector()
+  new HardwareCollector(),
+  new UserAgentCollector()
 ];

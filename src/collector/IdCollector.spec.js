@@ -1,4 +1,4 @@
-import IdCollector from './IdCollector';
+import IdCollector from './IdCollector.js';
 
 describe('IdCollector', () => {
   const originalEvent = {
@@ -24,7 +24,6 @@ describe('IdCollector', () => {
     const actualEvent = await idCollector.prepare(originalEvent);
     expect(actualEvent).toEqual(expectedEvent);
   });
-
 
   test('Return correct id', async () => {
     const actualEvent = await idCollector.prepare(originalEvent);
