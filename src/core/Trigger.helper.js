@@ -1,9 +1,9 @@
 /* eslint-disable no-plusplus */
 /* eslint no-await-in-loop: 0 */
-import PerformanceServiceFactory from './performance/PerformanceServiceFactory';
-import ErrorCollector from '../collector/ErrorCollector';
+import PerformanceServiceFactory from './performance/PerformanceServiceFactory.js';
+import ErrorCollector from '../collector/ErrorCollector.js';
 
-const pjson = require('../../package.json');
+import pjson from '../../package.json';
 
 const performanceServiceFactory = new PerformanceServiceFactory();
 
@@ -47,6 +47,7 @@ export default class TriggerHelper {
    * @property {Object} event
    * @property {Function|Promise} condition
    * @property {Function|Promise} action
+   * @property {RCISDKConfig} config
    * */
 
   /** @type {WaitAndTriggerOptions} */
@@ -81,12 +82,19 @@ export default class TriggerHelper {
     });
   }
 
+  static objectIsPopulated (object) {
+    return object // 👈 null and undefined check
+    && Object.keys(object).length === 0
+    && Object.getPrototypeOf(object) === Object.prototype;
+  }
+
   /**
      * Waits for something to happen and then triggers
      * @param {WaitAndTriggerOptions} options
      * @returns {Promise<void>}
      */
   static async waitAndTrigger (options) {
+    const {config} = options;
     const {interval} = options;
     const {condition} = options;
     const {action} = options;

@@ -1,4 +1,4 @@
-import ErrorCollector from './ErrorCollector';
+import ErrorCollector from './ErrorCollector.js';
 
 describe('ErrorCollector', () => {
   const originalEvent = {
@@ -21,7 +21,6 @@ describe('ErrorCollector', () => {
   };
   let errorCollector;
 
-
   beforeEach(() => {
     errorCollector = new ErrorCollector('404', 'Not Found', true);
   });
@@ -31,7 +30,6 @@ describe('ErrorCollector', () => {
 
     expect(actualEvent).toEqual(expectedEvent);
   });
-
 
   test('Return correct error properties', async () => {
     const actualEvent = await errorCollector.prepare(originalEvent);

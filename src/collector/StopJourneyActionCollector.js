@@ -1,4 +1,4 @@
-import { JOURNEY_ACTION } from '../core/constants';
+import { JOURNEY_ACTION } from '../core/constants.js';
 
 export default class StopJourneyActionCollector {
   async prepare(event) {
