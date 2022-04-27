@@ -1,5 +1,5 @@
 import Sinon from 'sinon';
-import WebVitalsCollector from './WebVitalsCollector';
+import WebVitalsCollector from './WebVitalsCollector.js';
 
 describe('WebVitalsCollector', () => {
   const originalEvent = {
@@ -20,7 +20,6 @@ describe('WebVitalsCollector', () => {
   let webVitalsCollector;
   let poEvent;
   let poHandler;
-  let po;
 
   describe('with current Web Vitals API', () => {
     beforeEach(() => {
@@ -28,10 +27,13 @@ describe('WebVitalsCollector', () => {
       poEvent.getEntries = Sinon.stub().onCall(0).returns([{renderTime: 100}]);
       poHandler = Sinon.stub();
       poHandler.observe = Sinon.stub();
-      po = (callback) => {
-        callback(poEvent);
-        return poHandler;
-      };
+
+      class po {
+        constructor(callback) {
+          callback(poEvent);
+        }
+      }
+
       global.window.PerformanceObserver = po;
       webVitalsCollector = new WebVitalsCollector();
     });
@@ -66,7 +68,6 @@ describe('WebVitalsCollector', () => {
       const actualEvent = await webVitalsCollector.prepare(originalEvent);
       expect(actualEvent).toEqual(expectedEvent);
     });
-
 
     test('Return correct web vitals', async () => {
       /** @type {Event} */
