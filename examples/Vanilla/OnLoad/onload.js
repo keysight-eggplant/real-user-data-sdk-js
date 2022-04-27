@@ -42,7 +42,6 @@ const waitUntil = (condition, repeatInterval) => new Promise((resolve) => {
 // setTimeout(() => {
 // Path 1: Trigger the RCI instrumentation bootstrap process straight away
 if (RCICoreReady === true) {
-  console.log('bla1');
   rciMainAction(tenancyId, window.rciSdk);
 
   // Bind on event and wait for dispatch by the SDK

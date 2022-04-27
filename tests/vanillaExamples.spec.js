@@ -516,7 +516,7 @@ describe('RCI SDK Core', () => {
         expect(testSetup.capturedRequests[0].payload.softwareInfo4.length).to.be.above(30);
 
         // eventDurations
-        expect(testSetup.capturedRequests[0].payload.eventDuration1).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration1).to.be.at.least(0);
         expect(testSetup.capturedRequests[0].payload.eventDuration2).to.be.above(1);
         expect(testSetup.capturedRequests[0].payload.eventDuration3).to.be.above(1);
         expect(testSetup.capturedRequests[0].payload.eventDuration4).to.be.above(1);
@@ -589,7 +589,7 @@ describe('RCI SDK Core', () => {
         expect(testSetup.capturedRequests[0].payload.softwareInfo4.length).to.be.above(30);
 
         // eventDurations
-        expect(testSetup.capturedRequests[0].payload.eventDuration1).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration1).to.be.at.least(0);
         expect(testSetup.capturedRequests[0].payload.eventDuration2).to.be.above(1);
         expect(testSetup.capturedRequests[0].payload.eventDuration3).to.be.above(1);
         expect(testSetup.capturedRequests[0].payload.eventDuration4).to.be.above(1);
@@ -667,7 +667,7 @@ describe('RCI SDK Core', () => {
         expect(testSetup.capturedRequests[0].payload.softwareInfo4.length).to.be.above(30);
 
         // eventDurations
-        expect(testSetup.capturedRequests[0].payload.eventDuration1).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration1).to.be.at.least(0);
         expect(testSetup.capturedRequests[0].payload.eventDuration2).to.be.above(1);
         expect(testSetup.capturedRequests[0].payload.eventDuration3).to.be.above(1);
         expect(testSetup.capturedRequests[0].payload.eventDuration4).to.be.above(1);
@@ -750,7 +750,7 @@ describe('RCI SDK Core', () => {
         expect(testSetup.capturedRequests[0].payload.softwareInfo4.length).to.be.above(30);
 
         // eventDurations
-        expect(testSetup.capturedRequests[0].payload.eventDuration1).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration1).to.be.at.least(0);
         expect(testSetup.capturedRequests[0].payload.eventDuration2).to.be.above(1);
         expect(testSetup.capturedRequests[0].payload.eventDuration3).to.be.above(1);
         expect(testSetup.capturedRequests[0].payload.eventDuration4).to.be.above(1);
@@ -833,7 +833,7 @@ describe('RCI SDK Core', () => {
         expect(testSetup.capturedRequests[0].payload.softwareInfo4.length).to.be.above(30);
 
         // eventDurations
-        expect(testSetup.capturedRequests[0].payload.eventDuration1).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration1).to.be.at.least(0);
         expect(testSetup.capturedRequests[0].payload.eventDuration2).to.be.above(1);
         expect(testSetup.capturedRequests[0].payload.eventDuration3).to.be.above(1);
         expect(testSetup.capturedRequests[0].payload.eventDuration4).to.be.above(1);
@@ -916,7 +916,7 @@ describe('RCI SDK Core', () => {
         expect(testSetup.capturedRequests[0].payload.softwareInfo4.length).to.be.above(30);
 
         // eventDurations
-        expect(testSetup.capturedRequests[0].payload.eventDuration1).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration1).to.be.at.least(0);
         expect(testSetup.capturedRequests[0].payload.eventDuration2).to.be.above(1);
         expect(testSetup.capturedRequests[0].payload.eventDuration3).to.be.above(1);
         expect(testSetup.capturedRequests[0].payload.eventDuration4).to.be.above(1);
@@ -999,7 +999,7 @@ describe('RCI SDK Core', () => {
         expect(testSetup.capturedRequests[0].payload.softwareInfo4.length).to.be.above(30);
 
         // eventDurations
-        expect(testSetup.capturedRequests[0].payload.eventDuration1).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration1).to.be.at.least(0);
         expect(testSetup.capturedRequests[0].payload.eventDuration2).to.be.above(1);
         expect(testSetup.capturedRequests[0].payload.eventDuration3).to.be.above(1);
         expect(testSetup.capturedRequests[0].payload.eventDuration4).to.be.above(1);
@@ -1056,7 +1056,7 @@ describe('RCI SDK Core', () => {
         expect(testSetup.capturedRequests[1].payload.softwareInfo4.length).to.be.above(30);
 
         // eventDurations
-        expect(testSetup.capturedRequests[1].payload.eventDuration1).to.be.above(1);
+        expect(testSetup.capturedRequests[1].payload.eventDuration1).to.be.at.least(0);
         expect(testSetup.capturedRequests[1].payload.eventDuration2).to.be.above(1);
         expect(testSetup.capturedRequests[1].payload.eventDuration3).to.be.above(1);
         expect(testSetup.capturedRequests[1].payload.eventDuration4).to.be.above(1);
@@ -1139,7 +1139,7 @@ describe('RCI SDK Core', () => {
         expect(testSetup.capturedRequests[0].payload.softwareInfo4.length).to.be.above(30);
 
         // eventDurations
-        expect(testSetup.capturedRequests[0].payload.eventDuration1).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration1).to.be.at.least(0);
         expect(testSetup.capturedRequests[0].payload.eventDuration2).to.be.above(1);
         expect(testSetup.capturedRequests[0].payload.eventDuration3).to.be.above(1);
         expect(testSetup.capturedRequests[0].payload.eventDuration4).to.be.above(1);
@@ -1196,7 +1196,7 @@ describe('RCI SDK Core', () => {
         expect(testSetup.capturedRequests[1].payload.softwareInfo4.length).to.be.above(30);
 
         // eventDurations
-        expect(testSetup.capturedRequests[1].payload.eventDuration1).to.be.above(1);
+        expect(testSetup.capturedRequests[1].payload.eventDuration1).to.be.at.least(0);
         expect(testSetup.capturedRequests[1].payload.eventDuration2).to.be.above(1);
         expect(testSetup.capturedRequests[1].payload.eventDuration3).to.be.above(1);
         expect(testSetup.capturedRequests[1].payload.eventDuration4).to.be.above(1);
@@ -1279,7 +1279,7 @@ describe('RCI SDK Core', () => {
         expect(testSetup.capturedRequests[0].payload.softwareInfo4.length).to.be.above(30);
 
         // eventDurations
-        expect(testSetup.capturedRequests[0].payload.eventDuration1).to.be.above(1);
+        expect(testSetup.capturedRequests[0].payload.eventDuration1).to.be.at.least(0);
         expect(testSetup.capturedRequests[0].payload.eventDuration2).to.be.above(1);
         expect(testSetup.capturedRequests[0].payload.eventDuration3).to.be.above(1);
         expect(testSetup.capturedRequests[0].payload.eventDuration4).to.be.above(1);

@@ -4,9 +4,10 @@ import fs from 'fs';
 import webpack from 'webpack';
 import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
+import yargs from 'yargs';
 import { WebpackWrapper } from '../config/webpack.js';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const currentDirname = dirname(fileURLToPath(import.meta.url));
 
 class GenericTestHelper {
 
@@ -39,11 +40,12 @@ class GenericTestHelper {
     app.use(cors());
 
     app.post('/v1/:tenancyId/stream', (req, res) => {
+      console.log(`Requested: ${req.path} - Method: ${req.method} - TenancyId: ${req.params.tenancyId}`);
       res.send('Hello World!');
     });
 
     app.get('/*', async (req, res) => {
-      const path = resolve(__dirname, `..${req.path}`);
+      const path = resolve(currentDirname, `..${req.path}`);
       console.log(`Requested: ${req.path} Served: ${path} Exists: ${fs.existsSync(path)}`);
       res.sendFile(path);
     });
@@ -106,3 +108,30 @@ class GenericTestHelper {
 }
 
 export default GenericTestHelper;
+
+if (resolve(process.argv[1]) === resolve(fileURLToPath(import.meta.url))) {
+
+  // It is being run directly from CLI
+
+  yargs(process.argv.slice(2))
+    .usage('Usage: node $0 <command> [options]')
+    .version(false)
+    .example('node ./config/webpack.js help')
+    .example('node tests/genericTest.Helper.js --port 3001')
+    .example('node tests/genericTest.Helper.js')
+    .option('port', {
+      alias: 'p',
+      default: 3000,
+      type: 'number',
+      description: 'The port to run the server on'
+    })
+    .command({
+      command: '$0',
+      handler: (cliArguments) => {
+        GenericTestHelper.startServer({port: cliArguments.port, startedServers: []});
+      }
+    })
+    .epilog('All rights reserved, RCI Team')
+    .parse();
+
+}

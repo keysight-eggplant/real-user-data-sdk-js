@@ -1,3 +1,4 @@
+/* eslint-disable no-async-promise-executor */
 import { intercept, patterns } from 'puppeteer-interceptor';
 import GenericTestHelper from './genericTest.Helper.js';
 
@@ -51,10 +52,10 @@ class TestSetupHelper {
   }
 
   static async stopListeningForRequests (testSetup) {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
 
       try {
-        GenericTestHelper.waitUntil(
+        await GenericTestHelper.waitUntil(
           () => testSetup.capturedRequests.length >= testSetup.expectedRequests,
           testSetup.waitForRequestsTimeout,
           testSetup.waitForRequestsFrequency
