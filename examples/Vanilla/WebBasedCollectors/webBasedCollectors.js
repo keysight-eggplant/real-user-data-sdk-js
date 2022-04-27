@@ -1,6 +1,6 @@
 function rciMainAction(tenancyId, rciSdk) {
   // Step 1: Configure your Transport with the tenancyId provided
-  const targetUrl = `https://target.domain/v1/${tenancyId}/stream`;
+  const targetUrl = `http://localhost:3000/v1/${tenancyId}/stream`;
   const transport = new rciSdk.Transport(targetUrl);
 
   // Step 2.a: Capture your default collectors
@@ -33,7 +33,6 @@ const {RCICoreReady} = window;
 // Path 1: Trigger the RCI instrumentation bootstrap process straight away
 if (RCICoreReady) {
   rciMainAction(tenancyId, window.rciSdk);
-
 
 // Bind on event and wait for dispatch by the SDK
 } else {

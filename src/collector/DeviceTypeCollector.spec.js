@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-properties */
 /* eslint-disable no-underscore-dangle */
 
-import DeviceTypeCollector from './DeviceTypeCollector';
+import DeviceTypeCollector from './DeviceTypeCollector.js';
 
 describe('DeviceTypeCollector', () => {
   const originalEvent = {
@@ -21,7 +21,6 @@ describe('DeviceTypeCollector', () => {
   };
   let deviceTypeCollector;
 
-
   describe('Valid UA', () => {
     beforeEach(() => {
       const userAgentString = 'Mozilla/5.0 (Linux; U; Android 4.4.2; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30';
@@ -36,7 +35,6 @@ describe('DeviceTypeCollector', () => {
 
       expect(actualEvent).toEqual(expectedEvent);
     });
-
 
     test('Return correct device type', async () => {
       const actualEvent = await deviceTypeCollector.prepare(originalEvent);

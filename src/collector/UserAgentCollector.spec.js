@@ -1,5 +1,5 @@
 import {createSandbox} from 'sinon';
-import UserAgentCollector from './UserAgentCollector';
+import UserAgentCollector from './UserAgentCollector.js';
 
 describe('UserAgentCollector', () => {
   const originalEvent = {
@@ -12,7 +12,7 @@ describe('UserAgentCollector', () => {
     deviceType: 'mobile'
   };
 
-  let ua = 'Chrome: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36';
+  const ua = 'Chrome: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36';
 
   /** @type {Event} */
   const expectedEvent = {
@@ -35,7 +35,6 @@ describe('UserAgentCollector', () => {
 
       expect(actualEvent).toEqual(expectedEvent);
     });
-
 
     test('Return correct userAgent', async () => {
       /** @type {Event} */
