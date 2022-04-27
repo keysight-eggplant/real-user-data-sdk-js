@@ -1,6 +1,6 @@
 async function rciMainAction(tenancyId, rciSdk) {
   // Step 1: Configure your Transport with the tenancyId provided
-  const targetUrl = `https://target.domain/v1/${tenancyId}/stream`;
+  const targetUrl = `http://localhost:3000/v1/${tenancyId}/stream`;
   const transport = new rciSdk.Transport(targetUrl);
 
   // Step 2: Capture your default collectors
@@ -52,7 +52,6 @@ if (RCICoreReady === true) {
       console.log('1');
       return typeof window.rciSdk !== 'undefined' && Object.prototype.hasOwnProperty.call(window.rciSdk, '__esModule');
     }, 10);
-    console.log('bla2');
     await rciMainAction(tenancyId, window.rciSdk);
   });
 }

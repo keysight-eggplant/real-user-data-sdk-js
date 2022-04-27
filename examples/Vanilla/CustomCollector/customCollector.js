@@ -1,7 +1,7 @@
 function rciMainAction(tenancyId, rciSdk) {
   // Step 1: Define your Factory
   const rciSdkProducerFactory = (customCollectors) => {
-    const targetUrl = `https://target.domain/v1/${tenancyId}/stream`;
+    const targetUrl = `http://localhost:3000/v1/${tenancyId}/stream`;
     const transport = new rciSdk.Transport(targetUrl);
     const defaults = rciSdk.collector.defaultCollectors;
     const collection = defaults.concat(customCollectors);
