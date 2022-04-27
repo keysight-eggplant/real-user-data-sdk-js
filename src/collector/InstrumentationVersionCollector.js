@@ -1,4 +1,4 @@
-import VERSION from '../core/version.constant';
+import VERSION from '../core/version.constant.js';
 
 export default class InstrumentationVersionCollector {
 
