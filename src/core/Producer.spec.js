@@ -1,8 +1,8 @@
 'use strict';
 
 import Sinon from 'sinon';
-import Producer from './Producer';
-import Transport from './Transport';
+import Producer from './Producer.js';
+import Transport from './Transport.js';
 
 describe('Producer', () => {
 

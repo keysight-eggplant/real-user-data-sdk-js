@@ -1,4 +1,4 @@
-import PerformanceServiceFactory from '../core/performance/PerformanceServiceFactory';
+import PerformanceServiceFactory from '../core/performance/PerformanceServiceFactory.js';
 
 export default class WebBackEndCollector {
 

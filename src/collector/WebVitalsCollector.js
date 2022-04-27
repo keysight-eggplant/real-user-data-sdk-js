@@ -1,4 +1,4 @@
-import NormalizationHelper from '../core/Normalization.helper';
+import NormalizationHelper from '../core/Normalization.helper.js';
 
 export default class WebVitalsCollector {
 

@@ -1,5 +1,5 @@
 import Sinon from 'sinon';
-import WebPageLoadTimesCollector from './WebPageLoadTimesCollector';
+import WebPageLoadTimesCollector from './WebPageLoadTimesCollector.js';
 
 describe('WebPageLoadTimesCollector', () => {
   const originalEvent = {
@@ -41,7 +41,6 @@ describe('WebPageLoadTimesCollector', () => {
 
       expect(actualEvent).toEqual(expectedEvent);
     });
-
 
     test('Return correct response start', async () => {
       /** @type {Event} */
