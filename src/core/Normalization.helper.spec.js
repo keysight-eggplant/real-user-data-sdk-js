@@ -1,4 +1,4 @@
-import NormalizationHelper from './Normalization.helper';
+import NormalizationHelper from './Normalization.helper.js';
 
 describe('NormalizationHelper Unit Tests', () => {
   describe('normalizeGoalValue', () => {

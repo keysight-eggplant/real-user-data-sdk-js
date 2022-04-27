@@ -1,8 +1,8 @@
-import UserAgentParser from '../utility/UserAgentParser';
-import NavigationV2WithPaintPerformanceService from './NavigationV2WithPaintPerformanceService';
-import PerformanceService from './PerformanceService';
-import NavigationV1PerformanceService from './NavigationV1PerformanceService';
-import NavigationV2PerformanceService from './NavigationV2PerformanceService';
+import UserAgentParser from '../utility/UserAgentParser.js';
+import NavigationV2WithPaintPerformanceService from './NavigationV2WithPaintPerformanceService.js';
+import PerformanceService from './PerformanceService.js';
+import NavigationV1PerformanceService from './NavigationV1PerformanceService.js';
+import NavigationV2PerformanceService from './NavigationV2PerformanceService.js';
 
 export default class PerformanceServiceFactory {
   constructor() {
