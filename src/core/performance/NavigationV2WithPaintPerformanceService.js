@@ -1,5 +1,5 @@
-import NormalizationHelper from '../Normalization.helper';
-import NavigationV2PerformanceService from './NavigationV2PerformanceService';
+import NormalizationHelper from '../Normalization.helper.js';
+import NavigationV2PerformanceService from './NavigationV2PerformanceService.js';
 
 export default class NavigationV2WithPaintPerformanceService
   extends NavigationV2PerformanceService {
