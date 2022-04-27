@@ -1,6 +1,6 @@
 import Sinon from 'sinon';
-import TriggerHelper from './Trigger.helper';
-import Producer from './Producer';
+import TriggerHelper from './Trigger.helper.js';
+import Producer from './Producer.js';
 
 describe('TriggerHelper Unit Tests', () => {
 

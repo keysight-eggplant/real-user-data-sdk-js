@@ -1,4 +1,4 @@
-import StopJourneyActionCollector from './StopJourneyActionCollector';
+import StopJourneyActionCollector from './StopJourneyActionCollector.js';
 
 describe('StopJourneyActionCollector', () => {
   test('test collector sets journeyAction stop on event', async () => {
