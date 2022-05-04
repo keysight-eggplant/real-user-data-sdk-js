@@ -48,7 +48,7 @@ jobs:
           command: npm run build:legacy
       - run:
           name: Authenticate with registry
-          command: node node_modules/npm-cli-login/bin/npm-cli-login.js -u ${NPM_USERNAME} -p ${NPM_PASSWORD} -e ${NPM_EMAIL}
+          command: npm config set email ${NPM_EMAIL} && npm config set_authToken=${NPM_AUTH_TOKEN}
       - run:
           name: Publish package
           command: npm publish --access public
