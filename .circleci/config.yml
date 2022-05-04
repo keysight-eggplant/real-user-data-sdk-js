@@ -48,7 +48,10 @@ jobs:
           command: npm run build:legacy
       - run:
           name: Authenticate with registry
-          command: npm config set_authToken=${NPM_AUTH_TOKEN}
+          command: touch ~/.npmrc && echo email=${NPM_EMAIL} >> ~/.npmrc && echo always-auth=true >> ~/.npmrc && echo //registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN} >> ~/.npmrc
+      - run:
+          name: NPM Who Am I
+          command: npm whoami
       - run:
           name: Publish package
           command: npm publish --access public
