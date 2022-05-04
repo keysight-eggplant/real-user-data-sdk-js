@@ -48,7 +48,7 @@ jobs:
           command: npm run build:legacy
       - run:
           name: Authenticate with registry
-          command: npm config set email ${NPM_EMAIL} && npm config set_authToken=${NPM_AUTH_TOKEN}
+          command: npm config set_authToken=${NPM_AUTH_TOKEN}
       - run:
           name: Publish package
           command: npm publish --access public
