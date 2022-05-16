@@ -1,6 +1,6 @@
 {
   "name": "@eggplantio/real-user-data-sdk-js",
-  "version": "2.1.9",
+  "version": "2.1.10",
   "description": "SDK for generating and publishing events that capture user, application and technical data",
   "main": "dist/rci.min.js",
   "scripts": {
