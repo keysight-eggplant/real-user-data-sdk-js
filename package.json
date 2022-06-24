@@ -1,6 +1,6 @@
 {
   "name": "@eggplantio/real-user-data-sdk-js",
-  "version": "2.1.10",
+  "version": "2.1.11",
   "description": "SDK for generating and publishing events that capture user, application and technical data",
   "main": "dist/rci.min.js",
   "scripts": {
@@ -75,6 +75,8 @@
   ],
   "mocha": {
     "timeout": "60000",
-    "spec": ["./tests/**/*.spec.js"]
+    "spec": [
+      "./tests/**/*.spec.js"
+    ]
   }
 }
