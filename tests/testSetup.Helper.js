@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 /* eslint-disable no-async-promise-executor */
 import { intercept, patterns } from 'puppeteer-interceptor';
 import GenericTestHelper from './genericTest.Helper.js';
@@ -43,10 +44,21 @@ class TestSetupHelper {
   static async startListeningForRequests (testSetup, page) {
     intercept(page, patterns.XHR(testSetup.requestsGLOBPattern), {
       onInterception: (event) => {
-        testSetup.capturedRequests.push({
-          requestUrl: event.request.url,
-          payload: JSON.parse(event.request.postData)
-        });
+        if ((testSetup.hasOwnProperty('requestsAcceptedMethods') && testSetup.requestsAcceptedMethods.includes(event.request.method)) || !testSetup.hasOwnProperty('requestsAcceptedMethods')) {
+          const request = {
+            requestUrl: event.request.url,
+            method: event.request.method
+          };
+
+          if (event.request.hasOwnProperty('postData')) {
+            request.payload = JSON.parse(event.request.postData);
+          }
+
+          testSetup.capturedRequests.push(request);
+
+        } else {
+          console.log(`Request: ${event.request.url} has a forbidden method (${event.request.method}) Accepted methods: ${testSetup.requestsAcceptedMethods}`);
+        }
       }
     });
   }
