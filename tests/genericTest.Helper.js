@@ -2,12 +2,22 @@ import express from 'express';
 import cors from 'cors';
 import fs from 'fs';
 import webpack from 'webpack';
-import { dirname, resolve } from 'path';
+import { resolve } from 'path';
 import { fileURLToPath } from 'url';
 import yargs from 'yargs';
 import { WebpackWrapper } from '../config/webpack.js';
 
-const currentDirname = dirname(fileURLToPath(import.meta.url));
+/**
+ * @typedef {Object} TestWebpackConfig
+ * */
+
+/**
+ * @typedef {Object} TestServerConfig
+ * @property {Number} port - The port that the server will be start on.
+ * @property {Array} startedServers - Where the started servers are
+ * stored in order to be closed gracefully.
+ * @property {String} currentDirname - The current dirname
+ * */
 
 class GenericTestHelper {
 
@@ -45,7 +55,7 @@ class GenericTestHelper {
     });
 
     app.get('/*', async (req, res) => {
-      const path = resolve(currentDirname, `..${req.path}`);
+      const path = resolve(config.currentDirname, `..${req.path}`);
       console.log(`Requested: ${req.path} Served: ${path} Exists: ${fs.existsSync(path)}`);
       res.sendFile(path);
     });

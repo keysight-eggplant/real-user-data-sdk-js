@@ -3,24 +3,16 @@
 import chai from 'chai';
 import chaiUuid from 'chai-uuid';
 import puppeteer from 'puppeteer';
+import { dirname, resolve } from 'path';
+import { fileURLToPath } from 'url';
 import TestSetupHelper from './testSetup.Helper.js';
 import GenericTestHelper from './genericTest.Helper.js';
+
+const currentDirname = dirname(fileURLToPath(import.meta.url));
 
 chai.use(chaiUuid);
 
 const { expect } = chai;
-
-/**
- * @typedef {Object} TestWebpackConfig
- * */
-
-/**
- * @typedef {Object} TestServerConfig
- * @property {Number} port - The port that the server will be start on.
- * @property {Array} startedServers - Where the started servers are
- * stored in order to be closed gracefully.
- * @property {String} examplesPath - Where the examples are stored.
- * */
 
 const defaultWaitForRequestsTimeout = 1000;
 const defaultWaitForRequestsFrequency = 50;
@@ -33,7 +25,8 @@ describe('RCI SDK Core', () => {
     before(async () => {
       await GenericTestHelper.startServer({
         port: 3000,
-        startedServers: TestSetupHelper.startedServers
+        startedServers: TestSetupHelper.startedServers,
+        currentDirname
       });
       browser = await puppeteer.launch(TestSetupHelper.puppeteerLaunchConfig);
     });

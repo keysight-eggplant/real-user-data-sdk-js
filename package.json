@@ -74,6 +74,7 @@
     "not op_mini all"
   ],
   "mocha": {
-    "timeout": "60000"
+    "timeout": "60000",
+    "spec": ["./tests/**/*.spec.js"]
   }
 }
