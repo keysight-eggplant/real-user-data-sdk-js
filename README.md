@@ -291,6 +291,36 @@ if (window.hasOwnProperty('RCICoreReady')) {
     });
 }
 ```
+
+## Examples
+### E-commerce Single Page App (SPA)
+
+To test certain features and to see it working in a real world scenario, we deployed our tag to a Demo app built on Next.js, React, Redux with soft navigation. You can find the app here: [Github Repo](https://github.com/T4533N/react-ecommerce)
+
+An official demo can be seen [here](https://reactjs-ecommerce.vercel.app/products/recoAJYUCuEKxcPSr)
+
+In order to manual test, see it in action or just play around with it's capabilities, you need to install the app and make it available. 
+
+To do so, you need to run the following commands(given that right now you are in the "next-react-spa" folder): 
+
+```bash
+cd examples/next-react-spa
+npm install
+npm run dev
+```
+
+The commands above will install the dependencies for the app to run and it will start the front-end app. 
+
+The terminal should give an output similar to this:
+
+```text
+> next-realworld-example-app@1.0.0 dev
+> next dev
+ready - started server on http://localhost:3000
+```
+
+Now as the terminal says, you can navigate in your browser to ```http://localhost:3000``` or click [here](http://localhost:3000)
+
 ## Support IE 11 and older phones
 To support IE11 you need to compile source in legacy mode.
 ```

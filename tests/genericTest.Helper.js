@@ -6,10 +6,15 @@ import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import yargs from 'yargs';
 import { WebpackWrapper } from '../config/webpack.js';
+import products from './fixtures/products.js';
 
 const currentDirname = dirname(fileURLToPath(import.meta.url));
 
 class GenericTestHelper {
+
+  static dummyServerConfig = {
+    port: 3005
+  };
 
   static async waitUntil(f, timeout, frequency) {
 
@@ -38,6 +43,10 @@ class GenericTestHelper {
     const app = express();
 
     app.use(cors());
+
+    app.get('/react-store-products', (req, res) => {
+      res.send(products);
+    });
 
     app.post('/v1/:tenancyId/stream', (req, res) => {
       console.log(`Requested: ${req.path} - Method: ${req.method} - TenancyId: ${req.params.tenancyId}`);
@@ -121,7 +130,7 @@ if (resolve(process.argv[1]) === resolve(fileURLToPath(import.meta.url))) {
     .example('node tests/genericTest.Helper.js')
     .option('port', {
       alias: 'p',
-      default: 3000,
+      default: GenericTestHelper.dummyServerConfig.port,
       type: 'number',
       description: 'The port to run the server on'
     })

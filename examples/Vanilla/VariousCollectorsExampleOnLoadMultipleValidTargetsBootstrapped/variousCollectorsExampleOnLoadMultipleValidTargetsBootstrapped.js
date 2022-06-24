@@ -29,7 +29,7 @@ class CustomCollector {
 const configuredTenancies = [
   {
     name: 'E2E Test', // non-matching target
-    targetUrl: 'http://localhost:3000/v1/111-222/stream',
+    targetUrl: 'http://localhost:3005/v1/111-222/stream',
     tenancyId: '111-222',
     target: {
       targetedData: 'URLHost',
@@ -39,7 +39,7 @@ const configuredTenancies = [
   },
   {
     name: 'Beacon Generator 1', // matching target
-    targetUrl: 'http://localhost:3000/v1/333-444/stream',
+    targetUrl: 'http://localhost:3005/v1/333-444/stream',
     tenancyId: '333-444',
     target: {
       targetedData: 'URLPathName',
@@ -49,7 +49,7 @@ const configuredTenancies = [
   },
   {
     name: 'Mitsubishi', // non-matching target
-    targetUrl: 'http://localhost:3000/v1/555-666/stream',
+    targetUrl: 'http://localhost:3005/v1/555-666/stream',
     tenancyId: '111-222',
     target: {
       targetedData: 'URLPathName',
@@ -59,7 +59,7 @@ const configuredTenancies = [
   },
   {
     name: 'Fujitsu', // matching target
-    targetUrl: 'http://localhost:3000/v1/777-888/stream',
+    targetUrl: 'http://localhost:3005/v1/777-888/stream',
     tenancyId: '111-222',
     target: {
       targetedData: 'URLPathName',

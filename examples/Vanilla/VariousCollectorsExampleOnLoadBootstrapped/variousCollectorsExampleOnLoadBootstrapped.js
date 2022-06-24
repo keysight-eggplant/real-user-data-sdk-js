@@ -29,7 +29,7 @@ class CustomCollector {
 function rciMainAction (tenancyId, rciSdk) {
   // eslint-disable-next-line no-undef
   const bootstrapped = new rciSdk.Bootstrapper({
-    targetUrl: `http://localhost:3000/v1/${tenancyId}/stream`,
+    targetUrl: `http://localhost:3005/v1/${tenancyId}/stream`,
     collectors: [
       ...rciSdk.collector.defaultCollectors,
       ...rciSdk.collector.webFocusedCollectors,

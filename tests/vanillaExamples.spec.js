@@ -32,7 +32,7 @@ describe('RCI SDK Core', () => {
 
     before(async () => {
       await GenericTestHelper.startServer({
-        port: 3000,
+        port: GenericTestHelper.dummyServerConfig.port,
         startedServers: TestSetupHelper.startedServers
       });
       browser = await puppeteer.launch(TestSetupHelper.puppeteerLaunchConfig);
@@ -47,7 +47,7 @@ describe('RCI SDK Core', () => {
 
         const testSetup = {
 
-          link: 'http://localhost:3000/examples/Vanilla/OnLoad/index.html',
+          link: `http://localhost:${GenericTestHelper.dummyServerConfig.port}/examples/Vanilla/OnLoad/index.html`,
           instrumentationWebpackConfig: {
             entryPoint: './examples/Vanilla/OnLoad/onload.js',
             scope: 'implementation',
@@ -70,7 +70,7 @@ describe('RCI SDK Core', () => {
         await page.close();
 
         expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
-        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/123-456/stream');
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal(`http://localhost:${GenericTestHelper.dummyServerConfig.port}/v1/123-456/stream`);
 
         expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
@@ -113,7 +113,7 @@ describe('RCI SDK Core', () => {
 
         const testSetup = {
 
-          link: 'http://localhost:3000/examples/Vanilla/Conversion/index.html',
+          link: `http://localhost:${GenericTestHelper.dummyServerConfig.port}/examples/Vanilla/Conversion/index.html`,
           instrumentationWebpackConfig: {
             entryPoint: './examples/Vanilla/Conversion/conversion.js',
             scope: 'implementation',
@@ -137,7 +137,7 @@ describe('RCI SDK Core', () => {
         await page.close();
 
         expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
-        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/123-456/stream');
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal(`http://localhost:${GenericTestHelper.dummyServerConfig.port}/v1/123-456/stream`);
 
         expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
@@ -184,7 +184,7 @@ describe('RCI SDK Core', () => {
 
         const testSetup = {
 
-          link: 'http://localhost:3000/examples/Vanilla/Conversion/index.html',
+          link: `http://localhost:${GenericTestHelper.dummyServerConfig.port}/examples/Vanilla/Conversion/index.html`,
           instrumentationWebpackConfig: {
             entryPoint: './examples/Vanilla/Conversion/conversion.js',
             scope: 'implementation',
@@ -209,7 +209,7 @@ describe('RCI SDK Core', () => {
         await page.close();
 
         expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
-        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/123-456/stream');
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal(`http://localhost:${GenericTestHelper.dummyServerConfig.port}/v1/123-456/stream`);
 
         expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
@@ -251,7 +251,7 @@ describe('RCI SDK Core', () => {
       it('should work with the Custom Collector example', async () => {
 
         const testSetup = {
-          link: 'http://localhost:3000/examples/Vanilla/CustomCollector/index.html',
+          link: `http://localhost:${GenericTestHelper.dummyServerConfig.port}/examples/Vanilla/CustomCollector/index.html`,
           instrumentationWebpackConfig: {
             entryPoint: './examples/Vanilla/CustomCollector/customCollector.js',
             scope: 'implementation',
@@ -274,7 +274,7 @@ describe('RCI SDK Core', () => {
         await page.close();
 
         expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
-        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/123-456/stream');
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal(`http://localhost:${GenericTestHelper.dummyServerConfig.port}/v1/123-456/stream`);
 
         expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
@@ -320,7 +320,7 @@ describe('RCI SDK Core', () => {
       it('should work with the Error example', async () => {
 
         const testSetup = {
-          link: 'http://localhost:3000/examples/Vanilla/Error/index.html',
+          link: `http://localhost:${GenericTestHelper.dummyServerConfig.port}/examples/Vanilla/Error/index.html`,
           instrumentationWebpackConfig: {
             entryPoint: './examples/Vanilla/Error/error.js',
             scope: 'implementation',
@@ -343,7 +343,7 @@ describe('RCI SDK Core', () => {
         await page.close();
 
         expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
-        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/123-456/stream');
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal(`http://localhost:${GenericTestHelper.dummyServerConfig.port}/v1/123-456/stream`);
 
         expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
@@ -388,7 +388,7 @@ describe('RCI SDK Core', () => {
 
       it('should work with the Instrumentation Version Collector example', async () => {
         const testSetup = {
-          link: 'http://localhost:3000/examples/Vanilla/InstrumentationVersionCollector/index.html',
+          link: `http://localhost:${GenericTestHelper.dummyServerConfig.port}/examples/Vanilla/InstrumentationVersionCollector/index.html`,
           instrumentationWebpackConfig: {
             entryPoint: './examples/Vanilla/InstrumentationVersionCollector/instrumentationVersionCollector.js',
             scope: 'implementation',
@@ -411,7 +411,7 @@ describe('RCI SDK Core', () => {
         await page.close();
 
         expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
-        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/123-456/stream');
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal(`http://localhost:${GenericTestHelper.dummyServerConfig.port}/v1/123-456/stream`);
 
         expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
@@ -456,7 +456,7 @@ describe('RCI SDK Core', () => {
 
       it('should work with the Web Based Collectors example', async () => {
         const testSetup = {
-          link: 'http://localhost:3000/examples/Vanilla/WebBasedCollectors/index.html',
+          link: `http://localhost:${GenericTestHelper.dummyServerConfig.port}/examples/Vanilla/WebBasedCollectors/index.html`,
           instrumentationWebpackConfig: {
             entryPoint: './examples/Vanilla/WebBasedCollectors/webBasedCollectors.js',
             scope: 'implementation',
@@ -478,7 +478,7 @@ describe('RCI SDK Core', () => {
         await page.close();
 
         expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
-        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/123-456/stream');
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal(`http://localhost:${GenericTestHelper.dummyServerConfig.port}/v1/123-456/stream`);
 
         expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
@@ -529,7 +529,7 @@ describe('RCI SDK Core', () => {
 
       it('should work with the Web Based Collectors Collection example', async () => {
         const testSetup = {
-          link: 'http://localhost:3000/examples/Vanilla/WebBasedCollectorsCollection/index.html',
+          link: `http://localhost:${GenericTestHelper.dummyServerConfig.port}/examples/Vanilla/WebBasedCollectorsCollection/index.html`,
           instrumentationWebpackConfig: {
             entryPoint: './examples/Vanilla/WebBasedCollectorsCollection/webBasedCollectorsCollection.js',
             scope: 'implementation',
@@ -551,7 +551,7 @@ describe('RCI SDK Core', () => {
         await page.close();
 
         expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
-        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/123-456/stream');
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal(`http://localhost:${GenericTestHelper.dummyServerConfig.port}/v1/123-456/stream`);
 
         expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
@@ -606,7 +606,7 @@ describe('RCI SDK Core', () => {
 
       it('should work with the Various Collectors Example On Load example', async () => {
         const testSetup = {
-          link: 'http://localhost:3000/examples/Vanilla/VariousCollectorsExampleOnLoad/index.html',
+          link: `http://localhost:${GenericTestHelper.dummyServerConfig.port}/examples/Vanilla/VariousCollectorsExampleOnLoad/index.html`,
           instrumentationWebpackConfig: {
             entryPoint: './examples/Vanilla/VariousCollectorsExampleOnLoad/variousCollectorsExampleOnLoad.js',
             scope: 'implementation',
@@ -629,7 +629,7 @@ describe('RCI SDK Core', () => {
         await page.close();
 
         expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
-        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/123-456/stream');
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal(`http://localhost:${GenericTestHelper.dummyServerConfig.port}/v1/123-456/stream`);
 
         expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
@@ -689,7 +689,7 @@ describe('RCI SDK Core', () => {
 
       it('should work with the Various Collectors Example On Load Bootstrapped example', async () => {
         const testSetup = {
-          link: 'http://localhost:3000/examples/Vanilla/VariousCollectorsExampleOnLoadBootstrapped/index.html',
+          link: `http://localhost:${GenericTestHelper.dummyServerConfig.port}/examples/Vanilla/VariousCollectorsExampleOnLoadBootstrapped/index.html`,
           instrumentationWebpackConfig: {
             entryPoint: './examples/Vanilla/VariousCollectorsExampleOnLoadBootstrapped/variousCollectorsExampleOnLoadBootstrapped.js',
             scope: 'implementation',
@@ -712,7 +712,7 @@ describe('RCI SDK Core', () => {
         await page.close();
 
         expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
-        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/123-456/stream');
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal(`http://localhost:${GenericTestHelper.dummyServerConfig.port}/v1/123-456/stream`);
 
         expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
@@ -772,7 +772,7 @@ describe('RCI SDK Core', () => {
 
       it('should work with the Various Collectors Example On Load Config based example', async () => {
         const testSetup = {
-          link: 'http://localhost:3000/examples/Vanilla/VariousCollectorsExampleOnLoadConfigBased/index.html',
+          link: `http://localhost:${GenericTestHelper.dummyServerConfig.port}/examples/Vanilla/VariousCollectorsExampleOnLoadConfigBased/index.html`,
           instrumentationWebpackConfig: {
             entryPoint: './examples/Vanilla/VariousCollectorsExampleOnLoadConfigBased/variousCollectorsExampleOnLoadConfigBased.js',
             scope: 'implementation',
@@ -795,7 +795,7 @@ describe('RCI SDK Core', () => {
         await page.close();
 
         expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
-        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/333-444/stream');
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal(`http://localhost:${GenericTestHelper.dummyServerConfig.port}/v1/333-444/stream`);
 
         expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
@@ -855,7 +855,7 @@ describe('RCI SDK Core', () => {
 
       it('should work with the Various Collectors Example On Load Config based Bootstrapped example', async () => {
         const testSetup = {
-          link: 'http://localhost:3000/examples/Vanilla/VariousCollectorsExampleOnLoadConfigBasedBootstrapped/index.html',
+          link: `http://localhost:${GenericTestHelper.dummyServerConfig.port}/examples/Vanilla/VariousCollectorsExampleOnLoadConfigBasedBootstrapped/index.html`,
           instrumentationWebpackConfig: {
             entryPoint: './examples/Vanilla/VariousCollectorsExampleOnLoadConfigBasedBootstrapped/variousCollectorsExampleOnLoadConfigBasedBootstrapped.js',
             scope: 'implementation',
@@ -878,7 +878,7 @@ describe('RCI SDK Core', () => {
         await page.close();
 
         expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
-        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/333-444/stream');
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal(`http://localhost:${GenericTestHelper.dummyServerConfig.port}/v1/333-444/stream`);
 
         expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
@@ -938,7 +938,7 @@ describe('RCI SDK Core', () => {
 
       it('should work with the Various Collectors Example On Load with multiple valid targets example', async () => {
         const testSetup = {
-          link: 'http://localhost:3000/examples/Vanilla/VariousCollectorsExampleOnLoadMultipleValidTargets/index.html',
+          link: `http://localhost:${GenericTestHelper.dummyServerConfig.port}/examples/Vanilla/VariousCollectorsExampleOnLoadMultipleValidTargets/index.html`,
           instrumentationWebpackConfig: {
             entryPoint: './examples/Vanilla/VariousCollectorsExampleOnLoadMultipleValidTargets/variousCollectorsExampleOnLoadMultipleValidTargets.js',
             scope: 'implementation',
@@ -961,7 +961,7 @@ describe('RCI SDK Core', () => {
         await page.close();
 
         expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
-        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/333-444/stream');
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal(`http://localhost:${GenericTestHelper.dummyServerConfig.port}/v1/333-444/stream`);
 
         expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
@@ -1018,7 +1018,7 @@ describe('RCI SDK Core', () => {
         expect(testSetup.capturedRequests[0].payload.eventInfo3).to.deep.equal('passed value in a custom collector');
 
         // Second request
-        expect(testSetup.capturedRequests[1].requestUrl).to.deep.equal('http://localhost:3000/v1/777-888/stream');
+        expect(testSetup.capturedRequests[1].requestUrl).to.deep.equal(`http://localhost:${GenericTestHelper.dummyServerConfig.port}/v1/777-888/stream`);
 
         expect(testSetup.capturedRequests[1].payload.id).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[1].payload.clientId).to.to.be.a.uuid('v4');
@@ -1078,7 +1078,7 @@ describe('RCI SDK Core', () => {
 
       it('should work with the Various Collectors Example On Load with multiple valid targets bootstrapped example', async () => {
         const testSetup = {
-          link: 'http://localhost:3000/examples/Vanilla/VariousCollectorsExampleOnLoadMultipleValidTargetsBootstrapped/index.html',
+          link: `http://localhost:${GenericTestHelper.dummyServerConfig.port}/examples/Vanilla/VariousCollectorsExampleOnLoadMultipleValidTargetsBootstrapped/index.html`,
           instrumentationWebpackConfig: {
             entryPoint: './examples/Vanilla/VariousCollectorsExampleOnLoadMultipleValidTargetsBootstrapped/variousCollectorsExampleOnLoadMultipleValidTargetsBootstrapped.js',
             scope: 'implementation',
@@ -1101,7 +1101,7 @@ describe('RCI SDK Core', () => {
         await page.close();
 
         expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
-        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/333-444/stream');
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal(`http://localhost:${GenericTestHelper.dummyServerConfig.port}/v1/333-444/stream`);
 
         expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
@@ -1158,7 +1158,7 @@ describe('RCI SDK Core', () => {
         expect(testSetup.capturedRequests[0].payload.eventInfo3).to.deep.equal('passed value in a custom collector');
 
         // Second request
-        expect(testSetup.capturedRequests[1].requestUrl).to.deep.equal('http://localhost:3000/v1/777-888/stream');
+        expect(testSetup.capturedRequests[1].requestUrl).to.deep.equal(`http://localhost:${GenericTestHelper.dummyServerConfig.port}/v1/777-888/stream`);
 
         expect(testSetup.capturedRequests[1].payload.id).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[1].payload.clientId).to.to.be.a.uuid('v4');
@@ -1218,7 +1218,7 @@ describe('RCI SDK Core', () => {
 
       it('should work with the Various Collectors Example On Load Targeting Canonical Links example', async () => {
         const testSetup = {
-          link: 'http://localhost:3000/examples/Vanilla/VariousCollectorsExampleOnLoadTargetingCanonicalLinks/index.html',
+          link: `http://localhost:${GenericTestHelper.dummyServerConfig.port}/examples/Vanilla/VariousCollectorsExampleOnLoadTargetingCanonicalLinks/index.html`,
           instrumentationWebpackConfig: {
             entryPoint: './examples/Vanilla/VariousCollectorsExampleOnLoadTargetingCanonicalLinks/variousCollectorsExampleOnLoadTargetingCanonicalLinks.js',
             scope: 'implementation',
@@ -1241,7 +1241,7 @@ describe('RCI SDK Core', () => {
         await page.close();
 
         expect(testSetup.capturedRequests.length).to.deep.equal(testSetup.expectedRequests);
-        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal('http://localhost:3000/v1/333-444/stream');
+        expect(testSetup.capturedRequests[0].requestUrl).to.deep.equal(`http://localhost:${GenericTestHelper.dummyServerConfig.port}/v1/333-444/stream`);
 
         expect(testSetup.capturedRequests[0].payload.id).to.to.be.a.uuid('v4');
         expect(testSetup.capturedRequests[0].payload.clientId).to.to.be.a.uuid('v4');
@@ -1301,7 +1301,7 @@ describe('RCI SDK Core', () => {
 
       it('should work with the Various Collectors Example On Load Targeting Canonical Links that are missing example', async () => {
         const testSetup = {
-          link: 'http://localhost:3000/examples/Vanilla/VariousCollectorsExampleOnLoadNonMatchingTargetingCanonicalLinks/index.html',
+          link: `http://localhost:${GenericTestHelper.dummyServerConfig.port}/examples/Vanilla/VariousCollectorsExampleOnLoadNonMatchingTargetingCanonicalLinks/index.html`,
           instrumentationWebpackConfig: {
             entryPoint: './examples/Vanilla/VariousCollectorsExampleOnLoadNonMatchingTargetingCanonicalLinks/variousCollectorsExampleOnLoadNonMatchingTargetingCanonicalLinks.js',
             scope: 'implementation',
