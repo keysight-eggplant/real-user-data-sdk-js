@@ -1,6 +1,6 @@
 function rciMainAction(tenancyId, rciSdk) {
   // Step 1: Configure your Transport with the tenancyId provided
-  const targetUrl = `https://target.domain/v1/${tenancyId}/stream`;
+  const targetUrl = `http://localhost:3005/v1/${tenancyId}/stream`;
   const transport = new rciSdk.Transport(targetUrl);
 
   // Step 2.a: Capture your default collectors

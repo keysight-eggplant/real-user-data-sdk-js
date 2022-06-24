@@ -1,8 +1,10 @@
-version: 2
+version: 2.1
+orbs:
+  browser-tools: circleci/browser-tools@1.1.0
 jobs:
   build:
     docker:
-      - image: circleci/node:current-browsers
+      - image: cimg/node:current-browsers
     steps:
       - checkout
       - run:
@@ -46,7 +48,10 @@ jobs:
           command: npm run build:legacy
       - run:
           name: Authenticate with registry
-          command: node node_modules/npm-cli-login/bin/npm-cli-login.js -u ${NPM_USERNAME} -p ${NPM_PASSWORD} -e ${NPM_EMAIL}
+          command: touch ~/.npmrc && echo email=${NPM_EMAIL} >> ~/.npmrc && echo always-auth=true >> ~/.npmrc && echo //registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN} >> ~/.npmrc
+      - run:
+          name: NPM Who Am I
+          command: npm whoami
       - run:
           name: Publish package
           command: npm publish --access public

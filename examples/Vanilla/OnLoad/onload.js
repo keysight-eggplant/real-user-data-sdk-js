@@ -1,6 +1,6 @@
 async function rciMainAction(tenancyId, rciSdk) {
   // Step 1: Configure your Transport with the tenancyId provided
-  const targetUrl = `https://target.domain/v1/${tenancyId}/stream`;
+  const targetUrl = `http://localhost:3005/v1/${tenancyId}/stream`;
   const transport = new rciSdk.Transport(targetUrl);
 
   // Step 2: Capture your default collectors
@@ -42,7 +42,6 @@ const waitUntil = (condition, repeatInterval) => new Promise((resolve) => {
 // setTimeout(() => {
 // Path 1: Trigger the RCI instrumentation bootstrap process straight away
 if (RCICoreReady === true) {
-  console.log('bla1');
   rciMainAction(tenancyId, window.rciSdk);
 
   // Bind on event and wait for dispatch by the SDK
@@ -52,7 +51,6 @@ if (RCICoreReady === true) {
       console.log('1');
       return typeof window.rciSdk !== 'undefined' && Object.prototype.hasOwnProperty.call(window.rciSdk, '__esModule');
     }, 10);
-    console.log('bla2');
     await rciMainAction(tenancyId, window.rciSdk);
   });
 }

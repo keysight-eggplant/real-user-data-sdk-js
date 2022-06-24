@@ -49,7 +49,7 @@
     "strict": 0,
     "arrow-body-style": 1,
     "no-useless-escape": 0,
-    "max-len": 1,
+    "max-len": ["warn", { "code": 140}],
     "no-underscore-dangle": 1,
     "prefer-promise-reject-errors": 1,
     "no-useless-constructor": 1,
@@ -63,6 +63,31 @@
     "node/file-extension-in-import": [
       "warn",
       "always"
+    ],
+    "node/no-unpublished-import": [
+      "error",
+      {
+        "allowModules": [
+          "cors",
+          "chai",
+          "chai-uuid",
+          "express",
+          "puppeteer",
+          "puppeteer-interceptor",
+          "sinon",
+          "webpack",
+          "yargs"
+        ]
+      }
+    ],
+    "node/no-unsupported-features/es-syntax": [
+      "error",
+      {
+        "ignores": [
+          "dynamicImport",
+          "modules"
+        ]
+      }
     ]
   }
 }
